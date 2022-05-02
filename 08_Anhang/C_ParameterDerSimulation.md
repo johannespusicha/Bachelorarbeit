@@ -61,6 +61,7 @@ Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCag
 Wicklungsdaten der Asynchronmaschine
 
 ### Synchron-Generator
+
 | Parameter                        | Wert |
 | -------------------------------- | ---- |
 | `terminalBox.terminalConnection` | "Y"  |
@@ -161,6 +162,7 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 Parameter des Modells des Synchron-Generators
 
 ### Erregermaschine
+
 | Parameter | Wert                     |
 | --------- | ------------------------ |
 | $X_N$     | \unit[3,249]{\Omega}     |
@@ -271,7 +273,9 @@ Parameter des Synchro-Generators der Erregermaschine
 | `VkneeDiode` | 0,7  |
 | `m`          | 3    |
 Parameter des Gleichrichters der Erregermaschine
+
 ## Reglerparameter
+
 | Parameter       | Dezimalwert | Hexadezimalwert[^1] |
 | --------------- | ----------- | ------------------- |
 | `Ts`            | 0,00078125  | -                   |
@@ -309,7 +313,9 @@ Reglerparameter des Spannungsreglers
 Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber
 
 [^1]: 16 bit signed Integer
+
 ## Weitere
+
 | Parameter                         | Wert                                                 |
 | --------------------------------- | ---------------------------------------------------- |
 | `simData.JRotor`                  | 1,58                                                 |
