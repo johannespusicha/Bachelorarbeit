@@ -67,44 +67,44 @@ Wicklungsdaten der Asynchronmaschine
 | `terminalBox.terminalConnection` | "Y"  |
 Parameter für den Netzanschluss des Synchron-Generators
 
-| Parameter | Wert                                 |
-| --------- | ------------------------------------ |
-| $X_N$     | \unit[0,44444444444444436]{\Omega}   |
-| $X_D$     | \unit[0,37232409867781685]{\Omega}   |
-| $X_D'$    | \unit[0,10727388372365276]{\Omega}   |
-| $X_D''$   | \unit[0,063131689804932889]{\Omega}  |
-| $X_Q$     | \unit[0,16268065808519006]{\Omega}   |
-| $X_Q''$   | \unit[0,061911567284431417]{\Omega}  |
-| $X_0$     | \unit[0,13773696682464454]{\Omega}   |
-| $X_S$     | \unit[0,042106445136139446]{\Omega}  |
-| $f_{s,N}$ | \unit[400]{\Omega}                   |
-| $R_s$     | \unit[6,68E-03]{\Omega}              |
-| $T_{D0}'$ | \unit[0,1075492579055312]{\Omega}    |
-| $T_D''$   | \unit[0,0038358105876696909]{\Omega} |
-| $T_Q''$   | \unit[0,0028791616002136365]{\Omega} |
+| Parameter | Wert                                   |
+| --------- | -------------------------------------- |
+| $X_N$     | $\unit[0,44444444444444436]{\Omega}$   |
+| $X_D$     | $\unit[0,37232409867781685]{\Omega}$   |
+| $X_D'$    | $\unit[0,10727388372365276]{\Omega}$   |
+| $X_D''$   | $\unit[0,063131689804932889]{\Omega}$  |
+| $X_Q$     | $\unit[0,16268065808519006]{\Omega}$   |
+| $X_Q''$   | $\unit[0,061911567284431417]{\Omega}$  |
+| $X_0$     | $\unit[0,13773696682464454]{\Omega}$   |
+| $X_S$     | $\unit[0,042106445136139446]{\Omega}$  |
+| $f_{s,N}$ | $\unit[400]{\Omega}$                   |
+| $R_s$     | $\unit[6,68E-03]{\Omega}$              |
+| $T_{D0}'$ | $\unit[0,1075492579055312]{\Omega}$    |
+| $T_D''$   | $\unit[0,0038358105876696909]{\Omega}$ |
+| $T_Q''$   | $\unit[0,0028791616002136365]{\Omega}$ |
 Parameter aus der Auslegung des Synchro-Generators
 
-| Parameter      | Wert       | Berechnung                                                                 |
-| -------------- | ---------- | -------------------------------------------------------------------------- |
-| $\omega_{s,N}$ | \unit[2513,27412]{\frac{rad}{s}} | $2\pi f_{s,N}$                                                             |
-| $x_d$          | 0,83772922 | $\frac{X_D}{X_N}$                                                          |
-| $x_d'$         | 0,24136624 | $\frac{X_D'}{X_N}$                                                         |
-| $x_d''$        | 0,1420463  | $\frac{X_D''}{X_N}$                                                        |
-| $x_q$          | 0,36603148 | $\frac{X_Q}{X_N}$                                                          |
-| $x_q''$        | 0,13930103 | $\frac{X_Q''}{X_N}$                                                        |
-| $x_s$          | 0,0947395  | $\frac{X_S}{X_N}$                                                          |
-| $x_{md}$       | 0,74298972 | $x_d-x_s$                                                                  |
-| $x_{mq}$       | 0,27129198 | $x_q-x_s$                                                                  |
-| $x_e$          | 0,92566732 | $\frac{x_{md}^2}{x_d-x_d''}$                                               |
-| $x_{rd}$       | 0,81282909 | $\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}$ |
-| $x_{rq}$       | 0,32461161 | $\frac{x_{mq}^2}{x_q-x_q''}$                                               |
-| $r_s$          | 0,0150285  | $\frac{R_s}{X_N}$                                                          |
-| $r_{rd}$       | 0,01321437 | $\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}$                 |
-| $r_{rq}$       | 0,01707238 | $\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}$                                      |
-| $r_e$          | 0,00342458 | $\frac{x_e}{\omega_{s,N}T_{D0'}}$                                          |
-| $T_{d0}''$     | 0,00651784 | $\frac{x_d'}{x_d''}T_D''$                                                  |
-| $T_{Q0}''$     | 0,00756537 | $\frac{x_q}{x_q''}T_Q$                                                     |
-| turnsratio     | 47,9934193 | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
+| Parameter      | Wert                               | Berechnung                                                                 |
+| -------------- | ---------------------------------- | -------------------------------------------------------------------------- |
+| $\omega_{s,N}$ | $\unit[2513,27412]{\frac{rad}{s}}$ | $2\pi f_{s,N}$                                                             |
+| $x_d$          | 0,83772922                         | $\frac{X_D}{X_N}$                                                          |
+| $x_d'$         | 0,24136624                         | $\frac{X_D'}{X_N}$                                                         |
+| $x_d''$        | 0,1420463                          | $\frac{X_D''}{X_N}$                                                        |
+| $x_q$          | 0,36603148                         | $\frac{X_Q}{X_N}$                                                          |
+| $x_q''$        | 0,13930103                         | $\frac{X_Q''}{X_N}$                                                        |
+| $x_s$          | 0,0947395                          | $\frac{X_S}{X_N}$                                                          |
+| $x_{md}$       | 0,74298972                         | $x_d-x_s$                                                                  |
+| $x_{mq}$       | 0,27129198                         | $x_q-x_s$                                                                  |
+| $x_e$          | 0,92566732                         | $\frac{x_{md}^2}{x_d-x_d''}$                                               |
+| $x_{rd}$       | 0,81282909                         | $\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}$ |
+| $x_{rq}$       | 0,32461161                         | $\frac{x_{mq}^2}{x_q-x_q''}$                                               |
+| $r_s$          | 0,0150285                          | $\frac{R_s}{X_N}$                                                          |
+| $r_{rd}$       | 0,01321437                         | $\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}$                 |
+| $r_{rq}$       | 0,01707238                         | $\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}$                                      |
+| $r_e$          | 0,00342458                         | $\frac{x_e}{\omega_{s,N}T_{D0'}}$                                          |
+| $T_{d0}''$     | 0,00651784                         | $\frac{x_d'}{x_d''}T_D''$                                                  |
+| $T_{Q0}''$     | 0,00756537                         | $\frac{x_q}{x_q''}T_Q$                                                     |
+| turnsratio     | 47,9934193                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
 Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Generators
 
 | Parameter              | Wert               |
