@@ -248,4 +248,73 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `TsOperational`        | `293,15 (displayunit="K")`              |
 | `TsRef`                | `293,15 (displayunit="K")`              |
 | `alpha20e`             | 0                                       |
-| `alpha20r`             | 0      
+| `alpha20r`             | 0                                       |
+| `alpha20s`             | 0                                       |
+| `useThermalPort`       | `false`                                 |
+Parameter des Synchro-Generators der Erregermaschine
+
+| Parameter    | Wert |
+| ------------ | ---- |
+| `GoffDiode`  | 1e-3 |
+| `RonDiode`   | 1e-3 |
+| `VkneeDiode` | 0,7  |
+| `m`          | 3    |
+Parameter des Gleichrichters der Erregermaschine
+## Reglerparameter
+| Parameter       | Dezimalwert | Hexadezimalwert[^1] |
+| --------------- | ----------- | ------------------- |
+| `Ts`            | 0,00078125  | -                   |
+| `UgenCtrlPP_G`  | 2048        | 0x800               |
+| `UgenCtrlPP_D`  | 256         | 0x100               |
+| `UgenCtrlPP_LL` | 6144        | 0x1800              |
+| `UgenCtrlPP_UL` | 8192        | 0x2000              |
+| `UgenCtrlP_D`   | 256         | 0x100               |
+| `UgenCtrlP_LL`  | -32768      | 0x8000              |
+| `UgenCtrlP_UL`  | 32767       | 0x7FFF              |
+| `UgenCtrlI_G`   | 304         | 0x130               |
+| `UgenCtrlI_D`   | 4096        | 0x1000              |
+| `UgenCtrlI_LL`  | 0           | 0x0                 |
+| `UgenCtrlI_UL`  | 32767       | 0x7FFF              |
+| `UgenCtrlD_G`   | 27648       | 0x1000              |
+| `UgenCtrlD_D`   | 256         | 0x5A00              |
+| `UgenCtrlD_T`   | 2048        | 0x800               |
+| `UgenCtrlD_LL`  | 32768       | 0x8000              |
+| `UgenCtrlD_UL`  | 32767       | 0x7FFF              |
+| `UgenCtrlLL`    | 0           | 0x0                 |
+| `UgenCtrlUL`    | 14336       | 0x2000              | 
+Reglerparameter des Spannungsreglers
+
+[^1]: 16 bit signed Integer
+## Weitere
+| Parameter                         | Wert                                                 |
+| --------------------------------- | ---------------------------------------------------- |
+| `offset_Map.I1`                   | 0                                                    |
+| `offset_Map.I2`                   | 32767                                                |
+| `offset_Map.O2`                   | 80                                                   |
+| `offset_Map1.O2`                  | 3888 / 256                                           |
+| `controlOn.startTime`             | 0,7                                                  |
+| `controlOn.startValue`            | `false`                                              |
+| `V_set.duration`                  | 0,3                                                  |
+| `V_set.height`                    | 115                                                  |
+| `V_set.startTime`                 | 0,7                                                  |
+| `simData.JRotor`                  | 1,58                                                 |
+| `simData.VNominal`                | 410                                                  |
+| `simData.fNominal`                | 50                                                   |
+| `ramp_net.height`                 | `simData.VNominal * sqrt(2)`                         |
+| `ramp_net.duration`               | 0,5                                                  |
+| `terminalBox1.terminalConnection` | "D"                                                  |
+| `terminalBox.terminalConnection`  | "Y"                                                  |
+| `fan.J`                           | `simData.JRotor`                                     |
+| `fan.a`                           | `(fixed = false)`                                    |
+| `fan.phi`                         | `(displayUnit = "rad")`                              |
+| `fan.w`                           | `(fixed = true, start = 314)`                        |
+| `frequency.k`                     | 8 / (2 * pi)                                         |
+| `loadTimeTable.extrapolation`     | `Modelica.Blocks.Types.Extrapolation.HoldLastPoint`  |
+| `loadTimeTable.fileName`          | "Laststufen_timetable.txt"                           |
+| `loadTimeTable.smoothness`        | `Modelica.Blocks.Types.Smoothness.ConstantSegments`  |
+| `loadTimeTable.table`             | [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524] |
+| `loadTimeTable.tableName`         | "laststufen"                                         |
+| `loadTimeTable.tableOnFile`       | `false`                                              |
+
+
+
