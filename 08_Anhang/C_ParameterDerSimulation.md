@@ -254,26 +254,26 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 Parameter des Synchro-Generators der Erregermaschine
 ## Reglerparameter
 | Parameter       | Dezimalwert | Hexadezimalwert[^1] |
-| --------------- | ----------- | --------------- |
-| `Ts`            | 0,00078125  |                 |
-| `UgenCtrlD_D`   | 256         |                 |
-| `UgenCtrlD_G`   | 27648       |                 |
-| `UgenCtrlD_LL`  | 32768       |                 |
-| `UgenCtrlD_T`   | 2048        |                 |
-| `UgenCtrlD_UL`  | 32767       |                 |
-| `UgenCtrlI_D`   | 4096        |                 |
-| `UgenCtrlI_G`   | 304         |                 |
-| `UgenCtrlI_LL`  | 0           |                 |
-| `UgenCtrlI_UL`  | 32767       |                 |
-| `UgenCtrlPP_D`  | 256         |                 |
-| `UgenCtrlPP_G`  | 2048        |                 |
-| `UgenCtrlPP_LL` | 6144        |                 |
-| `UgenCtrlPP_UL` | 8192        |                 |
-| `UgenCtrlP_D`   | 256         |                 |
-| `UgenCtrlP_LL`  | 32768       |                 |
-| `UgenCtrlP_UL`  | 32767       |                 |
-| `UgenCtrlLL`    | 0           |                 |
-| `UgenCtrlUL`    | 14336       |                 |
+| --------------- | ----------- | ------------------- |
+| `Ts`            | 0,00078125  |                     |
+| `UgenCtrlD_D`   | 256         | 0x5A00              |
+| `UgenCtrlD_G`   | 27648       |                     |
+| `UgenCtrlD_LL`  | 32768       |                     |
+| `UgenCtrlD_T`   | 2048        |                     |
+| `UgenCtrlD_UL`  | 32767       |                     |
+| `UgenCtrlI_D`   | 4096        |                     |
+| `UgenCtrlI_G`   | 304         |                     |
+| `UgenCtrlI_LL`  | 0           |                     |
+| `UgenCtrlI_UL`  | 32767       |                     |
+| `UgenCtrlPP_D`  | 256         |                     |
+| `UgenCtrlPP_G`  | 2048        |                     |
+| `UgenCtrlPP_LL` | 6144        |                     |
+| `UgenCtrlPP_UL` | 8192        |                     |
+| `UgenCtrlP_D`   | 256         |                     |
+| `UgenCtrlP_LL`  | 32768       |                     |
+| `UgenCtrlP_UL`  | 32767       |                     |
+| `UgenCtrlLL`    | 0           |                     |
+| `UgenCtrlUL`    | 14336       |                     |
 Reglerparameter des Spannungsreglers
 
-[^1]: signed Integer
+[^1]: 16 bit signed Integer
