@@ -255,23 +255,23 @@ Parameter des Synchro-Generators der Erregermaschine
 ## Reglerparameter
 | Parameter       | Dezimalwert | Hexadezimalwert[^1] |
 | --------------- | ----------- | ------------------- |
-| `Ts`            | 0,00078125  |                     |
-| `UgenCtrlPP_G`  | 2048        |                     |
-| `UgenCtrlPP_D`  | 256         |                     |
-| `UgenCtrlPP_LL` | 6144        |                     |
-| `UgenCtrlPP_UL` | 8192        |                     |
-| `UgenCtrlP_D`   | 256         |                     |
-| `UgenCtrlP_LL`  | 32768       |                     |
-| `UgenCtrlP_UL`  | 32767       |                     |
+| `Ts`            | 0,00078125  | -                   |
+| `UgenCtrlPP_G`  | 2048        | 0x800               |
+| `UgenCtrlPP_D`  | 256         | 0x100               |
+| `UgenCtrlPP_LL` | 6144        | 0x1800              |
+| `UgenCtrlPP_UL` | 8192        | 0x2000              |
+| `UgenCtrlP_D`   | 256         | 0x100               |
+| `UgenCtrlP_LL`  | -32768      | 0x8000              |
+| `UgenCtrlP_UL`  | 32767       | 0x7FFF              | 
 | `UgenCtrlI_G`   | 304         |                     |
-| `UgenCtrlD_G`   | 27648       | 0x1000              |
-| `UgenCtrlD_D`   | 256         | 0x5A00              |
-| `UgenCtrlD_LL`  | 32768       |                     |
-| `UgenCtrlD_T`   | 2048        |                     |
-| `UgenCtrlD_UL`  | 32767       |                     |
 | `UgenCtrlI_D`   | 4096        |                     |
 | `UgenCtrlI_LL`  | 0           |                     |
 | `UgenCtrlI_UL`  | 32767       |                     |
+| `UgenCtrlD_G`   | 27648       | 0x1000              |
+| `UgenCtrlD_D`   | 256         | 0x5A00              |
+| `UgenCtrlD_T`   | 2048        |                     |
+| `UgenCtrlD_LL`  | 32768       |                     |
+| `UgenCtrlD_UL`  | 32767       |                     |
 | `UgenCtrlLL`    | 0           |                     |
 | `UgenCtrlUL`    | 14336       |                     |
 Reglerparameter des Spannungsreglers
