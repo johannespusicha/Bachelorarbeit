@@ -346,7 +346,7 @@ Table: Allgemeine Parameter, Parameter für die Netzspeisung und Parameter für 
 | `fan.phi`                     | `(displayUnit = "rad")`                                     |
 | `fan.w`                       | `(fixed = true, start = 314)`                               |
 | `frequency.k`                 | 8 / (2 * pi)                                                |
-| `loadTimeTable.extrapolation` | `Modelica.\-Blocks.\-Types.\-Extrapolation.\-HoldLastPoint` |
+| `loadTimeTable.extrapolation` | `\hyphenation{Modelica.-Blocks.-Types.-Extrapolation.-HoldLastPoint}` |
 | `loadTimeTable.fileName`      | "Laststufen_timetable.txt"                                  |
 | `loadTimeTable.smoothness`    | `Modelica.Blocks.Types.Smoothness.ConstantSegments`         |
 | `loadTimeTable.table`         | [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524]        |
