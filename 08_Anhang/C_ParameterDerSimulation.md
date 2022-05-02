@@ -55,26 +55,26 @@ Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCag
 Wicklungsdaten der Asynchronmaschine
 
 ### Synchron-Generator
-| Parameter | Wert                  |
-| --------- | --------------------- |
-| $X_N$     | 0,44444444444444436   |
-| $X_D$     | 0,37232409867781685   |
-| $X_D'$    | 0,10727388372365276   |
-| $X_D''$   | 0,063131689804932889  |
-| $X_Q$     | 0,16268065808519006   |
-| $X_Q''$   | 0,061911567284431417  |
-| $X_0$     | 0,13773696682464454   |
-| $X_S$     | 0,042106445136139446  |
-| $f_{s,N}$ | 400                   |
-| $R_s$     | 6,68E-03              |
-| $T_{D0}'$ | 0,1075492579055312    |
-| $T_D''$   | 0,0038358105876696909 |
-| $T_Q''$   | 0,0028791616002136365 |
+| Parameter | Wert                                 |
+| --------- | ------------------------------------ |
+| $X_N$     | \unit[0,44444444444444436]{\Omega}   |
+| $X_D$     | \unit[0,37232409867781685]{\Omega}   |
+| $X_D'$    | \unit[0,10727388372365276]{\Omega}   |
+| $X_D''$   | \unit[0,063131689804932889]{\Omega}  |
+| $X_Q$     | \unit[0,16268065808519006]{\Omega}   |
+| $X_Q''$   | \unit[0,061911567284431417]{\Omega}  |
+| $X_0$     | \unit[0,13773696682464454]{\Omega}   |
+| $X_S$     | \unit[0,042106445136139446]{\Omega}  |
+| $f_{s,N}$ | \unit[400]{\Omega}                   |
+| $R_s$     | \unit[6,68E-03]{\Omega}              |
+| $T_{D0}'$ | \unit[0,1075492579055312]{\Omega}    |
+| $T_D''$   | \unit[0,0038358105876696909]{\Omega} |
+| $T_Q''$   | \unit[0,0028791616002136365]{\Omega} |
 Parameter aus der Auslegung des Synchro-Generators
 
 | Parameter      | Wert       | Berechnung                                                                 |
 | -------------- | ---------- | -------------------------------------------------------------------------- |
-| $\omega_{s,N}$ | 2513,27412 | $2\pi f_{s,N}$                                                             |
+| $\omega_{s,N}$ | \unit[2513,27412]{\frac{rad}{s}} | $2\pi f_{s,N}$                                                             |
 | $x_d$          | 0,83772922 | $\frac{X_D}{X_N}$                                                          |
 | $x_d'$         | 0,24136624 | $\frac{X_D'}{X_N}$                                                         |
 | $x_d''$        | 0,1420463  | $\frac{X_D''}{X_N}$                                                        |
@@ -150,3 +150,105 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 Parameter des Modells des Synchron-Generators
 
 ### Erregermaschine
+| Parameter | Wert                     |
+| --------- | ------------------------ |
+| $X_N$     | \unit[3,249]{\Omega}     |
+| $X_D$     | \unit[28,75372]{\Omega}  |
+| $X_D'$    | \unit[4,551998]{\Omega}  |
+| $X_D''$   | \unit[4,17496]{\Omega}   |
+| $X_Q$     | \unit[12,73185]{\Omega}  |
+| $X_Q''$   | \unit[4,977648]{\Omega}  |
+| $X_0$     | \unit[0,3364738]{\Omega} |
+| $X_S$     | \unit[2,438214]{\Omega}  |
+| $f_{s,N}$ | \unit[148,5]{Hz}         |
+| $R_s$     | \unit[0,2205]{\Omega}    |
+| $T_{D0}'$ | \unit[0,04588457]{s}     |
+| $T_D''$   | \unit[0,00087131]{s}     |
+| $T_Q''$   | \unit[0,00105124]{s}     |
+Parameter aus der Auslegung der Erregermaschine
+
+| Parameter      | Wert                             | Berechnung                                                                 |
+| -------------- | -------------------------------- | -------------------------------------------------------------------------- |
+| $\omega_{s,N}$ | \unit[933,053018]{\frac{rad}{s}} | $2\pi f_{s,N}$                                                             |
+| $x_d$          | 8,85002155                       | $\frac{X_D}{X_N}$                                                          |
+| $x_d'$         | 1,40104586                       | $\frac{X_D'}{X_N}$                                                         |
+| $x_d''$        | 1,28499846                       | $\frac{X_D''}{X_N}$                                                        |
+| $x_q$          | 3,91869806                       | $\frac{X_Q}{X_N}$                                                          |
+| $x_q''$        | 1,5320554                        | $\frac{X_Q''}{X_N}$                                                        |
+| $x_s$          | 0,7504506                        | $\frac{X_S}{X_N}$                                                          |
+| $x_{md}$       | 8,09957094                       | $x_d-x_s$                                                                  |
+| $x_{mq}$       | 3,16824746                       | $x_q-x_s$                                                                  |
+| $x_e$          | 8,80698935                       | $\frac{x_{md}^2}{x_d-x_d''}$                                               |
+| $x_{rd}$       | 11,0964007                       | $\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}$ |
+| $x_{rq}$       | 4,20582107                       | $\frac{x_{mq}^2}{x_q-x_q''}$                                               |
+| $r_s$          | 0,06786704                       | $\frac{R_s}{X_N}$                                                          |
+| $r_{rd}$       | 4,11488605                       | $\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}$                 |
+| $r_{rq}$       | 1,67638917                       | $\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}$                                      |
+| $r_e$          | 0,20570956                       | $\frac{x_e}{\omega_{s,N}T_{D0'}}$                                          |
+| $T_{d0}''$     | 0,00095                          | $\frac{x_d'}{x_d''}T_D''$                                                  |
+| $T_{Q0}''$     | 0,00268887                       | $\frac{x_q}{x_q''}T_Q$                                                     |
+| turnsratio     | 1,49330662                       | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
+Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine
+
+| Parameter              | Wert        |
+| ---------------------- | ----------- |
+| `Jr`                   | 0           |
+| `IeOpenCircuit`        | 1,450488    |
+| `Lmd`                  | 0,028203656 |
+| `Lmq`                  | 0,011032209 |
+| `Lrsigmad`             | 0,010435313 |
+| `Lrsigmaq`             | 0,003612953 |
+| `Lssigma`              | 0,002613157 |
+| `Re`                   | 4,8         |
+| `Rrd`                  | 13,36926478 |
+| `Rrq`                  | 5,446588427 |
+| `Rs`                   | 0.2205      |
+| `VsNominal`            | 57          |
+| `effectiveStatorTurns` | 93,528      |
+| `fsNominal`            | 148,5       |
+| `p`                    | 3           |
+| `sigmae`               | 0,0803      |
+| `useDamperCage`        | `false`     |
+| `TeRef`                | 293,15      |
+| `TrRef`                | 293,15      |
+| `TsRef`                | 293,15      |
+| `alpha20e`             | 0           |
+| `alpha20r`             | 0           |
+| `alpha20s`             | 0           | 
+Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData`) für den Synchro-Generator der Erregermaschine
+
+| Parameter              | Wert                                    |
+| ---------------------- | --------------------------------------- |
+| `Jr`                   | `exciterData.Jr`                        |
+| `Js`                   | `exciterData.Js`                        |
+| `phiMechanical`        | `(displayUnit="deg")`                   |
+| `useSupport `          | `false`                                 |
+| `wMechanical`          | `(displayunit="rad/s")`                 |
+| `IeOpenCircuit`        | `exciterData.IeOpenCircuit`             |
+| `Lmd`                  | `exciterData.Lmd`                       |
+| `Lmq`                  | `exciterData.Lmq`                       |
+| `Lrsigmad`             | `exciterData.Lrsigmad`                  |
+| `Lrsigmaq`             | `exciterData.Lrsigmaq`                  |
+| `Lssigma`              | `(fixed=false, start=smeeData.Lssigma)` |
+| `Re`                   | `exciterData.Re`                        |
+| `Rrd`                  | `exciterData.Rrd`                       |
+| `Rrq`                  | `exciterData.Rrq`                       |
+| `Rs`                   | `(fixed=true, start=exciterData.Rs)`    |
+| `VsNominal`            | `exciterData.VsNominal`                 |
+| `effectiveStatorTurns` | `exciterData.effectiveStatorTurns`      |
+| `fsNominal`            | `exciterData.fsNominal`                 |
+| `m`                    | 3                                       |
+| `p`                    | `exciterData.p`                         |
+| `sigmae`               | `exciterData.sigmae`                    |
+| `useDamperCage`        | `false`                                 |
+| `TeOperational`        | `293,15 (displayunit="K")`              |
+| `TeRef`                | `293,15 (displayunit="K")`              |
+| `TrOperational`        | `293,15 (displayunit="K")`              |
+| `TrRef`                | `293,15 (displayunit="K")`              |
+| `TsOperational`        | `293,15 (displayunit="K")`              |
+| `TsRef`                | `293,15 (displayunit="K")`              |
+| `alpha20e`             | 0                                       |
+| `alpha20r`             | 0                                       |
+| `alpha20s`             | 0                                       |
+| `useThermalPort`       | `false`                                 |
+Parameter des Synchro-Generators der Erregermaschine
