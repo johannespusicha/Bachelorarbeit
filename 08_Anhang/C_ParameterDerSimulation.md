@@ -8,7 +8,7 @@ Table: Parameter für den Netzanschluss der Asynchronmaschine
 | --------------------------------- | ---- |
 | `terminalBox1.terminalConnection` | "D"  |
 
-Table: Parameter des Modells der Asynchron­maschine (`FundamentalWave.­BasicMachines.­Asynchronous­Induction­Machines.­AIM_­SquirrelCage`)
+Table: Parameter des Modells der Asynchronmaschine (`Fun­da­men­tal­Wave.­Basic­Ma­chines.­Asyn­chro­nous­In­duc­tion­Ma­chines.­AIM_­Squir­rel­Cage`)
 
 | Parameter              | Wert                              |
 | ---------------------- | --------------------------------- |
@@ -33,7 +33,7 @@ Table: Parameter des Modells der Asynchron­maschine (`FundamentalWave.­BasicMa
 | `alpha20r`             | 0, `displayUnit` = "K"            |
 | `alpha20s`             | 0, `displayUnit` = "K"            |
 
-Table: Werte des Parameterrecords (`Frequenz­umformer.­Maschinen­parameter.­AIM_­SquirrelCage­Data`) für die Asynchronmaschine
+Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM_­Squir­rel­Cage­Da­ta`) für die Asynchronmaschine
 
 | Parameter              | Wert     |
 | ---------------------- | -------- |
