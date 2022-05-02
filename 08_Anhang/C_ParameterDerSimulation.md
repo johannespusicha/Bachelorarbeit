@@ -276,4 +276,4 @@ Parameter des Synchro-Generators der Erregermaschine
 | `UgenCtrlUL`    | 14336       |                 |
 Reglerparameter des Spannungsreglers
 
-[^1]: 
+[^1]: signed Integer
