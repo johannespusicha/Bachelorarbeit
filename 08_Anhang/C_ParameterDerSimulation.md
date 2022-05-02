@@ -252,3 +252,7 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `alpha20s`             | 0                                       |
 | `useThermalPort`       | `false`                                 |
 Parameter des Synchro-Generators der Erregermaschine
+## Reglerparameter
+| Parameter | Wert |
+| --------- | ---- |
+|           |      |
