@@ -1,0 +1,31 @@
+.reveal {
+  font-size: 1em;
+}
+.reveal h1 {
+  font-size: 5em;
+  color: #B22222;
+}
+.reveal h2 {
+  font-size: 5em;
+  color: #B22222;
+}
+.reveal h3 {
+  font-size: 4em;
+  color: #B22222;
+}
+.reveal h4 {
+  font-size: 3em;
+  color: #B22222;
+}
+.reveal h5 {
+  font-size: 2em;
+  color: #B22222;
+}
+.reveal h6 {
+  font-size: 1.5em;
+  color: #B22222;
+}
+.reveal p {
+    font-size: 1em;
+    text-align: justify;
+}

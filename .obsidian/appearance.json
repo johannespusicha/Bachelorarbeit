@@ -1,0 +1,9 @@
+{
+  "cssTheme": "obsidian_ia",
+  "theme": "moonstone",
+  "translucency": false,
+  "enabledCssSnippets": [
+    "full-screen-image"
+  ],
+  "baseFontSize": 18
+}
