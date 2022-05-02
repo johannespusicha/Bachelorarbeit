@@ -248,36 +248,4 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `TsOperational`        | `293,15 (displayunit="K")`              |
 | `TsRef`                | `293,15 (displayunit="K")`              |
 | `alpha20e`             | 0                                       |
-| `alpha20r`             | 0                                       |
-| `alpha20s`             | 0                                       |
-| `useThermalPort`       | `false`                                 |
-Parameter des Synchro-Generators der Erregermaschine
-
-| Parameter | Wert |
-| --------- | ---- |
-|           |      |
-## Reglerparameter
-| Parameter       | Dezimalwert | Hexadezimalwert[^1] |
-| --------------- | ----------- | ------------------- |
-| `Ts`            | 0,00078125  | -                   |
-| `UgenCtrlPP_G`  | 2048        | 0x800               |
-| `UgenCtrlPP_D`  | 256         | 0x100               |
-| `UgenCtrlPP_LL` | 6144        | 0x1800              |
-| `UgenCtrlPP_UL` | 8192        | 0x2000              |
-| `UgenCtrlP_D`   | 256         | 0x100               |
-| `UgenCtrlP_LL`  | -32768      | 0x8000              |
-| `UgenCtrlP_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlI_G`   | 304         | 0x130               |
-| `UgenCtrlI_D`   | 4096        | 0x1000              |
-| `UgenCtrlI_LL`  | 0           | 0x0                 |
-| `UgenCtrlI_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlD_G`   | 27648       | 0x1000              |
-| `UgenCtrlD_D`   | 256         | 0x5A00              |
-| `UgenCtrlD_T`   | 2048        | 0x800               |
-| `UgenCtrlD_LL`  | 32768       | 0x8000              |
-| `UgenCtrlD_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlLL`    | 0           | 0x0                 |
-| `UgenCtrlUL`    | 14336       | 0x2000              | 
-Reglerparameter des Spannungsreglers
-
-[^1]: 16 bit signed Integer
+| `alpha20r`             | 0      
