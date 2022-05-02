@@ -253,6 +253,16 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `useThermalPort`       | `false`                                 |
 Parameter des Synchro-Generators der Erregermaschine
 ## Reglerparameter
-| Parameter | Wert |
-| --------- | ---- |
-|           |      |
+| Parameter      | Wert       |
+| -------------- | ---------- |
+| `Ts`           | 0,00078125 |
+| `UgenCtrlD_D`  | 256        |
+| `UgenCtrlD_G`  | 27648      |
+| `UgenCtrlD_LL` | 32768      |
+| `UgenCtrlD_T`  | 2048       |
+| `UgenCtrlD_UL` | 32767      |
+| `UgenCtrlI_D`  | 4096       |
+| `UgenCtrlI_G`  | 304        |
+| `UgenCtrlI_LL` | 0          |
+| `UgenCtrlI_UL` | 32767      |
+| `UgenCtrlPP_`   |            |
