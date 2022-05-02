@@ -53,8 +53,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "55be28a0366bcd2d",
@@ -98,7 +97,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "horizontal",
@@ -107,10 +106,10 @@
   "active": "55270325238e5ff1",
   "lastOpenFiles": [
     "08_Anhang/C_ParameterDerSimulation.md",
+    "Arbeit.md",
     "03_Modellierung/03_Umsetzung.md",
     "03_Modellierung/02_Übersicht.md",
     "03_Modellierung/04_Parametrierung.md",
-    "Arbeit.md",
     "03_Modellierung/01_Anforderungen.md",
     "01_Einleitung/02_Zielsetzung.md",
     "01_Einleitung/03_Überblick_über_das_System.md",

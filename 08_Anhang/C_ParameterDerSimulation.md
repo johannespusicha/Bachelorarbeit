@@ -1,6 +1,12 @@
 # Parameter der Simulation
 ## Maschinenparameter
 ### Asynchronmaschine
+
+| Parameter                         | Wert |
+| --------------------------------- | ---- |
+| `terminalBox1.terminalConnection` | "D"  |
+Parameter für den Netzanschluss der Asynchronmaschine
+
 | Parameter              | Wert                              |
 | ---------------------- | --------------------------------- |
 | `Jr`                   | `aimcData.Jr`                     |
@@ -55,6 +61,11 @@ Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCag
 Wicklungsdaten der Asynchronmaschine
 
 ### Synchron-Generator
+| Parameter                        | Wert |
+| -------------------------------- | ---- |
+| `terminalBox.terminalConnection` | "Y"  |
+Parameter für den Netzanschluss des Synchron-Generators
+
 | Parameter | Wert                                 |
 | --------- | ------------------------------------ |
 | $X_N$     | \unit[0,44444444444444436]{\Omega}   |
@@ -284,26 +295,28 @@ Parameter des Gleichrichters der Erregermaschine
 | `UgenCtrlUL`    | 14336       | 0x2000              | 
 Reglerparameter des Spannungsreglers
 
+| Parameter              | Wert       |
+| ---------------------- | ---------- |
+| `offset_Map.I1`        | 0          |
+| `offset_Map.I2`        | 32767      |
+| `offset_Map.O2`        | 80         |
+| `offset_Map1.O2`       | 3888 / 256 |
+| `controlOn.startTime`  | 0,7        |
+| `controlOn.startValue` | `false`    |
+| `V_set.duration`       | 0,3        |
+| `V_set.height`         | 115        |
+| `V_set.startTime`      | 0,7        |
+Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber
+
 [^1]: 16 bit signed Integer
 ## Weitere
 | Parameter                         | Wert                                                 |
 | --------------------------------- | ---------------------------------------------------- |
-| `offset_Map.I1`                   | 0                                                    |
-| `offset_Map.I2`                   | 32767                                                |
-| `offset_Map.O2`                   | 80                                                   |
-| `offset_Map1.O2`                  | 3888 / 256                                           |
-| `controlOn.startTime`             | 0,7                                                  |
-| `controlOn.startValue`            | `false`                                              |
-| `V_set.duration`                  | 0,3                                                  |
-| `V_set.height`                    | 115                                                  |
-| `V_set.startTime`                 | 0,7                                                  |
 | `simData.JRotor`                  | 1,58                                                 |
 | `simData.VNominal`                | 410                                                  |
 | `simData.fNominal`                | 50                                                   |
 | `ramp_net.height`                 | `simData.VNominal * sqrt(2)`                         |
 | `ramp_net.duration`               | 0,5                                                  |
-| `terminalBox1.terminalConnection` | "D"                                                  |
-| `terminalBox.terminalConnection`  | "Y"                                                  |
 | `fan.J`                           | `simData.JRotor`                                     |
 | `fan.a`                           | `(fixed = false)`                                    |
 | `fan.phi`                         | `(displayUnit = "rad")`                              |
@@ -315,6 +328,6 @@ Reglerparameter des Spannungsreglers
 | `loadTimeTable.table`             | [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524] |
 | `loadTimeTable.tableName`         | "laststufen"                                         |
 | `loadTimeTable.tableOnFile`       | `false`                                              |
-
+Allgemeine Parameter, Parameter für die Netzspeisung und Parameter für die Last
 
 

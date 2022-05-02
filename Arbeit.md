@@ -1,3 +1,6 @@
+---
+konvertieren mit pandoc: pandoc -o TEX/<file.tex> <folder>/<file.md> --shift-heading-level-by=-1
+---
 # Einleitung
 
 ![[01_Motivation]]
@@ -29,3 +32,6 @@
 # Auswertung
 
 # Fazit
+
+# Anhang
+![[C_ParameterDerSimulation]]
