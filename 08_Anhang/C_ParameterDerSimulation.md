@@ -2,10 +2,13 @@
 ## Maschinenparameter
 ### Asynchronmaschine
 
+Table: Parameter für den Netzanschluss der Asynchronmaschine
+
 | Parameter                         | Wert |
 | --------------------------------- | ---- |
 | `terminalBox1.terminalConnection` | "D"  |
-Parameter für den Netzanschluss der Asynchronmaschine
+
+Table: Parameter des Modells der Asynchronmaschine (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`)
 
 | Parameter              | Wert                              |
 | ---------------------- | --------------------------------- |
@@ -29,7 +32,8 @@ Parameter für den Netzanschluss der Asynchronmaschine
 | `TsRef`                | 293,15, `displayUnit` = "K"       |
 | `alpha20r`             | 0, `displayUnit` = "K"            |
 | `alpha20s`             | 0, `displayUnit` = "K"            |
-Parameter des Modells der Asynchronmaschine (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`)
+
+Table: Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) für die Asynchronmaschine
 
 | Parameter              | Wert     |
 | ---------------------- | -------- |
@@ -43,7 +47,8 @@ Parameter des Modells der Asynchronmaschine (`FundamentalWave.BasicMachines.Asyn
 | `effectiveStatorTurns` | 9,171    |
 | `p`                    | 1        |
 | `fsNominal`            | 50       |
-Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) für die Asynchronmaschine
+
+Table: Wicklungsdaten der Asynchronmaschine
 
 | Parameter              | Symbol  | Wert          | Berechnung |
 | ---------------------- | ------- | ------------- | ---------- |
@@ -58,14 +63,16 @@ Werte des Parameterrecords (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCag
 | Wickelschritt          | $?$     | 10            |            |
 | Spulenschritt          | $?$     | 28,6478898    |            |
 | effektive Windungszahl | $?$     | 9,17100475    |            |
-Wicklungsdaten der Asynchronmaschine
 
 ### Synchron-Generator
+
+Table: Parameter für den Netzanschluss des Synchron-Generators
 
 | Parameter                        | Wert |
 | -------------------------------- | ---- |
 | `terminalBox.terminalConnection` | "Y"  |
-Parameter für den Netzanschluss des Synchron-Generators
+
+Table: Parameter aus der Auslegung des Synchro-Generators
 
 | Parameter | Wert                                   |
 | --------- | -------------------------------------- |
@@ -82,7 +89,8 @@ Parameter für den Netzanschluss des Synchron-Generators
 | $T_{D0}'$ | $\unit[0,1075492579055312]{\Omega}$    |
 | $T_D''$   | $\unit[0,0038358105876696909]{\Omega}$ |
 | $T_Q''$   | $\unit[0,0028791616002136365]{\Omega}$ |
-Parameter aus der Auslegung des Synchro-Generators
+
+Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Generators
 
 | Parameter      | Wert                               | Berechnung                                                                 |
 | -------------- | ---------------------------------- | -------------------------------------------------------------------------- |
@@ -105,7 +113,8 @@ Parameter aus der Auslegung des Synchro-Generators
 | $T_{d0}''$     | 0,00651784                         | $\frac{x_d'}{x_d''}T_D''$                                                  |
 | $T_{Q0}''$     | 0,00756537                         | $\frac{x_q}{x_q''}T_Q$                                                     |
 | turnsratio     | 47,9934193                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
-Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Generators
+
+Table: Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData`) für den Synchron-Generator
 
 | Parameter              | Wert               |
 | ---------------------- | ------------------ |
@@ -126,7 +135,8 @@ Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Generators
 | `p`                    | 8                  |
 | `sigmae`               | 0,1973             |
 | `useDamperCage`        | `true`             |
-Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData`) für den Synchron-Generator 
+
+Table: Parameter des Modells des Synchron-Generators
 
 | Parameter              | Wert                                    |
 | ---------------------- | --------------------------------------- |
@@ -159,49 +169,52 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `alpha20e`             | 0                                       |
 | `alpha20r`             | 0                                       |
 | `alpha20s`             | 0                                       |
-Parameter des Modells des Synchron-Generators
 
 ### Erregermaschine
 
-| Parameter | Wert                     |
-| --------- | ------------------------ |
-| $X_N$     | \unit[3,249]{\Omega}     |
-| $X_D$     | \unit[28,75372]{\Omega}  |
-| $X_D'$    | \unit[4,551998]{\Omega}  |
-| $X_D''$   | \unit[4,17496]{\Omega}   |
-| $X_Q$     | \unit[12,73185]{\Omega}  |
-| $X_Q''$   | \unit[4,977648]{\Omega}  |
-| $X_0$     | \unit[0,3364738]{\Omega} |
-| $X_S$     | \unit[2,438214]{\Omega}  |
-| $f_{s,N}$ | \unit[148,5]{Hz}         |
-| $R_s$     | \unit[0,2205]{\Omega}    |
-| $T_{D0}'$ | \unit[0,04588457]{s}     |
-| $T_D''$   | \unit[0,00087131]{s}     |
-| $T_Q''$   | \unit[0,00105124]{s}     |
-Parameter aus der Auslegung der Erregermaschine
+Table: Parameter aus der Auslegung der Erregermaschine
 
-| Parameter      | Wert                             | Berechnung                                                                 |
-| -------------- | -------------------------------- | -------------------------------------------------------------------------- |
-| $\omega_{s,N}$ | \unit[933,053018]{\frac{rad}{s}} | $2\pi f_{s,N}$                                                             |
-| $x_d$          | 8,85002155                       | $\frac{X_D}{X_N}$                                                          |
-| $x_d'$         | 1,40104586                       | $\frac{X_D'}{X_N}$                                                         |
-| $x_d''$        | 1,28499846                       | $\frac{X_D''}{X_N}$                                                        |
-| $x_q$          | 3,91869806                       | $\frac{X_Q}{X_N}$                                                          |
-| $x_q''$        | 1,5320554                        | $\frac{X_Q''}{X_N}$                                                        |
-| $x_s$          | 0,7504506                        | $\frac{X_S}{X_N}$                                                          |
-| $x_{md}$       | 8,09957094                       | $x_d-x_s$                                                                  |
-| $x_{mq}$       | 3,16824746                       | $x_q-x_s$                                                                  |
-| $x_e$          | 8,80698935                       | $\frac{x_{md}^2}{x_d-x_d''}$                                               |
-| $x_{rd}$       | 11,0964007                       | $\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}$ |
-| $x_{rq}$       | 4,20582107                       | $\frac{x_{mq}^2}{x_q-x_q''}$                                               |
-| $r_s$          | 0,06786704                       | $\frac{R_s}{X_N}$                                                          |
-| $r_{rd}$       | 4,11488605                       | $\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}$                 |
-| $r_{rq}$       | 1,67638917                       | $\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}$                                      |
-| $r_e$          | 0,20570956                       | $\frac{x_e}{\omega_{s,N}T_{D0'}}$                                          |
-| $T_{d0}''$     | 0,00095                          | $\frac{x_d'}{x_d''}T_D''$                                                  |
-| $T_{Q0}''$     | 0,00268887                       | $\frac{x_q}{x_q''}T_Q$                                                     |
-| turnsratio     | 1,49330662                       | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
-Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine
+| Parameter | Wert                       |
+| --------- | -------------------------- |
+| $X_N$     | $\unit[3,249]{\Omega}$     |
+| $X_D$     | $\unit[28,75372]{\Omega}$  |
+| $X_D'$    | $\unit[4,551998]{\Omega}$  |
+| $X_D''$   | $\unit[4,17496]{\Omega}$   |
+| $X_Q$     | $\unit[12,73185]{\Omega}$  |
+| $X_Q''$   | $\unit[4,977648]{\Omega}$  |
+| $X_0$     | $\unit[0,3364738]{\Omega}$ |
+| $X_S$     | $\unit[2,438214]{\Omega}$  |
+| $f_{s,N}$ | $\unit[148,5]{Hz}$         |
+| $R_s$     | $\unit[0,2205]{\Omega}$    |
+| $T_{D0}'$ | $\unit[0,04588457]{s}$     |
+| $T_D''$   | $\unit[0,00087131]{s}$     |
+| $T_Q''$   | $\unit[0,00105124]{s}$     |
+
+Table: Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine
+
+| Parameter      | Wert                               | Berechnung                                                                 |
+| -------------- | ---------------------------------- | -------------------------------------------------------------------------- |
+| $\omega_{s,N}$ | $\unit[933,053018]{\frac{rad}{s}}$ | $2\pi f_{s,N}$                                                             |
+| $x_d$          | 8,85002155                         | $\frac{X_D}{X_N}$                                                          |
+| $x_d'$         | 1,40104586                         | $\frac{X_D'}{X_N}$                                                         |
+| $x_d''$        | 1,28499846                         | $\frac{X_D''}{X_N}$                                                        |
+| $x_q$          | 3,91869806                         | $\frac{X_Q}{X_N}$                                                          |
+| $x_q''$        | 1,5320554                          | $\frac{X_Q''}{X_N}$                                                        |
+| $x_s$          | 0,7504506                          | $\frac{X_S}{X_N}$                                                          |
+| $x_{md}$       | 8,09957094                         | $x_d-x_s$                                                                  |
+| $x_{mq}$       | 3,16824746                         | $x_q-x_s$                                                                  |
+| $x_e$          | 8,80698935                         | $\frac{x_{md}^2}{x_d-x_d''}$                                               |
+| $x_{rd}$       | 11,0964007                         | $\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}$ |
+| $x_{rq}$       | 4,20582107                         | $\frac{x_{mq}^2}{x_q-x_q''}$                                               |
+| $r_s$          | 0,06786704                         | $\frac{R_s}{X_N}$                                                          |
+| $r_{rd}$       | 4,11488605                         | $\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}$                 |
+| $r_{rq}$       | 1,67638917                         | $\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}$                                      |
+| $r_e$          | 0,20570956                         | $\frac{x_e}{\omega_{s,N}T_{D0'}}$                                          |
+| $T_{d0}''$     | 0,00095                            | $\frac{x_d'}{x_d''}T_D''$                                                  |
+| $T_{Q0}''$     | 0,00268887                         | $\frac{x_q}{x_q''}T_Q$                                                     |
+| turnsratio     | 1,49330662                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
+
+Table: Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData`) für den Synchro-Generator der Erregermaschine
 
 | Parameter              | Wert        |
 | ---------------------- | ----------- |
@@ -228,7 +241,8 @@ Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine
 | `alpha20e`             | 0           |
 | `alpha20r`             | 0           |
 | `alpha20s`             | 0           | 
-Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData`) für den Synchro-Generator der Erregermaschine
+
+Table: Parameter des Synchro-Generators der Erregermaschine
 
 | Parameter              | Wert                                    |
 | ---------------------- | --------------------------------------- |
@@ -264,7 +278,8 @@ Werte des Parameterrecords (`Machines.Utilities.ParameterRecords.SM_ElectricalEx
 | `alpha20r`             | 0                                       |
 | `alpha20s`             | 0                                       |
 | `useThermalPort`       | `false`                                 |
-Parameter des Synchro-Generators der Erregermaschine
+
+Table: Parameter des Gleichrichters der Erregermaschine
 
 | Parameter    | Wert |
 | ------------ | ---- |
@@ -272,9 +287,10 @@ Parameter des Synchro-Generators der Erregermaschine
 | `RonDiode`   | 1e-3 |
 | `VkneeDiode` | 0,7  |
 | `m`          | 3    |
-Parameter des Gleichrichters der Erregermaschine
 
 ## Reglerparameter
+
+Table: Reglerparameter des Spannungsreglers
 
 | Parameter       | Dezimalwert | Hexadezimalwert[^1] |
 | --------------- | ----------- | ------------------- |
@@ -297,7 +313,8 @@ Parameter des Gleichrichters der Erregermaschine
 | `UgenCtrlD_UL`  | 32767       | 0x7FFF              |
 | `UgenCtrlLL`    | 0           | 0x0                 |
 | `UgenCtrlUL`    | 14336       | 0x2000              | 
-Reglerparameter des Spannungsreglers
+
+Table: Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber
 
 | Parameter              | Wert       |
 | ---------------------- | ---------- |
@@ -310,11 +327,12 @@ Reglerparameter des Spannungsreglers
 | `V_set.duration`       | 0,3        |
 | `V_set.height`         | 115        |
 | `V_set.startTime`      | 0,7        |
-Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber
 
 [^1]: 16 bit signed Integer
 
 ## Weitere
+
+Table: Allgemeine Parameter, Parameter für die Netzspeisung und Parameter für die Last
 
 | Parameter                         | Wert                                                 |
 | --------------------------------- | ---------------------------------------------------- |
@@ -334,6 +352,6 @@ Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannung
 | `loadTimeTable.table`             | [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524] |
 | `loadTimeTable.tableName`         | "laststufen"                                         |
 | `loadTimeTable.tableOnFile`       | `false`                                              |
-Allgemeine Parameter, Parameter für die Netzspeisung und Parameter für die Last
+
 
 
