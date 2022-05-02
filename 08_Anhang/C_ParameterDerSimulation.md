@@ -8,7 +8,7 @@ Table: Parameter für den Netzanschluss der Asynchronmaschine
 | --------------------------------- | ---- |
 | `terminalBox1.terminalConnection` | "D"  |
 
-Table: Parameter des Modells der Asynchron\-maschine (`FundamentalWave.\-BasicMachines.\-Asynchronous\-Induction\-Machines.\-AIM_\-SquirrelCage`)
+Table: Parameter des Modells der Asynchron­maschine (`FundamentalWave.­BasicMachines.­Asynchronous­Induction­Machines.­AIM_­SquirrelCage`)
 
 | Parameter              | Wert                              |
 | ---------------------- | --------------------------------- |
@@ -33,7 +33,7 @@ Table: Parameter des Modells der Asynchron\-maschine (`FundamentalWave.\-BasicMa
 | `alpha20r`             | 0, `displayUnit` = "K"            |
 | `alpha20s`             | 0, `displayUnit` = "K"            |
 
-Table: Werte des Parameterrecords (`Frequenz\-umformer.\-Maschinen\-parameter.\-AIM_\-SquirrelCage\-Data`) für die Asynchronmaschine
+Table: Werte des Parameterrecords (`Frequenz­umformer.­Maschinen­parameter.­AIM_­SquirrelCage­Data`) für die Asynchronmaschine
 
 | Parameter              | Wert     |
 | ---------------------- | -------- |
@@ -114,7 +114,7 @@ Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Gener
 | $T_{Q0}''$     | 0,00756537                         | $\frac{x_q}{x_q''}T_Q$                                                     |
 | turnsratio     | 47,9934193                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
 
-Table: Werte des Parameterrecords (`Machines.\-Utilities.\-Parameter\-Records.\-SM_\-ElectricalExcited\-Data`) für den Synchron-Generator
+Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchron-Generator
 
 | Parameter              | Wert               |
 | ---------------------- | ------------------ |
@@ -214,7 +214,7 @@ Table: Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschi
 | $T_{Q0}''$     | 0,00268887                         | $\frac{x_q}{x_q''}T_Q$                                                     |
 | turnsratio     | 1,49330662                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
 
-Table: Werte des Parameterrecords (`Machines.\-Utilities.\-Parameter\-Records.\-SM_\-ElectricalExcited\-Data`) für den Synchro-Generator der Erregermaschine
+Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchro-Generator der Erregermaschine
 
 | Parameter              | Wert        |
 | ---------------------- | ----------- |
@@ -346,12 +346,9 @@ Table: Allgemeine Parameter, Parameter für die Netzspeisung und Parameter für 
 | `fan.phi`                     | `(displayUnit = "rad")`                                     |
 | `fan.w`                       | `(fixed = true, start = 314)`                               |
 | `frequency.k`                 | 8 / (2 * pi)                                                |
-| `loadTimeTable.extrapolation` | `Modelica.­Blocks.Types.Extrapolation.HoldLastPoint` |
+| `loadTimeTable.extra­po­lation` | `Modelica.­Blocks.­Types.­Extra­po­lation.­HoldLastPoint` |
 | `loadTimeTable.fileName`      | "Laststufen_timetable.txt"                                  |
-| `loadTimeTable.smoothness`    | `Modelica.Blocks.Types.Smoothness.ConstantSegments`         |
+| `loadTimeTable.smooth­ness`    | `Modelica.­Blocks.­Types.­Smooth­ness.­ConstantSegments`         |
 | `loadTimeTable.table`         | [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524]        |
 | `loadTimeTable.tableName`     | "laststufen"                                                |
-| `loadTimeTable.tableOnFile`   | `false`                                                     |
-
-
-
+| `loadTimeTable.table­OnFile`   | `false`                                                     |
