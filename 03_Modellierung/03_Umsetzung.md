@@ -78,7 +78,10 @@ $$
 \xi _{\mathrm{z}} &= \frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6q})}
 \end{align}
 $$
-Der WInkel
+Die Spulenweite $\Delta\gamma _{\mathrm{c}}$ ist das Verhältnis des Nutschritts ($y_Q$) zur Anzahl der Nuten je Polpaar ($S'$) multipliziert mit $2\pi$ 
+$$
+\Delta\gamma _{\mathrm{c}}
+$$
 ### Synchrogenerator ohne Dämpferkäfig
 
 #### Modell
