@@ -67,9 +67,11 @@ L_{s,\sigma} &= \frac{X_1}{2\pi f_{Netz}} \\
 L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 \end{align}
 $$
-
-$f_mr $
-
+Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217] kralModelicaObjektorientierteModellbildung2019 den folgenden Term an
+$$
+N_{\mathrm{s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
+$$
+mit der Windungszahl $\hat{N}$, dem Sehun
 ### Synchrogenerator ohne Dämpferkäfig
 
 #### Modell
