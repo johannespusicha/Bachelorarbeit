@@ -78,10 +78,10 @@ $$
 \xi _{\mathrm{z}} &= \frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6q})}
 \end{align}
 $$
-Die Spulenweite $\Delta\gamma _{\mathrm{c}}$ ist das Verhältnis des Nutschritts ($y_Q$) zur Anzahl der Nuten je Polpaar ($S'$) multipliziert mit $2\pi$ 
-$$
-\Delta\gamma _{\mathrm{c}}
-$$
+Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
+\Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
+$$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161] kralModelicaObjektorientierteModellbildung2019), vgl. \cite[S. 76, S. 119] binderElektrischeMaschinenUnd2012).  *Lochzahl* ($q$) zur Berechnung des Zonenfaktors 
+
 ### Synchrogenerator ohne Dämpferkäfig
 
 #### Modell
