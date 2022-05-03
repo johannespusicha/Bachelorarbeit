@@ -69,6 +69,7 @@ L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 $$
 
 
+
 ### Synchrogenerator ohne Dämpferkäfig
 
 #### Modell
