@@ -1,3 +1,5 @@
+> [!IMPORTANT] Die Parameter müssen teilweise nochmal geupdatet werden
+
 # Parameter der Simulation
 ## Maschinenparameter
 ### Asynchronmaschine
