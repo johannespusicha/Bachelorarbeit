@@ -71,7 +71,14 @@ Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217] kral
 $$
 N_{\mathrm{s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
 $$
-mit der Windungszahl $\hat{N}$, dem Sehun
+mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217] kralModelicaObjektorientierteModellbildung2019).
+$$
+\begin{align}
+\xi _{\mathrm{c}} &= \sin(\Delta\frac{\gamma _{\mathrm{c}}}{2}) \\
+\xi _{\mathrm{z}} &= \frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6q})}
+\end{align}
+$$
+
 ### Synchrogenerator ohne Dämpferkäfig
 
 #### Modell
