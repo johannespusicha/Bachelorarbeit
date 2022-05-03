@@ -30,15 +30,15 @@ Nach \cite[S. 149]{kralModelicaObjektorientierteModellbildung2019} werden für d
 > - Warum habe ich für mein Modell Modelica verwendet und nicht Simulink/Simplorer/... oder ein rein mathematisches Modell?
 
 ### Asynchronmotor mit Kurzschlussläufer
-Das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer, wie es in der MSL verwendet wird, zeigt ==XXX==. Da die Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{ @kralModelicaObjektorientierteModellbildung2019 } den Asynchron- und Synchronmaschinen der MSL ein *partielles Modelica-Modell*[^2] für Drehfeldmaschinen zugrunde (`FundamentalWave.Interfaces.PartialBasicInductionMachine`). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss.
+Das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer, wie es in der MSL verwendet wird, zeigt <mark>XXX</mark>. Da die Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{ @kralModelicaObjektorientierteModellbildung2019 } den Asynchron- und Synchronmaschinen der MSL ein *partielles Modelica-Modell*[^2] für Drehfeldmaschinen zugrunde (`FundamentalWave.Interfaces.PartialBasicInductionMachine`). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss.
 
 #### Partielles Modell der Drehfeldmaschine
-Das partielle Modell der Drehfeldmaschine (siehe ==XXX==) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in ==XXX== betrachtet wurde. Die Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss zur Abstützung des Stators.
+Das partielle Modell der Drehfeldmaschine (siehe <mark>XXX</mark>) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in <mark>XXX</mark> betrachtet wurde. Die Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss zur Abstützung des Stators.
 
 ![[PartialBasicInductionMachine.svg]]
 Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicInductionMachine` der MSL v3.2.3
 
-Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe ==XXX==). 
+Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe <mark>XXX</mark>). 
 
 ![[SymmetricMultiPhaseWinding.svg]]
 Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding`der MSL v3.2.3
@@ -46,7 +46,7 @@ Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWindi
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
 
 #### Modell
-==XXX== zeigt das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`). Es ergibt sich aus dem partiellen Modell durch Hinzufügen des kurzgeschlossenen Käfigmodells (`FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseCageWinding`), welches ==XXX== zeigt.
+<mark>XXX</mark> zeigt das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`). Es ergibt sich aus dem partiellen Modell durch Hinzufügen des kurzgeschlossenen Käfigmodells (`FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseCageWinding`), welches <mark>XXX</mark> zeigt.
 
 Da die Anzahl $N_R$ der Rotorstäbe eines Käfigs häufig viel größer ist als die Anzahl $m$ der Phasen des Systems, ist es numerisch einfacher für den Käfig eine $m$-phasige kurzgeschlossene Windung als Ersatzmodell zu verwenden, welche die gleiche effektive Windungszahl wie die Statorwicklung aufweist. (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019})
 
@@ -57,11 +57,9 @@ Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`Fundamental
 M-phasiges Käfig-Ersatzmodell
 
 #### Parametrierung
-Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da die elektrischen und mechanischen Größen bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
+Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen <mark>XXX</mark>.
 
-Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen ==XXX==. <mark>Text</mark>
-
-
+Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine  zur Parametrierung der Wicklung nach außen Induktivitäten, wie sie auch im T-Ersatzschaltbild der Maschine angegeben werden. 
 
 ### Synchrogenerator ohne Dämpferkäfig
 
