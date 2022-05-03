@@ -39,8 +39,9 @@ Das partielle Modell der Drehfeldmaschine (siehe ==XXX==) modelliert die Energie
 Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicInductionMachine` der MSL v3.2.3
 
 Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe ==XXX==). 
-![[SymmetricMultiPhaseWinding.svg]]
-Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3
+
+![Text](SymmetricMultiPhaseWinding.svg)
+
 
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
 
