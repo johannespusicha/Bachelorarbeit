@@ -59,7 +59,7 @@ M-phasiges Käfig-Ersatzmodell
 #### Parametrierung
 Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen <mark>XXX</mark>.
 
-Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine  zur Parametrierung der Wicklung nach außen Induktivitäten, wie sie auch im T-Ersatzschaltbild der Maschine angegeben werden. 
+Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach außen hin zur Parametrierung der Wicklungen Stator- und Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine angegeben Größen: Hauptfeldinduktivität ($L_m$), Stator-Streuinduktivität ($L_{s\sigma}$) und Rotor-Streuinduktivität ($L_{r\sigma}$). 
 
 ### Synchrogenerator ohne Dämpferkäfig
 
