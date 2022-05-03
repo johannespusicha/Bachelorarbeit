@@ -40,8 +40,8 @@ Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicI
 
 Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe ==XXX==). 
 
-![Text](SymmetricMultiPhaseWinding.svg)
-
+![[SymmetricMultiPhaseWinding.svg]]
+Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding`der MSL v3.2.3
 
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
 
@@ -59,35 +59,8 @@ M-phasiges Käfig-Ersatzmodell
 #### Parametrierung
 Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da die elektrischen und mechanischen Größen bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
 
-| Parameter              | Wert                              |
-| ---------------------- | --------------------------------- |
-| `Jr`                   | `aimcData.Jr`                     |
-| `Js`                   | `aimcData.Js`                     |
-| `phiMechanical`        | `(displayUnit="rad")`             |
-| `useSupport`           | `false`                           |
-| `wMechanical`          | `(displayUnit=false)`             |
-| `Lm`                   | `aimcData.Lm`                     |
-| `Lrsigma`              | `aimcData.Lrsigma`                |
-| `Lssigma`              | `(fixed=false)`                   |
-| `Rr`                   | `aimcData.Rr`                     |
-| `Rs`                   | `(fixed=true, start=aimcData.Rs)` |
-| `effectiveStatorTurns` | `aimcData.effectiveStatorTurns`   |
-| `fsNominal`            | `aimcData.fsNominal`              |
-| `m`                    | `m`                               |
-| `p`                    | `aimcData.p`                      |
-Übersicht über die mechanischen und elektrischen Größen der ASM
+Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen ==XXX==. <mark>Text</mark>
 
-Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. ==XXX== zeigt die eingestellten Parameter.
-
-| Parameter       | Wert                        |
-| --------------- | --------------------------- |
-| `TrOperational` | 293,15, `displayUnit` = "K" |
-| `TrRef`         | 293,15, `displayUnit` = "K" |
-| `TsOperational` | 293,15, `displayUnit` = "K" |
-| `TsRef`         | 293,15, `displayUnit` = "K" |
-| `alpha20r`      | 0, `displayUnit` = "K"      |
-| `alpha20s`      | 0, `displayUnit` = "K"      |
-Übersicht über die thermischen Parameter der ASM
 
 
 ### Synchrogenerator ohne Dämpferkäfig
