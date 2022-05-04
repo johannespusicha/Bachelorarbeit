@@ -89,7 +89,7 @@ Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die
 
 Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden. 
 
-### Synchrongenerator ohne Dämpferkäfig
+### Synchrongenerator mit Dämpferkäfig
 
 #### Modell
 

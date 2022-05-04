@@ -10,6 +10,37 @@ Table: Parameter für den Netzanschluss der Asynchronmaschine
 | --------------------------------- | ---- |
 | `terminalBox1.terminalConnection` | "D"  |
 
+Table: Wicklungsdaten der Asynchronmaschine
+
+| Parameter              | Symbol                      | Wert       | Berechnung                                                          |
+| ---------------------- | --------------------------- | ---------- | ------------------------------------------------------------------- |
+| Windungszahl           | $\hat{N}$                   | 56         |                                                                     |
+| Polpaarzahl            | $p$                         | 1          |                                                                     |
+| Nutzahl                | $Q$                         | 36         |                                                                     |
+| Stränge                | $m$                         | 3          |                                                                     |
+| Nutschritt             | $y_{\mathrm{Q}}$            | 10         |                                                                     |
+| Nuten je Polpaar       | $S'$                        | 18         | $S'=\frac{Q}{2p}$                                                                  |
+| Spulenweite            | $\Delta\gamma_{\mathrm{c}}$ | 3,4906585  | $\Delta\gamma_{\mathrm{c}}=2\pi\frac{y_{\mathrm{Q}}}{S'}$           |
+| Lochzahl               | $q$                         | 6          | $q=\frac{Q}{2pm}$                                                   |
+| xi_c                   | $\xi_c$                     | 0,98480775 | $\xi_{\mathrm{c}}=\sin(\frac{\Delta\gamma_{\mathrm{c}}}{2})$        |
+| xi_z                   | $\xi_z$                     | 0,95614277 | $\xi_{\mathrm{z}}=\frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6})}$ |
+| effektive Windungszahl | $N_{\mathrm{eff. s}}$       | 52,7305415 | $N_{\mathrm{eff. s}}=\hat{N}\xi_{\mathrm{c}}\xi_{\mathrm{z}}$       |
+
+Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM_­Squir­rel­Cage­Da­ta`) für die Asynchronmaschine
+
+| Parameter              | Wert       |
+| ---------------------- | ---------- |
+| `Jr`                   | 0          |
+| `L0`                   | 0          |
+| `Rr`                   | 0,120      |
+| `Rs`                   | 0,083574   |
+| `X0`                   | 14,83      |
+| `X1`                   | 0,448208   |
+| `X2`                   | 0,791      |
+| `effectiveStatorTurns` | 52,7305415 |
+| `p`                    | 1          |
+| `fsNominal`            | 50         |
+
 Table: Parameter des Modells der Asynchronmaschine (`Fun­da­men­tal­Wave.­Basic­Ma­chines.­Asyn­chro­nous­In­duc­tion­Ma­chines.­AIM_­Squir­rel­Cage`)
 
 | Parameter              | Wert                              |
@@ -35,37 +66,6 @@ Table: Parameter des Modells der Asynchronmaschine (`Fun­da­men­tal­Wave.­B
 | `alpha20r`             | 0, `displayUnit` = "K"            |
 | `alpha20s`             | 0, `displayUnit` = "K"            |
 
-Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM_­Squir­rel­Cage­Da­ta`) für die Asynchronmaschine
-
-| Parameter              | Wert       |
-| ---------------------- | ---------- |
-| `Jr`                   | 0          |
-| `L0`                   | 0          |
-| `Rr`                   | 0,120      |
-| `Rs`                   | 0,083574   |
-| `X0`                   | 14,83      |
-| `X1`                   | 0,448208   |
-| `X2`                   | 0,791      |
-| `effectiveStatorTurns` | 52,7305415 |
-| `p`                    | 1          |
-| `fsNominal`            | 50         |
-
-Table: Wicklungsdaten der Asynchronmaschine
-
-| Parameter              | Symbol                      | Wert       | Berechnung                                                          |
-| ---------------------- | --------------------------- | ---------- | ------------------------------------------------------------------- |
-| Windungszahl           | $\hat{N}$                   | 56         |                                                                     |
-| Polpaarzahl            | $p$                         | 1          |                                                                     |
-| Nutzahl                | $Q$                         | 36         |                                                                     |
-| Stränge                | $m$                         | 3          |                                                                     |
-| Nutschritt             | $y_{\mathrm{Q}}$            | 10         |                                                                     |
-| Nuten je Polpaar       | $S'$                        | 18         | $S'=\frac{Q}{2p}$                                                                  |
-| Spulenweite            | $\Delta\gamma_{\mathrm{c}}$ | 3,4906585  | $\Delta\gamma_{\mathrm{c}}=2\pi\frac{y_{\mathrm{Q}}}{S'}$           |
-| Lochzahl               | $q$                         | 6          | $q=\frac{Q}{2pm}$                                                   |
-| xi_c                   | $\xi_c$                     | 0,98480775 | $\xi_{\mathrm{c}}=\sin(\frac{\Delta\gamma_{\mathrm{c}}}{2})$        |
-| xi_z                   | $\xi_z$                     | 0,95614277 | $\xi_{\mathrm{z}}=\frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6})}$ |
-| effektive Windungszahl | $N_{\mathrm{eff. s}}$       | 52,7305415 | $N_{\mathrm{eff. s}}=\hat{N}\xi_{\mathrm{c}}\xi_{\mathrm{z}}$       |
-
 ### Synchrongenerator
 
 Table: Parameter für den Netzanschluss des Synchrongenerators
@@ -86,11 +86,11 @@ Table: Parameter aus der Auslegung des Synchrogenerators
 | $X_Q''$   | $\unit[0,061911567284431417]{\Omega}$  |
 | $X_0$     | $\unit[0,13773696682464454]{\Omega}$   |
 | $X_S$     | $\unit[0,042106445136139446]{\Omega}$  |
-| $f_{s,N}$ | $\unit[400]{\Omega}$                   |
-| $R_s$     | $\unit[6,68E-03]{\Omega}$              |
-| $T_{D0}'$ | $\unit[0,1075492579055312]{\Omega}$    |
-| $T_D''$   | $\unit[0,0038358105876696909]{\Omega}$ |
-| $T_Q''$   | $\unit[0,0028791616002136365]{\Omega}$ |
+| $f_{s,N}$ | $\unit[400]{Hz}$                   |
+| $R_s$     | $\unit[6,68]{m\Omega}$              |
+| $T_{D0}'$ | $\unit[0,1075492579055312]{s}$    |
+| $T_D''$   | $\unit[0,0038358105876696909]{s}$ |
+| $T_Q''$   | $\unit[0,0028791616002136365]{s}$ |
 
 Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychrongenerators
 
@@ -216,7 +216,7 @@ Table: Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschi
 | $T_{Q0}''$     | 0,00268887                         | $\frac{x_q}{x_q''}T_Q$                                                     |
 | turnsratio     | 1,49330662                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
 
-Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchro-Generator der Erregermaschine
+Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchrongenerator der Erregermaschine
 
 | Parameter              | Wert        |
 | ---------------------- | ----------- |
@@ -244,7 +244,7 @@ Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­
 | `alpha20r`             | 0           |
 | `alpha20s`             | 0           | 
 
-Table: Parameter des Synchro-Generators der Erregermaschine
+Table: Parameter des Synchrongenerators der Erregermaschine
 
 | Parameter              | Wert                                    |
 | ---------------------- | --------------------------------------- |
@@ -294,27 +294,28 @@ Table: Parameter des Gleichrichters der Erregermaschine
 
 Table: Reglerparameter des Spannungsreglers
 
-| Parameter       | Dezimalwert | Hexadezimalwert[^1] |
-| --------------- | ----------- | ------------------- |
-| `Ts`            | 0,00078125  | -                   |
-| `UgenCtrlPP_G`  | 2048        | 0x800               |
-| `UgenCtrlPP_D`  | 256         | 0x100               |
-| `UgenCtrlPP_LL` | 6144        | 0x1800              |
-| `UgenCtrlPP_UL` | 8192        | 0x2000              |
-| `UgenCtrlP_D`   | 256         | 0x100               |
-| `UgenCtrlP_LL`  | -32768      | 0x8000              |
-| `UgenCtrlP_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlI_G`   | 304         | 0x130               |
-| `UgenCtrlI_D`   | 4096        | 0x1000              |
-| `UgenCtrlI_LL`  | 0           | 0x0                 |
-| `UgenCtrlI_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlD_G`   | 27648       | 0x1000              |
-| `UgenCtrlD_D`   | 256         | 0x5A00              |
-| `UgenCtrlD_T`   | 2048        | 0x800               |
-| `UgenCtrlD_LL`  | 32768       | 0x8000              |
-| `UgenCtrlD_UL`  | 32767       | 0x7FFF              |
-| `UgenCtrlLL`    | 0           | 0x0                 |
-| `UgenCtrlUL`    | 14336       | 0x2000              | 
+| Parameter       | Dezimalwert | Hexadezimalwert[^1]                  |
+| --------------- | ----------- | ------------------------------------ |
+|                 |             | \footnotetext{16 bit signed Integer} |
+| `Ts`            | 0,00078125  | -                                    |
+| `UgenCtrlPP_G`  | 2048        | 0x800                                |
+| `UgenCtrlPP_D`  | 256         | 0x100                                |
+| `UgenCtrlPP_LL` | 6144        | 0x1800                               |
+| `UgenCtrlPP_UL` | 8192        | 0x2000                               |
+| `UgenCtrlP_D`   | 256         | 0x100                                |
+| `UgenCtrlP_LL`  | -32768      | 0x8000                               |
+| `UgenCtrlP_UL`  | 32767       | 0x7FFF                               |
+| `UgenCtrlI_G`   | 304         | 0x130                                |
+| `UgenCtrlI_D`   | 4096        | 0x1000                               |
+| `UgenCtrlI_LL`  | 0           | 0x0                                  |
+| `UgenCtrlI_UL`  | 32767       | 0x7FFF                               |
+| `UgenCtrlD_G`   | 27648       | 0x1000                               |
+| `UgenCtrlD_D`   | 256         | 0x5A00                               |
+| `UgenCtrlD_T`   | 2048        | 0x800                                |
+| `UgenCtrlD_LL`  | 32768       | 0x8000                               |
+| `UgenCtrlD_UL`  | 32767       | 0x7FFF                               |
+| `UgenCtrlLL`    | 0           | 0x0                                  |
+| `UgenCtrlUL`    | 14336       | 0x2000                               |
 
 Table: Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber
 
