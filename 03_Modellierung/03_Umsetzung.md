@@ -41,7 +41,7 @@ Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicI
 Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe <mark>XXX</mark>). 
 
 ![[SymmetricMultiPhaseWinding.svg]]
-Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding`der MSL v3.2.3
+Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3
 
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
 
@@ -52,12 +52,12 @@ Da die Anzahl $N_R$ der Rotorstäbe eines Käfigs häufig viel größer ist als 
 
 
 ![[AIM_SquirrelCage.svg]]
-Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`)
+Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`) der MSL v3.2.3
 ![[SymmetricMultiPhaseCageWinding.svg]]
-M-phasiges Käfig-Ersatzmodell (`FundamentalWave.Components.SymmetricMultiPhaseCageWinding`)
+M-phasiges Käfig-Ersatzmodell (`FundamentalWave.Components.SymmetricMultiPhaseCageWinding`) der MSL v3.2.3
 
 #### Parametrierung
-Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
+Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`, siehe <mark>Listing XXX</mark>) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
 
 Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. 
 
@@ -93,8 +93,11 @@ Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der A
 Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargestellten partiellen Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig, ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
 
 #### Modell 
-<mark>XXX</mark> zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Der Verwendung des Dämpferkäfigs wird über den Wahrheitswert `useDamperCage` ![[SM_ElectricalExcited.svg]]
-Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`)
+<mark>XXX</mark> zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs wird über den Parameter `useDamperCage` eingestellt. Wird dieser Parameter auf `false` gesetzt, wird das Modell mit dem Verbindungsmodell `short` anstelle des Dämpferkäfigs initialisiert.
+![[SM_ElectricalExcited.svg]]
+Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3
+
+Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und 
 
 #### Parametrierung
 
