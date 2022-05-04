@@ -1,0 +1,404 @@
+\begin{quote}
+{[}!TODO{]}+ ToDo: - {[} {]} Maschinen beschreiben - {[}x{]}
+Parametrierung der Maschinen herleiten - {[}x{]} Parameter für
+Spannungsregler - {[}x{]} Überlegen, in welchem Kapitel Modellvergleiche
+gemacht werden sollen. Oder will ich das Modellweise behandeln? -
+{[}x{]} Die vollständige Liste der Parameter gehört wahrscheinlich
+besser in den Anhang
+\end{quote}
+
+\begin{quote}
+{[}!TIP{]}+ Modelica Bei Modelica geht weder um das Aufstellen der
+systembeschreibenden Differentialgleichungen noch um das sich drücken
+davor. Es geht um die Verknüpfung der in den Basiselementen
+niedergelegten Differentialgleichungen, aus denen das System aufgebaut
+ist
+\end{quote}
+
+\hypertarget{umsetzung}{%
+\section{Umsetzung}\label{umsetzung}}
+
+Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt
+auf Basis der \texttt{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe
+{[}@modelicaassociationModelicaStandardLibrary2020{]}). So weit nicht
+weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und
+Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und
+benötigte Hilfsklassen wird eine eigenständige Bibliothek
+\texttt{Frequenzumformer} angelegt. Alle Klassen, die dieser Bibliothek
+angehören werden mit \texttt{Frequenzumformer.Klasse} bezeichnet. Die
+vollständige Bezeichnung der abgeleiteten Klassen zeigt die
+objektorientierte Hierarchie. Beginnend bei der Basisklasse wird jede
+übergeordnete Klasse mit einem Punkt vor den Klassennamen abgetrennt
+angefügt, z.B. \texttt{Modelica.Bibliothek.Abgeleitete\_Klasse}.
+
+Für den Asynchronmotor und den Synchrongenerator werden die Modelle
+\texttt{AIM\_SquirelCage} und \texttt{SM\_ElectricalExcited} aus der
+Bibliothek \texttt{Magnetic.FundamentalWave} der MSL verwendet. Die
+Herleitung dieser Modelle ist umfangreich in
+\cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und
+soll hier nur kurz zusammengefasst werden. Verwendet werden die
+jeweiligen transienten elektrischen Komponenten und Maschinen, da nur
+mit diesen Einschwingvorgänge beobachtet werden können. Die
+quasistationären Modelle (Klassen in den Paketen
+\texttt{Electrical.QuasiStationary} und \texttt{Magnetic.QuasiStatic})
+verwenden zur Berechnung der elektrischen und magnetischen Größen
+komplexe Zeiger, die nicht geeignet sind zur Untersuchung von
+Einschwingvorgängen\footnote{Die Zeiger der komplexen
+  Wechselstromrechnung ergeben sich aus der Fouriertransformation
+  periodischer eingeschwungener Größen.}.
+
+Nach \cite[S. 149]{kralModelicaObjektorientierteModellbildung2019}
+werden für die betrachteten Maschinen in der MSL folgende
+Voraussetzungen und Vereinfachungen getroffen: - Die Wicklungen sind
+vollständig symmetrisch ausgeführt. - Oberwellen der magnetischen im
+Luftspalt werden vernachlässigt. - Sättigungseffekte werden
+vernachlässigt.
+
+\begin{quote}
+{[}!NOTE{]}+ Was will ich schreiben? - Wie steht das Modell in
+Verbindung mit dem Wortgraphen? - --\textgreater{} Ich will zeigen, dass
+ich verstanden habe, was in dem Modell vor sich geht und ich nicht bloß
+blind einige Icons zusammengeklickt habe. - Welche Parameter müssen in
+das Modell eingegeben werden? - Woher bekomme ich die Parameter? Wie
+rechne ich die Parameter um? - --\textgreater{} Ich will dokumentieren,
+wie das Gesamtmodell aussieht, welche Details es umfasst und welche
+Details es nicht umfasst - --\textgreater{} Wie erreiche ich es, dass
+das Modell meine Anforderungen erfüllt -/- Welche
+Anforderungen/Einschränkungen muss ich treffen, damit das Modell valide
+ist? - Welche Modellteile habe ich aus der Modelicabibliothek verwendet
+und welche Modellteile habe ich selbst entwickelt? - Warum habe ich für
+mein Modell Modelica verwendet und nicht Simulink/Simplorer/\ldots{}
+oder ein rein mathematisches Modell?
+\end{quote}
+
+\hypertarget{asynchronmotor-mit-kurzschlussluxe4ufer}{%
+\subsection{Asynchronmotor mit
+Kurzschlussläufer}\label{asynchronmotor-mit-kurzschlussluxe4ufer}}
+
+Das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer, wie
+es in der MSL verwendet wird, zeigt XXX. Da die Drehfeldmaschinen in
+vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt
+\cite{ @kralModelicaObjektorientierteModellbildung2019 } den Asynchron-
+und Synchronmaschinen der MSL ein \emph{partielles
+Modelica-Modell}\footnote{Modell, das mit dem Modifizierer
+  \texttt{partial} versehen ist. Das Modell muss nicht die gleiche
+  Anzahl von Gleichungen und Unbekannten haben. Es bietet die
+  Möglichkeit Strukturen des Modells bei der Vererbung zu verändern
+  (\texttt{replace}). Ein solches Modell kann nicht allein simuliert
+  werden.} für Drehfeldmaschinen zugrunde
+(\texttt{FundamentalWave.Interfaces.PartialBasicInductionMachine}). Das
+unterstützt den objektorientierten Modellierungsansatz, sodass diese
+Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden
+muss.
+
+\hypertarget{partielles-modell-der-drehfeldmaschine}{%
+\subsubsection{Partielles Modell der
+Drehfeldmaschine}\label{partielles-modell-der-drehfeldmaschine}}
+
+Das partielle Modell der Drehfeldmaschine (siehe XXX) modelliert die
+Energieübertragung vom elektrischen Netzanschluss des Stators über den
+Luftspalt auf den Rotor, wie sie schon in XXX betrachtet wurde. Die
+Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer
+Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der
+Spezialisierung des Modells für die einzelnen elektrischen Maschinen.
+Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen
+Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische
+Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden
+mit einem Lagerreibungsmodell und einem optionalen mechanischen
+Anschluss zur Abstützung des Stators.
+
+{[}{[}PartialBasicInductionMachine.svg{]}{]} Partielles Modell der
+Drehfeldmaschine
+\texttt{FundamentalWave.Interfaces.PartialBasicInductionMachine} der MSL
+v3.2.3
+
+Die Energiewandlung im Stator geschieht über das Windungsmodell
+\texttt{FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding},
+welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste
+sowie Streu- und Wirbelstromverluste des Magnetfelds
+berücksichtigt\footnote{Das Modell berücksichtigt bei ungeradzahligen
+  mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird
+  jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird
+  (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was
+  in der hier betrachteten Anwendung nicht auftritt.} (siehe XXX).
+
+{[}{[}SymmetricMultiPhaseWinding.svg{]}{]}
+Windungsmodell\texttt{FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding}
+der MSL v3.2.3
+
+Über das Luftspaltmodell
+(\texttt{FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap})
+wird der Abfall der magnetischen Spannung über dem magnetischen
+Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment
+modelliert. Um die magnetischen Größen des Stators und des Rotors in
+Beziehung zueinander zu setzen ist eine Koordiantentransformation der
+Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert
+(\emph{d,q-System}).
+
+\hypertarget{modell}{%
+\subsubsection{Modell}\label{modell}}
+
+XXX zeigt das vollständige Modell der Asynchronmaschine mit
+Kurzschlussläufer
+(\texttt{FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM\_SquirrelCage}).
+Es ergibt sich aus dem partiellen Modell durch Hinzufügen des
+kurzgeschlossenen Käfigmodells
+(\texttt{FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseCageWinding}),
+welches XXX zeigt.
+
+Da die Anzahl \(N_R\) der Rotorstäbe eines Käfigs häufig viel größer ist
+als die Anzahl \(m\) der Phasen des Systems, ist es numerisch einfacher
+für den Käfig eine \(m\)-phasige kurzgeschlossene Windung als
+Ersatzmodell zu verwenden, welche die gleiche effektive Windungszahl wie
+die Statorwicklung aufweist.
+(\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019})
+
+{[}{[}AIM\_SquirrelCage.svg{]}{]} Vollständiges Modell der
+Asynchronmaschine mit Kurzschlussläufer
+(\texttt{FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM\_SquirrelCage})
+der MSL v3.2.3 {[}{[}SymmetricMultiPhaseCageWinding.svg{]}{]} M-phasiges
+Käfig-Ersatzmodell
+(\texttt{FundamentalWave.Components.SymmetricMultiPhaseCageWinding}) der
+MSL v3.2.3
+
+\hypertarget{parametrierung}{%
+\subsubsection{Parametrierung}\label{parametrierung}}
+
+Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben
+werden: elektrische, mechanische und thermische Größen. Da bei
+Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen
+vorrangig die elektrischen und mechanischen Größen angepasst werden
+müssen, werden diese Werte in einem eigenen Recod-Modell
+(\texttt{Frequenzumformer.Maschinenparameter.AIM\_SquirrelCageData},
+siehe Listing XXX) zusammengefasst. Das ermöglicht auch die Umrechnung
+der im Datenblatt der Maschine angegebenen Reaktanzen in die für die
+Simulation benötigten Induktivitäten.
+
+Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von
+Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf
+\(\unit[20]{°C}\) Umgebungstemperatur eingestellt, wobei die
+Temperaturabhängigkeit der Widerstände vernachlässigt werden soll.
+
+Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach
+außen hin zur Parametrierung der Wicklungen Stator- und
+Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die
+Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine (vgl.
+XXX) angegeben Größen: Hauptfeldinduktivität (\(L_m\)),
+Stator-Streuinduktivität (\(L_{s\sigma}\)) und Rotor-Streuinduktivität
+(\(L_{r\sigma}\)). Im Datenblatt der Maschine sind die Reaktanzen
+\(X_0, X_1, X_2\) angegeben. Die zugehörigen Induktivitäten ergeben sich
+mit der Netzfrequenz \(f_{Netz}=\unit[50]{\mathrm{Hz}}\) nach
+
+\begin{align}
+L_m &= \frac{X_0}{2\pi f_{Netz}} \\
+L_{s,\sigma} &= \frac{X_1}{2\pi f_{Netz}} \\
+L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
+\end{align}
+
+Für die effektive Windungszahl (\texttt{effectiveStatorTurns}) gibt
+\cite[S. 217]{kralModelicaObjektorientierteModellbildung2019} \[
+N_{\mathrm{eff. s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
+\] an, mit der \emph{Statorwindungszahl} \(\hat{N}\), dem
+\emph{Sehnungsfaktor} \(\xi _{\mathrm{c}}\) und dem \emph{Zonenfaktor}
+\(\xi _{\mathrm{z}}\). Ebenda angegeben sind die Ausdrücke XXX für die
+beiden Faktoren \(\xi _{\mathrm{c}}\) und \(\xi_{\mathrm{z}}\)
+(\cite[S. 165, S. 217]{kralModelicaObjektorientierteModellbildung2019}).
+
+\begin{align}
+\xi _{\mathrm{c}} &= \sin(\frac{\Delta\gamma _{\mathrm{c}}}{2}) \\
+\xi _{\mathrm{z}} &= \frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6q})}
+\end{align}
+
+Die \emph{Spulenweite} \(\Delta\gamma _{\mathrm{c}}\) ist gemäß \[
+\Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
+\]das Verhältnis des \emph{Nutschritts} (\(y_Q\)) zur Anzahl der
+\emph{Nuten je Polpaar} (\(S'=\sfrac{Q}{2p}\)) multipliziert mit
+\(2\pi\)
+(\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}),
+vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso
+ist die \emph{Lochzahl} (\(q\)) zur Berechnung des Zonenfaktors das
+Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl.
+\cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})\[
+q = \frac{Q}{2pm}.
+\] Damit ist die Statorwindung der Asynchronmaschine vollständig
+parametriert. Die Wicklungsdaten und die daraus nach XXX berechneten
+Werte listet XXX auf. Alle weiteren Größen zur Beschreibung der
+Asynchromaschine können direkt aus dem Datenblatt entnommen und sind
+ebenfalls in XXX angegeben.
+
+Dabei ist für das Trägheitsmoment \(J_{\mathrm{r}}=0\) eingetragen, da
+aus der Auslegung des Frequenzumformer nur ein kombiniertes
+Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem
+Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne
+Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle)
+geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment
+des Lüftermodells zusammengefasst werden.
+
+\hypertarget{synchrongenerator-mit-duxe4mpferkuxe4fig}{%
+\subsection{Synchrongenerator mit
+Dämpferkäfig}\label{synchrongenerator-mit-duxe4mpferkuxe4fig}}
+
+Das Modell des Synchrongenerators basiert wie auch das der
+Asynchronmaschine auf dem oben schon dargestellten partiellen
+Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges
+elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die
+elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig,
+ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
+
+\hypertarget{modell-1}{%
+\subsubsection{Modell}\label{modell-1}}
+
+XXX zeigt das vollständige Modell des elektrisch erregten
+Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs
+wird über den Parameter \texttt{useDamperCage} eingestellt. Wird dieser
+Parameter auf \texttt{false} gesetzt, wird das Modell mit dem
+Verbindungsmodell \texttt{short} anstelle des Dämpferkäfigs
+initialisiert. {[}{[}SM\_ElectricalExcited.svg{]}{]} Vollständiges
+Modell des elektrisch erregten Synchrongenerators mit (optionalem)
+Dämpferkäfig
+(\texttt{FundamentalWave.BasicMachines.SynchronousInductionMachines.SM\_ElectricalExcited})
+der MSL v3.2.3
+
+Wie das mehrphasige Windungsmodell des Stators (siehe XXX)
+berücksichtigt auch das einphasige Modell neben der elektromagnetischen
+Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe XXX).
+{[}{[}SinglePhaseWinding.svg{]}{]}
+
+Da der Synchrongenerator über die Erregermaschine erregt wird, findet
+keine Stromübertragung über Kohlebürsten statt und das Modell der
+Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der
+Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt.
+Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden,
+um einen Einfluss auszuschließen.
+
+Das Modell des Dämpferkäfigs (siehe XXX) weist die gleiche Struktur auf
+wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem
+berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und
+q-Achsen des körperfesten Koordinatensystems) der Widerstände und
+Induktivitäten aufgrund der Pollücken des Dämpferkäfigs
+(\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}).
+Dementsprechend ist das Modell zweiphasig
+ausgeführt.{[}{[}SaliencyCageWinding.svg{]}{]} Zweiphasiges Modell des
+Dämpferkäfigs
+(\texttt{FundamentalWave.BasicMachines.Components.SaliencyCageWinding})
+der MSL v3.2.3
+
+\hypertarget{parametrierung-1}{%
+\subsubsection{Parametrierung}\label{parametrierung-1}}
+
+Alle Parameter des Synchrongenerators werden in Parameterrecord
+\texttt{Machines.Utilities.ParameterRecords.SM\_ElectricalExcitedData}
+der MSL v3.2.3 erfasst. Die mechanischen und thermischen Parameter des
+Synchrongenerators sind dieselben wie die der Asynchronmaschine: Die
+Temperaturen betragen \(\unit[20]{°C}\) Umgebungstemperatur bei
+Vernachlässigung der Temperaturabhängigkeit der Widerstände und das
+Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des
+Lüfters erfasst.
+
+Die zur Parametrierung des Synchrongenerators verwendeten elektrischen
+Größen sind die im Erstzschaltbild XXX angegebenen Widerstände und
+Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in
+Tabelle XXX aufgelisteten Größen bekannt. Die zur Umrechnung benötigten
+Zusammenhänge sollen im Folgenden angegeben werden.\footnote{Die hier
+  angegebenen Zusammenhänge sind zum größten Teil auch in dem
+  Parameterrecord \texttt{Machines.Utilities.SynchronousMachineData}
+  implementiert, erforden jedoch die Kenntnis der Ankerzeitkonstante
+  \(T_{\mathrm{a}}\) zur Berechnung des Statorwiderstands
+  \(R_{\mathrm{s}}\). Da jedoch \(R_{\mathrm{s}}\) (im Gegensatz zu
+  \(T_{\mathrm{a}}\)) aus der Auslegung bekannt ist, erfolgt hier diese
+  angepasste Umformung der Kenngrößen.}
+
+Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019}
+können die bezogenen Hauptfeldreaktanzen \(x_{\mathrm{md}}\) und
+\(x_{\mathrm{mq}}\) mit \begin{align}
+x_{\mathrm{md}} &= x_{\mathrm{d}} - x_{\mathrm{s}} \\
+x_{\mathrm{mq}} &= x_{\mathrm{q}} - x_{\mathrm{s}}
+\end{align} aus den bezogenen Reaktanzen \(x_{\mathrm{d}}\) und
+\(x_{\mathrm{q}}\) sowie der Streureaktanz \(x_{\mathrm{s}}\) bestimmt
+werden.\footnote{An dieser Stelle verwendet
+  \cite[]{kralModelicaObjektorientierteModellbildung2019} anstelle von
+  \(x_{\mathrm{s}}\) die Nullreaktanz \(x_{\mathrm{0}}\), die in etwa
+  mit der Streureaktanz übereinstimmt. Da hier aber die Streureaktanz
+  aus der Auslegung bekannt ist, soll \(x_{\mathrm{s}}\) direkt
+  verwendet werden.} Weiterhin wird dort die Reaktanz der
+Erregerwicklung gemäß \[
+x_{\mathrm{e}} = \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}-x_{\mathrm{d}}'}
+\]angegeben. Ebenso seien die Zusammenhänge für die bezogenen
+Rotorreaktanzen \(x_{\mathrm{rd}}\) und \(x_{\mathrm{rq}}\)
+\begin{align}
+x_{\mathrm{rd}} &= \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}’ - x_{\mathrm{d}}''}\cdot \left( 1-\frac{x_{\mathrm{md}}}{x_{\mathrm{d}}}\right)^2 + \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}\\
+\intertext{und}
+x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
+\end{align}
+
+Für die bezogenen Rotorwiderstände\footnote{An dieser Stelle liegt in
+  der vorliegenden Ausgabe von
+  \cite[]{kralModelicaObjektorientierteModellbildung2019} ein
+  Druckfehler vor (vgl. mit dem Modelica-Code Listing
+  \cite[S. 266]{kralModelicaObjektorientierteModellbildung2019})} wird
+ebenda \begin{align}
+r_{\mathrm{rd}} &= \frac{x_{\mathrm{rd}} - \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}'}, \\
+r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}'}
+\end{align} angegeben und für den bezogenen Widerstand der
+Erregerwicklung\[
+r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
+\] Damit ergeben sich die Induktivitäten und Widerstände des
+Synchrongenerators mit der Nennkreisfrequenz
+\(\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}\) und der
+Bezugsreaktanz \(X_{\mathrm{N}}\) nach Gleichungen XXX (vgl.
+\cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
+
+\begin{align}
+L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{mq}} &= x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{r \sigma d}} &= (x_{\mathrm{rq}}-x_{\mathrm{mq}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{r \sigma q}} &= (x_{\mathrm{rd}}-x_{\mathrm{md}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{s \sigma}} &= x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+R_{\mathrm{rd}} &= r_{\mathrm{rd}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
+\end{align}
+
+Damit ist der Synchrongenerator vollständig parametriert. Die Tabellen
+XXX listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
+
+\hypertarget{erregermaschine}{%
+\subsection{Erregermaschine}\label{erregermaschine}}
+
+\hypertarget{modell-2}{%
+\subsubsection{Modell}\label{modell-2}}
+
+{[}{[}SM\_Erreger.svg{]}{]} Modell der Erregermaschine mit
+Synchrongenerator (\texttt{Frequenzumformer.Maschinen.SM\_Erreger})
+
+\hypertarget{parametrierung-2}{%
+\subsubsection{Parametrierung}\label{parametrierung-2}}
+
+Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt
+analog zur Parametrierung des Hauptgenerators oben. Die verwendeten
+Größen sind in Tabelle XXX dargestellt.
+
+\hypertarget{spannungsregler}{%
+\subsection{Spannungsregler}\label{spannungsregler}}
+
+\hypertarget{modell-3}{%
+\subsubsection{Modell}\label{modell-3}}
+
+\hypertarget{parametrierung-3}{%
+\subsubsection{Parametrierung}\label{parametrierung-3}}
+
+\hypertarget{gesamtmodell}{%
+\subsection{Gesamtmodell}\label{gesamtmodell}}
+
+\hypertarget{parametrierung-4}{%
+\subsubsection{Parametrierung}\label{parametrierung-4}}
+
+\hypertarget{muxf6gliche-quellen}{%
+\section{Mögliche Quellen:}\label{muxf6gliche-quellen}}
+
+{[}@modelicaassociationModelicaStandardLibrary2020{]}
+{[}@kralModelicaObjektorientierteModellbildung2019{]}
+{[}@hanseEinflussNutgeometrieAuf2020{]}
+{[}@binderVorlesungElektrischeMaschinen2019{]}
+{[}@bonfertBetriebsverhaltenSynchronmaschine1962{]}
+{[}@IEEEGuideSynchronous{]}

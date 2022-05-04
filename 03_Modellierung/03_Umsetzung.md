@@ -62,24 +62,24 @@ Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden
 Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. 
 
 Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach außen hin zur Parametrierung der Wicklungen Stator- und Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine (vgl. <mark>XXX</mark>) angegeben Größen: Hauptfeldinduktivität ($L_m$), Stator-Streuinduktivität ($L_{s\sigma}$) und Rotor-Streuinduktivität ($L_{r\sigma}$). Im Datenblatt der Maschine sind die Reaktanzen $X_0, X_1, X_2$ angegeben. Die zugehörigen Induktivitäten ergeben sich mit der Netzfrequenz $f_{Netz}=\unit[50]{\mathrm{Hz}}$ nach
-$$
+
 \begin{align}
 L_m &= \frac{X_0}{2\pi f_{Netz}} \\
 L_{s,\sigma} &= \frac{X_1}{2\pi f_{Netz}} \\
 L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 \end{align}
-$$
+
 Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217]{kralModelicaObjektorientierteModellbildung2019} 
 $$
 N_{\mathrm{eff. s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
 $$
 an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217]{kralModelicaObjektorientierteModellbildung2019}).
-$$
+
 \begin{align}
 \xi _{\mathrm{c}} &= \sin(\frac{\Delta\gamma _{\mathrm{c}}}{2}) \\
 \xi _{\mathrm{z}} &= \frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6q})}
 \end{align}
-$$
+
 Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
 \Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
 $$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}), vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl. \cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})$$
@@ -109,30 +109,30 @@ Alle Parameter des Synchrongenerators werden in Parameterrecord `Machines.Utilit
 
 Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild <mark>XXX</mark> angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in <mark>Tabelle XXX</mark> aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden.[^4]
 
-Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die bezogenen Hauptfeldreaktanzen $x_{\mathrm{md}}$ und $x_{\mathrm{mq}}$ mit$$
+Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die bezogenen Hauptfeldreaktanzen $x_{\mathrm{md}}$ und $x_{\mathrm{mq}}$ mit
 \begin{align}
 x_{\mathrm{md}} &= x_{\mathrm{d}} - x_{\mathrm{s}} \\
 x_{\mathrm{mq}} &= x_{\mathrm{q}} - x_{\mathrm{s}}
 \end{align}
-$$aus den bezogenen Reaktanzen $x_{\mathrm{d}}$ und $x_{\mathrm{q}}$ sowie der Streureaktanz $x_{\mathrm{s}}$ bestimmt werden.[^5] Weiterhin wird dort die Reaktanz der Erregerwicklung gemäß $$
+aus den bezogenen Reaktanzen $x_{\mathrm{d}}$ und $x_{\mathrm{q}}$ sowie der Streureaktanz $x_{\mathrm{s}}$ bestimmt werden.[^5] Weiterhin wird dort die Reaktanz der Erregerwicklung gemäß $$
 x_{\mathrm{e}} = \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}-x_{\mathrm{d}}'}
-$$angegeben. Ebenso seien die Zusammenhänge für die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x_{\mathrm{rq}}$ $$
+$$angegeben. Ebenso seien die Zusammenhänge für die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x_{\mathrm{rq}}$ 
 \begin{align}
 x_{\mathrm{rd}} &= \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}’ - x_{\mathrm{d}}''}\cdot \left( 1-\frac{x_{\mathrm{md}}}{x_{\mathrm{d}}}\right)^2 + \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}\\
 \intertext{und}
 x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
 \end{align}
-$$
-Für die bezogenen Rotorwiderstände[^6] wird ebenda $$
+
+Für die bezogenen Rotorwiderstände[^6] wird ebenda 
 \begin{align}
 r_{\mathrm{rd}} &= \frac{x_{\mathrm{rd}} - \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}'}, \\
 r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}'}
 \end{align}
-$$ angegeben und für den bezogenen Widerstand der Erregerwicklung$$
+ angegeben und für den bezogenen Widerstand der Erregerwicklung$$
 r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
 $$
 Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
-$$
+
 \begin{align}
 L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{mq}} &= x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
@@ -143,7 +143,7 @@ R_{\mathrm{rd}} &= r_{\mathrm{rd}}\cdot X_{\mathrm{N}} \\
 R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
 R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
 \end{align}
-$$
+
 Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XXX</mark> listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
 
 ### Erregermaschine
