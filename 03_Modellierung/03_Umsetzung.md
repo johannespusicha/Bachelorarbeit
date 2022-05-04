@@ -116,7 +116,14 @@ x_{\mathrm{mq}} &= x_{\mathrm{q}} - x_{\mathrm{s}}
 \end{align}
 $$aus den bezogenen Reaktanzen $x_{\mathrm{d}}$ und $x_{\mathrm{q}}$ sowie der Streureaktanz $x_{\mathrm{s}}$ bestimmt werden.[^5] Weiterhin wird dort die Reaktanz der Erregerwicklung gemäß $$
 x_{\mathrm{e}} = \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}-x_{\mathrm{d}}'}
-$$angegeben. Ebenso lassen sich die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x$ berechnen
+$$angegeben. Ebenso seien die Zusammenhänge für die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x_{\mathrm{rq}}$ $$
+\begin{align}
+x_{\mathrm{rd}} &= \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}’ - x_{\mathrm{d}}''}\cdot \left( 1-\frac{x_{\mathrm{md}}}{x_{\mathrm{d}}}\right)^2 + \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}\\
+\intertext{und}
+x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
+\end{align}
+$$
+
 
 ### Erregermaschine
 
