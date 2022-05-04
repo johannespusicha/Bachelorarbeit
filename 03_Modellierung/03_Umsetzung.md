@@ -107,7 +107,13 @@ Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Componen
 #### Parametrierung
 Alle Parameter des Synchrongenerators werden in Parameterrecord `Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData` der MSL v3.2.3 erfasst. Die mechanischen und thermischen Parameter des Synchrongenerators sind dieselben wie die der Asynchronmaschine: Die Temperaturen betragen $\unit[20]{°C}$ Umgebungstemperatur bei Vernachlässigung der Temperaturabhängigkeit der Widerstände und das Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des Lüfters erfasst.
 
-Die zur Parametrierung des Synchrongenerators verwe sind die im Erstzschaltbild <mark>XXX</mark> angegebenen Widerstände und Induktivitäten.
+Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild <mark>XXX</mark> angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in <mark>Tabelle XXX</mark> aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden.[^4]
+
+Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die Hauptfeldreaktanzen $x_{\mathrm{md}}$ und $x_{\mathrm{mq}}$ gemäß$$
+\begin{align}
+x_{\mathrm{md}} &= x_{\mathrm{d}} - x
+\end{align}
+$$
 
 ### Erregermaschine
 
@@ -138,3 +144,4 @@ Die zur Parametrierung des Synchrongenerators verwe sind die im Erstzschaltbild 
 [^1]: Die Zeiger der komplexen Wechselstromrechnung ergeben sich aus der Fouriertransformation periodischer eingeschwungener Größen.  
 [^2]: Modell, das mit dem Modifizierer `partial` versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (`replace`). Ein solches Modell kann nicht allein simuliert werden.
 [^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
+[^4]: Die hier angegebenen Zusammenhänge sind zum größten Teil auch in dem Parameterrecord `Machines.Utilities.SynchronousMachineData` implementiert, erforden jedoch die Kenntnis der Ankerzeitkonstante $T_{\mathrm{a}}$ zur Berechnung des Statorwiderstands $R_{\mathrm{s}}$. Da jedoch $R_{\mathrm{s}}$ (im Gegensatz zu $T_{\mathrm{a}}$) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
