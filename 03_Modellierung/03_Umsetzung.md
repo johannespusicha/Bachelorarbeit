@@ -54,7 +54,7 @@ Da die Anzahl $N_R$ der Rotorstäbe eines Käfigs häufig viel größer ist als 
 ![[AIM_SquirrelCage.svg]]
 Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`)
 ![[SymmetricMultiPhaseCageWinding.svg]]
-M-phasiges Käfig-Ersatzmodell
+M-phasiges Käfig-Ersatzmodell (`FundamentalWave.Components.SymmetricMultiPhaseCageWinding`)
 
 #### Parametrierung
 Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
@@ -90,7 +90,7 @@ Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die
 Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden. 
 
 ### Synchrongenerator mit Dämpferkäfig
-
+Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargsetellten partiellen Drehfeldmaschinenmodell. Bei der betrachteten Maschine handelt es sich um einen elektrisch erregten Synchrongenerator mit Dämpferkäfig. 
 #### Modell
 
 #### Parametrierung
