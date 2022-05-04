@@ -25,7 +25,7 @@ konvertieren mit pandoc: pandoc -o TEX/<file.tex> <folder>/<file.md> --shift-hea
 
 ![[04_Parametrierung]]
 
-![[05_Probleme]]
+![[05_AlternativeUmsetzungen]]
 
 # Versuch
 

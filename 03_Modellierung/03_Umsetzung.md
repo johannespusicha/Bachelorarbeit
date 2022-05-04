@@ -69,7 +69,7 @@ L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 $$
 Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217]{kralModelicaObjektorientierteModellbildung2019} 
 $$
-N_{\mathrm{s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
+N_{\mathrm{eff. s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
 $$
 an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217]{kralModelicaObjektorientierteModellbildung2019}).
 $$
