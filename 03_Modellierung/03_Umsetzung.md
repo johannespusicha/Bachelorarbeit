@@ -123,7 +123,7 @@ x_{\mathrm{rd}} &= \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}’ - x_{\mathrm{d}}''
 x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
 \end{align}
 $$
-Für die bezogenen Rotorwiderstände wird ebenda $$
+Für die bezogenen Rotorwiderstände[^6] wird ebenda $$
 \begin{align}
 r_{\mathrm{rd}} &= \frac{x_{\mathrm{rd}} - \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}'}, \\
 r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}'}
@@ -131,6 +131,7 @@ r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}'}
 $$ angegeben und für den bezogenen Widerstand der Erregerwicklung$$
 r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
 $$
+Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[] kralModelicaObjektorientierteModellbildung2019).
 
 ### Erregermaschine
 
@@ -163,3 +164,4 @@ $$
 [^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
 [^4]: Die hier angegebenen Zusammenhänge sind zum größten Teil auch in dem Parameterrecord `Machines.Utilities.SynchronousMachineData` implementiert, erforden jedoch die Kenntnis der Ankerzeitkonstante $T_{\mathrm{a}}$ zur Berechnung des Statorwiderstands $R_{\mathrm{s}}$. Da jedoch $R_{\mathrm{s}}$ (im Gegensatz zu $T_{\mathrm{a}}$) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
 [^5]: An dieser Stelle verwendet \cite[]{kralModelicaObjektorientierteModellbildung2019} anstelle von $x_{\mathrm{s}}$ die Nullreaktanz $x_{\mathrm{0}}$, die in etwa mit der Streureaktanz übereinstimmt. Da hier aber die Streureaktanz aus der Auslegung bekannt ist, soll $x_{\mathrm{s}}$ direkt verwendet werden.
+[^6]: An dieser Stelle liegt in der vorliegenden Ausgabe von \cite[]{kralModelicaObjektorientierteModellbildung2019} ein Druckfehler vor (vgl. mit dem Modelica-Code Listing \cite[S. 266]{kralModelicaObjektorientierteModellbildung2019})
