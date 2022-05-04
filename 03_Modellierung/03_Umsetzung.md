@@ -105,7 +105,9 @@ Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Strukt
 Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3
 
 #### Parametrierung
+Alle Parameter des Synchrongenerators werden in Parameterrecord `Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData` der MSL v3.2.3 erfasst. Die mechanischen und thermischen Parameter des Synchrongenerators sind dieselben wie die der Asynchronmaschine: Die Temperaturen betragen $\unit[20]{°C}$ Umgebungstemperatur bei Vernachlässigung der Temperaturabhängigkeit der Widerstände und das Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des Lüfters erfasst.
 
+Die zur Parametrierung des Synchrongenerators verwe sind die im Erstzschaltbild <mark>XXX</mark> angegebenen Widerstände und Induktivitäten.
 
 ### Erregermaschine
 
