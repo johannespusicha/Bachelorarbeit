@@ -97,7 +97,9 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 ![[SM_ElectricalExcited.svg]]
 Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3
 
-Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und 
+Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und das Modell der Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt. Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden, um einen Einfluss auszuschließen.
+
+Das Modell des Dämpferkäfigs weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}).
 
 #### Parametrierung
 
