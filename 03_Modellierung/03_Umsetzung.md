@@ -123,7 +123,11 @@ x_{\mathrm{rd}} &= \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}’ - x_{\mathrm{d}}''
 x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
 \end{align}
 $$
-
+Für die bezogenen Rotorwiderstände wird ebenda angegeben$$
+\begin{align}
+r_{\mathrm{rd}} &= \frac{x_{\mathrm{rd}} - \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}'}
+\end{align}
+$$
 
 ### Erregermaschine
 
