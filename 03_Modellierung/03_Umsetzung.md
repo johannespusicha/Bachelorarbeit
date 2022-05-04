@@ -132,6 +132,18 @@ $$ angegeben und für den bezogenen Widerstand der Erregerwicklung$$
 r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
 $$
 Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
+$$
+\begin{align}
+L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{mq}} &= x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{r \sigma d}} &= (x_{\mathrm{rq}}-x_{\mathrm{mq}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{r \sigma q}} &= (x_{\mathrm{rd}}-x_{\mathrm{md}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{s \sigma}} &= x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+R_{\mathrm{rd}} &= r_{\mathrm{rd}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
+\end{align}
+$$
 
 ### Erregermaschine
 
