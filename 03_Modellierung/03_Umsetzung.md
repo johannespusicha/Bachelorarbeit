@@ -97,7 +97,7 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 ![[SM_ElectricalExcited.svg]]
 Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3
 
-Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>).
+Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>). ![[SinglePhaseWinding.svg]]
 
 Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und das Modell der Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt. Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden, um einen Einfluss auszuschließen.
 
