@@ -52,19 +52,20 @@ Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa
 
 Table: Wicklungsdaten der Asynchronmaschine
 
-| Parameter              | Symbol  | Wert          | Berechnung |
-| ---------------------- | ------- | ------------- | ---------- |
-| Windungszahl           | $?$     | 56            |            |
-| Polpaarzahl            | $p$     | 1             |            |
-| Nutzahl                | $?$     | 36            |            |
-| Stränge                | $?$     | 3             |            |
-| Lochzahl               | $?$     | 6             | $?$        |
-| xi_z                   | $\xi_z$ | 0,16666666667 |            |
-| xi_c                   | $\xi_c$ | 0,98260765    |            |
-| Nuten je Polpaar       | $?$     | 18            |            |
-| Wickelschritt          | $?$     | 10            |            |
-| Spulenschritt          | $?$     | 28,6478898    |            |
-| effektive Windungszahl | $?$     | 9,17100475    |            |
+| Parameter              | Symbol              | Wert          | Berechnung |
+| ---------------------- | ------------------- | ------------- | ---------- |
+| Windungszahl           | $\hat{N}$           | 56            |            |
+| Polpaarzahl            | $p$                 | 1             |            |
+| Nutzahl                | $Q$                 | 36            |            |
+| Stränge                | $m$                 | 3             |            |
+| Lochzahl               | $q$                 | 6             | $?$        |
+| xi_z                   | $\xi_z$             | 0,16666666667 |            |
+| xi_c                   | $\xi_c$             | 0,98260765    |            |
+| Nuten je Polpaar       | $S'$                | 18            |            |
+| Wickelschritt          | $?$                 | 10            |            |
+| Spulenschritt          | $?$                 | 28,6478898    |            |
+| effektive Windungszahl | $N_{\mathrm{eff.}}$ | 9,17100475    |            |
+|                        |                     |               |            |
 
 ### Synchron-Generator
 

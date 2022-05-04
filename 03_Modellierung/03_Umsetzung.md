@@ -59,7 +59,7 @@ M-phasiges Käfig-Ersatzmodell
 #### Parametrierung
 Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen <mark>XXX</mark>.
 
-Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach außen hin zur Parametrierung der Wicklungen Stator- und Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine (vgl. <mark>XXX</mark>) angegeben Größen: Hauptfeldinduktivität ($L_m$), Stator-Streuinduktivität ($L_{s\sigma}$) und Rotor-Streuinduktivität ($L_{r\sigma}$). Im Datenblatt der Maschine sind die Reaktanzen $X_0, X_1, X_2$ angegeben. Die zugehörigen Induktivitäten ergeben sich nach <mark>XXX</mark> mit der Netzfrequenz $f_{Netz}=\unit[50]{\mathrm{Hz}}$ zu
+Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach außen hin zur Parametrierung der Wicklungen Stator- und Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine (vgl. <mark>XXX</mark>) angegeben Größen: Hauptfeldinduktivität ($L_m$), Stator-Streuinduktivität ($L_{s\sigma}$) und Rotor-Streuinduktivität ($L_{r\sigma}$). Im Datenblatt der Maschine sind die Reaktanzen $X_0, X_1, X_2$ angegeben. Die zugehörigen Induktivitäten ergeben sich mit der Netzfrequenz $f_{Netz}=\unit[50]{\mathrm{Hz}}$ nach
 $$
 \begin{align}
 L_m &= \frac{X_0}{2\pi f_{Netz}} \\
@@ -67,11 +67,11 @@ L_{s,\sigma} &= \frac{X_1}{2\pi f_{Netz}} \\
 L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 \end{align}
 $$
-Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217] kralModelicaObjektorientierteModellbildung2019 
+Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217]{kralModelicaObjektorientierteModellbildung2019} 
 $$
 N_{\mathrm{s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
 $$
-an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217] kralModelicaObjektorientierteModellbildung2019).
+an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217]{kralModelicaObjektorientierteModellbildung2019}).
 $$
 \begin{align}
 \xi _{\mathrm{c}} &= \sin(\frac{\Delta\gamma _{\mathrm{c}}}{2}) \\
@@ -80,9 +80,9 @@ $$
 $$
 Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
 \Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
-$$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161] kralModelicaObjektorientierteModellbildung2019), vgl. \cite[S. 76, S. 119] binderElektrischeMaschinenUnd2012). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole$$
+$$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}), vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl. \cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})$$
 q = \frac{Q}{2pm}.
-$$\cite[] kralModelicaObjektorientierteModellbildung2019
+$$
 
 ### Synchrogenerator ohne Dämpferkäfig
 
