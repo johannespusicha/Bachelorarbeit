@@ -52,20 +52,19 @@ Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa
 
 Table: Wicklungsdaten der Asynchronmaschine
 
-| Parameter              | Symbol                      | Wert          | Berechnung                                                         |
-| ---------------------- | --------------------------- | ------------- | ------------------------------------------------------------------ |
-| Windungszahl           | $\hat{N}$                   | 56            |                                                                    |
-| Polpaarzahl            | $p$                         | 1             |                                                                    |
-| Nutzahl                | $Q$                         | 36            |                                                                    |
-| Stränge                | $m$                         | 3             |                                                                    |
-| Lochzahl               | $q$                         | 6             | $q=\frac{Q}{2pm}$                                                  |
-| xi_z                   | $\xi_z$                     | 0,16666666667 | $\xi_{\mathrm{z}}=\frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6})$ |
-| xi_c                   | $\xi_c$                     | 0,98260765    | $\xi_{\mathrm{c}}=\sin(\frac{\Delta\gamma_{\mathrm{c}}}{2})$       |
-| Nuten je Polpaar       | $S'$                        | 18            |                                                                    |
-| Nutschritt             | $y_{\mathrm{Q}}$            | 10            |                                                                    |
-| Spulenweite            | $\Delta\gamma_{\mathrm{c}}$ | 28,6478898    | $\frac{}{}$                                                        |
-| effektive Windungszahl | $N_{\mathrm{eff. s}}$       | 9,17100475    |                                                                    |
-
+| Parameter              | Symbol                      | Wert       | Berechnung                                                          |
+| ---------------------- | --------------------------- | ---------- | ------------------------------------------------------------------- |
+| Windungszahl           | $\hat{N}$                   | 56         |                                                                     |
+| Polpaarzahl            | $p$                         | 1          |                                                                     |
+| Nutzahl                | $Q$                         | 36         |                                                                     |
+| Stränge                | $m$                         | 3          |                                                                     |
+| Nutschritt             | $y_{\mathrm{Q}}$            | 10         |                                                                     |
+| Nuten je Polpaar       | $S'$                        | 18         |                                                                     |
+| Spulenweite            | $\Delta\gamma_{\mathrm{c}}$ | 3,4906585  | $\Delta\gamma_{\mathrm{c}}=2\pi\frac{y_{\mathrm{Q}}}{S'}$           |
+| Lochzahl               | $q$                         | 6          | $q=\frac{Q}{2pm}$                                                   |
+| xi_c                   | $\xi_c$                     | 0,98480775 | $\xi_{\mathrm{c}}=\sin(\frac{\Delta\gamma_{\mathrm{c}}}{2})$        |
+| xi_z                   | $\xi_z$                     | 0,95614277 | $\xi_{\mathrm{z}}=\frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6})}$ |
+| effektive Windungszahl | $N_{\mathrm{eff. s}}$       | 52,7305415 | $N_{\mathrm{eff. s}}=\hat{N}\xi_{\mathrm{c}}\xi_{\mathrm{z}}$       |
 
 ### Synchron-Generator
 
