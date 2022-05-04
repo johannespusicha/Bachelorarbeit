@@ -1,8 +1,8 @@
 > [!TODO]+ ToDo:
 > - [ ] Maschinen beschreiben
-> - [ ] Parametrierung der Maschinen herleiten
-> - [ ] Parameter für Spannungsregler
-> - [ ] Überlegen, in welchem Kapitel Modellvergleiche gemacht werden sollen. Oder will ich das Modellweise behandeln?
+> - [x] Parametrierung der Maschinen herleiten
+> - [x] Parameter für Spannungsregler
+> - [x] Überlegen, in welchem Kapitel Modellvergleiche gemacht werden sollen. Oder will ich das Modellweise behandeln?
 > - [x] Die vollständige Liste der Parameter gehört wahrscheinlich besser in den Anhang
 
 > [!TIP]+ Modelica

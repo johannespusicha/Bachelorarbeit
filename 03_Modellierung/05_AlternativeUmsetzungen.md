@@ -1,1 +1,2 @@
 ## Alternative Umsetzungen
+Die im Folgenden dargelegten Modelle für Komponenten des Frequenzumformers zeigen alternative Umsetzungen oder Modellierungskonzepte, die geprüft wurden, aber im Rahmen der an das Modell gestellten Anforderungen nicht zur Verbesserung des Ergebnisses beitragen. Sie werden daher bei den anschließenden Untersuchungen des Modells nicht verwendet. 
