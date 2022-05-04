@@ -67,11 +67,11 @@ L_{s,\sigma} &= \frac{X_1}{2\pi f_{Netz}} \\
 L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 \end{align}
 $$
-Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217] kralModelicaObjektorientierteModellbildung2019 den folgenden Term an
+Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217] kralModelicaObjektorientierteModellbildung2019 
 $$
 N_{\mathrm{s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
 $$
-mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217] kralModelicaObjektorientierteModellbildung2019).
+an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217] kralModelicaObjektorientierteModellbildung2019).
 $$
 \begin{align}
 \xi _{\mathrm{c}} &= \sin(\frac{\Delta\gamma _{\mathrm{c}}}{2}) \\
@@ -80,7 +80,9 @@ $$
 $$
 Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
 \Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
-$$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161] kralModelicaObjektorientierteModellbildung2019), vgl. \cite[S. 76, S. 119] binderElektrischeMaschinenUnd2012).  *Lochzahl* ($q$) zur Berechnung des Zonenfaktors 
+$$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161] kralModelicaObjektorientierteModellbildung2019), vgl. \cite[S. 76, S. 119] binderElektrischeMaschinenUnd2012). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole$$
+q = \frac{Q}{2pm}.
+$$\cite[] kralModelicaObjektorientierteModellbildung2019
 
 ### Synchrogenerator ohne Dämpferkäfig
 
