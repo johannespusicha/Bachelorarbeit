@@ -38,10 +38,10 @@ Das partielle Modell der Drehfeldmaschine (siehe <mark>XXX</mark>) modelliert di
 ![[PartialBasicInductionMachine.svg]]
 Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicInductionMachine` der MSL v3.2.3
 
-Die Energiewandlung im Stator geschieht über das Wicklungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe <mark>XXX</mark>). 
+Die Energiewandlung im Stator geschieht über das Windungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe <mark>XXX</mark>). 
 
 ![[SymmetricMultiPhaseWinding.svg]]
-Wicklungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3
+Windungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3
 
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
 
@@ -97,9 +97,12 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 ![[SM_ElectricalExcited.svg]]
 Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3
 
+Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>).
+
 Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und das Modell der Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt. Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden, um einen Einfluss auszuschließen.
 
-Das Modell des Dämpferkäfigs weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}).
+Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}). Dementsprechend ist das Modell zweiphasig ausgeführt.![[SaliencyCageWinding.svg]]
+Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3
 
 #### Parametrierung
 
@@ -131,4 +134,4 @@ Das Modell des Dämpferkäfigs weist die gleiche Struktur auf wie der oben besch
 
 [^1]: Die Zeiger der komplexen Wechselstromrechnung ergeben sich aus der Fouriertransformation periodischer eingeschwungener Größen.  
 [^2]: Modell, das mit dem Modifizierer `partial` versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (`replace`). Ein solches Modell kann nicht allein simuliert werden.
-[^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Wicklung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
+[^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
