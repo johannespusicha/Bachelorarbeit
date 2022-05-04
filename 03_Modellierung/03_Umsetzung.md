@@ -3,7 +3,7 @@
 > - [ ] Parametrierung der Maschinen herleiten
 > - [ ] Parameter für Spannungsregler
 > - [ ] Überlegen, in welchem Kapitel Modellvergleiche gemacht werden sollen. Oder will ich das Modellweise behandeln?
-> - [ ] Die vollständige Liste der Parameter gehört wahrscheinlich besser in den Anhang
+> - [x] Die vollständige Liste der Parameter gehört wahrscheinlich besser in den Anhang
 
 > [!TIP]+ Modelica
 > Bei Modelica geht weder um das Aufstellen der systembeschreibenden Differentialgleichungen noch um das sich drücken davor. Es geht um die Verknüpfung der in den Basiselementen niedergelegten Differentialgleichungen, aus denen das System aufgebaut ist
@@ -57,7 +57,9 @@ Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`Fundamental
 M-phasiges Käfig-Ersatzmodell
 
 #### Parametrierung
-Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. Eine vollständige Übersicht über alle Parameter der Asynchronmaschine zeigen <mark>XXX</mark>.
+Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Frequenzumformer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen  angepasst werden müssen, werden diese Werte in einem eigenen Recod-Modell (`Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData`) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten. 
+
+Die thermischen Größen (Betriebspunkts- und Referenztemperaturen von Stator und Rotor, Temperaturabhängigkeit der Widerstände) werden auf $\unit[20]{°C}$ Umgebungstemperatur eingestellt, wobei die Temperaturabhängigkeit der Widerstände vernachlässigt werden soll. 
 
 Wie schon oben erwähnt, verwendet das Modell der Asynchronmaschine nach außen hin zur Parametrierung der Wicklungen Stator- und Rotorinduktivitäten, sowie die effektive Statorwindungszahl. Die Induktivitäten sind die auch im T-Ersatzschaltbild der Maschine (vgl. <mark>XXX</mark>) angegeben Größen: Hauptfeldinduktivität ($L_m$), Stator-Streuinduktivität ($L_{s\sigma}$) und Rotor-Streuinduktivität ($L_{r\sigma}$). Im Datenblatt der Maschine sind die Reaktanzen $X_0, X_1, X_2$ angegeben. Die zugehörigen Induktivitäten ergeben sich mit der Netzfrequenz $f_{Netz}=\unit[50]{\mathrm{Hz}}$ nach
 $$
@@ -83,6 +85,7 @@ Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
 $$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}), vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl. \cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})$$
 q = \frac{Q}{2pm}.
 $$
+Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach <mark>XXX</mark> berechneten Werte listet <mark>XXX</mark> auf. Alle weiteren Größen zur Beschreibung der Asynchromaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in <mark>XXX</mark> angegeben. Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ angegeben, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der  
 
 ### Synchrogenerator ohne Dämpferkäfig
 

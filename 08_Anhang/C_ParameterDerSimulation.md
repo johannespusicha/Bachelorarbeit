@@ -37,18 +37,18 @@ Table: Parameter des Modells der Asynchronmaschine (`Fun­da­men­tal­Wave.­B
 
 Table: Werte des Parameterrecords (`Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM_­Squir­rel­Cage­Da­ta`) für die Asynchronmaschine
 
-| Parameter              | Wert     |
-| ---------------------- | -------- |
-| `Jr`                   | 0        |
-| `L0`                   | 0        |
-| `Rr`                   | 0,120    |
-| `Rs`                   | 0,083574 |
-| `X0`                   | 14,83    |
-| `X1`                   | 0,448208 |
-| `X2`                   | 0,791    |
-| `effectiveStatorTurns` | 9,171    |
-| `p`                    | 1        |
-| `fsNominal`            | 50       |
+| Parameter              | Wert       |
+| ---------------------- | ---------- |
+| `Jr`                   | 0          |
+| `L0`                   | 0          |
+| `Rr`                   | 0,120      |
+| `Rs`                   | 0,083574   |
+| `X0`                   | 14,83      |
+| `X1`                   | 0,448208   |
+| `X2`                   | 0,791      |
+| `effectiveStatorTurns` | 52,7305415 |
+| `p`                    | 1          |
+| `fsNominal`            | 50         |
 
 Table: Wicklungsdaten der Asynchronmaschine
 
@@ -59,7 +59,7 @@ Table: Wicklungsdaten der Asynchronmaschine
 | Nutzahl                | $Q$                         | 36         |                                                                     |
 | Stränge                | $m$                         | 3          |                                                                     |
 | Nutschritt             | $y_{\mathrm{Q}}$            | 10         |                                                                     |
-| Nuten je Polpaar       | $S'$                        | 18         |                                                                     |
+| Nuten je Polpaar       | $S'$                        | 18         | $S'=\frac{Q}{2p}$                                                                  |
 | Spulenweite            | $\Delta\gamma_{\mathrm{c}}$ | 3,4906585  | $\Delta\gamma_{\mathrm{c}}=2\pi\frac{y_{\mathrm{Q}}}{S'}$           |
 | Lochzahl               | $q$                         | 6          | $q=\frac{Q}{2pm}$                                                   |
 | xi_c                   | $\xi_c$                     | 0,98480775 | $\xi_{\mathrm{c}}=\sin(\frac{\Delta\gamma_{\mathrm{c}}}{2})$        |
