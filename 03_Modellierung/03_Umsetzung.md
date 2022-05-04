@@ -109,11 +109,14 @@ Alle Parameter des Synchrongenerators werden in Parameterrecord `Machines.Utilit
 
 Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild <mark>XXX</mark> angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in <mark>Tabelle XXX</mark> aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden.[^4]
 
-Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die Hauptfeldreaktanzen $x_{\mathrm{md}}$ und $x_{\mathrm{mq}}$ gemäß$$
+Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die bezogenen Hauptfeldreaktanzen $x_{\mathrm{md}}$ und $x_{\mathrm{mq}}$ mit$$
 \begin{align}
-x_{\mathrm{md}} &= x_{\mathrm{d}} - x
+x_{\mathrm{md}} &= x_{\mathrm{d}} - x_{\mathrm{s}} \\
+x_{\mathrm{mq}} &= x_{\mathrm{q}} - x_{\mathrm{s}}
 \end{align}
-$$
+$$aus den bezogenen Reaktanzen $x_{\mathrm{d}}$ und $x_{\mathrm{q}}$ sowie der Streureaktanz $x_{\mathrm{s}}$ bestimmt werden.[^5] Weiterhin wird dort die Reaktanz der Erregerwicklung gemäß $$
+x_{\mathrm{e}} = \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}-x_{\mathrm{d}}'}
+$$angegeben. Ebenso lassen sich die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x$ berechnen
 
 ### Erregermaschine
 
@@ -145,3 +148,4 @@ $$
 [^2]: Modell, das mit dem Modifizierer `partial` versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (`replace`). Ein solches Modell kann nicht allein simuliert werden.
 [^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
 [^4]: Die hier angegebenen Zusammenhänge sind zum größten Teil auch in dem Parameterrecord `Machines.Utilities.SynchronousMachineData` implementiert, erforden jedoch die Kenntnis der Ankerzeitkonstante $T_{\mathrm{a}}$ zur Berechnung des Statorwiderstands $R_{\mathrm{s}}$. Da jedoch $R_{\mathrm{s}}$ (im Gegensatz zu $T_{\mathrm{a}}$) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
+[^5]: An dieser Stelle verwendet \cite[]{kralModelicaObjektorientierteModellbildung2019} anstelle von $x_{\mathrm{s}}$ die Nullreaktanz $x_{\mathrm{0}}$, die in etwa mit der Streureaktanz übereinstimmt. Da hier aber die Streureaktanz aus der Auslegung bekannt ist, soll $x_{\mathrm{s}}$ direkt verwendet werden.
