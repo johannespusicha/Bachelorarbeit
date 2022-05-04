@@ -144,12 +144,16 @@ R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
 R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
 \end{align}
 $$
+Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XXX</mark> listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
 
 ### Erregermaschine
 
 #### Modell
+![[SM_Erreger.svg]]
+Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)
 
 #### Parametrierung
+Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt.
 
 ### Spannungsregler
 
