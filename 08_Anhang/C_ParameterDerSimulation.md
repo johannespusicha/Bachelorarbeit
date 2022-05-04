@@ -66,15 +66,15 @@ Table: Wicklungsdaten der Asynchronmaschine
 | xi_z                   | $\xi_z$                     | 0,95614277 | $\xi_{\mathrm{z}}=\frac{\sin(\frac{\pi}{6})}{q\sin(\frac{\pi}{6})}$ |
 | effektive Windungszahl | $N_{\mathrm{eff. s}}$       | 52,7305415 | $N_{\mathrm{eff. s}}=\hat{N}\xi_{\mathrm{c}}\xi_{\mathrm{z}}$       |
 
-### Synchron-Generator
+### Synchrongenerator
 
-Table: Parameter für den Netzanschluss des Synchron-Generators
+Table: Parameter für den Netzanschluss des Synchrongenerators
 
 | Parameter                        | Wert |
 | -------------------------------- | ---- |
 | `terminalBox.terminalConnection` | "Y"  |
 
-Table: Parameter aus der Auslegung des Synchro-Generators
+Table: Parameter aus der Auslegung des Synchrogenerators
 
 | Parameter | Wert                                   |
 | --------- | -------------------------------------- |
@@ -92,7 +92,7 @@ Table: Parameter aus der Auslegung des Synchro-Generators
 | $T_D''$   | $\unit[0,0038358105876696909]{\Omega}$ |
 | $T_Q''$   | $\unit[0,0028791616002136365]{\Omega}$ |
 
-Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Generators
+Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychrongenerators
 
 | Parameter      | Wert                               | Berechnung                                                                 |
 | -------------- | ---------------------------------- | -------------------------------------------------------------------------- |
@@ -116,7 +116,7 @@ Table: Zwischenwerte und Berechnungsgleichungen für Parameter des Sychron-Gener
 | $T_{Q0}''$     | 0,00756537                         | $\frac{x_q}{x_q''}T_Q$                                                     |
 | turnsratio     | 47,9934193                         | $\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}$                |
 
-Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchron-Generator
+Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­SM_­ElectricalExcited­Data`) für den Synchrongenerator
 
 | Parameter              | Wert               |
 | ---------------------- | ------------------ |
@@ -138,7 +138,7 @@ Table: Werte des Parameterrecords (`Machines.­Utilities.­Parameter­Records.­
 | `sigmae`               | 0,1973             |
 | `useDamperCage`        | `true`             |
 
-Table: Parameter des Modells des Synchron-Generators
+Table: Parameter des Modells des Synchrongenerators
 
 | Parameter              | Wert                                    |
 | ---------------------- | --------------------------------------- |

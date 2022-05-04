@@ -85,9 +85,11 @@ Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
 $$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}), vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl. \cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})$$
 q = \frac{Q}{2pm}.
 $$
-Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach <mark>XXX</mark> berechneten Werte listet <mark>XXX</mark> auf. Alle weiteren Größen zur Beschreibung der Asynchromaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in <mark>XXX</mark> angegeben. Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ angegeben, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der  
+Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach <mark>XXX</mark> berechneten Werte listet <mark>XXX</mark> auf. Alle weiteren Größen zur Beschreibung der Asynchromaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in <mark>XXX</mark> angegeben. 
 
-### Synchrogenerator ohne Dämpferkäfig
+Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden. 
+
+### Synchrongenerator ohne Dämpferkäfig
 
 #### Modell
 
