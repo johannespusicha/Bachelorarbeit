@@ -131,7 +131,7 @@ r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}'}
 $$ angegeben und für den bezogenen Widerstand der Erregerwicklung$$
 r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
 $$
-Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[] kralModelicaObjektorientierteModellbildung2019).
+Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
 
 ### Erregermaschine
 
