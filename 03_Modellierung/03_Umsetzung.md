@@ -90,7 +90,8 @@ Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die
 Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der Auslegung des Frequenzumformer nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden. 
 
 ### Synchrongenerator mit Dämpferkäfig
-Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargsetellten partiellen Drehfeldmaschinenmodell. Bei der betrachteten Maschine handelt es sich um einen elektrisch erregten Synchrongenerator mit Dämpferkäfig. 
+Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargestellten partiellen Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig, ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
+
 #### Modell
 
 #### Parametrierung
