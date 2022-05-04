@@ -92,7 +92,9 @@ Dabei ist für das Trägheitsmoment $J_{\mathrm{r}}=0$ eingetragen, da aus der A
 ### Synchrongenerator mit Dämpferkäfig
 Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargestellten partiellen Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig, ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
 
-#### Modell
+#### Modell 
+<mark>XXX</mark> zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Der Verwendung des Dämpferkäfigs wird über den Wahrheitswert `useDamperCage` ![[SM_ElectricalExcited.svg]]
+Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`)
 
 #### Parametrierung
 
