@@ -195,12 +195,21 @@ Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher
 
 ![Modell des I-Reglers (`Frequenzumformer.Regler.Kontinuierlich.IRegler`)](Bilder/IRegler.pdf)
 
-
+![](Bilder/DRegler.pdf)
 #### Parametrierung
+
+### Umwandlungen für die Reglerinternen Größen
+
+### Weitere Modelle
+
+#### Leistungsmessung
+
+#### Parametrierung der Last
 
 ### Gesamtmodell
+![](Bilder/Umformer.pdf)
 
-#### Parametrierung
+### Initialisieren des Modells
 
 
 ## Mögliche Quellen:
