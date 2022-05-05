@@ -38,7 +38,7 @@ Zusätzlich zu dem Energiefluss ist in <mark>XXX</mark> auch der Informationsflu
 [^2]: Beachte den Bezug auf Stator- (s) bzw. Rotorseite (s).
 
 ### PID-Spannungsregler
-Als Spannungsregler wird von <mark>Piller</mark> in dem Frequenzumformer ein PID-Regler (**P**roportional-**I**ntegral-**D**ifferential) mit *variabler Verstärkung* eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (\cite{ @DigitalerSpannungsreglerSoftwaredokumentation }). <mark>XXX</mark> zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang <mark>werden die Stellgrößen begrenzt.</mark> Die einzelnen Regelglieder werden zusätzlich zu möglichen Zeitkonstanten jeweils mit einem eigenen Verstärkungsfaktor gewichtet.
+Als Spannungsregler wird von <mark>Piller</mark> in dem Frequenzumformer ein PID-Regler (**P**roportional-**I**ntegral-**D**ifferential) mit *variabler Verstärkung* eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (\cite{ DigitalerSpannungsreglerSoftwaredokumentation }). <mark>XXX</mark> zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang <mark>werden die Stellgrößen begrenzt.</mark> Die einzelnen Regelglieder werden zusätzlich zu möglichen Zeitkonstanten jeweils mit einem eigenen Verstärkungsfaktor gewichtet.
 ![[Blockschaltbild_Regler.png]]
 
 Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller. Dabei sind einige Punkte zu beachten:

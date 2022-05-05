@@ -170,8 +170,10 @@ $$
 Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XXX</mark> listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
 
 ### Erregermaschine
+Die Erregermaschine und der auf dem Polrad der Mschine mitrotierende Gleichrichter dienen gemäß <mark>Abb XXX</mark> der berührungslosen Erregung des Synchrongenerators über den Luftspalt. Wie bei dem Hauptgenerator handelt es sich auch bei der Erregermaschine um eine Synchronmaschine. Neben der geringeren Größe (ermöglicht durch die geringere Übertragungsleistung) unterscheiden sich die beiden Generatoren darin, dass die Erregermaschine eine Innenpol- und der Hauptgenerator eine Außenpolmaschine ist. In der Modellierung der Maschinen braucht dieser Umstand jedoch nicht berücksichtigt zu werden.
 
 #### Modell
+<mark>Abb XXX</mark> zeigt das vollständige Modell der in der `Frequenzumformer`-Bibliothek implementierten Erregermaschine. Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie für den Hauptgenerator verwendet. 
 ![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.pdf)
 
 
