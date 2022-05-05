@@ -70,8 +70,9 @@ L_{r,\sigma} &= \frac{X_2}{2\pi f_{Netz}}.
 $$
 Für die effektive Windungszahl (`effectiveStatorTurns`) gibt \cite[S. 217]{kralModelicaObjektorientierteModellbildung2019} 
 $$
-\
+\begin{equation}
 N_{\mathrm{eff. s}} = \hat{N}\cdot\xi_{\mathrm{c}}\cdot\xi_{\mathrm{z}},
+\end{equation}
 $$
 an, mit der *Statorwindungszahl* $\hat{N}$, dem *Sehnungsfaktor* $\xi _{\mathrm{c}}$ und dem *Zonenfaktor* $\xi _{\mathrm{z}}$. Ebenda angegeben sind die Ausdrücke <mark>XXX</mark> für die beiden Faktoren $\xi _{\mathrm{c}}$ und $\xi_{\mathrm{z}}$ (\cite[S. 165, S. 217]{kralModelicaObjektorientierteModellbildung2019}).
 $$
@@ -81,9 +82,13 @@ $$
 \end{align}
 $$
 Die *Spulenweite* $\Delta\gamma _{\mathrm{c}}$ ist gemäß $$
+\begin{equation}
 \Delta\gamma _{\mathrm{c}} = 2\pi\cdot\frac{y _{\mathrm{Q}}}{S'}
+\end{equation}
 $$das Verhältnis des *Nutschritts* ($y_Q$) zur Anzahl der *Nuten je Polpaar* ($S'=\sfrac{Q}{2p}$) multipliziert mit $2\pi$ (\cite[S. 168, S. 161]{kralModelicaObjektorientierteModellbildung2019}), vgl. \cite[S. 76, S. 119]{binderElektrischeMaschinenUnd2012}). Ebenso ist die *Lochzahl* ($q$) zur Berechnung des Zonenfaktors das Verhältnis der Anzahl der Nuten zur Anzahl der Stränge und Pole (vgl. \cite[S. 151]{kralModelicaObjektorientierteModellbildung2019})$$
+\begin{equation}
 q = \frac{Q}{2pm}.
+\end{equation}
 $$
 Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach <mark>XXX</mark> berechneten Werte listet <mark>XXX</mark> auf. Alle weiteren Größen zur Beschreibung der Asynchromaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in <mark>XXX</mark> angegeben. 
 
@@ -117,7 +122,9 @@ x_{\mathrm{mq}} &= x_{\mathrm{q}} - x_{\mathrm{s}}
 \end{align}
 $$
 aus den bezogenen Reaktanzen $x_{\mathrm{d}}$ und $x_{\mathrm{q}}$ sowie der Streureaktanz $x_{\mathrm{s}}$ bestimmt werden.[^5] Weiterhin wird dort die Reaktanz der Erregerwicklung gemäß $$
+\begin{equation}
 x_{\mathrm{e}} = \frac{x_{\mathrm{md}}^2}{x_{\mathrm{d}}-x_{\mathrm{d}}'}
+\end{equation}
 $$angegeben. Ebenso seien die Zusammenhänge für die bezogenen Rotorreaktanzen $x_{\mathrm{rd}}$ und $x_{\mathrm{rq}}$ 
 $$
 \begin{align}
@@ -134,9 +141,18 @@ r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}''}
 \end{align}
 $$
  angegeben und für den bezogenen Widerstand der Erregerwicklung$$
+ \begin{equation}
 r_{\mathrm{e}} = \frac{x_{\mathrm{e}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}.
+\end{equation}
 $$
-Die beiden Subtransienten Leerlauf-Zeitkonstanten $T_{\mathrm{d0}}''$ und $T_{\mathrm{q0}}''$ ergeben sich nach \cite[S. 222ff.]{bonfertBetriebsverhaltenSynchronmaschine1962}
+Die beiden Subtransienten Leerlaufzeitkonstanten $T_{\mathrm{d0}}''$ und $T_{\mathrm{q0}}''$  sind nach \cite[S. 222ff.]{bonfertBetriebsverhaltenSynchronmaschine1962} über den Zusammenhang 
+$$
+\begin{align}
+T_{\mathrm{d0}}'' &= \frac{x_{\mathrm{d}}'}{x_{\mathrm{d}}''}T_{\mathrm{d}}'' \\
+T_{\mathrm{q0}}'' &= \frac{x_{\mathrm{q}}}{x_{\mathrm{q}}''}T_{\mathrm{q}}
+\end{align}
+$$
+aus den  Kurzschlusszeitkonstanten $T_{\mathrm{d}}''$ und $T_{\mathrm{q}}''$ berechenbar.
 
 Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators mit der Nennkreisfrequenz $\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}$ und der Bezugsreaktanz $X_{\mathrm{N}}$ nach <mark>Gleichungen XXX</mark> (vgl. \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
 $$
@@ -144,4 +160,47 @@ $$
 L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{mq}} &= x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{r \sigma d}} &= (x_{\mathrm{rq}}-x_{\mathrm{mq}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
-L_{\mathrm{r \sigma q}} &= (x_{\mathrm{rd}}-x_{\mathrm{md}})\cdot \frac{X_{\m
+L_{\mathrm{r \sigma q}} &= (x_{\mathrm{rd}}-x_{\mathrm{md}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{s \sigma}} &= x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+R_{\mathrm{rd}} &= r_{\mathrm{rd}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
+R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
+\end{align}
+$$
+Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XXX</mark> listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
+
+### Erregermaschine
+
+#### Modell
+![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.svg)
+
+
+#### Parametrierung
+Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt.
+
+### Spannungsregler
+
+#### Modell
+
+#### Parametrierung
+
+### Gesamtmodell
+
+#### Parametrierung
+
+
+## Mögliche Quellen:
+[@modelicaassociationModelicaStandardLibrary2020]
+[@kralModelicaObjektorientierteModellbildung2019]
+[@hanseEinflussNutgeometrieAuf2020]
+[@binderVorlesungElektrischeMaschinen2019]
+[@bonfertBetriebsverhaltenSynchronmaschine1962]
+[@IEEEGuideSynchronous]
+
+
+[^1]: Die Zeiger der komplexen Wechselstromrechnung ergeben sich aus der Fouriertransformation periodischer eingeschwungener Größen.  
+[^2]: Modell, das mit dem Modifizierer `partial` versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (`replace`). Ein solches Modell kann nicht allein simuliert werden.
+[^3]: Das Modell berücksichtigt bei ungeradzahligen mehrphasigen Systemen außerdem noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt. 
+[^4]: Die hier angegebenen Zusammenhänge sind zum größten Teil auch in dem Parameterrecord `Machines.Utilities.SynchronousMachineData` implementiert, erforden jedoch die Kenntnis der Ankerzeitkonstante $T_{\mathrm{a}}$ zur Berechnung des Statorwiderstands $R_{\mathrm{s}}$. Da jedoch $R_{\mathrm{s}}$ (im Gegensatz zu $T_{\mathrm{a}}$) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
+[^5]: An dieser Stelle verwendet \cite[]{kralModelicaObjektorientierteModellbildung2019} anstelle von $x_{\mathrm{s}}$ die Nullreaktanz $x_{\mathrm{0}}$, die in etwa mit der Streureaktanz übereinstimmt. Da hier aber die Streureaktanz aus der Auslegung bekannt ist, soll $x_{\mathrm{s}}$ direkt verwendet werden.
+[^6]: An dieser Stelle liegt in der vorliegenden Ausgabe von \cite[]{kralModelicaObjektorientierteModellbildung2019} ein Druckfehler vor (vgl. mit dem Modelica-Code Listing \cite[S. 266]{kralModelicaObjektorientierteModellbildung2019})
