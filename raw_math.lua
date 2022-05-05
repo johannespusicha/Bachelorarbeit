@@ -1,18 +1,5 @@
 if FORMAT:match 'latex' then
-  function Math (elem)
-	return {
-		pandoc.read(elem.text).blocks,
-	}
-    -- Return raw Tes if Block Math
-	-- if elem.mathtype:match 'DisplayMath' then
-	-- 	return {
-	--       pandoc.RawBlock('latex', elem.text)
-	--     }
-	-- end
-	-- if elem.mathtype:match 'InlineMath' then
-	-- 	return {
-	-- 	elem
-	-- 	}
-	-- end
-  end
+	function Para (elem)
+		return pandoc.read('Das ist ein Text' .. elem.content, 'markdown').blocks
+	end
 end
