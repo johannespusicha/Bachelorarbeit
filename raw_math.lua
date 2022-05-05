@@ -1,8 +1,7 @@
 if FORMAT:match 'latex' then
   function Math (elem)
 	return {
-		pandoc.Para(pandoc.Str('Gleichung:')),
-		elem
+		pandoc.read(elem.text).blocks,
 	}
     -- Return raw Tes if Block Math
 	-- if elem.mathtype:match 'DisplayMath' then
