@@ -96,12 +96,12 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 ![Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3](SM_ElectricalExcited.svg)
 
 
-Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>). ![Einphasiges Windungsmodell (`F`) der MSL v3.2.3](SinglePhaseWinding.svg)
+Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>). ![Einphasiges Windungsmodell (`FundamentalWave.BasicMachines.Components.SinglePhaseWinding`) der MSL v3.2.3](SinglePhaseWinding.svg)
 
 Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und das Modell der Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt. Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden, um einen Einfluss auszuschließen.
 
-Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}). Dementsprechend ist das Modell zweiphasig ausgeführt.![[SaliencyCageWinding.svg]]
-Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3
+Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}). Dementsprechend ist das Modell zweiphasig ausgeführt.![Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3](SaliencyCageWinding.svg)
+
 
 #### Parametrierung
 Alle Parameter des Synchrongenerators werden in Parameterrecord `Machines.Utilities.ParameterRecords.SM_ElectricalExcitedData` der MSL v3.2.3 erfasst. Die mechanischen und thermischen Parameter des Synchrongenerators sind dieselben wie die der Asynchronmaschine: Die Temperaturen betragen $\unit[20]{°C}$ Umgebungstemperatur bei Vernachlässigung der Temperaturabhängigkeit der Widerstände und das Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des Lüfters erfasst.
@@ -148,8 +148,8 @@ Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XX
 ### Erregermaschine
 
 #### Modell
-![[SM_Erreger.svg]]
-Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)
+![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.svg)
+
 
 #### Parametrierung
 Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt.
