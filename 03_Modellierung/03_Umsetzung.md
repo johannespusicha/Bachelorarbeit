@@ -9,7 +9,7 @@
 > Bei Modelica geht weder um das Aufstellen der systembeschreibenden Differentialgleichungen noch um das sich drücken davor. Es geht um die Verknüpfung der in den Basiselementen niedergelegten Differentialgleichungen, aus denen das System aufgebaut ist
 
 ## Umsetzung
-Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der `Modelica Standard Library v3.2.3` (MSL, siehe [@modelicaassociationModelicaStandardLibrary2020]). So weit nicht weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek `Frequenzumformer` angelegt. Alle Klassen, die dieser Bibliothek angehören werden mit `Frequenzumformer.Klasse` bezeichnet.
+Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der `Modelica Standard Library v3.2.3` (MSL, siehe \cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek `Frequenzumformer` angelegt. Alle Klassen, die dieser Bibliothek angehören werden mit `Frequenzumformer.Klasse` bezeichnet.
 Die vollständige Bezeichnung der abgeleiteten Klassen zeigt die objektorientierte Hierarchie. Beginnend bei der Basisklasse wird jede übergeordnete Klasse mit einem Punkt vor den Klassennamen abgetrennt angefügt, z.B. `Modelica.Bibliothek.Abgeleitete_Klasse`. 
 
 Für den Asynchronmotor und den Synchrongenerator werden die Modelle `AIM_SquirelCage` und `SM_ElectricalExcited` aus der Bibliothek `Magnetic.FundamentalWave` der MSL verwendet. Die Herleitung dieser Modelle ist umfangreich in \cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und soll hier nur kurz zusammengefasst werden. Verwendet werden die jeweiligen transienten elektrischen Komponenten und Maschinen, da nur mit diesen Einschwingvorgänge beobachtet werden können. Die quasistationären Modelle (Klassen in den Paketen `Electrical.QuasiStationary` und `Magnetic.QuasiStatic`) verwenden zur Berechnung der elektrischen und magnetischen Größen komplexe Zeiger, die nicht geeignet sind zur Untersuchung von Einschwingvorgängen[^1]. 
@@ -35,11 +35,11 @@ Das vollständige Modell der Asynchronmaschine mit Kurzschlussläufer, wie es in
 #### Partielles Modell der Drehfeldmaschine
 Das partielle Modell der Drehfeldmaschine (siehe <mark>XXX</mark>) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in <mark>XXX</mark> betrachtet wurde. Die Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss zur Abstützung des Stators.
 
-![Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicInductionMachine` der MSL v3.2.3](PartialBasicInductionMachine.svg)
+![Partielles Modell der Drehfeldmaschine `FundamentalWave.Interfaces.PartialBasicInductionMachine` der MSL v3.2.3](Bilder/PartialBasicInductionMachine.pdf)
 
 Die Energiewandlung im Stator geschieht über das Windungsmodell `FundamentalWave.BasicMachines.Components.SymmetricMultiPhaseWinding`, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt[^3] (siehe <mark>XXX</mark>). 
 
-![Windungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3](SymmetricMultiPhaseWinding.svg)
+![Windungsmodell`FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding` der MSL v3.2.3](SymmetricMultiPhaseWinding.pdf)
 
 
 Über das Luftspaltmodell (`FundamentalWave.BasicMachines.Components.RotorSaliencyAirGap`) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (*d,q-System*).
@@ -50,9 +50,9 @@ Die Energiewandlung im Stator geschieht über das Windungsmodell `FundamentalWav
 Da die Anzahl $N_R$ der Rotorstäbe eines Käfigs häufig viel größer ist als die Anzahl $m$ der Phasen des Systems, ist es numerisch einfacher für den Käfig eine $m$-phasige kurzgeschlossene Windung als Ersatzmodell zu verwenden, welche die gleiche effektive Windungszahl wie die Statorwicklung aufweist. (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019})
 
 
-![Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`) der MSL v3.2.3](AIM_SquirrelCage.svg)
+![Vollständiges Modell der Asynchronmaschine mit Kurzschlussläufer (`FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM_SquirrelCage`) der MSL v3.2.3](AIM_SquirrelCage.pdf)
 
-![M-phasiges Käfig-Ersatzmodell (`FundamentalWave.Components.SymmetricMultiPhaseCageWinding`) der MSL v3.2.3](SymmetricMultiPhaseCageWinding.svg)
+![M-phasiges Käfig-Ersatzmodell (`FundamentalWave.Components.SymmetricMultiPhaseCageWinding`) der MSL v3.2.3](SymmetricMultiPhaseCageWinding.pdf)
 
 
 #### Parametrierung
@@ -99,14 +99,14 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 
 #### Modell 
 <mark>XXX</mark> zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs wird über den Parameter `useDamperCage` eingestellt. Wird dieser Parameter auf `false` gesetzt, wird das Modell mit dem Verbindungsmodell `short` anstelle des Dämpferkäfigs initialisiert.
-![Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3](SM_ElectricalExcited.svg)
+![Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (`FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited`) der MSL v3.2.3](SM_ElectricalExcited.pdf)
 
 
-Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>). ![Einphasiges Windungsmodell (`FundamentalWave.BasicMachines.Components.SinglePhaseWinding`) der MSL v3.2.3](SinglePhaseWinding.svg)
+Wie das mehrphasige Windungsmodell des Stators (siehe <mark>XXX</mark>) berücksichtigt auch das einphasige Modell neben der elektromagnetischen Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe <mark>XXX</mark>). ![Einphasiges Windungsmodell (`FundamentalWave.BasicMachines.Components.SinglePhaseWinding`) der MSL v3.2.3](SinglePhaseWinding.pdf)
 
 Da der Synchrongenerator über die Erregermaschine erregt wird, findet keine Stromübertragung über Kohlebürsten statt und das Modell der Kohlebürsten soll hier nicht beschrieben werden. Weiterhin beträgt der Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt. Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden, um einen Einfluss auszuschließen.
 
-Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}). Dementsprechend ist das Modell zweiphasig ausgeführt.![Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3](SaliencyCageWinding.svg)
+Das Modell des Dämpferkäfigs (siehe <mark>XXX</mark>) weist die gleiche Struktur auf wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem berücksichtigt das Dämpferkäfigmodell hingegen eine Achsigkeit (d- und q-Achsen des körperfesten Koordinatensystems) der Widerstände und Induktivitäten aufgrund der Pollücken des Dämpferkäfigs (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}). Dementsprechend ist das Modell zweiphasig ausgeführt.![Zweiphasiges Modell des Dämpferkäfigs (`FundamentalWave.BasicMachines.Components.SaliencyCageWinding`) der MSL v3.2.3](SaliencyCageWinding.pdf)
 
 
 #### Parametrierung
@@ -172,7 +172,7 @@ Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XX
 ### Erregermaschine
 
 #### Modell
-![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.svg)
+![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.pdf)
 
 
 #### Parametrierung
