@@ -171,18 +171,30 @@ Damit ist der Synchrongenerator vollständig parametriert. Die <mark>Tabellen XX
 
 ### Erregermaschine
 Die Erregermaschine und der auf dem Polrad der Mschine mitrotierende Gleichrichter dienen gemäß <mark>Abb XXX</mark> der berührungslosen Erregung des Synchrongenerators über den Luftspalt. Wie bei dem Hauptgenerator handelt es sich auch bei der Erregermaschine um eine Synchronmaschine. Neben der geringeren Größe (ermöglicht durch die geringere Übertragungsleistung) unterscheiden sich die beiden Generatoren darin, dass die Erregermaschine eine Innenpol- und der Hauptgenerator eine Außenpolmaschine ist. In der Modellierung der Maschinen braucht dieser Umstand jedoch nicht berücksichtigt zu werden.
+> [!IMPORTANT] Diodenmodell erklären
 
 #### Modell
-<mark>Abb XXX</mark> zeigt das vollständige Modell der in der `Frequenzumformer`-Bibliothek implementierten Erregermaschine. Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie für den Hauptgenerator verwendet. 
+<mark>Abb XXX</mark> zeigt das vollständige Modell der in der `Frequenzumformer`-Bibliothek implementierten Erregermaschine. Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie für den Hauptgenerator verwendet. Das `delta`-Modell zwischen den beiden Ausgängen dreiphasigen Ausgängen des Generators bewirkt eine Verkettung der Ströme und Spannungen wie in einer Dreieckschaltung der Statorstränge.
+
+Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Puls-Brückengleichrichter (siehe <mark>Abb XXX</mark>). Am negativen Ausgang des Brückengleichrichters wird ein $\unit[0]{V}$ Referenzpotential verschaltet, ohne das die Gleichungen für den elektrischen Kreis zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar wären.
 ![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.pdf)
+![6-Puls-Brückengleichrichter (`Modelica.Electrical.PowerConverters.ACDC.DiodeBridge2mPulse`) der MSL v3.2.3](Bilder/DiodeBridge2mPulse.pdf)
 
 
 #### Parametrierung
-Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt.
+Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt. 
+
+Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung $U_{\mathrm{F}}=\unit[0,7]{V}$ angenommen. Der Leitwert $G_{\mathrm{off}}$ im Sperrbetrieb und der Widerstand $R_{\mathrm{on}}$ im Durchlassbetrieb einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden $G_{\mathrm{off}}=\unit[0,001]{S}$ bzw. $R_{\mathrm{on}}=\unit[0,001]{\Omega}$ festgelegt, die nahe Null, aber noch groß genug, sind um die genannten Probleme zu vermeiden.
 
 ### Spannungsregler
 
 #### Modell
+![Vollständiges Modell des Spannungsreglers (`Frequenzumformer.Regler.Spannungsregler`)](Bilder/Spannungsregler.pdf)
+
+![Modell des Proportional-Reglers (`Frequenzumformer.Regler.Kontinuierlich.PRegler`)](Bilder/PRegler.pdf)
+
+![Modell des I-Reglers (`Frequenzumformer.Regler.Kontinuierlich.IRegler`)](Bilder/IRegler.pdf)
+
 
 #### Parametrierung
 
