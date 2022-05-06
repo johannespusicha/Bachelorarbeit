@@ -42,8 +42,9 @@ Als Spannungsregler wird von <mark>Piller</mark> in dem Frequenzumformer ein PID
 ![[Blockschaltbild_Regler.png]]
 
 Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller. Dabei sind einige Punkte zu beachten:
-- Die ideale Umsetzung eines Differenzierers (D-Glied) ist nicht möglich. Stattdessen wird ein DT_1-Glied verwendet, welches sich aus der Kombination eines D-Glieds mit einem Verzögerungsglied 1.~Ordnung ergibt.
-- Die Algorithmen für die Regelglieder arbeiten zeitdiskret. Beschrieben werden diese Glieder mit Übertragungsfunktionen, die aus der $\mathcal{Z}$-Transformation hervorgehen.
+
+- Die ideale Umsetzung eines Differenzierers (D-Glied) ist nicht möglich. Stattdessen wird ein DT_1-Glied verwendet, welches sich aus der Kombination eines D-Glieds mit einem Verzögerungsglied 1.~Ordnung ergibt. 
+-Die Algorithmen für die Regelglieder arbeiten zeitdiskret. Beschrieben werden diese Glieder mit Übertragungsfunktionen, die aus der $\mathcal{Z}$-Transformation hervorgehen.
 - Die Erfassung der Ausgangsspannung erfolgt nur zu bestimmten Zeitpunkten (Abtastung). Nach \cite{ @DigitalerSpannungsreglerSoftwaredokumentation } erfasst der hier betrachtete Spannungsregler 32 Messwerte in 5 Taktzyklen, wobei sich die Taktfrequenz nach der Frequenz der Ausgangsspannung richtet. Die Abtastrate für die Spannungsmessung beträgt also $$
   \begin{align}
   T_{\mathrm{mess}}^*&= \frac{5}{32}\cdot T_{\mathrm{Spannung}} = 0,000390625\,\mathrm s. \\
