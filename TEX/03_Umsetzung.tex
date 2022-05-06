@@ -1,9 +1,26 @@
+\begin{quote}
+{[}!TODO{]}+ ToDo: - {[} {]} Maschinen beschreiben - {[}x{]}
+Parametrierung der Maschinen herleiten - {[}x{]} Parameter für
+Spannungsregler - {[}x{]} Überlegen, in welchem Kapitel Modellvergleiche
+gemacht werden sollen. Oder will ich das Modellweise behandeln? -
+{[}x{]} Die vollständige Liste der Parameter gehört wahrscheinlich
+besser in den Anhang
+\end{quote}
+
+\begin{quote}
+{[}!TIP{]}+ Modelica Bei Modelica geht weder um das Aufstellen der
+systembeschreibenden Differentialgleichungen noch um das sich drücken
+davor. Es geht um die Verknüpfung der in den Basiselementen
+niedergelegten Differentialgleichungen, aus denen das System aufgebaut
+ist
+\end{quote}
+
 \hypertarget{umsetzung}{%
 \section{Umsetzung}\label{umsetzung}}
 
 Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt
 auf Basis der \texttt{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe
-{[}@modelicaassociationModelicaStandardLibrary2020{]}). So weit nicht
+\cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht
 weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und
 Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und
 benötigte Hilfsklassen wird eine eigenständige Bibliothek
@@ -36,6 +53,23 @@ Voraussetzungen und Vereinfachungen getroffen: - Die Wicklungen sind
 vollständig symmetrisch ausgeführt. - Oberwellen der magnetischen im
 Luftspalt werden vernachlässigt. - Sättigungseffekte werden
 vernachlässigt.
+
+\begin{quote}
+{[}!NOTE{]}+ Was will ich schreiben? - Wie steht das Modell in
+Verbindung mit dem Wortgraphen? - --\textgreater{} Ich will zeigen, dass
+ich verstanden habe, was in dem Modell vor sich geht und ich nicht bloß
+blind einige Icons zusammengeklickt habe. - Welche Parameter müssen in
+das Modell eingegeben werden? - Woher bekomme ich die Parameter? Wie
+rechne ich die Parameter um? - --\textgreater{} Ich will dokumentieren,
+wie das Gesamtmodell aussieht, welche Details es umfasst und welche
+Details es nicht umfasst - --\textgreater{} Wie erreiche ich es, dass
+das Modell meine Anforderungen erfüllt -/- Welche
+Anforderungen/Einschränkungen muss ich treffen, damit das Modell valide
+ist? - Welche Modellteile habe ich aus der Modelicabibliothek verwendet
+und welche Modellteile habe ich selbst entwickelt? - Warum habe ich für
+mein Modell Modelica verwendet und nicht Simulink/Simplorer/\ldots{}
+oder ein rein mathematisches Modell?
+\end{quote}
 
 \hypertarget{asynchronmotor-mit-kurzschlussluxe4ufer}{%
 \subsection{Asynchronmotor mit
@@ -75,7 +109,7 @@ Anschluss zur Abstützung des Stators.
 
 \begin{figure}
 \centering
-\includegraphics{PartialBasicInductionMachine.svg}
+\includegraphics{Bilder/PartialBasicInductionMachine.pdf}
 \caption{Partielles Modell der Drehfeldmaschine
 \texttt{FundamentalWave.Interfaces.PartialBasicInductionMachine} der MSL
 v3.2.3}
@@ -93,7 +127,7 @@ berücksichtigt\footnote{Das Modell berücksichtigt bei ungeradzahligen
 
 \begin{figure}
 \centering
-\includegraphics{SymmetricMultiPhaseWinding.svg}
+\includegraphics{SymmetricMultiPhaseWinding.pdf}
 \caption{Windungsmodell\texttt{FundamentalWave.BasicMachines.Components.SymmetriMultiPhaseWinding}
 der MSL v3.2.3}
 \end{figure}
@@ -127,7 +161,7 @@ die Statorwicklung aufweist.
 
 \begin{figure}
 \centering
-\includegraphics{AIM_SquirrelCage.svg}
+\includegraphics{AIM_SquirrelCage.pdf}
 \caption{Vollständiges Modell der Asynchronmaschine mit
 Kurzschlussläufer
 (\texttt{FundamentalWave.BasicMachines.AsynchronousInductionMachines.AIM\_SquirrelCage})
@@ -136,7 +170,7 @@ der MSL v3.2.3}
 
 \begin{figure}
 \centering
-\includegraphics{SymmetricMultiPhaseCageWinding.svg}
+\includegraphics{SymmetricMultiPhaseCageWinding.pdf}
 \caption{M-phasiges Käfig-Ersatzmodell
 (\texttt{FundamentalWave.Components.SymmetricMultiPhaseCageWinding}) der
 MSL v3.2.3}
@@ -236,12 +270,12 @@ Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs
 wird über den Parameter \texttt{useDamperCage} eingestellt. Wird dieser
 Parameter auf \texttt{false} gesetzt, wird das Modell mit dem
 Verbindungsmodell \texttt{short} anstelle des Dämpferkäfigs
-initialisiert. \includegraphics{SM_ElectricalExcited.svg}
+initialisiert. \includegraphics{SM_ElectricalExcited.pdf}
 
 Wie das mehrphasige Windungsmodell des Stators (siehe XXX)
 berücksichtigt auch das einphasige Modell neben der elektromagnetischen
 Kopplung ohmsche Verluste und den magnetischen Streufluss (siehe XXX).
-\includegraphics{SinglePhaseWinding.svg}
+\includegraphics{SinglePhaseWinding.pdf}
 
 Da der Synchrongenerator über die Erregermaschine erregt wird, findet
 keine Stromübertragung über Kohlebürsten statt und das Modell der
@@ -257,7 +291,7 @@ q-Achsen des körperfesten Koordinatensystems) der Widerstände und
 Induktivitäten aufgrund der Pollücken des Dämpferkäfigs
 (\cite[S. 194]{kralModelicaObjektorientierteModellbildung2019}).
 Dementsprechend ist das Modell zweiphasig
-ausgeführt.\includegraphics{SaliencyCageWinding.svg}
+ausgeführt.\includegraphics{SaliencyCageWinding.pdf}
 
 \hypertarget{parametrierung-1}{%
 \subsubsection{Parametrierung}\label{parametrierung-1}}
@@ -356,15 +390,35 @@ XXX listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
 \hypertarget{erregermaschine}{%
 \subsection{Erregermaschine}\label{erregermaschine}}
 
+Die Erregermaschine und der auf dem Polrad der Mschine mitrotierende
+Gleichrichter dienen gemäß Abb XXX der berührungslosen Erregung des
+Synchrongenerators über den Luftspalt. Wie bei dem Hauptgenerator
+handelt es sich auch bei der Erregermaschine um eine Synchronmaschine.
+Neben der geringeren Größe (ermöglicht durch die geringere
+Übertragungsleistung) unterscheiden sich die beiden Generatoren darin,
+dass die Erregermaschine eine Innenpol- und der Hauptgenerator eine
+Außenpolmaschine ist. In der Modellierung der Maschinen braucht dieser
+Umstand jedoch nicht berücksichtigt zu werden. \textgreater{}
+{[}!IMPORTANT{]} Diodenmodell erklären
+
 \hypertarget{modell-2}{%
 \subsubsection{Modell}\label{modell-2}}
 
-\begin{figure}
-\centering
-\includegraphics{SM_Erreger.svg}
-\caption{Modell der Erregermaschine mit Synchrongenerator
-(\texttt{Frequenzumformer.Maschinen.SM\_Erreger})}
-\end{figure}
+Abb XXX zeigt das vollständige Modell der in der
+\texttt{Frequenzumformer}-Bibliothek implementierten Erregermaschine.
+Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie
+für den Hauptgenerator verwendet. Das \texttt{delta}-Modell zwischen den
+beiden Ausgängen dreiphasigen Ausgängen des Generators bewirkt eine
+Verkettung der Ströme und Spannungen wie in einer Dreieckschaltung der
+Statorstränge.
+
+Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit
+einem 6-Puls-Brückengleichrichter (siehe Abb XXX). Am negativen Ausgang
+des Brückengleichrichters wird ein \(\unit[0]{V}\) Referenzpotential
+verschaltet, ohne das die Gleichungen für den elektrischen Kreis
+zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar
+wären. \includegraphics{SM_Erreger.pdf}
+\includegraphics{Bilder/DiodeBridge2mPulse.pdf}
 
 \hypertarget{parametrierung-2}{%
 \subsubsection{Parametrierung}\label{parametrierung-2}}
@@ -373,20 +427,66 @@ Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt
 analog zur Parametrierung des Hauptgenerators oben. Die verwendeten
 Größen sind in Tabelle XXX dargestellt.
 
+Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt.
+Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\)
+angenommen. Der Leitwert \(G_{\mathrm{off}}\) im Sperrbetrieb und der
+Widerstand \(R_{\mathrm{on}}\) im Durchlassbetrieb einer idealen Diode
+betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw.
+Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden,
+werden \(G_{\mathrm{off}}=\unit[0,001]{S}\) bzw.
+\(R_{\mathrm{on}}=\unit[0,001]{\Omega}\) festgelegt, die nahe Null, aber
+noch groß genug, sind um die genannten Probleme zu vermeiden.
+
 \hypertarget{spannungsregler}{%
 \subsection{Spannungsregler}\label{spannungsregler}}
 
 \hypertarget{modell-3}{%
 \subsubsection{Modell}\label{modell-3}}
 
-\hypertarget{parametrierung-3}{%
-\subsubsection{Parametrierung}\label{parametrierung-3}}
+\begin{figure}
+\centering
+\includegraphics{Bilder/Spannungsregler.pdf}
+\caption{Vollständiges Modell des Spannungsreglers
+(\texttt{Frequenzumformer.Regler.Spannungsregler})}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Bilder/PRegler.pdf}
+\caption{Modell des Proportional-Reglers
+(\texttt{Frequenzumformer.Regler.Kontinuierlich.PRegler})}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{Bilder/IRegler.pdf}
+\caption{Modell des I-Reglers
+(\texttt{Frequenzumformer.Regler.Kontinuierlich.IRegler})}
+\end{figure}
+
+\includegraphics{Bilder/DRegler.pdf} \#\#\#\# Parametrierung
+
+\hypertarget{umwandlungen-fuxfcr-die-reglerinternen-gruxf6uxdfen}{%
+\subsection{Umwandlungen für die Reglerinternen
+Größen}\label{umwandlungen-fuxfcr-die-reglerinternen-gruxf6uxdfen}}
+
+\hypertarget{weitere-modelle}{%
+\subsection{Weitere Modelle}\label{weitere-modelle}}
+
+\hypertarget{leistungsmessung}{%
+\subsubsection{Leistungsmessung}\label{leistungsmessung}}
+
+\hypertarget{parametrierung-der-last}{%
+\subsubsection{Parametrierung der Last}\label{parametrierung-der-last}}
 
 \hypertarget{gesamtmodell}{%
 \subsection{Gesamtmodell}\label{gesamtmodell}}
 
-\hypertarget{parametrierung-4}{%
-\subsubsection{Parametrierung}\label{parametrierung-4}}
+\includegraphics{Bilder/Umformer.pdf}
+
+\hypertarget{initialisieren-des-modells}{%
+\subsection{Initialisieren des
+Modells}\label{initialisieren-des-modells}}
 
 \hypertarget{muxf6gliche-quellen}{%
 \section{Mögliche Quellen:}\label{muxf6gliche-quellen}}
