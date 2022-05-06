@@ -178,6 +178,8 @@ Die Erregermaschine und der auf dem Polrad der Mschine mitrotierende Gleichricht
 <mark>Abb XXX</mark> zeigt das vollständige Modell der in der `Frequenzumformer`-Bibliothek implementierten Erregermaschine. Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie für den Hauptgenerator verwendet. Das `delta`-Modell zwischen den beiden Ausgängen dreiphasigen Ausgängen des Generators bewirkt eine Verkettung der Ströme und Spannungen wie in einer Dreieckschaltung der Statorstränge.
 
 Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Puls-Brückengleichrichter (siehe <mark>Abb XXX</mark>). Am negativen Ausgang des Brückengleichrichters wird ein $\unit[0]{V}$ Referenzpotential verschaltet, ohne das die Gleichungen für den elektrischen Kreis zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar wären.
+
+Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit  zwei linearen Arbeitsbereichen *Sperrbetrieb* und *Durchlassbetrieb*. Die Steigung der Diodenkennlinien in den beiden Arbeitsbereichen wird über den Leitwert $G_{\mathrm{off}}$ im Sperrbetrieb und den Widerstand $R_{\mathrm{on}}$ im Durchlassbetrieb eingestellt. Der Wechsel vom Sperrbetrieb in den Durchlassbetrieb findet bei Überschreiten der Flussspannung $U_{\mathrm{F}} statt. Ebenso wird zurück in den Sperrbetrieb geschaltet, sobald die Flussspannung unterschritten wird.
 ![Modell der Erregermaschine mit Synchrongenerator (`Frequenzumformer.Maschinen.SM_Erreger`)](SM_Erreger.pdf)
 ![6-Puls-Brückengleichrichter (`Modelica.Electrical.PowerConverters.ACDC.DiodeBridge2mPulse`) der MSL v3.2.3](Bilder/DiodeBridge2mPulse.pdf)
 
@@ -185,7 +187,7 @@ Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Pul
 #### Parametrierung
 Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Die verwendeten Größen sind in <mark>Tabelle XXX</mark> dargestellt. 
 
-Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung $U_{\mathrm{F}}=\unit[0,7]{V}$ angenommen. Der Leitwert $G_{\mathrm{off}}$ im Sperrbetrieb und der Widerstand $R_{\mathrm{on}}$ im Durchlassbetrieb einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden $G_{\mathrm{off}}=\unit[0,001]{S}$ bzw. $R_{\mathrm{on}}=\unit[0,001]{\Omega}$ festgelegt, die nahe Null, aber noch groß genug, sind um die genannten Probleme zu vermeiden.
+Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung $U_{\mathrm{F}}=\unit[0,7]{V}$ angenommen. Der Leitwert $G_{\mathrm{off}}$ und der Widerstand $R_{\mathrm{on}}$ einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden $G_{\mathrm{off}}=\unit[0,001]{S}$ bzw. $R_{\mathrm{on}}=\unit[0,001]{\Omega}$ festgelegt, die nahe Null, aber noch groß genug sind um die genannten Probleme zu vermeiden.
 
 ### Spannungsregler
 
