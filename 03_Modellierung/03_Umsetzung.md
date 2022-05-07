@@ -190,10 +190,12 @@ Die Parametrierung des Synchrogenerators der Erregermaschine erfolgt analog zur 
 Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung $U_{\mathrm{F}}=\unit[0,7]{V}$ angenommen. Der Leitwert $G_{\mathrm{off}}$ und der Widerstand $R_{\mathrm{on}}$ einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden $G_{\mathrm{off}}=\unit[0,001]{S}$ bzw. $R_{\mathrm{on}}=\unit[0,001]{\Omega}$ festgelegt, die nahe Null, aber noch groß genug sind um die genannten Probleme zu vermeiden.
 
 ### Spannungsregler
-Der Spannungsregler wird in Modelica als Signalflussobjekt auf Basis des **S**ingle-**I**nput-**S**ingle-**O**utput Interface(`Modelica.Blocks.Interfaces.SISO`) der MSL implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden. 
+Der Spannungsregler wird in Modelica als Signalflussobjekt implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden. 
 
-Alle verwendeten Regelglieder begrenzen 
+Wie im Blockschaltbild des Reglers (==Abb XXX==) dargestellt ist allen Regelgliedern ein Begrenzer nachgeschaltet. Dies trägt zum Einen der Abbildung der Messgrößen auf das begrenzte Intervall der reglerinternen Größen Rechnung und bietet zum Anderen die Möglichkeit die Stellgrößen der Regelglieder unabhängig voneinander zu begrenzen. Um diese Begrenzung bei allen Gliedern mit einer einheitlichen Schnittstelle zu implementieren wird aus dem **S**ingle-**I**nput-**S**ingle-**O**utput-Interface der MSL (`Modelica.Blocks.Interfaces.SISO`) das Interface `Frequenzumformer.Regler.Interfaces.limitedController` abgeleitet, welches die Begrenzungsgrößen zugänglich macht. Weiterhin wird in dem Interface der boolsche Eingang `enable` definiert zum Einschalten des jeweiligen Regelgliedes.
+
 #### Modell
+Das vollständige Modell des Spannungsreglers zeigt ==Abb. XXX==. 
 ![Vollständiges Modell des Spannungsreglers (`Frequenzumformer.Regler.Spannungsregler`)](Bilder/Spannungsregler.pdf)
 
 ![Modell des Proportional-Reglers (`Frequenzumformer.Regler.Kontinuierlich.PRegler`)](Bilder/PRegler.pdf)
