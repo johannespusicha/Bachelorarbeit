@@ -199,7 +199,7 @@ Das vollständige Modell des Spannungsreglers zeigt ==Abb. XXX==. Es enthält di
 ![Vollständiges Modell des Spannungsreglers (`Frequenzumformer.Regler.Spannungsregler`)](Bilder/Spannungsregler.pdf)
 
 
-Die drei Teilglieder zeigen die ==Abb XXX bis XXX==. 
+Die drei Teilglieder zeigen die ==Abb XXX bis XXX==. In dem P-Glied ist eine optionale Anhebung der Verstärkung implementiert, die über den Schalter `usePGain` aktiviert wird. 
 ![Modell des Proportional-Reglers (`Frequenzumformer.Regler.Kontinuierlich.PRegler`)](Bilder/PRegler.pdf)
 
 ![Modell des I-Reglers (`Frequenzumformer.Regler.Kontinuierlich.IRegler`)](Bilder/IRegler.pdf)
