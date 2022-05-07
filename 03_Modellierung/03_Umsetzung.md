@@ -195,8 +195,10 @@ Der Spannungsregler wird in Modelica als Signalflussobjekt implementiert. Zur Un
 Wie im Blockschaltbild des Reglers (==Abb XXX==) dargestellt ist allen Regelgliedern ein Begrenzer nachgeschaltet. Dies trägt zum Einen der Abbildung der Messgrößen auf das begrenzte Intervall der reglerinternen Größen Rechnung und bietet zum Anderen die Möglichkeit die Stellgrößen der Regelglieder unabhängig voneinander zu begrenzen. Um diese Begrenzung bei allen Gliedern mit einer einheitlichen Schnittstelle zu implementieren wird aus dem **S**ingle-**I**nput-**S**ingle-**O**utput-Interface der MSL (`Modelica.Blocks.Interfaces.SISO`) das Interface `Frequenzumformer.Regler.Interfaces.limitedController` abgeleitet, welches die Begrenzungsgrößen zugänglich macht. Weiterhin wird in dem Interface der boolsche Eingang `enable` definiert zum Einschalten des jeweiligen Regelgliedes.
 
 #### Modell
-Das vollständige Modell des Spannungsreglers zeigt ==Abb. XXX==. 
+Das vollständige Modell des Spannungsreglers zeigt ==Abb. XXX==. Es enthält die drei Teilglieder des PID-Reglers, die Stellgrößenbeschränkung und am Ausgang einen Schalter um den Wert Null auszugeben, wenn der Regler ausgeschaltet ist.
 ![Vollständiges Modell des Spannungsreglers (`Frequenzumformer.Regler.Spannungsregler`)](Bilder/Spannungsregler.pdf)
+
+
 
 ![Modell des Proportional-Reglers (`Frequenzumformer.Regler.Kontinuierlich.PRegler`)](Bilder/PRegler.pdf)
 
