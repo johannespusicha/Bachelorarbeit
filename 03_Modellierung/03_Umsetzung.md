@@ -201,7 +201,7 @@ Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher
 ![](Bilder/DRegler.pdf)
 #### Parametrierung
 
-### Umwandlungen für die Reglerinternen Größen
+Umwandlungen für die Reglerinternen Größen
 
 ### Weitere Modelle
 
