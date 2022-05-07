@@ -199,7 +199,7 @@ Das vollständige Modell des Spannungsreglers zeigt ==Abb. XXX==. Es enthält di
 ![Vollständiges Modell des Spannungsreglers (`Frequenzumformer.Regler.Spannungsregler`)](Bilder/Spannungsregler.pdf)
 
 
-Die drei Teilglieder zeigen die ==Abb XXX bis XXX==. In dem P-Glied ist eine optionale Anhebung der Verstärkung implementiert, die über den Schalter `usePGain` aktiviert wird. Über den Schalter `useLim` wird die Verwendung der Ausgangsbegrenzung eingestellt. Die Berechnung der Stellgrößen erfolgt über die entsprechenden Blöcke der MSL: 
+Die drei Teilglieder zeigen die ==Abb XXX bis XXX==. In dem P-Glied ist eine optionale Anhebung der Verstärkung implementiert, die über den Schalter `usePGain` aktiviert wird. Über den Schalter `useLim` wird die Verwendung der Ausgangsbegrenzung eingestellt. Die Berechnung der Stellgrößen erfolgt über die entsprechenden Blöcke der MSL (`Modelica.­Blocks.­Math.­Gain`, `Modelica­.Blocks­.Continuous­.LimIntegrator`, `Modelica.­Blocks.­Continuous.­Derivative`).
 ![Modell des Proportional-Reglers (`Frequenzumformer.Regler.Kontinuierlich.PRegler`)](Bilder/PRegler.pdf)
 
 ![Modell des I-Reglers (`Frequenzumformer.Regler.Kontinuierlich.IRegler`)](Bilder/IRegler.pdf)
