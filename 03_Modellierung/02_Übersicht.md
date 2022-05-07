@@ -6,7 +6,7 @@
 > - [x] Was hängt wie zusammen?
 > - [x] evtl. formalisieren als Wirkungsgraph/Bondgraph etc.
 > - [x] Grundlage geben, aus der sich das Modelica Modell sozusagen "von selbst" ergibt --> im Modelica-Modell sollten vor Allem Details und Simulationsspezifische Infos hinzugefügt werden. 
-> - [ ] Diskretisierung der Regler --> Blockschaltbilder der zeitdiskreten P, I und D-Regler
+> - [x] Diskretisierung der Regler --> Blockschaltbilder der zeitdiskreten P, I und D-Regler
 > - [x] Abtastung
 > - [x] Quantisierung auf 16bit signend Integer
 > - [x] Reales D-GLied --> Zeitkonstante für D-Regler
@@ -38,20 +38,20 @@ Zusätzlich zu dem Energiefluss ist in <mark>XXX</mark> auch der Informationsflu
 [^2]: Beachte den Bezug auf Stator- (s) bzw. Rotorseite (s).
 
 ### PID-Spannungsregler
-Als Spannungsregler wird von <mark>Piller</mark> in dem Frequenzumformer ein PID-Regler (**P**roportional-**I**ntegral-**D**ifferential) mit *variabler Verstärkung* eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (\cite{ DigitalerSpannungsreglerSoftwaredokumentation }). <mark>XXX</mark> zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang <mark>werden die Stellgrößen begrenzt.</mark> Die einzelnen Regelglieder werden zusätzlich zu möglichen Zeitkonstanten jeweils mit einem eigenen Verstärkungsfaktor gewichtet.
+Als Spannungsregler wird von <mark>Piller</mark> in dem Frequenzumformer ein PID-Regler (**P**roportional-**I**ntegral-**D**ifferential) mit *variabler Verstärkung* eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (\cite{ DigitalerSpannungsreglerSoftwaredokumentation }). <mark>XXX</mark> zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang <mark>werden die Stellgrößen begrenzt.</mark> Die einzelnen Regelglieder werden jeweils mit einem Verstärkungsfaktor gewichtet.
 ![[Blockschaltbild_Regler.png]]
 
-Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller. Dabei sind einige Punkte zu beachten:
+Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller. Das bedingt folgende Punkte:
 
 - Die ideale Umsetzung eines Differenzierers (D-Glied) ist nicht möglich. Stattdessen wird ein DT_1-Glied verwendet, welches sich aus der Kombination eines D-Glieds mit einem Verzögerungsglied 1.~Ordnung ergibt. 
--Die Algorithmen für die Regelglieder arbeiten zeitdiskret. Beschrieben werden diese Glieder mit Übertragungsfunktionen, die aus der $\mathcal{Z}$-Transformation hervorgehen.
-- Die Erfassung der Ausgangsspannung erfolgt nur zu bestimmten Zeitpunkten (Abtastung). Nach \cite{ @DigitalerSpannungsreglerSoftwaredokumentation } erfasst der hier betrachtete Spannungsregler 32 Messwerte in 5 Taktzyklen, wobei sich die Taktfrequenz nach der Frequenz der Ausgangsspannung richtet. Die Abtastrate für die Spannungsmessung beträgt also $$
+- Die Algorithmen für die Regelglieder arbeiten zeitdiskret. Beschrieben werden diese Glieder mit Übertragungsfunktionen, die aus der $\mathcal{Z}$-Transformation hervorgehen.
+- Die Erfassung der Ausgangsspannung erfolgt nur zu bestimmten Zeitpunkten (Abtastung). Nach \cite{DigitalerSpannungsreglerSoftwaredokumentation} erfasst der hier betrachtete Spannungsregler 32 Messwerte in 5 Taktzyklen, wobei sich die Taktfrequenz nach der Frequenz der Ausgangsspannung richtet. Die Abtastrate für die Spannungsmessung beträgt also $$
   \begin{align}
   T_{\mathrm{mess}}^*&= \frac{5}{32}\cdot T_{\mathrm{Spannung}} = 0,000390625\,\mathrm s. \\
   \text{mit} \quad
   T_{\mathrm{Spannung}}&= \frac{1}{400\,\mathrm{Hz}}=0,0025\,\mathrm s
   \end{align}
-  $$Weiterhin gibt \cite{ @DigitalerSpannungsreglerSoftwaredokumentation } an, dass bei einer Spannungsfrequenz von $f=400\,\mathrm{Hz}$ der Regelalgorithmus nur alle zwei Messzyklen neu berechnet wird. Die Periodendauer des zeitdiskreten Reglers beträgt also$$
+  $$Weiterhin gibt \cite{DigitalerSpannungsreglerSoftwaredokumentation} an, dass bei einer Spannungsfrequenz von $f=400\,\mathrm{Hz}$ der Regelalgorithmus nur alle zwei Messzyklen neu berechnet wird. Die Periodendauer des zeitdiskreten Reglers beträgt also$$
   \begin{align}
   T_{mess}&=2\cdot T_{mess}^*= 0,00078125\,\mathrm s.
   \end{align}$$
