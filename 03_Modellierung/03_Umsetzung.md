@@ -1,5 +1,5 @@
 > [!TODO]+ ToDo:
-> - [ ] Maschinen beschreiben
+> - [x] Maschinen beschreiben
 > - [x] Parametrierung der Maschinen herleiten
 > - [x] Parameter für Spannungsregler
 > - [x] Überlegen, in welchem Kapitel Modellvergleiche gemacht werden sollen. Oder will ich das Modellweise behandeln?
