@@ -1,0 +1,359 @@
+%%%
+%%% @(#) weiterbildung.sty -- LaTeX-Stlye-Datei für meine Weiterbildungskurse zum Thema LaTeX
+%%%
+%%% Time-stamp:  <2018-03-10 09:54:10 tmjb>
+%%%
+%%%
+%%% @(#) $Keywords: LaTeX, Textverarbeitung, Weiterbildung, Kurs, Folien, Style-Definitionen $
+%%%
+%%%
+%%%          File: ~/Documents/LaTeX/Source/TUC/Misc-LaTeX/Weiterbildung/LaTeX/weiterbilung.sty
+%%%       Project: Weiterbildungskurse LaTeX
+%%%   Description: Style, in der div. Makros festgelegt werden, mit
+%%%                denen div. LaTeX-Kommandos in den Folien meiner
+%%%                Weiterbildungskurse einheitlich dargestellt werden.
+%%%        Author: tmjb -- Jan Braun <braun@rz.tu-clausthal.de>
+%%%    Maintainer: tmjb -- Jan Braun <braun@rz.tu-clausthal.de>
+%%% Creation-Date: Sun Mar 30 2008 -- Jan Braun <braun@rz.tu-clausthal.de>
+%%%     Copyright: (c) 2008 Jan Braun
+%%%
+
+
+%%% ======================================================== &Preamble ===
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{weiterbildung}[2018/03/10 v0.04 Stlye for LaTeX-courses at Clausthal University]
+
+
+
+%%% ========================================================= &Befehle ===
+%%%
+%%% In einem Tutorial oder einem Weiterbildungskurs über LaTeX muss
+%%% man nun mal eine Vielzahl von Klassen, Paketen, Befehlen,
+%%% Umgebungen, Parametern erläutern.  Dazu sollte man dafür sorgen,
+%%% dass diese auch einheitlich dargestellt werden.
+\RequirePackage{nomencl}
+\RequirePackage{ifthen}
+\RequirePackage{minted}
+
+
+
+%%% ----------------------------------------------------------- &Fonts ---
+%%
+%% In welchen Schriftarten sollen div. Dinge geschrieben werden?
+\def\arg@font{\sffamily\slshape\selectfont}
+\def\optarg@font{\ttfamily\slshape\selectfont}
+\def\cmd@font{\normalfont\ttfamily\selectfont}
+\setminted[latex]{style=emacs}
+
+%%% --------------------------------------------------------- &Befehle ---
+%%
+%% Einige neue Befehle um Befehle und Umgebungen darzustellen.
+%% Fangen wir an mit dem Befehl, um Befehle vorzustellen.
+%%
+%% Der erste Befehl wird genutzt, wenn nur ein Befehl ohne alle
+%% weiteren Argumente und Optionen verwendet werden soll.  Der
+%% Einfachheit-halber wird auch der Backslash weggelassen.
+\newcommand{\cmd}[1]{%
+  \cmd@font{\textbackslash#1}\normalfont\selectfont}
+%%
+%% Der Befehl \mcmd macht das gleiche, nur dass er zusätzlich noch die
+%% $-Zeichen einsetzt, um klar zu machen, dass der Befehl nur im
+%% Mathemodus verwendet werden darf.
+\newcommand{\mcmd}[1]{%
+  \$~\cmd{#1}~\$}
+
+% \newcommand{\diff}[1]{%
+%     \mathop{\!\mathrm{d}#1}}
+
+%% 
+%% Dieser Befehl setzt einfach das TeX-Kommando noch einmal in eine
+%% marginpar-Box.
+\newcommand{\tuccmd}[1]{%
+  \cmd{#1}%
+  \marginpar{\footnotesize{\cmd{#1}}}}%
+\newcommand{\tuccmdarg}[2]{%
+  \cmd{#1}\texarg{#2}%
+  \marginpar{\footnotesize{\cmd{#1}\texarg{#2}}}}%
+\newcommand{\tucoption}[1]{%
+  \option{#1}%
+  \marginpar{\footnotesize{\option{#1}}}}%
+
+
+%%% ------------------------------------------------------ &Umgebungen ---
+%%
+%% Jetzt für Umgebungen.
+\newcommand{\env}[1]{%
+  \cmd@font{\textbackslash{}begin\{#1\}} \dots \cmd@font{\textbackslash{}end\{#1\}}\normalfont}
+
+
+%%% ---------------------------------------------------------- &Pakete ---
+%%
+%% Wie sollen Klassen und Pakete usw. dargestellt werden?
+\newcommand{\class}[1]{%
+  \textsf{#1}}
+\newcommand{\package}[1]{%
+  \textsf{#1}}
+\newcommand{\file}[1]{%
+  \textsf{#1}}%
+
+
+%%% ------------------------------------------------------- &Binaries ---
+%%
+%% Binaries oder Programme müssen von Zeit zu Zeit auch aufgerufen
+%% werden.  Auch das sollte einheitlich erklärt werden.  Manchmal ist
+%% es wichtig, Programme als Benutzer "Root" auszuführen.  Daher wäre
+%% es sinnvoll einen Prompt zu haben, anhand man ablesen kann, wer
+%% gerade wo oder wie was ausführt.
+%%
+%% Also definieren wir mal die interne Variable pr@mpt vor.  Sie ist
+%% leer.  Wenn sie leer ist, wird sie durch \binary auch nicht
+%% ausgegeben.  Wenn sie gefüllt werden soll, benutzt man den Befehl
+%% \prompt.  Das kann auch lokal sein.
+\def\pr@mpt{}%
+\newcommand{\prompt}[1][\$]{%
+  \def\pr@mpt{#1}}
+\newcommand{\binary}[1]{%
+  \ifx\pr@mpt\empty{%
+    \texttt{#1}}%
+  \else{%
+    \texttt{\pr@mpt\ #1}}%
+  \fi}%
+
+%%% .......................................................... &vararg ...
+%% vararg sorgt dafür, dass der variable Teil des Arguments druch
+%% spitze Klammern erkenntlich ist.  Um die Formatierung kümmern sich
+%% andere Kommandos.
+%%
+\newcommand{\vararg}[1]{%
+  $\langle$#1\/$\rangle$}
+
+%%% ............................................................. &pba ...
+%% Dieses Kommanndo kümemrt sich darum, dass die bei TeX üblichen
+%% geschweiften Klammern {} um das Argument gesetzt werden.  Nicht
+%% alle Argumentsbestandteile sind variabel.  Damit diese richtig
+%% erkannt werden, müssen sie außerhalb der spitzen Klammern stehen.
+%% Darum kümemrt sich aber das Kommando vararg.
+%%
+%% Folgendes Konstrukt sollte das ermöglichen.
+%% Argument 1 (optional) Art der Klammern: 
+%%   cb == Curly Braces {} (default)
+%%   br == Brackets []
+%%   pa == Parens ()
+%% Argument 2 (optional) Art des Arguments:
+%%   arg == normales Argument (default)
+%%   opt == optionales Argument
+%% Argument 3: zu druckender Text.
+%
+% Hilfskonstrukt um das erste optionale Argument zu speichern.
+\RequirePackage{ifthen}
+\newcommand{\parentype}{}
+\newcommand{\pba}[1][cb]{% erstes optionales Argument
+  \begingroup  % Definitionen von \...parentype lokal halten
+    \renewcommand{\parentype}{#1}% opt. Argument speichern
+    \pbaa}
+% Internes Kommando, das von pba aufgerufen wird.
+\newcommand{\pbaa}[2][arg]{% zweites optionales Argument
+  \ifthenelse{\equal{\parentype}{cb}}{%
+    %%% cb == Curly Braces um das Argument setzen.
+    \ifthenelse{\equal{#1}{arg}}{%
+      % arg == zwingendes Argument
+      \arg@font\{#2\}}{%
+      % opt == optionales Argument
+      \optarg@font\{#2\}}}{%
+    %%% if #1 = cb else ...
+    \ifthenelse{\equal{\parentype}{br}}{%
+      %% br == Brackets um das Argument setzen.
+      \ifthenelse{\equal{#1}{arg}}{%
+        % arg == zwingendes Argument
+        \arg@font[#2]}{%
+        % opt == optionales Argument
+        \optarg@font[#2]}}{%
+      %%% if #1 = cb else if #1 = br else ...
+      \ifthenelse{\equal{\parentype}{pa}}{%
+        %% pa == Parens um das Argument setzen.
+        \ifthenelse{\equal{#1}{arg}}{%
+          % arg == zwingendes Argument
+          \arg@font(#2)}{%
+          % opt == optionales Argument
+          \optarg@font(#2)}}{%
+        %%% if #1 = cb else if #1 = br else if #1 = pa else 
+        %% else alles andere nur eben CB, BR oder PA nicht.  Also
+        %% keine Klammern.
+        \ifthenelse{\equal{#1}{arg}}{%
+          % arg == zwingendes Argument
+          \arg@font#2}{%
+          % opt == optionales Argument
+          \optarg@font#2}}}}%
+  \normalfont\selectfont\endgroup}
+%%
+
+
+%%% ..................................................... &Abkürzungen ...
+%%
+%% Abkürzungen.
+%% Option: [#1]
+\newcommand{\option}[1]{%
+  \pba[br][opt]{#1}}%
+%% Optional Variable: [<#1>]
+\newcommand{\optarg}[1]{%
+  \pba[br][opt]{\vararg{#1}}}%
+%% TeX-Argument: {#1}
+\newcommand{\fixarg}[1]{%
+  \pba[cb][arg]{#1}}%
+%% TeX-Argument: {<#1>}
+\newcommand{\texarg}[1]{%
+  \pba[cb][arg]{\vararg{#1}}}%
+%% empty argument: {}
+\newcommand{\emptyarg}{%
+  \pba[bc][arg]{\{\}}}%
+\let\tb=\textbackslash%
+
+
+%%% ..................................................... &Koordinaten ...
+%% Bei PSTricks müssen häufig Koordinaten der Form x_1 y_2 angeben
+%% werden.
+\newcommand{\coord}[1][1]{%
+  \texttt{($x_\text{#1}$,$y_\text{#1}$)}}
+
+
+
+%%% ========================================================= &Übungen ===
+%%%
+%%% Übungen sind wertvoll, um das gehörte anzuwenden und so zu
+%%% verinnerlichen.  Daher muss auch das passend definiert werden.
+
+%%% --------------------------------------------------------- &Übungen ---
+%%% .......................................................... &Zähler ...
+%%
+%% Zuerst wird ein neuer Zähler defieniert.  Derzeit wird er bei jedem
+%% Abschnitt \part zurückgesetzt und fängt von vorne an.
+\newcounter{uebung}[part]
+\renewcommand{\theuebung}{%
+  \Roman{part}-\arabic{uebung}}
+%%% .......................................................... &uebung ...
+%%
+%% Übungen.  Diese Umgebung definiert einen Befehl, der eine
+%% Übungsaufgabe erzeugt.  Die Aufgabe hat einen fortlaufenden Zähler
+%% und einen Fließtext.  Das Argument ist eine Kurzbezeichnung, die in
+%% einem Inhaltsverzeichnis erscheinen soll!
+%%
+\newenvironment{uebung}[2]{%
+  % Der Zähler wird hochgezählt.
+  \refstepcounter{uebung}\label{#1}
+  % Wir beginnen eine neue Folie
+  \begin{frame}
+    % Titel der Folie ist die Übungsnummer und sowie die
+    % Kurzbezeichnung.
+    \frametitle{Übung~\theuebung~-- #2}}
+  {% Hier endet die Folie
+  \end{frame}}
+
+%%% .......................................................... &uebref ...
+%%
+%% Dieses Kommando dient dazu, auf die passende Übung zu verweisen.
+\newcommand{\uebref}[1]{%
+  $\Rightarrow$~Übung:~\ref{#1}}
+
+
+%%% ================================================= &Typographisches ===
+%%%
+%%% In einem Tutorial über LaTeX sollte man auch spezielle
+%%% typographische Ausdrücke erklären.  
+
+%% In der Datei tuc-cd stehen div. Dinge, die das CD der TU Clausthal
+%% festgelegt hat.
+%\RequirePackage{tuc-cd}
+
+%%% ------------------------------------------------------------ &Typo ---
+%% 
+%% Befehl zur Eingabe einer typographischen Bezeichnung
+\newcommand{\simpletypo}[1]{%
+  \textcolor{TUCgreen}{\emph{#1}}}
+
+\newcommand{\typo}[3][]{%
+  \ifthenelse{\equal{#1}{}}{%
+    \textcolor{TUCgreen}{#2}}{%
+    \textcolor{TUCgreen}{#1}}%
+  \nomenclature{#2}{#3}}%
+
+%% New function, to generate a letter-like image.
+\newcommand{\bigletter}[2][3]{%
+  \fbox{\scalebox{#1}{%
+      \fontfamily{cmr}%
+      \selectfont{#2}}}}%
+
+
+
+%%% ===================================================== &Grundlinien ===
+%%%
+%%% Für einige Darstellungen braucht man die "Grundlinie".  Sie wird
+%%% durch den Befehl bline gezeichnet.
+%%% 
+%%% Manchmal soll die Linie aber auch ausgeblendet werden.  Das kann
+%%% man über die Länge glinethickness verändern.
+
+%%% --------------------------------------------------- &glinethickness ---
+%%
+%% Hier wird der Zähler definiert und gesetzt.
+\newlength{\blinethickness}
+\setlength{\blinethickness}{0,5pt}
+
+%%% ----------------------------------------------------------- &bline ---
+%%
+%% Hier geht es weiter mit dem Befehl, die Grundlinie zu zeichnen.
+\newcommand{\bline}{%
+  \rule{5mm}{\blinethickness}}
+
+%%% -------------------------------------------------------- &fboxcorr ---
+%%
+%% Ein Korrekturwert, damit die Bilder sich nicht verschieben, wenn
+%% man zusätzlich einen fbox darum fügt.
+\newlength{\fboxcorr}\setlength{\fboxcorr}{\fboxrule}
+
+%%% ------------------------------------------------------- &grfexample ---
+%%
+\newcounter{@verlay}\setcounter{@verlay}{1}
+%% Mal ein Versuch.  Vielleicht kann man die 3 oder 4 Schritte
+%% zusammenfassen zu einem Befehl?
+\newcommand{\grfexample}[2][1]{%
+  % Counter passend zuweisen.
+  \setcounter{@verlay}{#1}
+  % Erstes Overlay.  Hier wird nur der Code ausgegeben.  Anschließend
+  % wird der Zähler um eins erhöht.
+  \only<\the@verlay|handout:1>{\verbatiminput{#2}}\stepcounter{@verlay}%
+  % Nächstes Overlay.  Zeige das Bild ohne Hilfsmittel.  Sprich ohne
+  % den Rahmen darum herum.  Damit das Bild anschließend nicht
+  % wackelt, muss es wenigstens die Breite des kommenden Rahmens
+  % verschoben werden.
+  \only<\the@verlay|handout:0>{\setlength{\fboxrule}{0pt}%
+    \hspace{\fboxcorr}\fbox{\input{#2}}}\stepcounter{@verlay}%
+  % Noch ein Overlay.  Diesmal mit Rahmen um das Bild herum.
+  \only<\the@verlay|handout:2>{\setlength{\fboxrule}{\fboxcorr}%
+    \fbox{\input{#2}}}\stepcounter{@verlay}%
+  % Fertig :-)
+}
+
+
+
+%%% ======================================================== &Listings ===
+%%%
+%%% This tutorium needs a lot of LaTeX input examples.  These can be
+%%% easily typeset with the listings package.
+\RequirePackage[]{listings}
+%% 
+%% We do only typeset LaTeX-Files.  So lets set the default to this.
+\lstloadlanguages{[LaTeX]TeX}
+\lstset{% general command to set parameter(s) 
+  basicstyle=\small}	% print whole listing small
+  
+
+
+%%% ============================================================= &EOF ===
+%%% 
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: nil
+%%% TeX-parse-self: t
+%%% TeX-auto-save: t
+%%% auto-fill: t
+%%% End:

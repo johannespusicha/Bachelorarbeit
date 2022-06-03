@@ -1,0 +1,88 @@
+\documentclass[%
+%parskip,
+german,
+titlepage=firstiscover,
+fontsize=12pt,
+twoside=true,
+listof=totoc,
+bibliography=totoc
+]{scrbook}
+
+\usepackage[]{tuc-pusicha}
+\recalctypearea
+\MakeAutoQuote{„}{“}
+
+\usepackage{afterpage}
+\usepackage[export]{adjustbox}% set max width for all images
+\let\oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \oldincludegraphics[#1,max width=\textwidth, max height=.4\textheight]{#2}
+  } 
+\usepackage{tikz}
+\usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings,math,intersections,positioning,arrows.meta,graphs,backgrounds}
+\tikzset{
+    between/.style args={#1 and #2}{
+         at = ($(#1)!0.5!(#2)$)
+    },
+    between base/.style args={#1 and #2}{
+        between=#1.base and #2.base
+    }
+}
+\usepackage[european, straightvoltages, nooldvoltagedirection]{circuitikz}
+\usepackage{bondgraphs}
+
+\input{listings-modelica.cfg}
+\lstset{language = modelica,
+        basicstyle=\fontsize{9pt}{10.5pt}\ttfamily,
+        backgroundcolor = \color{TUCgrey2}}
+\newcommand\modclass[1]{{\small\texttt{#1}}}
+
+\hypersetup{
+  pdfauthor={Johannes Pusicha},
+  pdftitle={Bachelorarbeit},
+  pdfsubject={Bachelorarbeit},
+  pdfcreator={\LaTeX\ with package \flqq{}hyperref\frqq},
+  pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+  pdfkeywords={Bachelorarbeit}
+}
+
+\bibliography{ZoteroBibliothek}
+
+\def \thesistype{Bachelorarbeit}        
+\def \semester{WS 21/22}      
+\def \author{Johannes Pusicha} 
+\def \title{Erstellung eines Maschinenmodells zur Auslegung und Regelung elektrischer Maschinen} 
+\def \subtitle{Objektorientierte Modellierung eines rotierenden Frequenzumformers} 
+\def \deliverydate{\today}
+
+%\usepackage{layouts}
+\begin{document}
+
+%%% ---------------------------------------------------- &Front-Matter ---
+\frontmatter
+\include{titlepage}
+\include{assertion}
+
+\include{Kapitel/0I_Vorwort}
+\tableofcontents{}
+\include{Kapitel/0II_Symbolverzeichnis}
+
+\mainmatter
+
+\include{Kapitel/01_Einleitung}
+\include{Kapitel/02_Grundlagen}
+\include{Kapitel/03_Modellierung}
+\include{Kapitel/04_Versuch}
+\include{Kapitel/05_VerifikationValidierung}
+\include{Kapitel/06_Auswertung}
+\include{Kapitel/07_ZusammenfassungAusblick}
+\appendix
+\include{Kapitel/A_Anhang}
+\include{Kapitel/B_ModelicaCode}
+\include{Kapitel/C_Simulationsdaten}
+\backmatter
+\listoffigures{}
+\listoftables{}
+\printbibliography[]
+
+\end{document}

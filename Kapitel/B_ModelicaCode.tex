@@ -1,0 +1,329 @@
+\chapter{Quellcoode}
+\label{chap:Quellcode}
+
+\section{Modelica-Code}
+\label{sec:ModelicaCode}
+\begin{lstlisting}[language=modelica, caption=Record für die Maschinendaten der Asynchronmaschine, label=lst:RecordASMData]
+within Frequenzumformer.Maschinenparameter;
+record AIM_SquirrelCageData
+    extends BasisDaten;
+    import Modelica.Constants.pi;
+    
+    parameter Modelica.SIunits.Reactance X0 "Main reactance"
+    annotation(Dialog(group = "Reactances"));
+    parameter Modelica.SIunits.Reactance X1 "Stator leakage reactance"
+    annotation(Dialog(group = "Reactances"));
+    parameter Modelica.SIunits.Reactance X2 "Rotor reactance"
+    annotation(Dialog(group = "Reactances"));
+    
+    parameter Modelica.SIunits.Resistance Rs "Stator resistance per phase"
+    annotation(Dialog(group = "Resistances"));
+    parameter Modelica.SIunits.Resistance Rr "Rotor resistance of equivalent m phase winding w.r.t. stator side"
+    annotation(Dialog(group = "Resistances"));
+    
+    parameter Modelica.SIunits.Inductance Lm=X0/(2*pi*fsNominal) "Stator main field inductance per phase"
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+    parameter Real sigma=1-X0^2/((X0+X1)*(X0+X2)) "total strey cocoefficient sigma"
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+    parameter Modelica.SIunits.Inductance Lssigma=X1/(2*pi*fsNominal) "Stator stray inductance"
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+    parameter Modelica.SIunits.Inductance Lrsigma=X2 / (2*pi*fsNominal) "Rotor stray inductance"
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+    parameter Modelica.SIunits.Inductance Lszero=Lssigma "Rotor zero inductance" 
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+    parameter Modelica.SIunits.Inductance L0 "Salient inductance of an unchorded coil"
+    annotation (Dialog(tab="Calculated resistances and inductances"));
+
+    annotation(
+      Icon(coordinateSystem(extent = {{-100, -40}, {100, 100}})));
+  end AIM_SquirrelCageData;
+\end{lstlisting}
+
+\begin{lstlisting}[language=modelica, caption=Vollständiges Modell des Frequenzumformers, label=lst:UmformerVollstandig]
+within Frequenzumformer;
+
+model Umformer
+  constant Integer m = 3 "Number of phases";
+  import Modelica.Constants.pi;
+  Modelica.Magnetic.FundamentalWave.BasicMachines.SynchronousInduction
+      Machines.SM_ElectricalExcited smee(IeOpenCircuit = smeeData.IeOpenCircuit, Jr = smeeData.Jr, Js = smeeData.Js, Lmd = smeeData.Lmd, Lmq = smeeData.Lmq, Lrsigmad = smeeData.Lrsigmad, Lrsigmaq = smeeData.Lrsigmaq, Lssigma(fixed = false, start = smeeData.Lssigma), Re = smeeData.Re, Rrd = smeeData.Rrd, Rrq = smeeData.Rrq, Rs(fixed = false), TeOperational(displayUnit = "K") = 293.15, TeRef(displayUnit = "degC") = 293.15, TrOperational(displayUnit = "K") = 293.15, TrRef(displayUnit = "K") = 293.15, TsOperational(displayUnit = "K") = 293.15, TsRef(displayUnit = "degC") = 293.15, VsNominal = smeeData.VsNominal, alpha20e = 0, alpha20r = 0, alpha20s = 0, effectiveStatorTurns = smeeData.effectiveStatorTurns, fsNominal = smeeData.fsNominal, m = m, p = smeeData.p, phiMechanical(displayUnit = "rad", fixed = false), sigmae = smeeData.sigmae, useDamperCage = true, useSupport = false, wMechanical(displayUnit = "rev/min", fixed = false));
+  Modelica.Mechanics.Rotational.Sensors.SpeedSensor speedSensor;
+  Modelica.Electrical.Analog.Basic.Ground ground;
+  Modelica.Electrical.MultiPhase.Basic.Star starNet(m = m);
+  Modelica.Blocks.Math.Gain frequency(k = 8 / (2 * pi));
+  Modelica.Electrical.Machines.Utilities.TerminalBox terminalBox1(terminalConnection = "D");
+  Modelica.Electrical.MultiPhase.Sensors.CurrentQuasiRMSSensor I_in;
+  Modelica.Magnetic.FundamentalWave.BasicMachines.AsynchronousInduction
+      Machines.AIM_SquirrelCage aimc(Jr = aimcData.Jr, Js = aimcData.Js, Lm = aimcData.Lm, Lrsigma = aimcData.Lrsigma, Lssigma(fixed = false), Rr = aimcData.Rr, Rs(fixed = true, start = aimcData.Rs), TrOperational(displayUnit = "K") = 293.15, TrRef(displayUnit = "K") = 293.15, TsOperational(displayUnit = "K") = 293.15, TsRef(displayUnit = "K") = 293.15, alpha20r = 0, alpha20s = 0, effectiveStatorTurns = aimcData.effectiveStatorTurns, fsNominal = aimcData.fsNominal, m = m, p = aimcData.p, phiMechanical(displayUnit = "rad"), useSupport = false, useThermalPort = false, wMechanical(displayUnit = "rev/min"));
+  Modelica.Electrical.Analog.Basic.Ground groundNet;
+  Frequenzumformer.Simulationsparameter simData(JRotor = 1.58, VNominal = 410, fNominal = 50, load = 0.665);
+  parameter Modelica.Electrical.Machines.Utilities.ParameterRecords.SM_Electri
+      calExcitedData smeeData(IeOpenCircuit = 7.2563105523832900, Jr = 0, Lmd = 131.389E-6, Lmq = 47.975E-6, Lrsigmad = 12.35031219E-6, Lrsigmaq = 9.428981013E-6, Lssigma = 16.7536222E-6, Re = 6.8, Rrd = 5.873051175E-3, Rrq = 7.587723698E-3, Rs = 0.006679333, VsNominal = 115, effectiveStatorTurns = 14.958, fsNominal = 400, p = 8, sigmae = 0.1973, useDamperCage = true);
+  Frequenzumformer.Maschinenparameter.AIM_SquirrelCageData aimcData(Jr = 0, L0 = 0, Rr = 0.120, Rs = 0.083574, X0 = 14.83, X1 = 0.448208, X2 = 0.791, effectiveStatorTurns = 9.171, p = 1);
+  Modelica.Blocks.Sources.Ramp ramp_net(duration = 0.5, height = simData.VNominal * sqrt(2));
+  Frequenzumformer.Helper.SignalSineVoltage netVoltage;
+  Modelica.Electrical.Analog.Basic.Ground groundExcitation_trans;
+  Frequenzumformer.Regler.Offset_Map offset_Map(I1 = 0,I2 = 32767, O2 = 80);
+  Modelica.Blocks.Math.Feedback feedback;
+  Modelica.Blocks.Sources.BooleanStep controlOn(startTime = 0.7, startValue = false);
+  Modelica.Blocks.Sources.Ramp V_set(duration = 0.3, height = 115, startTime = 0.7);
+  Frequenzumformer.Regler.Offset_Map offset_Map1(O2 = 3888 / 256);
+  Modelica.Electrical.Analog.Sources.SignalVoltage Erregerspannung;
+  Modelica.Electrical.Machines.Sensors.CurrentQuasiRMSSensor I_out;
+  Frequenzumformer.Helper.Multiphase.UniversalPowerSensor universalPowerSensor;
+  Modelica.Electrical.Machines.Utilities.TerminalBox terminalBox(terminalConnection = "Y");
+  Modelica.Electrical.Machines.Sensors.VoltageQuasiRMSSensor V_out;
+  Modelica.SIunits.Torque P_out_w = universalPowerSensor.P / speedSensor.w;
+  Frequenzumformer.Regler.Spannungsregler spannungsregler(Ts = 0.00078125, UgenCtrlD_D = 256, UgenCtrlD_G = 27648, UgenCtrlD_LL = -32768, UgenCtrlD_T = 2048, UgenCtrlD_UL = 32767, UgenCtrlI_D = 4096, UgenCtrlI_G = 304, UgenCtrlI_LL = 0, UgenCtrlI_UL = 32767, UgenCtrlLL = 0, UgenCtrlPP_D = 256, UgenCtrlPP_G = 2048, UgenCtrlPP_LL = 6144, UgenCtrlPP_UL = 8192, UgenCtrlP_D = 256, UgenCtrlP_LL = -32768, UgenCtrlP_UL = 32767, UgenCtrlUL = 14336);
+  Modelica.Mechanics.Rotational.Components.Inertia fan(J = simData.JRotor, a(fixed = false), phi(displayUnit = "rad"), w(fixed = true, start = 314));
+  Modelica.Electrical.MultiPhase.Basic.Star star;
+  Modelica.Electrical.MultiPhase.Basic.VariableResistor resistor;
+  Modelica.Electrical.MultiPhase.Basic.VariableInductor inductor;
+  Modelica.Blocks.Sources.CombiTimeTable loadTimeTable(extrapolation = Modelica.Blocks.Types.Extrapolation.HoldLastPoint, fileName = "V:/prak/J.Pusicha/02_BA/03_Simulation/Laststufen_timetable.txt", smoothness = Modelica.Blocks.Types.Smoothness.ConstantSegments, table = [0, 0.705328, 0.00021048; 6.2, 0.352664, 0.00010524], tableName = "laststufen", tableOnFile = false);
+  Modelica.Blocks.Routing.Replicator replicator(nout = 3)
+  Modelica.Blocks.Routing.Replicator replicator1(nout = 3);
+  Frequenzumformer.Maschinen.SM_Erreger sM_Erreger;
+  Modelica.Blocks.Math.Add add;
+  Modelica.Blocks.Sources.Step step(height = 10, startTime = 2.2);  
+initial equation
+  aimc.Lssigma = aimcData.Lssigma;
+  smee.Lssigma = smeeData.Lssigma;
+equation
+  ...
+end Umformer;
+
+\end{lstlisting}
+
+\section{Python-Code}
+\label{sec:PythonCode}
+
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{preprocessData.py}, label=lst:PreprocessData]
+...
+def zero_crossing(ndarray):
+    return np.where(np.diff(np.sign(ndarray)))[0]
+
+def freq_zero_crossing(ndarray, deltaT=1/(60e3)):
+    """Gives back numpy array with current frequencys of sampled sinusoidal data by counting zero crossings.
+    
+    Args:
+        series (series): A pandas Series containing the measured data,
+        deltaT (float): Sample Time (The time between to data-points) in seconds. Default is 1/(60e3) resp. 60kHz sample freq,
+    """
+    data = ndarray
+    # indices before crossing
+    crossings = zero_crossing(data)
+    # Select every 2nd Crossing beginning with the first to detect a whole period (2 zero crossings):
+    crossings = crossings[0::2]
+    
+    freq = np.zeros(data.size)
+    # Iterate only to pre last index, because index_end will use last crossing
+    for i in range(crossings.size - 1):
+        pre_cross_start = crossings[i]
+        past_cross_start = crossings[i] + 1
+        pre_cross_end = crossings[i+1]
+        past_cross_end = crossings[i+1] + 1
+        # Interpolate start and end Index
+        index_start = pre_cross_start + (data[pre_cross_start] / (data[pre_cross_start]-data[past_cross_start]))
+        index_end = pre_cross_end + (data[pre_cross_end] / (data[pre_cross_end]-data[past_cross_end]))
+        period = (index_end - index_start) * deltaT 
+        freq[past_cross_start:past_cross_end] = 1 / period 
+        # Remember: Slicing end is **not** accessed in numpy. 
+        # |--> the last value is written at 'pre_cross_end' and the next period will start immediately at 'past_cross_end'
+    return freq
+
+def period_indexes(array):
+    """
+    """
+    return zero_crossing(array)[0::2]
+
+def periodic_mean(array, periods):
+    """Calcs mean of every periodic of input sinusoidal signal. Crossings arg have to be indexes where signal periods begin/end. Head and tail (before/after first/last period) will be overwritten with value of nearest period.
+    """
+    for i in range(periods.size - 1):
+        past_cross_start = periods[i] + 1
+        past_cross_end = periods[i+1] + 1 # past_cross_end belongs already to next period
+        array[past_cross_start:past_cross_end] = np.mean(array[past_cross_start:past_cross_end])
+    # overwrite head and tail with of rms of first(last) full period
+    array[0:periods[0]] = array[periods[0]+1]
+    array[periods[-1]+1:] = array[periods[-1]]
+    return array
+
+def dynamic_rms(array):
+    """Calculates the rms value of a sinusoidal function with period detection by zero crossing **in place**, that means,
+    the source array will be modified. Returns Reference to modified array.
+    """
+    index =  period_indexes(array)
+    return np.sqrt(periodic_mean(np.square(array), index))
+
+def active_power(u, i):
+    """Calcs effective power of input voltage and current
+    """
+    return periodic_mean(u * i, period_indexes(u))
+    
+def smooth(series, n):
+    """Smooths data in input series with rolling mean over n values
+    """
+    return series.rolling(n).mean()
+
+def samples_per_period(delta, nom_freq):
+    """Gives back Number of Samples per Period when sampling a nom_freq signal with delta 
+    """
+    return round(1 / (nom_freq*delta))
+...
+\end{lstlisting}
+
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{modelicaSweep.py}, label=lst:ModelicaSweep]
+def run_model(simulation_parameters, simulation_id):
+    current_working_directory = (
+        r"\model_lastsprung"
+    )
+    model_file = current_working_directory + r"\Umformer.exe"
+    result_file = rf" -r=\results_lastsprung\{simulation_id}.mat"
+    simulation_parameters = " -override " + __join_str__(
+        *[key + "=" + str(value) for key, value in simulation_parameters.items()], sep=""
+    )
+    subprocess.check_call(
+        "start /wait /min " + model_file + simulation_parameters + result_file,
+        shell=True,
+        cwd=current_working_directory,
+    )
+
+def plot_simulation(file_name):
+    simulation = DyMat.DyMatFile("results_lastsprung/" + file_name + ".mat")
+    simulation_time = simulation.abscissa('V_out.V')[0]
+    voltage = simulation.data('V_out.V')
+    JUMP_TIME = 2.2
+    JUMP_INDEX = np.where(simulation_time == JUMP_TIME)[0][0]
+    simulation_time, voltage = np.vstack((simulation_time-JUMP_TIME, voltage))[:,JUMP_INDEX:] # Combine both arrays to slice them with only one command
+    return simulation_time, voltage
+
+def evaluate_results(file_name, model, p0, progress_bar=None, bounds=(-np.inf, np.inf)):
+    """ fits voltage transient of input file to model with given initial guess p0
+    :Returns:
+        - fitted parameters
+        - r squared
+        - steady state voltage before jump
+    """   
+    file = 'results_lastsprung/' + file_name + '.mat'
+    simulation_results = DyMat.DyMatFile(file)
+    voltage = simulation_results.data("V_out.V")
+    time = simulation_results.abscissa("V_out.V")[0]
+    JUMP_TIME = 2.2
+    JUMP_INDEX = np.where(time == JUMP_TIME)[0][0]
+    PRE_JUMP_INDEX = np.where(time >= JUMP_TIME-0.2)[0][0]
+    voltage_pre_jump = np.mean(voltage[PRE_JUMP_INDEX:JUMP_INDEX])
+    voltage = voltage[JUMP_INDEX:]
+    time = time[JUMP_INDEX:] - JUMP_TIME
+    
+    time_interpol = np.linspace(0.0, 0.8, num=1000)
+    voltage_interpol = (interpolate.interp1d(time, voltage, bounds_error=False, fill_value=(voltage[0],voltage[-1])))(time_interpol)
+    
+    parameters_optimal, r_squared = fit_least_squares(model, time_interpol, voltage_interpol, list_of_p0s=p0, bounds=bounds)
+    
+    # update progress bar if given
+    if progress_bar is not None:
+        progress_bar.update(1)
+        
+    return [*parameters_optimal, r_squared, voltage_pre_jump]
+
+def fit_least_squares(model, time, ysim, list_of_p0s, bounds=(-np.inf, np.inf)):
+    """ Fit model function to simulation data
+    :Arguments: 
+        - model: function(t, p) which models the simulation data
+        - time: array with time points (independent variable)
+        - ysim: simulation values
+    :Returns:
+        - optimized parameters
+        - r_squared for optimized parameters
+    """
+    max_nfev = 5000
+    for p0 in list_of_p0s:
+        interpol = least_squares(_residual_, p0, verbose=0, kwargs={'f':model, 'y':ysim, 't':time}, max_nfev=max_nfev, bounds=bounds)
+        if interpol.status == 0:
+            continue
+        else:
+            break
+    parameters_optimal = interpol.x
+    yfit = model(time, *parameters_optimal)
+    return parameters_optimal, r_squared(ysim, yfit)
+    
+def _residual_(parameters, f, t, y):
+    return f(t, *parameters) - y
+    
+def r_squared(ydata, yfit):
+    """ Calc R^2 of a regression by the measured ydata and the result of the curve fitting yfit
+    """
+    sum_square_residual = np.sum((ydata - yfit)**2)
+    sum_square_total = np.sum((ydata - np.mean(ydata))**2)
+    return 1 - sum_square_residual/sum_square_total
+
+def __join_str__(*args, sep=" "):
+    return sep.join(str(arg) for arg in args)
+
+def file_name_to_list(file_name):
+    """ <machine>_<parameter>_dp=<design point> |--> [machine, parameter, design point]
+    """
+    *machine, parameter, dp = file_name.split('_')
+    machine = '_'.join(machine) # allows machine names to contain '_'
+    *_, dp = dp.split('=')
+    return (machine, parameter, int(dp))
+\end{lstlisting}
+
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{trendanalyse.py}, label=lst:Trendanalyse]
+...
+def trend(x, y, y0):
+    """ Calc the average derivative of y (which is a dependent variable on x) related to y0
+    """
+    if not np.size(x) == np.size(y):
+        raise ValueError("x and y array don't match size")
+    return (y[-1] - y[0]) /y0 # / (x[-1] - x[0])
+
+def trend_of_sequences(x, y, x0, sequences=[]):
+    """ Split (x,y) in sequences and calc trend of every sequence. Sequences are given as list of tuples with x values. In Case a tuple is partly not in x the transient will be interpolated. 
+    """
+    if sequences:
+        min_seq = min(sequences)
+        max_seq = max(sequences)
+        # make sure the tuples are overlapping with x:
+        try:
+            index_min_seq = int(np.argwhere(x < min_seq[1])[0])
+        except IndexError as e:
+            raise IndexError('tuple {min_seq} might be lower than x'.format(min_seq=repr(min_seq))) from e
+        try:
+            index_max_seq = int(np.argwhere(x > max_seq[0])[0])
+        except IndexError as e:
+            raise IndexError('tuple {max_seq} might be greater than x'.format(max_seq=repr(max_seq))) from e
+
+    else:
+        sequences = [(x[0], x[-1])]
+        min_sequence = None
+        max_sequence = None
+    y0 = y[int(np.argwhere(x == x0)[0])]
+    results = []
+    for sequence in sequences:
+        # highest index up to which x is less/equal than lower bound else lowest index of x:
+        index_leq_lo_bound = np.argwhere(x <= sequence[0]) # index lower/equal lower bound
+        index_min = int(index_leq_lo_bound[-1]) if index_leq_lo_bound.size > 0 else 0
+        # lowest index from which x is greater/equal upper bound else highest index of x:
+        index_geq_up_bound = np.argwhere(x >= sequence[1]) # index greater/equal upper bound
+        index_max = int(index_geq_up_bound[0])+1 if index_geq_up_bound.size > 0 else None # NOTE: ``int(...)+1`` scince numpy _ex_cludes last element when slicing 
+        
+        interpol = interpolate.interp1d(x[index_min:index_max], y[index_min:index_max], fill_value='extrapolate')
+        x_interpol = np.linspace(sequence[0],sequence[1],2)
+        y_interpol = interpol(x_interpol)
+        results.append(trend(x_interpol, y_interpol, y0))
+    return results
+\end{lstlisting}
+
+\begin{lstlisting}[language=python, caption=Befehle zum Ausführen von \texttt{trendanalyse.py}, label=lst:TrendanalyseCommand]
+import trendanalyse
+parameter_trends = {}
+for parameter, group in df_fitted.groupby(['machine', 'parameter']):
+    parameter_trends[parameter] = {column : np.array([-1, -1, 1, 1])*np.array(trendanalyse.trend_of_sequences(group.loc[parameter, 'change'].to_numpy(), group.loc[:,column].to_numpy(), x0=1, sequences=[(.25,1), (.5,1), (1,2), (1,4)])) for column in group.loc[:,'v_offset':'ISE']}
+
+df_trends = pd.DataFrame.from_dict(parameter_trends, orient='index')
+df_trends = df_trends.explode(list(df_trends))
+df_trends.rename_axis(['machine', 'parameter'], inplace=True)
+df_trends.insert(0, 'factor', [.25, .5, 2, 4]*(len(df_trends.index)//4))
+df_trends.set_index(['factor'], append=True, inplace=True)
+\end{lstlisting}

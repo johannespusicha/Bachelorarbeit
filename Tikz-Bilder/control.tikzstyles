@@ -1,0 +1,45 @@
+\tikzstyle{block}=[minimum width=10mm,minimum height=10mm,draw,thick]
+\tikzset{
+    block axes/.style={path picture={
+        \draw[thick] ++(-0.4,-0.4) +(0,.8)|- +(.8,0);}}
+}
+\tikzstyle{pt1}=[block, path picture={
+    % Axes
+    \node[block axes]{};
+    % Plot function
+    \draw[thick] plot[domain=-0.5:0.45,
+    samples = 50,
+    smooth]({\x}, {-0.5+0.9*(1-exp(-(\x+0.5)*6))});
+}]
+\tikzstyle{limiter}=[block, path picture={
+    %Axes
+    \node[block axes]{};
+    % Function
+    \draw[thick] ++(-0.4,-0.3) -- ++(0.25,0) -- ++(0.3,0.6) -- ++(0.25,0);
+}]
+\tikzstyle{proportional}=[block, path picture={
+    %Axes
+    \node[block axes]{};
+    % Function
+    \draw[thick] ++(-0.4,0.1) -- ++(0.8,0);
+}]
+\tikzstyle{integral}=[block, path picture={
+    %Axes
+    \node[block axes]{};
+    % Function
+    \draw[thick] ++(-0.4,-0.4) -- ++(0.8,0.8);
+}]
+\tikzstyle{differential}=[block, path picture={
+    %Axes
+    \node[block axes]{};
+}]
+\tikzstyle{pulse}=[block, path picture={
+    \node[block axes]{};
+    % Function
+    \draw[thick] ++(-0.4,-0.3) -- ++(.8/3,0) -- ++(0,.6) -- ++(3*.8/6,0) -- ++(0,-0.6) -- ++(.8/6,0);
+}]
+\tikzstyle{sum}=[circle,thick,draw,inner sep=0pt,minimum size=3mm]
+\tikzstyle{splitter}=[circle,fill,draw,minimum size=4pt,inner sep=0pt]
+\tikzstyle{knot}=[fill=black, draw=black, shape=circle, minimum width=4pt, inner sep=0pt]
+\tikzstyle{input}=[circle,thick,draw,inner sep=0pt,minimum size=4pt]
+\tikzstyle{signal} = [->, thick, >=triangle 45]

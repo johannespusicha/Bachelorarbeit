@@ -1,0 +1,67 @@
+%%% Some useful variables . . .
+
+
+\def \institute{Institut für elektrische Informationstechnik}
+\def \firstcensor{Prof. Dr.-Ing. Christian Bohn}
+\def \secondcensor{Dr.-Ing. Dirk Turschner}
+\def \thirdcensor{}
+\def \supervisor{Dr.-Ing. Peter Methfessel}
+
+%% --------------------titlepage-----------------------
+%% You should configure the appearance of the titlepage with the options given above
+\begin{titlepage}
+\makeatletter
+\def \censor@label{Gutachter}
+\def \firstcensor@label{Erstgutachter}
+\def \secondcensor@label{Zweitgutachter}
+\def \thirdcensor@label{Drittgutachter}
+\def \supervisor@label{Betreuer}
+
+\ifx\title\@empty
+Kein Titel angegeben
+\else
+    \thispagestyle{TUCtitlepagestyle}%
+    \vspace*{-\logovskip}%
+    \hspace*{-\logohskip}%
+    \includegraphics[width=\logowidth]{\@logofile}%
+    
+    \vspace{\titleskip}%
+     \begin{center}%
+        \if\semester\@empty%
+            \large\thesistype\\[0.8ex]%
+        \else 
+             \large\thesistype\\%
+            \large\semester\\[0.8ex]%
+        \fi%
+        \Large\textbf{\textsf\author}\\[5ex]%
+        \huge\textbf{\textsf{\title%
+            \ifthenelse{\equal{\subtitle}{}}{}{\\[1.2ex]\Large\subtitle}}}%
+    \end{center}%
+    \vfill%
+    \ifx\institute\@empty%
+    \else%
+        \iflanguage{english}{%
+            \thesistype{} at \institute\vspace{4ex}}%
+        {\thesistype{} vorgelegt beim \institute\vspace{4ex}}%
+    \fi%
+    \ifx\secondcensor\@empty%
+        \censor@label: \firstcensor%
+    \else \\
+        \firstcensor@label: \firstcensor\\%
+        \secondcensor@label: \secondcensor
+    \fi%
+    \ifx\thirdcensor\@empty%
+    \else \\
+        \thirdcensor@label: \thirdcensor
+    \fi%
+    \ifx\supervisor\empty%
+    \else \\
+        \supervisor@label: \supervisor
+    \fi%
+    \iflanguage{english}{%
+      \\[3ex]Date of Delivery: \deliverydate}%
+    { \\[3ex]Tag der Abgabe: \deliverydate}%
+\fi
+\makeatother
+
+\end{titlepage}

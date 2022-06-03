@@ -1,0 +1,38 @@
+\documentclass[tikz, border=1mm]{standalone}
+\usepackage{tikzit}
+\input{sample.tikzstyles}
+\begin{document}
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=block, label={below:SyErreger}] (8) at (-0.95, 0) {};
+		\node [style=block, label={below:SyGenerator}] (10) at (2, 0) {};
+		\node [style=input, label={above:$U_{A,soll}$}] (14) at (-8, 0) {};
+		\node [style=sum] (15) at (4, 0) {\Large $+$};
+		\node [style=input, label={above:Störung}] (16) at (4, 2) {};
+		\node [style=block, label={below:Messwerterfassung}] (17) at (-1, -2) {};
+		\node [style=sum] (19) at (-6, 0) {\Large $+$};
+		\node [style=block, label={below:Spannungsregler}] (20) at (-4, 0) {};
+		\node [style=knot] (21) at (6, 0) {};
+		\node [style=none] (22) at (-6, -2) {};
+		\node [style=none] (23) at (6, -2) {};
+		\node [style=none, label={above:$U_{A,ist}$}] (24) at (8, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=signal] (8) to (10);
+		\draw [style=signal] (10) to (15);
+		\draw [style=signal] (16) to (15);
+		\draw [style=signal] (15) to (21);
+		\draw [style=signal] (21)
+			 to (23.center)
+			 to (17);
+		\draw [style=signal] (17)
+			 to (22.center)
+			 to (19);
+		\draw [style=signal] (19) to (20);
+		\draw [style=signal] (20) to (8);
+		\draw [style=signal] (14) to (19);
+		\draw [style=signal] (21) to (24.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
+
+\end{document}

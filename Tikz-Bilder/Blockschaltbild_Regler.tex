@@ -1,0 +1,46 @@
+\input{Tikz-Bilder/control.tikzstyles}
+\begin{tikzpicture}[node distance=1.5cm]
+		% I-Regulator
+		\node [integral, label={below:I-Regler}] (I-Reg) at (0,0) {};
+		\node [limiter] (I-Lim) [right of=I-Reg] {};
+		\node [sum] (sum) [right of=I-Lim] {};
+		\node [limiter] (All-Lim) [right of=sum] {};
+		\node [pulse, label={[align=center] below:Pulsweiten\\Modulator}] (PulseModulator) [right of=All-Lim] {};
+		% D-Regulator
+		\node [differential, label={below:D-Regler}] (D-Reg) [below of=I-Reg] {};
+		\node [limiter] (D-Lim) [right of=D-Reg] {};
+		% P-Regulator
+		\node [proportional, label={below:P-Regler}] (P-Reg) [above of=I-Reg] {};
+		\node [limiter] (P-Lim) [right of=P-Reg] {};
+		% PP-Regulator
+		\node [proportional, label={above:Gain-Regler}] (PP-Reg) [above of=P-Reg] {};
+		\node [limiter] (PP-Lim) [right of=PP-Reg] {};
+        \node (PP_h) at ($ (sum|-PP-Lim) + (0,-.6) $) {};
+        % Input and Knots
+		\node [splitter] (knot1) [left of=I-Reg] {};
+		\node [splitter] (knot2) [left of=P-Reg] {};
+		\node [input] (input) [left of=knot1] {};
+        \node (output) [node distance=1.5cm, right of=PulseModulator]{};
+        
+        %% Edges
+        \draw [signal] (input) -- (knot1) -- (I-Reg);
+        % I-Regulator
+        \draw [signal] (I-Reg) -- (I-Lim);
+        \draw [signal] (I-Lim) -- (sum) node [xshift=-0.6cm, above] {\footnotesize$+$};
+        % D-Regulator
+		\draw [signal] (knot1) |- (D-Reg);
+		\draw [signal] (D-Reg) -- (D-Lim);
+		\draw [signal] (D-Lim) -| (sum) node [yshift=-0.6cm, left] {\footnotesize$+$};
+		% P-Regulator
+		\draw [signal] (knot1) |- (P-Reg);
+		\draw [signal] (P-Reg) -- (P-Lim);
+		\draw [signal] (P-Lim) -| (sum) node [yshift=0.6cm, right] {\footnotesize$+$};
+		% PP-Regulator
+		\draw [signal] (knot1) |- (PP-Reg);
+		\draw [signal] (PP-Reg) -- (PP-Lim);
+		\draw [signal] (PP-Lim) -| (PP_h.center) -| (P-Reg);
+		% Output
+		\draw [signal] (sum) -- (All-Lim);
+		\draw [signal] (All-Lim) -- (PulseModulator);
+		\draw [signal] (PulseModulator) -- (output);
+\end{tikzpicture}

@@ -1,0 +1,29 @@
+\begin{tikzpicture}[]
+\tikzmath{
+    \p = 1;
+    \ASMms = 3;
+    \Us = 100;
+    \ASMsigma = 0.067;
+    \Xs = 3;
+    \Xr = \Xs;
+    \Rr = 0.008*\Xr;
+    \Rs = 0.01*\Xs;
+    \ASMfs = 50;
+    \nsyn = 60/2/pi*\ASMfs/\p / (600/12);
+    function schlupf(\n) {
+        return 1 - \n*\p/\ASMfs*2*pi/60;  
+    };
+    function drehmoment(\n) {
+        return \ASMms * \p/(2*pi*\ASMfs) * \Us^2 * schlupf(\n)*(1-\ASMsigma)*\Xs*\Xr*\Rr / ((\Rs*\Rr - schlupf(\n)*\ASMsigma*\Xs*\Xr)^2 + (schlupf(\n)*\Rs*\Xr + \Xs*\Rr)^2);
+    };
+}
+
+    \draw[->, thick, >=triangle 45] (-.5, 0) -- (12, 0) node[right] {$n,\, \omega$};
+    \draw[->, thick, >=triangle 45] (0, -3.2) -- (0, 3.2) node[above] {$M_{\mathrm{i}}$};
+    
+    \node[below, yshift=-6pt] (nsyn) at (\nsyn, 0) {$n_{\mathrm{syn}}$};
+    \draw[thick] (nsyn) -- (\nsyn, 0);
+    \draw[|->, thick, >=triangle 45] (nsyn) ++(0,-.5) node[below, yshift=-6pt] {$0$} -- ++(-1,0) node[left] {$s$}; 
+    
+    \draw[domain=-.5:12, smooth, variable=\n, very thick, samples=50] plot ({\n}, {drehmoment(\n*(600/12))/(250/3.2)});
+\end{tikzpicture}

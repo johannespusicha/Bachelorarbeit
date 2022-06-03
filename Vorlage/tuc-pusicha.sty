@@ -1,0 +1,228 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tuc-pusicha}[2021/11/29 Johannes Pusicha's TUC-Report Package]
+
+%%% ------------------------------------------------------- &Variables ---
+%% We need some variables, to store and indicate which options (see
+%% later) are choosen ...
+\newif\if@draft                 % for Option draft
+\newif\if@final                 % Oposite of draft
+\newif\if@afourpaper            % papersize DIN A4
+\newif\if@afivepaper            % papersize DIN A5
+\newif\if@letter                % american letter paper size
+\newif\if@watermark             % Using a watermark to clearly
+                                % indicate draft status of work in
+                                % progress.
+\newif\if@beamer                % used for presentations
+\newif\if@tucfont               % use the corporate design font
+\newif\if@rgb                   % use colored items, logos, ...
+\newif\if@cmyk                  % also color, but using another color
+                                % scheme, suitable for printing shops
+                                % ...
+\newif\if@black                 % don't use colors at all.
+\newif\if@english\@englishfalse % default for most texts
+
+
+\RequirePackage{ifthen}
+\RequirePackage{tuc-colors}
+\PassOptionsToPackage{cmyk}{tuc-colors}
+\RequirePackage{scrlayer}
+\RequirePackage[headsepline]{scrlayer-scrpage}
+% header & footer
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\automark[section]{chapter}
+\ohead{\pagemark}
+\ihead{\headmark}
+\ofoot[\pagemark]{}
+
+\RequirePackage{microtype}
+\RequirePackage{setspace}
+\RequirePackage[main=ngerman,english]{babel}% new german orthography
+\RequirePackage[utf8]{inputenc}      % Text is inserted in UTF-8
+\RequirePackage[T1]{fontenc}         % use modern Font encoding
+\RequirePackage{graphicx}            % insert graphics files and such
+\RequirePackage{float}               % force figure placement with H
+\RequirePackage{pdfpages}            % insert pdfs with multiple pages
+\RequirePackage{pdflscape}            % Use landscape-format for some pages
+\RequirePackage[labelfont=bf]{caption}
+\RequirePackage{subcaption}
+\RequirePackage{booktabs}            % for better lines in tables
+\RequirePackage{array}               % for better tables
+\RequirePackage{multirow}            % 
+\RequirePackage{longtable}           % for tables, that span across multiple pages
+\RequirePackage{amsmath}             % better math environments
+\RequirePackage{mathtools}
+\RequirePackage{units}               % for nice printing of units like N
+\RequirePackage{siunitx}             % or km/h
+\RequirePackage{xfrac}               % for nice printing of fractions like 1/2
+\RequirePackage{textcomp}            % for \textdegree to obtain °
+\RequirePackage{listings}
+
+%%  This command takes 2 (up to 3) arguments:
+%%  1) the unknown word itself, which is to be put literally into the
+%%     list of nomenclatures
+%%  2) the explaination, which will be only visible in the list of
+%%     nomenclatures
+%%  3) Eventually the unknown word in a different type, to be output
+%%     in the text instead of #1
+\newcommand{\fremdwort}[3][\@empty]{%
+  \nomenclature{#2}{#3}%
+    % If #1 is not set, we don't need it.
+  \ifx\@empty#1\emph{#2}\else\emph{#1}\fi}%
+
+\RequirePackage[]{biblatex} % bibliography tool, style=alphabetic
+\newcommand*{\source}[1]{\par\raggedleft\footnotesize Quelle:~#1}
+\RequirePackage{csquotes}
+\RequirePackage[right]{eurosym} % printing the Euro sign
+%% Warum auch immer!  Das Paket hyperref sollte immer als letztes Paket geladen werden.
+\RequirePackage[pdfpagelabels=true]{hyperref}
+\hypersetup{%
+  unicode=false,%
+  pdftoolbar=true,%
+  pdfmenubar=true,%
+  pdffitwindow=false,%
+  pdfstartview={FitV},%
+  pdfpagelayout={TwoColumnLeft},%
+  colorlinks=true,%
+  linkcolor=TUCgreen,%
+  citecolor=TUCred,%
+  filecolor=TUCred,%
+  urlcolor=TUCgreen,
+  pdfnewwindow=true}
+
+%% Clevereff muss nach hyperref geladen werden!
+\RequirePackage{cleveref}
+
+%% ------------Layout-------------------------------------------------
+%\setstretch{1.08}
+
+
+%% Thesistype: Bachelor or Masterthesis
+\def\@thesistype{Bachelor-Thesis}%
+%% 
+
+
+
+%%--------------TUC corporate design settings--------------------------
+\newlength{\greyboxwidth}\setlength{\greyboxwidth}{12mm}
+\newlength{\titleskip}\setlength{\titleskip}{28mm}
+
+%% ................................................... &Titlepage-Layer ... 
+%% The titlepages (either of a thesis or a letter) will be printed by
+%% a KOMA script layer.  
+\DeclareNewLayer[%
+  align=tr,%
+  background,%
+  rightmargin,%
+  contents={\hfill\textcolor{TUCgrey2}{\rule{\greyboxwidth}{\paperheight}}}]%
+{TUCtitlepagelayer}%
+\DeclareNewPageStyleByLayers{TUCtitlepagestyle}{TUCtitlepagelayer}%
+
+%% .................................................. &Logo-Positioning ...
+%% 
+%% In order, to position the logo of Clausthal University of
+%% Technology, we do need some variables.  \logovskip and \logohskip
+%% represent the amount to offset the logo from the upper left corner
+%% of the text area.
+%% 
+%% the new defined length \@logovcorr and \@logohcorr are used, to
+%% offset the logo, in case the printer is not able to print that
+%% close to the paper edges (which is almost allways the case).
+\newlength{\@logovcorr}\setlength{\@logovcorr}{0pt}%
+\newlength{\@logohcorr}\setlength{\@logohcorr}{0pt}%
+%% 
+%% The commands \logovcorr and \logohcorr are used, to set the the
+%% offset by the user.  This command will only take effect, if the
+%% option preprint was not set!
+\newcommand{\logovcorr}[1]{%
+  \if@preprint%
+     \typeout{\MessageBreak Correction of the Logo alignment is not possible on preprinted papers! \MessageBreak}%
+  \else%
+     \setlength{\@logovcorr}{#1}%
+    \fi}%
+\newcommand{\logohcorr}[1]{%
+  \if@preprint%
+     \typeout{\MessageBreak Correction of the Logo alignment is not possible on preprinted papers! \MessageBreak}%
+  \else%
+     \setlength{\@logohcorr}{#1}%
+  \fi}%
+%% 
+%% \logovskip and \logohskip represent the amount of white space to
+%% place the Logo accordingly
+\newlength{\logovskip}\newlength{\logohskip}%
+\setlength{\logovskip}{1in}%
+\setlength{\logohskip}{1in}%
+%\addtolength{\logovskip}{1in}\addtolength{\logovskip}{\voffset}%
+%\addtolength{\logovskip}{\topmargin}
+%\addtolength{\logovskip}{\headheight}
+\addtolength{\logovskip}{\headsep}
+\addtolength{\logovskip}{\voffset}
+%\addtolength{\logovskip}{-\@logovcorr}%
+%\addtolength{\logohskip}{1in}
+\addtolength{\logohskip}{\hoffset}
+%\addtolength{\logohskip}{\oddsidemargin}%
+\addtolength{\logohskip}{-\@logohcorr}%
+%% 
+%% \logowidth declares the length of the Logo.  It depends on the
+%% papersize.  While defined for DIN A4 papersize, the length of 130
+%% mm will also be used on letter papersize.  On A5 paper, the length
+%% will be 92 mm.
+\newlength{\logowidth}%
+\setlength{\logowidth}{130mm}%
+\if@afivepaper%
+   \setlength{\logowidth}{92mm}%
+\fi%
+
+%% ........................................................ &Watermark ...
+%% Print an watermark to all pages, to indicate work in progress.
+%% This might sometimes be handy, but normaly it is very annoying, so
+%% it is turned of by default.  If turned on, it will only appear if
+%% draft mode is also turned on.  Final turnes off watermarking, of
+%% course.
+\DeclareOption{watermark}{%
+  \if@draft%
+  \@watermarktrue%
+    \if@english%
+      \PassOptionsToPackage{all,english,dvips}{draftcopy}%
+    \else%
+      \PassOptionsToPackage{all,german,dvips}{draftcopy}%
+    \fi%
+  \fi%
+}%
+%% .............................................................. &RGB ...
+%% Color, represented in RGB color modell is usefull for presentation
+%% and while being viewed on monitors.  Printed color should be CMYK
+%% color modell.
+\DeclareOption{rgb}{%
+  \@rgbtrue%
+  \@cmykfalse%
+  \@blackfalse%
+  \PassOptionsToPackage{rgb}{tuc-colors}
+}
+
+
+%% ............................................................. &CMYK ...
+%% This is the color modell used, when printing in 4 color printers
+%% and professional print shops.
+\DeclareOption{cmyk}{%
+  \@rgbfalse%
+  \@cmyktrue%
+  \@blackfalse%
+  \PassOptionsToPackage{cmyk}{tuc-colors}%
+}%
+
+
+%% ............................................................ &Black ...
+%% No color at all.
+\DeclareOption{black}{%
+  \@rgbfalse%
+  \@cmykfalse%
+  \@blacktrue%
+  \PassOptionsToPackage{black}{tuc-colors}%
+}%
+%% Set the options.
+%\ExecuteOptions{cmyk}%
+\ProcessOptions\relax%
+
+
+

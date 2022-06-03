@@ -1,0 +1,42 @@
+\begin{tikzpicture}[
+    wirkung/.style={align=center, minimum height=10mm}
+    ]
+    % Asynchronmaschine
+    \node (Klemme_ASM) [wirkung] {Klemmenspannung};
+    \node (Statorstrom_ASM) [wirkung, below=of Klemme_ASM] {Statorstrom};
+    \node (magSpannung_ASM) [wirkung, below=of Statorstrom_ASM] {magnetische Spannung\\(Rotorsystem)};
+    \node (magFluss_ASM) [wirkung, left=of magSpannung_ASM] {magnetischer Fluss};
+    \node (Rotorstrom_ASM) [wirkung, below=of magSpannung_ASM] {Rotorstrom};
+    \node (Moment_ASM) [wirkung, right=of Rotorstrom_ASM] {Antriebsmoment};
+    
+    \path[->]
+        (Klemme_ASM) edge (Statorstrom_ASM)
+        (Statorstrom_ASM) edge (magSpannung_ASM)
+        (magSpannung_ASM) edge (Rotorstrom_ASM)
+        (Rotorstrom_ASM) edge (Moment_ASM)
+        (Rotorstrom_ASM) edge [bend left] (magFluss_ASM)
+        (magFluss_ASM) edge [bend left] node[below, pos=.9]{$-$} (Klemme_ASM);
+    
+    % Mechanik
+    \node (Momentensumme) [wirkung, right=of Moment_ASM] {Momentensumme};
+    \node (Winkelbeschleunigung) [wirkung, below=of Momentensumme] {Winkelbeschleunigung};
+    \node (Winkelgeschwindigkeit) [wirkung, below=of Winkelbeschleunigung] {Winkelgeschwindigkeit};
+    \node (Traegheitsmoment) [wirkung, left=of Winkelbeschleunigung] {Trägheitsmoment};
+    \node (Lagerreibung) [wirkung, left=of Winkelgeschwindigkeit] {Lagerreibung};
+    
+    \path[->] 
+        (Moment_ASM) edge (Momentensumme)
+        (Momentensumme) edge (Winkelbeschleunigung)
+        (Winkelbeschleunigung) edge (Winkelgeschwindigkeit)
+        (Winkelgeschwindigkeit) edge (Lagerreibung)
+        (Lagerreibung) edge[in=190, out=155, distance=4.5cm] (Momentensumme)
+        (Traegheitsmoment) edge[->, in=190, out=45] node[below, pos=.9] {$-$} (Momentensumme);
+    
+    
+    % Synchron-Generator
+    \node (Bremsmoment_SyGen) [wirkung, right=of Momentensumme] {Bremsmoment\\(Generator)};
+    % Synchron-Erregermaschine
+    \node (Bremsmoment_SyErr) [wirkung, above=of Momentensumme] {Bremsmoment\\(Erreger)};
+    
+    
+\end{tikzpicture}

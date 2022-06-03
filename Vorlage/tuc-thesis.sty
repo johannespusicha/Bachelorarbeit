@@ -1,0 +1,312 @@
+%%%
+%%% @(#) tuc-thesis.sty -- Style to create bachelor or master thesis at Clausthal University
+%%%
+%%% Time-stamp:  <2016-11-15 09:56:57 tmjb>
+%%%
+%%%
+%%% @(#) $Id: $
+%%% @(#) $Keywords: TU Clausthal, TUC, LaTeX, Bachelor thesis, Master thesis $
+%%%
+%%%
+%%%          File: /usr/local/texmf/tex/latex/TUC/tuc-thesis.sty
+%%%       Project: TUC-THESIS
+%%%       Version: $Revision: $
+%%%   Description: Styledatei zum Schreiben von Bachelor- und Masterarbeiten.
+%%%        Author: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%    Maintainer: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%% Creation-Date: Wed 11  May 2016 -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%     Copyright: (c) 2016 Jan Braun
+%%%
+
+%%% ------------------------------------------------------ &Change Log ---
+%%%
+%%% $Log:  $
+
+
+%%% ============================================================ &Code ===
+
+%%% ---------------------------------------------------- &Package Name ---
+% \NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{tuc-thesis}[2016/5/11 v0.10  TU Clausthal]
+\RequirePackage{ifthen}
+
+%% ........................................................... &Checks ...
+%\if@draft{%
+%  \typeout{^^J tuc-thesis.cls: Option 1) draft selected ^^J }%
+%\fi%
+\if@final{%
+  \typeout{^^J tuc-thesis.cls: Option 2) final selected ^^J }%
+\fi%
+\if@tucfont{%
+  \typeout{^^J tuc-thesis.cls: Option 3) tucfont selected ^^J }%
+\fi%
+\if@afourpaper{%
+  \typeout{^^J tuc-thesis.cls: Option 4) afourpaper selected ^^J }%
+\fi%
+\if@afivepaper{%
+  \typeout{^^J tuc-thesis.cls: Option 5) afivepaper selected ^^J }%
+\fi%
+\if@letter{%
+  \typeout{^^J tuc-thesis.cls: Option 6) letter selected ^^J }%
+\fi%
+\if@english{%
+  \typeout{^^J tuc-thesis.cls: Option 7) english selected ^^J }%
+\fi%
+\if@tuctitle{%
+  \typeout{^^J tuc-thesis.cls: Option 8) tuctitle selected ^^J }%
+\fi%
+\if@preprint{%
+  \typeout{^^J tuc-thesis.cls: Option 9) preprint selected ^^J }%
+\fi%
+\if@noindent{%
+  \typeout{^^J tuc-thesis.cls: Option 10) noindent selected ^^J }%
+\fi%
+
+%%% ------------------------------------------------------- &Variables ---
+%% We need some variables, to store and indicate which options (see
+%% later) are choosen ...
+\newif\if@draft                 % for Option draft
+\newif\if@final                 % Oposite of draft
+\newif\if@afourpaper            % papersize DIN A4
+\newif\if@afivepaper            % papersize DIN A5
+\newif\if@letter                % american letter papersize
+\newif\if@english               % use english language and logos
+\newif\if@tuctitle              % use our own titlepage
+\newif\if@preprint              % use preprinted paper for titlepage
+\newif\if@nonpublic             % confidential work
+\newif\if@noindent              % use gaps instead of indentations
+
+
+%% 
+%% Next, we define a length, to position the title
+\newlength{\titleskip}%
+
+
+%%% --------------------------------------------------------- &Options ---
+%% Options are definid by the main package or for this special style
+%% file.  Just add them in square brackets like this:
+%% \usepackage[final,foo,bar]{tuc-thesis}
+%% I advise, to avoid using final and draft in package related
+%% options, as the are normally handed over from the main class
+%% package options.
+%%
+%% ............................................................ &draft ...
+%% Option draft is per default defined by the main class package,
+%% unless you specify final.  This style defines it for continuity
+%% reasons.  Draft and final are mutualy exclusive
+\DeclareOption{draft}{%
+  \@drafttrue%
+  \@finalfalse%
+  \PassOptionsToPackage{draft}{graphicx}%
+}%
+
+%% ............................................................ &Final ...
+%% Option final is set, when you intend to print the final copy of
+%% your work.
+\DeclareOption{final}{%
+  \@draftfalse%
+  \@finaltrue%
+  \PassOptionsToPackage{final}{graphicx}%
+}%
+
+%% .......................................................... &A4paper ...
+%% Option a4paper is set, to typeset on DIN A4 papersize.  It should
+%% be the Default size.
+\DeclareOption{a4paper}{%
+  \@afourpapertrue%
+  \@afivepaperfalse%
+  \@letterfalse%
+  \setlength{\logowidth}{130mm}%
+  \setlength{\greyboxwidth}{12mm}%
+  \setlength{\titleskip}{6cm}%
+}%
+
+%% .......................................................... &A5paper ...
+%% Option a5paper is set, to typeset on DIN A4 papersize.
+\DeclareOption{a5paper}{%
+  \@afourpaperfalse%
+  \@afivepapertrue%
+  \@letterfalse%
+  \setlength{\logowidth}{92mm}%
+  \setlength{\greyboxwidth}{12mm}%
+  \setlength{\titleskip}{2.8cm}%
+}%
+
+
+%% ...................................................... &letterpaper ...
+%% Option letterpaper is set, to typeset on american letter papersize.
+\DeclareOption{letterpaper}{%
+  \@afourpaperfalse%
+  \@afivepaperfalse%
+  \@lettertrue%
+  \setlength{\logowidth}{130mm}%
+  \setlength{\greyboxwidth}{8.5mm}%
+  \setlength{\titleskip}{6cm}%
+}%
+
+%% ........................................................... &german ...
+%% Option german is set, when your work is primarily in german language.
+\DeclareOption{german}{%
+  \@englishfalse%
+}%
+
+%% .......................................................... &english ...
+%% Option english is set, when your work is primarily in english language.
+\DeclareOption{english}{%
+  \@englishtrue%
+}%
+
+%% ........................................................ &tuc-title ...
+%% Option tuctitle is used, whenever you want our different titlepage
+%% style.
+\DeclareOption{tuctitle}{%
+  \@tuctitletrue%
+}%
+
+%% ......................................................... &preprint ...
+%% Option preprinted should be used, when you are able, to print your
+%% titlepage an a preprinted paper.  The preprinted paper will show
+%% the Logo and the greyish box at the right hand side.  Hence you
+%% should print those elements also!
+\DeclareOption{preprint}{%
+  \@preprinttrue%
+}%
+
+%% ........................................................ &nonpublic ...
+%% Option to forbid, to store the theses in the library
+\DeclareOption{nonpublic}{%
+  \@nonpublictrue%
+}%
+
+%% ......................................................... &Noindent ...
+%% Option noindent shall be used, when paragraphs shall be separated
+%% by gaps instead of indenting them.
+\DeclareOption{noindent}{%
+  \@noindenttrue%
+  \PassOptionsToPackage{noindent}{tuc-thesis}%
+}%
+
+%% ....................................................... &Undeclared ...
+%% This one is for any option, which was not declared before.
+\DeclareOption*{\OptionNotUsed}%
+%% Set the options.
+\ExecuteOptions{final}%
+\ProcessOptions\relax%
+
+
+
+%%% -------------------------------------------------------- &Messages ---
+%% Print out some warning messages, while compiling the text.
+\if@draft%
+  \typeout{^^J tuc-thesis.sty: WARNING! DRAFT-mode is in use!^^J }%
+\fi%
+\if@final%
+  \typeout{^^J tuc-thesis.sty: FINAL-mode is in use!^^J }%
+\fi%
+
+
+%%% -------------------------------------------------------- &Packages ---
+%%
+%% To get all definitions of this style to work, we need some more
+%% packages.  They are automatically loaded here.
+%%
+
+%% Pakete für den Tabellensatz
+\RequirePackage{array}          % for better table spacings etc.
+\RequirePackage{booktabs}       % for better tabel lines.
+
+%% Einbinden von Bildern und Benutzen von Farben
+\RequirePackage{graphicx}       % for inserting images
+
+%% weitere Pakete
+\RequirePackage[right]{eurosym} % printing the Euro sign
+\RequirePackage{textcomp}       % Using \textcentigrage (results in °)
+
+%% Warum auch immer!  Das Paket hyperref sollte immer als letztes Paket geladen werden.
+\RequirePackage[pdfpagelabels=true]{hyperref}
+
+
+%%% ------------------------------------------------------ &Definitions ---
+
+
+
+%%% ------------------------------------------------------- &Variables ---
+
+
+
+%%% --------------------------------------------------------- &Commands ---
+
+
+%% ......................................................... &Assertion ...
+%% assertion
+\newcommand{\TUCassertion}{%
+  \chapter{Eidesstattliche Erklärung}%
+%  \addcontentsline{toc}{chapter}{Eidesstattliche Erklärung}%
+  \thispagestyle{empty}%
+ % \vspace*{2cm}\par%
+  \noindent%
+  Hiermit versichere ich, dass ich die vorliegende \@thesistype%
+  % 
+  \begin{center}%
+    \textbf{\@tuctitle}%
+  \end{center}%
+  % 
+  selbstständig verfasst und keine anderen als die angegebenen Quellen
+  und Hilfsmittel benutzt habe und dass alle Stellen dieser Arbeit,
+  die wörtlich oder sinngemä{\ss} aus anderen Quellen übernommen wurden,
+  als solche kenntlich gemacht wurden und dass die Arbeit in gleicher
+  oder ähnlicher Form noch keiner anderen Prüfungsstelle vorgelegt
+  wurde.
+  
+  \if@nonpublic%
+    Des Weiteren erkläre ich, dass ich mit der öffentlichen
+    Bereitstellung meiner \@thesistype{} in der Instituts- und/oder
+    Universitätsbibliothek nicht einverstanden bin.\par%
+  \else%
+    Des Weiteren erkläre ich, dass ich mit der öffentlichen
+    Bereitstellung meiner \@thesistype{} in der Instituts- und/oder
+    Universitätsbibliothek einverstanden bin.\par%
+  \fi
+  \if@english%
+  \begin{center}
+    This following english translation is for information purposes only.\\
+    The original german text above is the legally binding version.
+  \end{center}
+  % 
+  \begin{quote}\itshape
+    I hereby ensure that I am the sole drafter of the work and did not
+    use any sources and aids other than those listed, and that all
+    portions of this work literally or analogously taken from other
+    sources were labelled as such, and that the work has not been
+    submitted in the same or similar form to any other evaluating
+    entity.
+
+    \if@nonpublic%
+       Furthermore, I declare that I am not willing to have my thesis made
+       publicly available in the institute and/or university library
+    \else%
+       Furthermore, I declare that I am willing to have my thesis made
+       publicly available in the institute and/or university library
+    \fi%
+  \end{quote}
+  \fi%
+
+  \vspace*{0.3\titleskip}%
+  \noindent% 
+  Clausthal-Zellerfeld, den \@tucdate\hspace{\fill}(\@tucauthor)\hspace{\fill} %
+}%
+
+
+%% ............................................................ &Layout ...
+%% ............................................................ &Layout ...
+
+
+%%% ============================================================= &EOF ===
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-engine: luatex
+%%% TeX-master: "~/lib/texmf/doc/latex/TUC/tuc-thesis.tex"
+%%% TeX-parse-self: t
+%%% TeX-auto-save: t
+%%% End:

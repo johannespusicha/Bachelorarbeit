@@ -1,0 +1,534 @@
+%%%
+%%% @(#) tuc-cd.sty -- multipurpose LaTeX-style file
+%%%
+%%% Time-stamp:  <2019-11-20 17:17:28 tmjb>
+%%%
+%%%
+%%% @(#) $Id: tuc-cd.sty,v 1.2 2016/07/05 16:05:48 tmjb Exp tmjb $
+%%% @(#) $Keywords: TU Clausthal, TUC, Corporate Design, CD, Design-Vorlagen $
+%%%
+%%%
+%%%          File: /home/tmjb/lib/temf/tex/latex/tuc-cd/tuc-cd.sty
+%%%       Project: TUC-CD
+%%%       Version: $Revision: 1.2 $
+%%%   Description: Allgemeine LaTeX-Style-Datei mit
+%%%                div. Vereinbarungen um verschiedene Design-Elemente
+%%%                des neuen Corporate Designs der TU Clausthal
+%%%                umzusetzen.  Die Datei ist bewusst allgemein
+%%%                gehalten, um sie in verschiedenen Klassen und
+%%%                Umgebungen (Brief, Aushang, Poster, ...) nutzen zu
+%%%                können.  Falls Änderungen am CD gemacht werden,
+%%%                müssen diese nur in diesem Style eingepflegt
+%%%                werden, die anderen Klassen bleiben davon
+%%%                unberührt.
+%%%
+%%%                Diese Datei beruht zu einem Teil auf Vorarbeiten
+%%%                von Dominic Wäsch.
+%%%        Author: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%    Maintainer: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%% Creation-Date: 2007-03-08 -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%     Copyright: (c) 2007 Jan Braun
+%%%
+
+%%% ------------------------------------------------------ &Change Log ---
+%%%
+%%% $Log: tuc-cd.sty,v $
+%%% Revision 1.3 2019/10/17 11:25 tmjb
+%%% Summary: new length titleskip, better definition for new column
+%%%          types L, C and R.
+%%% 
+%%% Revision 1.2  2016/07/05 16:05:48  tmjb
+%%% Summary: Options for german, ngerman and english added.
+%%%
+%%% * tuc-cd.sty: Farbedefinitionen entfernt.
+%%%
+%%% * tuc-cd.sty: 1.1 added options for german, ngerman and english.
+%%%
+%%% Revision 1.1  2016/07/05 14:31:44  tmjb
+%%% Initial revision
+
+
+%%% ============================================================ &Code ===
+
+%%% ---------------------------------------------------- &Package Name ---
+% \NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{tuc-cd}[2019/09/19 v0.1.3 TU Clausthal Coporate Design style definitions (JB)]
+
+
+%%% ------------------------------------------------------- &Variables ---
+%% We need some variables, to store and indicate which options (see
+%% later) are choosen ...
+\newif\if@draft                 % for Option draft
+\newif\if@final                 % Oposite of draft
+\newif\if@afourpaper            % papersize DIN A4
+\newif\if@afivepaper            % papersize DIN A5
+\newif\if@letter                % american letter paper size
+\newif\if@watermark             % Using a watermark to clearly
+                                % indicate draft status of work in
+                                % progress.
+\newif\if@beamer                % used for presentations
+\newif\if@tucfont               % use the corporate design font
+\newif\if@rgb                   % use colored items, logos, ...
+\newif\if@cmyk                  % also color, but using another color
+                                % scheme, suitable for printing shops
+                                % ...
+\newif\if@black                 % don't use colors at all.
+\newif\if@english\@englishfalse % default for most texts
+\newif\if@noindent              % Use gaps between paragraphs instead
+                                % of indentations.
+
+
+%%% --------------------------------------------------------- &Options ---
+%% Options are definid by the main package or for this special style
+%% file.  Just add them in square brackets like this:
+%% \usepackage[final,foo,bar]{tuc-cd}
+%% I advise, to avoid using final and draft in package related
+%% options, as the are normally handed over from the main class
+%% package options.
+
+
+%% ............................................................ &Final ...
+%% Option final is set, when you intend to print the final copy of
+%% your work.
+\DeclareOption{final}{%
+  \@draftfalse%
+  \@finaltrue%
+  \PassOptionsToPackage{final}{graphicx}%
+}%
+
+
+%% ............................................................ &draft ...
+%% Option draft is per default defined by the main class package,
+%% unless you specify final.  This style defines it for continuity
+%% reasons.  Draft and final are mutualy exclusive
+\DeclareOption{draft}{%
+  \@drafttrue%
+  \@finalfalse%
+  \@watermarkfalse%
+  \PassOptionsToPackage{draft}{graphicx}%
+}%
+
+
+%% .......................................................... &A4paper ...
+%% Option a4paper is set, to typeset on DIN A4 papersize.  It should
+%% be the Default size.
+\DeclareOption{a4paper}{%
+  \@afourpapertrue%
+  \@afivepaperfalse%
+  \@letterfalse%
+}%
+
+%% .......................................................... &A5paper ...
+%% Option a5paper is set, to typeset on DIN A4 papersize.
+\DeclareOption{a5paper}{%
+  \@afourpaperfalse%
+  \@afivepapertrue%
+  \@letterfalse%
+}%
+
+
+%% ........................................................... &letter ...
+%% Option letterpaper is set, to typeset on american letter papersize.
+\DeclareOption{letter}{%
+  \@afourpaperfalse%
+  \@afivepaperfalse%
+  \@lettertrue%
+}%
+
+
+%% ........................................................ &Watermark ...
+%% Print an watermark to all pages, to indicate work in progress.
+%% This might sometimes be handy, but normaly it is very annoying, so
+%% it is turned of by default.  If turned on, it will only appear if
+%% draft mode is also turned on.  Final turnes off watermarking, of
+%% course.
+\DeclareOption{watermark}{%
+  \if@draft%
+  \@watermarktrue%
+    \if@english%
+      \PassOptionsToPackage{all,english,dvips}{draftcopy}%
+    \else%
+      \PassOptionsToPackage{all,german,dvips}{draftcopy}%
+    \fi%
+  \fi%
+}%
+
+
+%% ........................................................... &Beamer ...
+%% 
+%% This option is set, whenever someone wants to give a presentation.
+\DeclareOption{beamer}{%
+  \@beamertrue%
+}%
+
+
+%% .......................................................... &TUCFont ...
+%% This option will use Stone fonts, as declared in the corporate
+%% design manual.  If this option is not set, latin modern font will
+%% be used instead.  This option will only set a variable.
+\DeclareOption{tucfont}{%
+  \@tucfonttrue%
+}%
+\DeclareOption{tucfonts}{%
+  \@tucfonttrue%
+}%
+
+
+%% .............................................................. &RGB ...
+%% Color, represented in RGB color modell is usefull for presentation
+%% and while being viewed on monitors.  Printed color should be CMYK
+%% color modell.
+\DeclareOption{rgb}{%
+  \@rgbtrue%
+  \@cmykfalse%
+  \@blackfalse%
+  \PassOptionsToPackage{rgb}{tuc-colors}
+}
+
+
+%% ............................................................. &CMYK ...
+%% This is the color modell used, when printing in 4 color printers
+%% and professional print shops.
+\DeclareOption{cmyk}{%
+  \@rgbfalse%
+  \@cmyktrue%
+  \@blackfalse%
+  \PassOptionsToPackage{cmyk}{tuc-colors}%
+}%
+
+
+%% ............................................................ &Black ...
+%% No color at all.
+\DeclareOption{black}{%
+  \@rgbfalse%
+  \@cmykfalse%
+  \@blacktrue%
+  \PassOptionsToPackage{black}{tuc-colors}%
+}%
+
+
+%% ........................................................... &German ...
+\DeclareOption{german}{%
+  \@englishfalse%
+  \typeout{^^J tuc-cd.sty: 2) german language active ^^J }%
+}%
+\DeclareOption{ngerman}{%
+  \@englishfalse%
+  \typeout{^^J tuc-cd.sty: 3) german language active ^^J }%
+}%
+
+
+%% .......................................................... &English ...
+%% English texts do use another logo and such.
+\DeclareOption{english}{%
+  \@englishtrue%
+  \typeout{^^J tuc-cd.sty: 1) english language active ^^J }%
+}%
+
+
+%% ......................................................... &Noindent ...
+%% Option noindent shall be used, when paragraphs shall be separated
+%% by gaps instead of indenting them.
+\DeclareOption{noindent}{%
+  \@noindenttrue%
+  \typeout{^^J tuc-cd.sty: noindent active ^^J }%
+}%
+
+
+%% ....................................................... &Undeclared ...
+%% This one is for any option, which was not declared before.
+\DeclareOption*{\OptionNotUsed}%
+%% Set the options.
+\ExecuteOptions{cmyk}%
+\ProcessOptions\relax%
+
+
+
+%%% -------------------------------------------------------- &Messages ---
+%% Print out some warning messages, while compiling the text.
+\if@draft
+  \typeout{^^J tuc-cd.sty: WARNING! DRAFT-mode is in use!^^J }
+\fi
+\if@final
+  \typeout{^^J tuc-cd.sty: FINAL-mode is in use!^^J }
+\fi
+\if@watermark
+  \typeout{^^J tuc-cd.sty: WARNING! WATERMARK-mode is in use!^^J } 
+\fi
+\if@english
+  \typeout{^^J tuc-cd.sty: 4) WARNING: english language is in use ^^J }%
+\else%
+  \typeout{^^J tuc-cd.sty: 4a) WARNING: german language is in use ^^J }%
+\fi%
+% \if@german
+%   \typeout{^^J tuc-cd.sty: 5) WARNING: german language is in use ^^J }%
+% \fi
+
+
+
+%%% -------------------------------------------------------- &Packages ---
+%%
+%% To get all definitions of this style to work, we need some more
+%% packages.  They are automatically loaded here.
+%%
+%% First, be sure to use the Stone fonts
+\if@tucfont
+  \RequirePackage{tuc-fonts}%
+\fi
+%% 
+%% 
+%% Define the colors
+\RequirePackage{tuc-colors}
+%% 
+%% Required für SCRLAyers
+\RequirePackage{scrlayer}
+%% 
+%% Here are some general packages.
+\RequirePackage[gen,right]{eurosym} % Provides commands and
+                                % fontdefinitions for the eurosymbol.
+                                % It uses a generic Euro symbol of the
+                                % actual font in use.  It is typeset
+                                % right of the sum.
+\RequirePackage{array}          % for better tables
+\RequirePackage{booktabs}       % for better lines in tables
+\RequirePackage{ragged2e} % new raggedright and raggedleft
+                                % commands
+%\RequirePackage{amssymb}        % for \Box-symbol used in Itemize
+
+
+
+%%% ------------------------------------------------------ &Definitions ---
+
+%% ......................................................... &Titlepage ...
+%% 
+%% The usual titlepage of an TUC document presents our logo on the top
+%% left corner, as well as an grey box on the right hand side of the
+%% paper.  The logo dimensions are given in th CD Manual: the square
+%% area shall have 24 mm on a A4 paper.  Given the normal, german
+%% logo, the height of the logo is also 24 mm.  In those cases, where
+%% the english logo is used, the logo incorporates also the english
+%% translation "Clausthal University of Technology" below the usual TU
+%% Clausthal line.  Thus the height of the english logo is greater
+%% than 24 mm.  
+%% 
+%% The width of the grey box at the right hand side of the paper
+%% varies a bit.  Usually it is half as wide, as the square logo, thus
+%% normally 12 mm wide.  Despite this rule, on a letterhead, the
+%% various sender informations are put into that grey box, therefore
+%% the box has to be wider than usual.  The CD Manual gives 48 mm as
+%% total width, including a margin of 4 mm on each side. 
+\newlength{\greyboxwidth}\setlength{\greyboxwidth}{12mm}
+\newlength{\titleskip}\setlength{\titleskip}{28mm}
+
+%% Usually, you should use preprinted papers, which already have the
+%% logo and the grey box of appropriate sizes filled in.  Be careful,
+%% as there are at least two different preprinted papers available:
+%% one for title pages of thesises and one for letters.
+%% 
+%% If you can not use those preprinted papers, we have to incorporate
+%% the logo and grey box ourselves.  Fortunately, KOMA-Script classes
+%% provide a lot of support, to print such delicate things.  Thank you
+%% Markus.  In case, you view this kind of documents only in a digital
+%% version (aka computer screen, beamer, ...), we should place the
+%% logo and box directly at the edge of the paper.  But if you lack
+%% the preprinted paper and have to print the logo and box yourself,
+%% they should be separated from the edges by an amout of white space,
+%% which depends on the respective printer.  Therefore, this file
+%% provides two variables, to adapt the white space accordingly.
+
+%% ................................................... &Titlepage-Layer ... 
+%% 
+%% The titlepages (either of a thesis or a letter) will be printed by
+%% a KOMA script layer.  
+\DeclareNewLayer[%
+  align=tr,%
+  background,%
+  rightmargin,%
+  contents={\hfill\textcolor{TUCgrey2}{\rule{\greyboxwidth}{\paperheight}}}]%
+{TUCtitlepagelayer}%
+\DeclareNewPageStyleByLayers{TUCtitlepagestyle}{TUCtitlepagelayer}%
+
+%% .................................................. &Logo-Positioning ...
+%% 
+%% In order, to position the logo of Clausthal University of
+%% Technology, we do need some variables.  \logovskip and \logohskip
+%% represent the amount to offset the logo from the upper left corner
+%% of the text area.
+%% 
+%% the new defined length \@logovcorr and \@logohcorr are used, to
+%% offset the logo, in case the printer is not able to print that
+%% close to the paper edges (which is almost allways the case).
+\newlength{\@logovcorr}\setlength{\@logovcorr}{0pt}%
+\newlength{\@logohcorr}\setlength{\@logohcorr}{0pt}%
+%% 
+%% The commands \logovcorr and \logohcorr are used, to set the the
+%% offset by the user.  This command will only take effect, if the
+%% option preprint was not set!
+\newcommand{\logovcorr}[1]{%
+  \if@preprint%
+     \typeout{\MessageBreak Correction of the Logo alignment is not possible on preprinted papers! \MessageBreak}%
+  \else%
+     \setlength{\@logovcorr}{#1}%
+    \fi}%
+\newcommand{\logohcorr}[1]{%
+  \if@preprint%
+     \typeout{\MessageBreak Correction of the Logo alignment is not possible on preprinted papers! \MessageBreak}%
+  \else%
+     \setlength{\@logohcorr}{#1}%
+  \fi}%
+%% 
+%% \logovskip and \logohskip represent the amount of white space to
+%% place the Logo accordingly
+%% TODO
+\newlength{\logovskip}\newlength{\logohskip}%
+\if@noindent%
+  \setlength{\logovskip}{2.25\parskip}%
+  \setlength{\logohskip}{0pt}%
+\else%
+  \setlength{\logovskip}{0.16in}%
+  \setlength{\logohskip}{0.16in}%
+\fi%
+\addtolength{\logovskip}{1in}\addtolength{\logovskip}{\voffset}%
+\addtolength{\logovskip}{\topmargin}\addtolength{\logovskip}{\headheight}\addtolength{\logovskip}{\headsep}%
+\addtolength{\logovskip}{-\@logovcorr}%
+\addtolength{\logohskip}{1in}\addtolength{\logohskip}{\hoffset}%
+\addtolength{\logohskip}{\oddsidemargin}%
+\addtolength{\logohskip}{-\@logohcorr}%
+%% 
+%% \logowidth declares the length of the Logo.  It depends on the
+%% papersize.  While defined for DIN A4 papersize, the length of 130
+%% mm will also be used on letter papersize.  On A5 paper, the length
+%% will be 92 mm.
+\newlength{\logowidth}%
+\setlength{\logowidth}{130mm}%
+\if@afivepaper%
+   \setlength{\logowidth}{92mm}%
+\fi%
+
+%% ............................................................ &Tables ...
+%% 
+%% A tabular environment is needed so often in our documents, it seems
+%% to be adequat, to define some table heads here, to use them
+%% commonly.
+%% 
+%% Column for table heads.  Use a small fontsize and place the column
+%% description centered.
+\newcolumntype{H}{>{\footnotesize}c}%
+%% 
+%% New columns, to typeset columns of definded width with ragged
+%% texts.  Argument #1 denotes the width of the column.  Keep in mind,
+%% that the package ragged2e was load with option "newcommands" so
+%% that indeed the new commands are used.
+\newcolumntype{L}[1]{%
+  >{\raggedright\arraybackslash\hspace{0pt}}p{#1}}%
+\newcolumntype{C}[1]{%
+  >{\centering\arraybackslash\hspace{0pt}}p{#1}}%
+\newcolumntype{R}[1]{%
+  >{\raggedleft\arraybackslash\hspace{0pt}}p{#1}}%
+%% 
+%% Decimal columns for Financial data or floating numbers.  You can
+%% choose the number of decimal places by means of #1.  The input data 
+%% of this F column (with capital letter F) uses the decimal point "."
+%% to denote the decimals. The output uses a comma "," instead.
+\newcolumntype{F}[1]{D{.}{,}{#1}}
+%% Same as the F column, but this time, the decimal separator "," is
+%% used for input and output.
+\newcolumntype{f}[1]{D{,}{,}{#1}}
+
+%% ............................................................. &Logos ...
+
+%%  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . &TUC-Logo . .
+%% Define the colors, which are described in the CD Manual.  The
+%% definition depends on the color scheme to be used.
+\if@rgb%
+  \typeout{^^J tuc-cd.sty: INFO: RGB in use!^^J } 
+  \if@english%
+    \def\@logofile{Logo-TUC-EN-RGB}%
+  \else%
+    \def\@logofile{Logo-TUC-DE-RGB}%
+  \fi%
+\else%
+  \typeout{^^J tuc-cd.sty: INFO: RGB not in use!^^J } 
+\fi%
+\if@cmyk%
+  \typeout{^^J tuc-cd.sty: INFO: CMYK in use!^^J } 
+  \if@english%
+    \def\@logofile{Logo-TUC-EN-CMYK}%
+  \else%
+    \def\@logofile{Logo-TUC-DE-CMYK}%
+  \fi%
+\fi%
+\if@black%
+  \typeout{^^J tuc-cd.sty: INFO: BLACK in use!^^J } 
+  \if@english%
+    \def\@logofile{Logo-TUC-EN-BLACK}%
+  \else%
+    \def\@logofile{Logo-TUC-DE-BLACK}%
+  \fi%
+\fi%
+
+
+%%  . . . . . . . . . . . . . . . . . . . . . . . . . . . . &LaTeX-Logo . .
+%% 
+%% This command will present a much nicer LaTeX logo.  So let's use
+%% that.  It was copied from an Article by Grzegorz Murzynowski
+%% https://www.tug.org/TUGboat/tb29-1/tb91murzynowski-logo.pdf
+\DeclareRobustCommand{\LaTeX}{%
+  {%
+    L%
+    \setbox\z@\hbox{\check@mathfonts
+      \fontsize\sf@size\z@
+      \math@fontsfalse\selectfont
+      A}%
+    \kern-.57\wd\z@
+    \sbox\tw@ T%
+    \vbox to\ht\tw@{\copy\z@ \vss}% 
+    \kern-.2\wd\z@}%
+  {%
+   \ifdim\fontdimen1\font=\z@
+   \else
+   \count\z@=\fontdimen5\font 
+   \multiply\count\z@ by 64\relax 
+   \divide\count\z@ by\p@ \count\tw@=\fontdimen1\font 
+   \multiply\count\tw@ by\count\z@ 
+   \divide\count\tw@ by 64\relax 
+   \divide\count\tw@ by\tw@ 
+   \kern-\the\count\tw@ sp\relax
+   \fi}%
+ \TeX}%
+
+
+%% . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  &TUC-plus . . 
+%% This command prints the "Logo" of the TUC-plus project.
+\newcommand{\tucplus}{\protect{TUC$^\mathsf{plus}$}}
+
+
+
+%% ............................................................ &Layout ...
+%% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . &Indents . .
+\if@noindent
+  \setlength{\parindent}{0pt}%
+  \setlength{\parskip}{2ex plus0.5ex minus0.3ex}%
+\else
+  \setlength{\parindent}{2em}%
+\fi
+
+
+%% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . &itemize . .
+%% Itemized environments should have a \circ in the second hierarchy.
+% \renewcommand{\labelitemi}{$\bullet$}
+% \renewcommand{\labelitemii}{$\Box$}
+% \renewcommand{\labelitemiii}{$\circ$}
+% \renewcommand{\labelitemiv}{$\triangleright$}
+
+
+
+%%% ============================================================= &EOF ===
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-engine: luatex 
+%%% TeX-master: "~/lib/texmf/doc/latex/TUC/tuc-thesis.tex"
+%%% TeX-parse-self: t
+%%% TeX-auto-save: t
+%%% End:

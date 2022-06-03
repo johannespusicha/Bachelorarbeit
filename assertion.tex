@@ -1,0 +1,38 @@
+%%......Einige nützliche variablen...........................
+\newboolean{public} %wenn gesetzt, darf Arbeit veröffentlicht werden
+\setboolean{public}{true}
+%% Eidesstattliche Erklärung
+\chapter*{Eidesstattliche Erklärung}
+\label{chap:assertion}
+  \thispagestyle{empty}%
+  \vspace*{2cm}\par%
+  \noindent%
+  Hiermit versichere ich, dass ich die vorliegende \thesistype%
+  % 
+  \begin{center}%
+    \textbf{\title}%
+  \end{center}%
+  % 
+  selbstständig verfasst und keine anderen als die angegebenen Quellen
+  und Hilfsmittel benutzt habe und dass alle Stellen dieser Arbeit,
+  die wörtlich oder sinngemä{\ss} aus anderen Quellen übernommen wurden,
+  als solche kenntlich gemacht wurden und dass die Arbeit in gleicher
+  oder ähnlicher Form noch keiner anderen Prüfungsstelle vorgelegt
+  wurde.
+  
+\ifthenelse{\boolean{public}}{%
+    \noindent
+    Des Weiteren erkläre ich, dass ich mit der öffentlichen
+    Bereitstellung meiner \thesistype{} in der Instituts- und/oder
+    Universitätsbibliothek einverstanden bin.\par%
+}{%
+    \noindent
+    Des Weiteren erkläre ich, dass ich mit der öffentlichen
+    Bereitstellung meiner \thesistype{} in der Instituts- und/oder
+    Universitätsbibliothek nicht einverstanden bin.\par%
+}%
+
+  \vspace*{0.7\titleskip}%
+  \noindent% 
+  Clausthal-Zellerfeld, den \deliverydate \hspace{\fill}(\author)\hspace{\fill} %
+

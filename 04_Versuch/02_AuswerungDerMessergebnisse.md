@@ -1,1 +1,0 @@
-## Auswertung der Messergebnisse

@@ -1,0 +1,13 @@
+\def\THIS{\tikztostart}
+\def\normalcoord(#1){coordinate(#1)}
+\def\showcoord(#1){coordinate(#1) node[circle, red, draw, inner sep=1pt, pin={[red, overlay, inner sep=0.5pt, font=\tiny, pin distance=0.1cm, pin edge={red, overlay}]45:#1}](){}}
+\let\coord=\normalcoord
+%\let\coord=\showcoord
+
+\begin{circuitikz}
+    \node[ocirc] (Plus) at (0,0) {};
+    \node[ocirc] (Minus) at (0,-3) {};
+    
+    \draw (Plus) to[short, i>^=$\underline{I}_{\mathrm{s}}$] ++(1,0) to[R, R=$R_{\mathrm{s}}$] ++(2,0) to[L, L=$L_{\mathrm{s\sigma}}$] ++(2,0) to[L, L=$L_{\mathrm{md/q}}$] ++(2,0) to[sV, v=$\underline{U}_{\mathrm{p}}$] (\THIS |- Minus) -- (Minus);
+    \draw (Plus) to[open, v=$\underline{U}_{\mathrm{s}}$] (Minus);
+\end{circuitikz}

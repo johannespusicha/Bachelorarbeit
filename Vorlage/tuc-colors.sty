@@ -1,0 +1,155 @@
+%%%
+%%% @(#) tuc-colors.sty -- multipurpose teX-style file
+%%%
+%%% Time-stamp:  <2016-07-05 16:11:57 tmjb>
+%%%
+%%%
+%%% @(#) $Id: tuc-colors.sty,v 1.2 2016/11/14 13:11:20 tmjb Exp $
+%%% @(#) $Keywords: TU Clausthal, TUC, Corporate Design, CD, Design-Vorlagen $
+%%%
+%%%
+%%%          File: /home/tmjb/lib/temf/tex/latex/TUC/tuc-colors/tuc-colors.sty
+%%%       Project: TUC-CD
+%%%       Version: $Revision: 1.2 $
+%%%   Description: Definition der TU Clausthal genutzten Farben.
+%%%        Author: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%    Maintainer: tmjb -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%% Creation-Date: Mon  4 Jul 2016 -- Jan Braun <Jan.Braun@tu-clausthal.de>
+%%%     Copyright: (c) 2016 Jan Braun
+%%%
+
+%%% ------------------------------------------------------ &Change Log ---
+%%%
+%%% $Log: tuc-colors.sty,v $
+%%% Revision 1.2  2016/11/14 13:11:20  tmjb
+%%% * tuc-colors.sty: package now relies on xcolor instead of color.
+%%% Error for option black fixed.
+%%%
+%%% Revision 1.1  2016/07/05 13:58:17  tmjb
+%%% Initial revision
+%%%
+
+
+
+%%% ============================================================ &Code ===
+
+%%% ---------------------------------------------------- &Package Name ---
+% \NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{tuc-colors}[2016/7/4 0.01  TU Clausthal Coporate Design style definitions (JB)]
+
+
+%%% ------------------------------------------------------- &Variables ---
+%% We need some variables, to store and indicate which options (see
+%% later) are choosen ...
+\newif\if@rgb                   % use rgb-colored items, logos, ...
+\newif\if@cmyk                  % also color, but using another color
+                                % scheme, suitable for printing shops
+                                % ...
+\newif\if@black                 % don't use colors at all.
+
+
+%%% --------------------------------------------------------- &Options ---
+%% Options are definid by the main package or for this special style
+%% file.  Just add them in square brackets like this:
+%% \usepackage[final,foo,bar]{tuc-colors}
+%% I advise, to avoid using final and draft in package related
+%% options, as the are normally handed over from the main class
+%% package options.
+%%
+%% .............................................................. &RGB ...
+%% Color, represented in RGB color modell, is usefull for presentation
+%% and while being viewed on monitors.  Printed color should be CMYK
+%% color modell.
+\DeclareOption{rgb}{%
+  \@rgbtrue
+  \@cmykfalse
+  \@blackfalse
+}
+
+%% ............................................................. &CMYK ...
+%% This is the color modell used, when printing in 4 color printers
+%% and professional print shops.
+\DeclareOption{cmyk}{%
+  \@rgbfalse
+  \@cmyktrue
+  \@blackfalse
+}
+
+%% ............................................................ &Black ...
+%% No color at all.
+\DeclareOption{black}{%
+  \@rgbfalse
+  \@cmykfalse
+  \@blacktrue
+}
+
+%% ....................................................... &Undeclared ...
+%% This one is for any option, which was not declared before.
+\DeclareOption*{\OptionNotUsed}
+%% Set the options.
+\ExecuteOptions{cmyk}
+\ProcessOptions\relax
+
+
+
+%%% -------------------------------------------------------- &Messages ---
+%% Print out some warning messages, while compiling the text.
+\if@rgb
+  \typeout{^^J tuc-colors.sty: WARNING! RGB-mode is in use!^^J }
+\fi
+\if@cmyk
+  \typeout{^^J tuc-colors.sty: WARNING! CMYK-mode is in use!^^J }
+\fi
+\if@black
+  \typeout{^^J tuc-colors.sty: WARNING! Black-mode is in use!^^J }
+\fi
+
+
+
+%%% -------------------------------------------------------- &Packages ---
+%%
+%% To get all definitions of this style to work, we need some more
+%% packages.  They are automatically loaded here.
+%%
+\RequirePackage{xcolor}          % used for the colored lines, e. g.
+
+
+
+%%% ----------------------------------------------------- &Definitions ---
+
+%% ............................................................ &Colors ...
+%% Define the colors, which are described in the CD Manual.  The
+%% definition depends on the color scheme to be used.
+\if@rgb
+  \typeout{^^J tuc-cd.sty: INFO: RGB in use!^^J }
+  \definecolor{TUCgreen}{rgb}{0,0.55,0.31}
+  \definecolor{TUCgrey1}{rgb}{0.5,0.5,0.5}
+  \definecolor{TUCgrey2}{rgb}{0.9,0.9,0.9}
+  \definecolor{TUCred}  {rgb}{0.55,0.11,0}
+  \def\@logofile{Logo-TUC-DE-RGB}
+\fi
+\if@cmyk
+  \typeout{^^J tuc-cd.sty: INFO: CMYK in use!^^J } 
+  \definecolor{TUCgreen}{cmyk}{1,0,0.9,0.2}
+  \definecolor{TUCgrey1}{cmyk}{0,0,0,0.5}
+  \definecolor{TUCgrey2}{cmyk}{0,0,0,0.1}
+  \definecolor{TUCred}  {cmyk}{0.29,0.93,0.96,0.05}
+  \def\@logofile{Logo-TUC-DE-CMYK}
+\fi
+\if@black
+  \typeout{^^J tuc-cd.sty: INFO: BLACK in use!^^J } 
+  \definecolor{TUCgreen}{rgb}{0,0.55,0.31}
+  \definecolor{TUCgrey1}{rgb}{0.5,0.5,0.5}
+  \definecolor{TUCgrey2}{rgb}{0.9,0.9,0.9}
+  \definecolor{TUCred}  {rgb}{0.55,0.11,0}
+  \def\@logofile{Logo-TUC-DE-BLACK}
+\fi
+
+%%% ============================================================= &EOF ===
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: nil
+%%% TeX-parse-self: t
+%%% TeX-auto-save: t
+%%% End:

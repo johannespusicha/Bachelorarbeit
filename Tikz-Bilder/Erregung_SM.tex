@@ -1,0 +1,48 @@
+\def\THIS{\tikztostart}
+\def\normalcoord(#1){coordinate(#1)}
+\def\showcoord(#1){coordinate(#1) node[circle, red, draw, inner sep=1pt, pin={[red, overlay, inner sep=0.5pt, font=\tiny, pin distance=0.1cm, pin edge={red, overlay}]45:#1}](){}}
+\let\coord=\normalcoord
+%\let\coord=\showcoord
+
+\begin{circuitikz}[scale=.5,/tikz/circuitikz/bipoles/length=1cm]
+    % Hauptknoten
+    \node [circ] (HStar) at (0,0) {};
+    \node [circ] (EStar) at (12,-6) {};
+    % Stern Haupt
+    \draw (HStar) to[L] ++(90:3) node[ocirc] (Ha) {};
+    \draw (HStar) to[L] ++(-30:3)  node[ocirc] (Hb) {};
+    \draw (HStar) to[L] ++(-150:3) node[ocirc] (Hc) {};
+    % Erregung
+    \node (Err) at (EStar |- HStar) {};
+    \draw (Err) ++(1,1.5) node[ocirc] {} to[short] ++(-1,0) to[L] ++(0,-3) to[short] ++(1,0) node[ocirc] {};
+    % Stern Erreger
+    \draw (EStar) to[L] ++(60:3) node[] (Ea) {};
+    \draw (EStar) to[L] ++(-60:3)  node[] (Eb) {};
+    \draw (EStar) to[L] ++(180:3) node[] (Ec) {};
+    % Kabel
+    \draw (Ea.center) -- (Ec |- Ea) -- ++(0,-2.2) -- ++(-4.5,0) node[circ] (L1) {};
+    \draw (Ec.center) -- ++(-3,0) node[circ] (L2) {};
+    \draw (Eb.center) -- (Ec |- Eb) -- ++(0,2.2) -- ++(-1.5,0) node[circ] (L3) {};
+    % Dioden
+    \draw (L1 |- L2) to[D] (L1 |- Ea);
+    \draw (L2) to[D] (L2 |- Ea);
+    \draw (L3 |- L2) to[D] (L3 |- Ea);
+    \draw (L1 |- Eb) to[D] (L1 |- L2);
+    \draw (L2 |- Eb) to[D] (L2);
+    \draw (L3 |- Eb) to[D] (L3 |- L2);
+    % Kabel zu Hauptrotor
+    \draw (L3 |- Ea) to[short] (L2 |- Ea) node[circ]{} to[short] (L1 |- Ea) node[circ]{} to[short]  (HStar |- Ea) to[L] (HStar |- Eb) to[short] (L1 |- Eb) node[circ]{} to[short] (L2 |- Eb) node[circ]{} to[short] (L3 |- Eb);
+    % Beschriftung
+    \node [] (Slabel) at ($(HStar) + (16,0)$) {Ständer};
+    \node [] (Rlabel) at (Slabel |- EStar) {Rotor};
+    \node [] (Hlabel) at ($(HStar) + (0,-10)$) {Hauptgenerator};
+    \node [] (Plabel) at (L2 |- Hlabel) {Diodenrad};
+    \node [] (Elabel) at (EStar |- Hlabel) {Erregermaschine};
+    % Trennlinien
+    \coordinate (hbar) at ($(Hc)!.5!(Ea)$);
+    \draw [dashed] (Hc |- hbar) +(-1,0) -- (Slabel |- hbar);
+    \coordinate (vbar1) at ($(Hb)!.5!(L1 |- Ea)$);
+    \draw [dashed] (vbar1 |- Ha) -- (vbar1 |- Hlabel);
+    \coordinate (vbar2) at ($(L3)!.5!(Ec)$);
+    \draw [dashed] (vbar2 |- Ha) -- (vbar2 |- Hlabel);
+\end{circuitikz}

@@ -1,0 +1,20 @@
+\def\THIS{\tikztostart}
+\def\normalcoord(#1){coordinate(#1)}
+\def\showcoord(#1){coordinate(#1) node[circle, red, draw, inner sep=1pt, pin={[red, overlay, inner sep=0.5pt, font=\tiny, pin distance=0.1cm, pin edge={red, overlay}]45:#1}](){}}
+\let\coord=\normalcoord
+%\let\coord=\showcoord
+
+\begin{circuitikz}
+    \node [ocirc] (Plus) at (0,0) {};
+    \node [ocirc] (Minus) at (0,-3.5) {};
+    \draw (Plus) to[short, i>^=$\underline{I}_{\mathrm{s}}$] ++(1,0) to[R, R=$R_{\mathrm{s}}$] ++(2,0) to[L, L=$L_{\mathrm{s\sigma}}$] ++(2,0) node [circ](Hmp){} |- ++(-.5,-.5) to[L, l_=$L_{\mathrm{m}}$] ++(0,-2) -- ++(.5,0) to[short, i=$\underline{I}_m$] (Hmp|- Minus) node[circ](Hmm){} -- (Minus);
+    
+    \draw (Hmp) |- ++(.5,-.5) to[R, R=$R_{\mathrm{v}}$] ++(0,-2) -| (Hmm);
+    \draw (Hmp) to[L, L=$L_{\mathrm{r\sigma}}$] ++(2,0) to[R, R=$\nicefrac{R^\prime_{\mathrm{r}}}{s}$] ++(2,0) to[short, i<=$\underline{I}^\prime_{\mathrm{r}}$]  (\THIS |- Minus) -- (Hmm);
+    \draw (Plus) to[open, v=$\underline{U}_{\mathrm{s}}$] (Minus);
+    
+    \path (Plus.center) \coord(Plus);
+    \path  (Minus.center) \coord(Minus);
+    \path (Hmp.center) \coord(Hmp);
+    \path (Hmm.center) \coord(Hmm);
+\end{circuitikz}
