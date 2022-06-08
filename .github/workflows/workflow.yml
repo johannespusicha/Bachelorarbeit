@@ -6,7 +6,7 @@
         steps:
           - uses: "actions/checkout@master"
             with:
-            AUTO_ASSIGN: True
+                AUTO_ASSIGN: True
           - name: "TODO to Issue"
             uses: "alstr/todo-to-issue-action@v4.6.6"
             id: "todo"
