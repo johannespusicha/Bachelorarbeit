@@ -121,11 +121,34 @@ Zur Übertragung der Erregerleistung auf den Rotor des Synchrongenerators werden
 
 \subsection{Arten der Modellierung}
 \label{subsec:ArtenModellierung}
-%% White-/Black-/Gray-Box Modellierung
-%% Signalfluss - Objektorientierte Modellierung
+Grundsätzlich lassen sich alle Konzepte der Modellierung physikalischer Systeme zwei Polen auf einem Spektrum der Einblicktiefe in die Systemstruktur anordnen. So werden Modelle, die nur die Ein- und Ausgangsgrößen in Beziehung zueinander setzen und keine Informationen über die inneren Vorgänge und Zustände des Modells geben, \emph{Blackbox-Modelle} genannt. Modelle hingegen, die vollkommenen Einblick in die Vorgänge und Zustände des modellierten Systems geben, heißen \emph{Whitebox-Modelle}. In der Realität treten diese beiden Extremfälle der Modellierung in den meisten Fällen nicht auf. Viel mehr ist ein Modell häufig aus Anteilen zusammengesetzt, die sich eher einem Blackbox-Modell oder einem Whitebox-Modell zuordnen lassen. Bezeichnet wird diese Unschärfe mit dem Ausdruck \emph{Graybox-Modell}. Typische Beispiele für Modelle, die sich eher als Blackbox-Modell bezeichnet werden können sind \emph{Neuronale Netzwerke}, \emph{Look-Up-Tables} oder Eingangs-Ausgangs-Kennlinien. Modelle wie die \emph{Zustandraumdarstellung}, \emph{Ersatzbilder} o.ä. können hingegen eher als Whitebox-Modell klassifiziert werden. 
+
+Da bei Whitebox-Modellen die Struktur des Systems und seiner Teilsysteme bekannt ist und so die Wiederverwendbarkeit einzelner Teilsysteme ermöglicht wird, sollen für die Modellierung des Frequenzumformers im Folgenden nur Modelle mit überwiegendem Whitebox-Charakter betrachtet werden.
+
+\paragraph{Modellierung mit konzentrierten Elementen} Wird zur Erstellung von Whitebox-Modellen die Realität auf eine endliche Anzahl an Zuständen und Vorgängen reduziert, so handelt es sich um eine Modellierung mit konzentrierten Elementen. Sie steht einer kontinuierlichen Modellierung mit unendlich-dimensionalen Zustandsräumen gegenüber. Letztlich führt jede Modellierung mit konzentrierten Elementen im allgemeinen Fall auf die Simulation eines Systems von Differential- und algebraischen Gleichungen (DAE -- \textbf{D}ifferential \textbf{A}lgebraic \textbf{E}quation). Bekannte Anwendungsbeispiele sind die \emph{Methode der finiten Elemente} oder auch die Modellierung elektrischer, mechanischer und anderer Systeme mit \emph{Ersatzschaltbildern} einfacher konzentrierter Elemente. 
+
+\paragraph{Signal- und Leistungsflussmodelle} Zum Aufstellen der Modelle lassen sich (wenigstens) zwei Abstraktionsebenen zur Abbildung der Realität im Modell unterscheiden, die entsprechend dem jeweiligen Modellierungszweck direkt gewählt oder in einander überführt werden können. Die detailliertesten Modelle sind \emph{Signalflussmodelle} (auch \emph{mathematische Modelle} genannt, da die physikalische Struktur des Systems nicht im Vordergrund steht), das sind direkte Darstellungen der DAE-Systeme, zum Beispiel als \emph{Zustandsraum} mit $n$ Differentialgleichungen erster Ordnung und weiteren Nebenbedingungen oder auch als \emph{Blockschaltbild} (\emph{Signalflussplan}). Charakteristisch für diese Ebene der Modellierung ist, dass die Modelle direkt zur Simulation (meist durch Lösen der algebraischen Gleichungen und Integration der Differentialgleichungen von einem Anfangswert aus) geeignet sind. Die Ursache-Wirkungs-Beziehungen des Systems sind in den beschreibenden Gleichungen bereits festgelegt. Besonders im Vergleich dieser Modelle mit Modellen der höheren Ebene wird dieser Umstand mit \emph{Kausalität} der Wirkrichtung bezeichnet.
+
+Eine höhere Abstraktionsebene als die Signalflussmodellen bilden die \emph{Leistungsflussmodelle} (auch \emph{physikalische Modelle} genannt), 
+
 
 \subsection{Modellierung elektrischer Maschinen}
 \label{subsec:ModellierungElektrischerMaschinen}
+%TODO: Beispiele aus Signal- und Leistungsflussmodellierung elektrischer Maschinen beschreiben
+
 
 \subsection{Übersicht über Simulationsprogramme}
 \label{subsec:Simulationsprogramme}
+%TODO: Simulationsprogramme vergleichen
+
+
+
+
+
+
+
+
+
+
+
+
