@@ -2,7 +2,7 @@
 
 \chapter{Modellierung}
 \label{chap:Modellierung}
-
+%TODO: Einleitung in Modellierung schreiben
 Anforderungen:
 \begin{itemize}
     \item Universales Modell des Frequenzumformers, zur \begin{itemize}
@@ -83,7 +83,7 @@ Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller.
 
 \hypertarget{sec:umsetzung}{%
 \section{Umsetzung}\label{sec:umsetzung}}
-
+%TODO: Referenzen überarbeiten
 Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der \modclass{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe \cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek \modclass{Frequenzumformer} angelegt. Alle Klassen, die dieser Bibliothek angehören werden mit \modclass{Frequenzumformer.Klasse} bezeichnet. Die vollständige Bezeichnung der abgeleiteten Klassen zeigt die Hierarchie der jeweiligen Bibliothek. Beginnend bei dem Bibliotheksnamen wird jedes untergeordnete Objekt mit einem Punkt abgetrennt angefügt, z.B. \modclass{Modelica.Bibliothek.Unterobjekt}.
 
 Für den Asynchronmotor und den Synchrongenerator werden die Modelle \modclass{AIM\_­Squir­rel­Cage} und \modclass{SM\_ElectricalExcited} aus der Bibliothek \modclass{Mag\-netic.\-Funda\-men\-tal\-Wave} der MSL verwendet. Die Herleitung dieser Modelle ist umfangreich in \cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und soll hier nur kurz zusammengefasst werden. Verwendet werden die jeweiligen transienten elektrischen Komponenten und Maschinen, da nur mit diesen Einschwingvorgänge beobachtet werden können. Die quasistationären Modelle (Klassen in den Paketen \modclass{Electrical.QuasiStationary} und \modclass{Magnetic.QuasiStatic}) verwenden zur Berechnung der elektrischen und magnetischen Größen komplexe Zeiger. Diese sind nicht geeignet zur Untersuchung von Einschwingvorgängen, da die Zeiger aus der Fouriertransformation periodischer eingeschwungener Größen hergeleitet werden.
@@ -344,7 +344,7 @@ Wie im Blockschaltbild des Reglers (\cref{fig:Blockschaltbild_Regler}) dargestel
 
 \paragraph{Modell}\label{modell-Regler}
 Das vollständige Modell des Spannungsreglers zeigt \cref{fig:Spannungsregler-Modell}. Es enthält die drei Teilglieder des PID-Reglers, die Stellgrößenbeschränkung und am Ausgang einen Schalter um den Wert Null auszugeben, wenn der Regler ausgeschaltet ist.
-
+%TODO: Parametrierung des Reglers (Herleitung aus Z-Transformation) beschreiben
 \begin{figure}
     \centering
     \includegraphics{Bilder/Spannungsregler.pdf}
@@ -373,28 +373,29 @@ Das vollständige Modell des Spannungsreglers zeigt \cref{fig:Spannungsregler-Mo
 
 \subsection{Umwandlung der reglerinternen Stellgröße}
 \label{sec:umwandlungenStellgrosse}
-
+%TODO: Offset-Map beschreiben
 
 \subsection{Weitere Modelle}\label{weitere-modelle}
 
 
 \subsubsection{Leistungsmessung}\label{leistungsmessung}
-
+%TODO: Leistungsmessung beschreiben
 
 \subsubsection{Parametrierung der Last}\label{parametrierung-der-last}
-
+%TODO: Parametrierung der Last beschreiben
 
 \subsection{Gesamtmodell}\label{gesamtmodell}
 \afterpage{%
-\begin{landscape}
+%TODO: Entkommentieren
+%\begin{landscape}
 \begin{figure}
     \centering
     \oldincludegraphics[width=\linewidth]{Bilder/Umformer.pdf}
     \caption{Vollständiges Modell des Umformers}
 \end{figure}
-\end{landscape}
+%\end{landscape}
 }
-
+%TODO: Gesamtmodell beschreiben
 \hypertarget{initialisieren-des-modells}{%
 \subsection{Initialisieren des
 Modells}\label{initialisieren-des-modells}}

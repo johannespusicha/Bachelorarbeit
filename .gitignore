@@ -1,3 +1,12 @@
-.trash
-.aux
-.log
+*.trash
+*.aux
+*.log
+*.gz
+*.out
+*.bbl
+*.bcf
+*.blg
+*.toc
+*.lof
+*.lot
+*.xml
