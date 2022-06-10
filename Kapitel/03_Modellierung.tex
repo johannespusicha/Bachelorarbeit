@@ -181,7 +181,7 @@ das Verhältnis des \emph{Nutschritts} (\(y_Q\)) zur Anzahl der \emph{Nuten je P
 \begin{equation}
     q = \frac{Q}{2pm}\label{eq:Lochzahl}.
 \end{equation}
-Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{XXX} auf. Alle weiteren Größen zur Beschreibung der Asynchromaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in \cref{XXX} angegeben. 
+Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{tab:WicklungsdatenASM} auf. Alle weiteren Größen zur Beschreibung der Asynchronmaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in \cref{tab:ParameterASM,tab:WerteParameterrecordASM} angegeben. 
 
 Dabei ist für das Trägheitsmoment \(J_{\mathrm{r}}=0\) eingetragen, da aus der Auslegung des Frequenzumformers nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden.
 
@@ -191,14 +191,14 @@ Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf
 
 \hypertarget{sec:Modell-SG}{%
 \subsubsection{Modell}\label{sec:Modell-SG}}
-
-\cref{XXX} zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs wird über den Parameter \modclass{useDamperCage} eingestellt. Wird dieser Parameter auf \modclass{false} gesetzt, wird das Modell mit dem Verbindungsmodell \modclass{short} anstelle des Dämpferkäfigs initialisiert. 
 \begin{figure}
     \centering
     \includegraphics[]{Bilder/SM_ElectricalExcited.pdf}
     \caption{Vollständiges Modell des elektrisch erregten Synchrongenerators mit (optionalem) Dämpferkäfig (\modclass{Fun­da­men­tal­Wave.­Ba­sic­Ma­chines.­Syn­chro­nous­In­duc­tion­Ma­chines.­SM\_­E­lec­tri­cal­Ex­ci­ted}) der MSL v3.2.3}
     \label{fig:Synchrongenerator}
 \end{figure}
+\cref{fig:Synchrongenerator} zeigt das vollständige Modell des elektrisch erregten Synchrongenerators mit Dämpferkäfig. Die Verwendung des Dämpferkäfigs wird über den Parameter \modclass{useDamperCage} eingestellt. Wird dieser Parameter auf \modclass{false} gesetzt, wird das Modell mit dem Verbindungsmodell \modclass{short} anstelle des Dämpferkäfigs initialisiert. 
+
 
 Wie das mehrphasige Windungsmodell des Stators
 berücksichtigt auch das einphasige Modell (\modclass{FundamentalWave.­Ba­sic­Ma­chines.­Com­po­nents.­Sin­gle­Phase­Win­ding}) neben der elektromagnetischen
@@ -217,7 +217,7 @@ Spannungsabfall über den Kohlebürsten in der Voreinstellung Null Volt.
 Daher brauchen für die Kohlebürsten keine Parameter angegeben zu werden,
 um einen Einfluss auszuschließen.
 
-Das Modell des Dämpferkäfigs (\modclass{XXX}) weist die gleiche Struktur auf
+Das Modell des Dämpferkäfigs (\modclass{FundamentalWave.BasicMachines.Components.SaliencyCageWinding}) weist die gleiche Struktur auf
 wie der oben beschriebene Kurzschlussläufer. Im Unterschied zu diesem
 berücksichtigt das Dämpferkäfigmodell hingegen die Achsigkeit (d- und
 q-Achsen des körperfesten Koordinatensystems) der Widerstände und
@@ -242,10 +242,7 @@ Vernachlässigung der Temperaturabhängigkeit der Widerstände und das
 Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des
 Lüfters erfasst.
 
-Die zur Parametrierung des Synchrongenerators verwendeten elektrischen
-Größen sind die im Erstzschaltbild \cref{XXX} angegebenen Widerstände und
-Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in
-Tabelle \cref{XXX} aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden. Zwar sind die hier angegebenen Zusammenhänge zum größten Teil auch in dem Parameterrecord \modclass{Machines.Utilities.SynchronousMachineData} implementiert, jedoch erfordert der Parameterrecord die Kenntnis der Ankerzeitkonstante \(T_{\mathrm{a}}\) zur Berechnung des Statorwiderstands \(R_{\mathrm{s}}\). Da jedoch \(R_{\mathrm{s}}\) (im Gegensatz zu \(T_{\mathrm{a}}\)) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
+Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild \cref{fig:ESB_SM} angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in Tabelle \cref{tab:AuslegungSG} aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden. Zwar sind die hier angegebenen Zusammenhänge zum größten Teil auch in dem Parameterrecord \modclass{Machines.Utilities.SynchronousMachineData} implementiert, jedoch erfordert der Parameterrecord die Kenntnis der Ankerzeitkonstante \(T_{\mathrm{a}}\) zur Berechnung des Statorwiderstands \(R_{\mathrm{s}}\). Da jedoch \(R_{\mathrm{s}}\) (im Gegensatz zu \(T_{\mathrm{a}}\)) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen.
 
 Nach \cite[S. 264]{kralModelicaObjektorientierteModellbildung2019} können die bezogenen Hauptfeldreaktanzen \(x_{\mathrm{md}}\) und \(x_{\mathrm{mq}}\) mit
 \begin{align}
@@ -286,17 +283,17 @@ aus den Kurzschlusszeitkonstanten \(T_{\mathrm{d}}''\) und
 Damit ergeben sich die Induktivitäten und Widerstände des
 Synchrongenerators mit der Nennkreisfrequenz
 \(\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}\) und der
-Bezugsreaktanz \(X_{\mathrm{N}}\) nach Gleichungen XXX (vgl.
+Bezugsreaktanz \(X_{\mathrm{N}}\) nach Gleichungen \cref{eq:LmgSG,eq:ReSG} (vgl.
 \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
 \begin{align}
-L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
+L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \label{eq:LmgSG}\\
 L_{\mathrm{mq}} &= x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{r \sigma d}} &= (x_{\mathrm{rq}}-x_{\mathrm{mq}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{r \sigma q}} &= (x_{\mathrm{rd}}-x_{\mathrm{md}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 L_{\mathrm{s \sigma}} &= x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \\
 R_{\mathrm{rd}} &= r_{\mathrm{rd}}\cdot X_{\mathrm{N}} \\
 R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
-R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}
+R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}V_{\mathrm{sN}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}\label{eq:ReSG}
 \end{align}
 Damit ist der Synchrongenerator vollständig parametriert. Die \cref{tab:AuslegungSG,tab:ZwischenwerteSG,tab:ParameterRecordSG,tab:ParameterSG} listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
 
@@ -308,7 +305,7 @@ Die Erregermaschine und der auf dem Polrad der Maschine mitrotierende Gleichrich
 
 \cref{fig:Erregermaschine} zeigt das vollständige Modell der in der \modclass{Frequenzumformer}-Bibliothek implementierten Erregermaschine. Als Generatormodell wird dasselbe Synchrongeneratormodell der MSL wie für den Hauptgenerator verwendet. Das \modclass{delta}-Modell zwischen den beiden dreiphasigen Ausgängen des Generators bewirkt eine Verkettung der Ströme und Spannungen wie in einer Dreieckschaltung der Statorstränge.
 
-Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Puls-Brückengleichrichter (siehe \cref{fig:Gleichrichter}). Am negativen Ausgang des Brückengleichrichters wird ein (\unit[0]{V}) Referenzpotential verschaltet, ohne das die Gleichungen für den elektrischen Kreis zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar wären.
+Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Puls-Brückengleichrichter. Am negativen Ausgang des Brückengleichrichters wird ein (\unit[0]{V}) Referenzpotential verschaltet, ohne das die Gleichungen für den elektrischen Kreis zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar wären.
 
 Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit zwei linearen Arbeitsbereichen \emph{Sperrbetrieb} und \emph{Durchlassbetrieb}. Die Steigung der Diodenkennlinien in den beiden Arbeitsbereichen wird über den Leitwert \(G_{\mathrm{off}}\) im Sperrbetrieb und den Widerstand \(R_{\mathrm{on}}\) im Durchlassbetrieb eingestellt. Der Wechsel vom Sperrbetrieb in den Durchlassbetrieb findet bei Überschreiten der Flussspannung \(U_{\mathrm{F}}\) statt. Ebenso wird zurück in den Sperrbetrieb geschaltet, sobald die Flussspannung unterschritten wird.
 
@@ -335,9 +332,7 @@ Größen sind in  \cref{tab:AuslegungErregermaschine,tab:ParameterErregermaschin
 
 Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden \(G_{\mathrm{off}}=\unit[0,001]{S}\) bzw. \(R_{\mathrm{on}}=\unit[0,001]{\Omega}\) festgelegt, die nahe Null, aber noch groß genug sind um die genannten Probleme zu vermeiden.
 
-
-\hypertarget{spannungsregler}{%
-\subsection{Spannungsregler}\label{spannungsregler}}
+\subsection{Spannungsregler}\label{sec:Spannungsregler}}
 Der Spannungsregler wird in Modelica als Signalflussobjekt implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden.
 
 Wie im Blockschaltbild des Reglers (\cref{fig:Blockschaltbild_Regler}) dargestellt ist allen Regelgliedern ein Begrenzer nachgeschaltet. Dies trägt zum Einen der Abbildung der Messgrößen auf das begrenzte Intervall der reglerinternen Größen Rechnung und bietet zum Anderen die Möglichkeit die Stellgrößen der Regelglieder unabhängig voneinander zu begrenzen. Um diese Begrenzung bei allen Gliedern mit einer einheitlichen Schnittstelle zu implementieren wird aus dem \textbf{S}ingle-\textbf{I}nput-\textbf{S}ingle-\textbf{O}utput-Interface der MSL (\modclass{Modelica.Blocks.Interfaces.SISO}) das Interface \modclass{Frequenzumformer.Regler.Interfaces.limitedController} abgeleitet, welches die Begrenzungsgrößen zugänglich macht. Weiterhin wird in dem Interface der boolsche Eingang \modclass{enable} definiert zum Einschalten des jeweiligen Regelgliedes.

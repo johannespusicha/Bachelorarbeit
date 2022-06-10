@@ -7,9 +7,9 @@ twoside=true,
 listof=totoc,
 bibliography=totoc
 ]{scrbook}
-\usepackage[sortcites=true]{biblatex} % style=alphabetic
 \usepackage[]{tuc-pusicha}
 \recalctypearea
+\usepackage[sortcites=true]{biblatex} % style=alphabetic
 \MakeAutoQuote{„}{“}
 
 \usepackage{afterpage}
@@ -18,6 +18,7 @@ bibliography=totoc
 \renewcommand{\includegraphics}[2][]{%
   \oldincludegraphics[#1,max width=\textwidth, max height=.4\textheight]{#2}
   } 
+
 \usepackage{tikz}
 \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings,math,intersections,positioning,arrows.meta,graphs,backgrounds}
 \tikzset{
@@ -35,6 +36,8 @@ bibliography=totoc
 \lstset{language = modelica,
         basicstyle=\fontsize{9pt}{10.5pt}\ttfamily,
         backgroundcolor = \color{TUCgrey2}}
+
+\usepackage{lmodern} % Use fonts at arbitrary sizes
 \newcommand\modclass[1]{{\small\texttt{#1}}}
 
 \hypersetup{
