@@ -2,8 +2,7 @@
 
 \chapter{Modellierung}
 \label{chap:Modellierung}
-%TODO: Einleitung in Modellierung schreiben
-Anforderungen:
+In diesem Kapitel wird die Modellierung des Frequenzumfomers beschrieben. Dazu werden folgende Anforderungen an das Modell gestellt:
 \begin{itemize}
     \item Universales Modell des Frequenzumformers, zur \begin{itemize}
         \item Untersuchung der Ausgangsspannung bei Lastsprüngen
@@ -23,13 +22,11 @@ Anforderungen:
     \item Erweiterung und Anpassung des Modells / der Teilmodelle ist möglich
 \end{itemize}
 
-\hypertarget{sec:uxfcbersicht---energie--und-informationsfluss}{%
-\section{Übersicht - Energie- und Informationsfluss}\label{sec:uxfcbersicht---energie--und-informationsfluss}}
+\section{Übersicht - Energie- und Informationsfluss}\label{sec:uxfcbersicht---energie--und-informationsfluss}
 
 Bevor das Simulationsmodell in Modelica implementiert werden soll, ist es hilfreich zunächst einen Überblick über das Gesamtsystem „rotierender Frequenzumformer“ zu erlangen und die Wirkungseinflüsse der einzelnen Größen zu studieren.
 
-\hypertarget{sec:gesamtsystem}{%
-\subsection{Gesamtsystem}\label{sec:gesamtsystem}}
+\subsection{Gesamtsystem}\label{sec:gesamtsystem}
 
 Bei der betrachteten Anlage handelt es sich im Wesentlichen um einen Motor-Generator-Verbund aus einem Asynchronmotor und einem mit einer Synchron-Erregermaschine erregten Synchrongenerator. Das System besteht also aus drei mechanisch gekoppelten elektrischen Maschinen. Der Zusammenhang zwischen den elektrischen Größen am Stator und am Rotor der elektrischen Maschinen sowie die Kopplung mit der rotatorischen Bewegung wird über das Induktionsgesetz durch die Spannung und den Fluss des magnetischen Feldes charakterisiert.
 
@@ -52,8 +49,7 @@ Die Hauptaufgabe der Erregermaschine ist es, die Spannung am Ausgang des Reglers
 
 Zusätzlich zu dem Energiefluss ist in \cref{fig:Wirkungsgraph} auch der Informationsfluss angedeutet: Am Ausgang des Umformers wird der Spannungsabfall über der Last gemessen und die Differenz zum Sollwert in den Regler zurückgeführt. Der PID-Spannungsregler ist hier zusammengefasst dargestellt. Ein ausführliches Blockschaltbild des Reglers zeigt \cref{fig:Blockschaltbild_Regler}. Aus der vom Regler berechneten Stellgröße wird über Puls-Weiten-Modulation eines Steuertrafos die Statorspannung der Erregermaschine erzeugt.
 
-\hypertarget{sec:pid-spannungsregler}{%
-\subsection{PID-Spannungsregler}\label{sec:pid-spannungsregler}}
+\subsection{PID-Spannungsregler}\label{sec:pid-spannungsregler}
 
 Als Spannungsregler wird von Piller in dem Frequenzumformer ein PID-Regler mit \emph{variabler Verstärkung} eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (vgl. \cite{DigitalerSpannungsreglerSoftwaredokumentation}). \cref{fig:Blockschaltbild_Regler} zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang werden die Stellgrößen begrenzt. 
 
@@ -81,9 +77,8 @@ Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller.
 \end{itemize}
 
 
-\hypertarget{sec:umsetzung}{%
-\section{Umsetzung}\label{sec:umsetzung}}
-%TODO: Referenzen überarbeiten
+\section{Umsetzung}\label{sec:umsetzung}
+
 Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der \modclass{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe \cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek \modclass{Frequenzumformer} angelegt. Alle Klassen, die dieser Bibliothek angehören werden mit \modclass{Frequenzumformer.Klasse} bezeichnet. Die vollständige Bezeichnung der abgeleiteten Klassen zeigt die Hierarchie der jeweiligen Bibliothek. Beginnend bei dem Bibliotheksnamen wird jedes untergeordnete Objekt mit einem Punkt abgetrennt angefügt, z.B. \modclass{Modelica.Bibliothek.Unterobjekt}.
 
 Für den Asynchronmotor und den Synchrongenerator werden die Modelle \modclass{AIM\_­Squir­rel­Cage} und \modclass{SM\_ElectricalExcited} aus der Bibliothek \modclass{Mag\-netic.\-Funda\-men\-tal\-Wave} der MSL verwendet. Die Herleitung dieser Modelle ist umfangreich in \cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und soll hier nur kurz zusammengefasst werden. Verwendet werden die jeweiligen transienten elektrischen Komponenten und Maschinen, da nur mit diesen Einschwingvorgänge beobachtet werden können. Die quasistationären Modelle (Klassen in den Paketen \modclass{Electrical.QuasiStationary} und \modclass{Magnetic.QuasiStatic}) verwenden zur Berechnung der elektrischen und magnetischen Größen komplexe Zeiger. Diese sind nicht geeignet zur Untersuchung von Einschwingvorgängen, da die Zeiger aus der Fouriertransformation periodischer eingeschwungener Größen hergeleitet werden.
@@ -99,16 +94,11 @@ Nach \cite[S. 149]{kralModelicaObjektorientierteModellbildung2019} werden für d
   Sättigungseffekte werden vernachlässigt.
 \end{itemize}
 
-\hypertarget{sec:asynchronmotor-mit-kurzschlussluxe4ufer}{%
-\subsection{Asynchronmotor mit Kurzschlussläufer}
-\label{sec:asynchronmotor-mit-kurzschlussluxe4ufer}}
-
+\subsection{Asynchronmotor mit Kurzschlussläufer}\label{sec:asynchronmotor-mit-kurzschlussluxe4ufer}
 Da die betrachteten Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{kralModelicaObjektorientierteModellbildung2019} den Asynchron- und Synchronmaschinen der MSL ein \emph{partielles Modelica-Modell} (Modell, das mit dem Modifizierer \modclass{partial} versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (\modclass{replace}). Ein solches Modell kann nicht allein simuliert werden.) für Drehfeldmaschinen zugrunde (\modclass{FundamentalWave.­In­ter­fa­ces.­Par­tial­Ba­sic­In­duc­tion­Ma­chine}). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss.
 
 
-\hypertarget{sec:partielles-modell-der-drehfeldmaschine}{%
-\subsubsection{Partielles Modell der Drehfeldmaschine}\label{sec:partielles-modell-der-drehfeldmaschine}}
-
+\subsubsection{Partielles Modell der Drehfeldmaschine}\label{sec:partielles-modell-der-drehfeldmaschine}
 Das partielle Modell der Drehfeldmaschine (siehe \cref{fig:partiellDrehfeldmaschinen}) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in \cref{fig:Wirkungsgraph} betrachtet wurde. Die Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss zur Abstützung des Stators.
 
 \begin{figure}
@@ -151,8 +141,7 @@ Da die Anzahl \(N_{\mathrm{R}}\) der Rotorstäbe eines Käfigs häufig viel grö
 % \label{fig:MPhasigerKaefig}
 % \end{figure}
 
-\hypertarget{sec:parametrierung-ASM}{%
-\subsubsection{Parametrierung}\label{sec:parametrierung-ASM}}
+\subsubsection{Parametrierung}\label{sec:parametrierung-ASM}
 
 Zur Parametrierung der Maschine müssen drei Arten von Größen angegeben werden: elektrische, mechanische und thermische Größen. Da bei Adaptieren des Fre­quenz­um­for­mer-Modells auf andere Maschinengrößen vorrangig die elektrischen und mechanischen Größen angepasst werden müssen, werden diese Werte in einem eigenen Record-Modell (\modclass{Frequenzumformer.Maschinenparameter.AIM\_­Squir­rel­Cage­Da­ta}, siehe \cref{lst:RecordASMData}) zusammengefasst. Das ermöglicht auch die Umrechnung der im Datenblatt der Maschine angegebenen Reaktanzen in die für die Simulation benötigten Induktivitäten.
 
