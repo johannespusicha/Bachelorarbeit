@@ -4,7 +4,7 @@ Dieses Kapitel beschreibt \emph{eine} beispielhafte Anwendung des Frequenzumform
 
 \section{Problemstellung}
 \label{sec:ProblemstellungParameterSweep}
-Das hier untersuchte Problem entspringt der Fragestellung, ob sich das dynamische Verhalten der Anlage eher durch Optimieren des Reglers verbessern lässt oder eine Verbesserung nur durch Änderung der elektrischen Parameter möglich ist. Dieser zweite Fall wird zutreffen, falls der Regler bereits optimal eingestellt ist. 
+Das hier untersuchte Problem entspringt der Fragestellung, ob sich das dynamische Verhalten der Anlage bei einem Lastsprung eher durch Optimieren des Reglers verbessern lässt oder eine Verbesserung nur durch Änderung der elektrischen Parameter möglich ist. Dieser zweite Fall wird zutreffen, falls der Regler bereits optimal eingestellt ist. 
 
 Gleichzeitig bietet die Parameterstudie auch die Möglichkeit zu untersuchen, wie die Qualität der Modellparametrierung weiter verbessert werden kann. Einige Widerstände der elektrischen Maschinen wurden bereits in \cref{chap:VerfikationValidierung} mit Hilfe der Messungen angepasst. Untersuchungen zum Abgleich der Induktivitäten der Maschinen konnten jedoch nicht durchgeführt werden. Die Parameterstudie bietet daher die Möglichkeit, zu untersuchen, welche Größen der Maschinen großen Einfluss auf das dynamische Verhalten haben und in welchen Wertebereichen eine Annäherung an die Messergebnisse erzielt werden kann.
 
@@ -23,7 +23,7 @@ In der Parameterstudie werden die Werte der elf Induktivitäten der elektrischen
     \label{fig:VerteilungParameter}
 \end{figure}
 
-Durchgeführt wird die Parameterstudie mit Hilfe eines Python-Skripts (siehe \cref{lst:ModelicaSweep}). Das kompilierte Modell des Frequenzumformers wird mit dem Skript gestartet und der geänderte Parameter zugewiesen. Anschließend werden die Simulationsergebnisse in Python eingelesen und der ISE (vgl. \cref{eq:ISE}) vom Sprungbeginn an  über ein Intervall von $T=\unit[0,8]{s}$ berechnet, bis die Ausgangsspannung (bei Nennparametern) den stationären Zustand erreicht. Zusätzlich zu der Parameterstudie über die Induktivitäten der elektrischen Maschinen wurde auch eine Parameterstudie mit veränderten Reglerparametern wie in der dynamischen Messung in \cref{sec:Messaufbau} durchgeführt.
+Durchgeführt wird die Parameterstudie mit Hilfe eines Python-Skripts (siehe \cref{lst:ModelicaSweep}). Das kompilierte Modell des Frequenzumformers wird mit dem Skript gestartet und der geänderte Parameter zugewiesen. Das Modell wird für \unit[3]{s} simuliert. Bei $t=\unit[2,2]{s}$ wird ein Lastsprung von \unit[50]{\%} auf \unit[100]{\%} ausgeführt. Anschließend werden die Simulationsergebnisse in Python eingelesen und der ISE (vgl. \cref{eq:ISE}) vom Sprungbeginn an  über ein Intervall von $T=\unit[0,8]{s}$ berechnet, bis die Ausgangsspannung (bei Nennparametern) den stationären Zustand erreicht. Zusätzlich zu der Parameterstudie über die Induktivitäten der elektrischen Maschinen wurde auch eine Parameterstudie mit veränderten Reglerparametern wie in der dynamischen Messung in \cref{sec:Messaufbau} durchgeführt.
 
 \section{Ergebnisse}
 Die aus der Parameterstudie der Induktivitäten resultierenden Zeitverläufe der Spannungen zeigen \cref{fig:InduktivitatenSweepA,fig:InduktivitatenSweepB}. Die Spannungsverläufe aus der Studie der Reglerparameter zeigt \cref{fig:SpannungenReglerSweep}.
