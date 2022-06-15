@@ -68,13 +68,12 @@ Damit ergibt sich die Drehzahl-Drehmoment-Kennlinie der ASM in \cref{fig:Validie
 \end{figure}
 Die Spannungskennlinie der Erregermaschine beschreibt den Zusammenhang zwischen der Stellgröße des Reglers (der Erregerspannung) und der damit eingestellten gleichgerichteten Polradspannung zur Erregung des Synchrongenerators. Über die Impedanz des Synchrongenerators stellt sich durch die Polradspannung der Erregerstrom ein, der bei der hier betrachteten Maschine über die Schleifringe nicht gemessen werden konnte. Der Abgleich der Spannungskennlinie mit den Messdaten erfolgte durch Aufbringen verschiedener Lastsprünge in der Simulation und anpassen der Erregerwiderstände der Erregermaschine und des Synchrongenerators. Die resultierende Spannungskennlinie zeigt \cref{fig:Validierung-Erregermaschine}.
 
-%TODO: Vergleich Simulation - Messung bei versch. Lastsprüngen, quantifizieren
 \paragraph{Verschiedene Lastsprünge}
 Die Simulationsergebnisse des angepassten Modells werden mit der Messung verglichen. Betrachtet wird die Ausgangsspannung bei Ausführen verschiedener Lastsprünge mit $cos(\varphi)=0,8$. Dieser Leistungsfaktor wird gewählt, da hier die Spannungsamplituden im Sprungmoment größer sind (vgl. \cref{fig:ZeitverlaufDynamischOhneRegleraenderung}). Aus dem Vergleich der Simulationseregbnisse mit den Messergebnissen kann der Modellierungsfehler bestimmt werden. Quantifiziert wird der Fehler mit dem mittleren absoluten Fehler (\emph{\textbf{M}ean \textbf{A}bsolute \textbf{E}rror} -- MAE)
 \begin{equation}
 \mathrm{MAE} = \mathrm{mean}\left(\left| \hat{y} - y \right|\right).
 \end{equation}
-\Cref{fig:ValMessung0-50,fig:ValMessung0-100,fig:ValMessung50-100,fig:ValMessung50-0,fig:ValMessung100-0,fig:ValMessung100-50} zeigen die gemessenen und simulierten Spannungen bei verschiedenen Lastsprunggrößen. Die simulierten Spannungen stimmen gut mit den Messungen ein. Der schlecteste MAE beträgt 0,6. Weiterhin zeigt sich, dass die kleineren Lastsprünge auch mit einem kleineren Fehler behaftet sind. Der kleinste Fehler tritt im Lastbereich von \unit[50]{\%} bis \unit[100]{\%} auf.
+\Cref{fig:Spannung} zeigen die gemessenen und simulierten Spannungen bei verschiedenen Lastsprunggrößen. Die simulierten Spannungen stimmen gut mit den Messungen ein. Der schlecteste MAE beträgt 0,6. Weiterhin zeigt sich, dass die kleineren Lastsprünge auch mit einem kleineren Fehler behaftet sind. Der kleinste Fehler tritt im Lastbereich von \unit[50]{\%} bis \unit[100]{\%} auf.
 \begin{figure}
 \centering
 \begin{subfigure}{.49\textwidth}
@@ -113,4 +112,6 @@ Die Simulationsergebnisse des angepassten Modells werden mit der Messung verglic
 	\caption{Lastsprung \unit[100]{\%}-\unit[50]{\%}}
 	\label{fig:ValMessung100-50}
 \end{subfigure}
+\caption{Gemessene und Simulierte Ausgangsspannungen bei verschiedenen Lastsprüngen}
+\label{fig:ValSpannung}
 \end{figure}
