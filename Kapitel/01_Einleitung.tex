@@ -1,32 +1,15 @@
 \chapter{Einleitung}
 \label{chap:Einleitung}
-Die Regelung elektrischer Maschinen geschieht auch heute noch häufig mit
-dem Einsatz von PI- bzw. PID-Reglerstrukturen. Das Einstellen der
-Reglerparameter wird dabei, sofern kein selbsteinstellender Regler
-(Autotuning) verwendet wird, manuell und mit Hilfe von Erfahrungswerten
-oder Einstellregeln durchgeführt. Dazu muss jedoch zuerst die zu
-regelnde Maschine existieren; die Anpassung des Reglers kann also erst
-nach Entwicklung der Anlage, mit der Produktion eines ersten Prototypen
-erfolgen. Um diesen Entwicklungszyklus zu verkürzen, soll im Rahmen
-dieser Arbeit am Beispiel eines rotierenden Frequenzumformers ein Modell
-der elektrischen Anlage aufgestellt werden, an dem der Regler
-eingestellt und erprobt werden kann.
+Mit der fortschreitenden Entwicklung multidisziplinärer Systeme und der Digitalisierung des Maschinen- und Anlagenbaus nimmt die Komplexität des Entwicklungsprozesses zu. Es müssen verschiedene Domänen in einem Produkt integriert und aufeinander abgestimmt werden bei möglichst effizienter Kostenstruktur und Terminplanung. Zugleich bieten Weiterentwicklungen der Modellierungs- uns Simulationssysteme neue Möglichkeiten zur virtuellen Produktentwicklung und Erprobung der Systeme vor deren physischen Realisierung. Begegnet wird der Komplexität des Entwicklungsprozesses durch Nutzung dieser neuen Möglichkeiten in der modellbasierten Systementwicklung. Im Zentrum der Entwicklung steht das Modell, der Digitale Zwilling des Systems, mit dem alle relevanten Informationen und Anforderungen verknüpft sind. An dem Modell können schon in der Entwurfsphase Analysen vorgenommen und zur Verbesserung des Systems verwendet werden. 
+
+Ein Anwendungsgebiet für die modellbasierte Systementwicklung ist die Verknüpfung der Auslegung elektrischer Maschinen mit der Reglerentwicklung und einstellung. Auch heute noch geschieht die Regelung elektrischer Maschinen häufig noch mit dem Einsatz von PI- bzw. PID-Reglerstrukturen. Das Einstellen der Reglerparameter wird dabei, sofern kein selbsteinstellender Regler
+(Autotuning) verwendet wird, manuell und mit Hilfe von Erfahrungswerten oder Einstellregeln durchgeführt. Dazu muss jedoch zuerst die zu regelnde Maschine existieren; die Anpassung des Reglers kann also erst nach Entwicklung der Anlage, mit der Produktion eines ersten Prototypen erfolgen. Durch den Einsatz der modellbasierten Systementwicklung kann dies schon zeitnah mit der elektrischen Auslegung erfolgen. Die dazu nötige Modellbildung, Validierung und eine mögliche Anwendung des Modells sollen im Rahmen dieser Arbeit am Beispiel eines rotierenden Frequenzumformers gezeigt werden.
 
 \section{Zielsetzung}
 \label{sec:Zielsetzung}
-In dieser Arbeit soll zunächst das Gesamtsystem ``rotierender
-Frequenzumformer'' hinsichtlich Informations- und Energiefluss
-dokumentiert werden, um einen Überblick über das System zu geben. Im
-Anschluss soll ein Modell des Systems aufgestellt, simuliert und zur
-Charakterisierung des Systems eingesetzt werden. Dazu ist es notwendig,
-geeignete Anforderungen an das Modell zu stellen. Weiterhin muss das aufgestellte Modell
-mit Parametern aus der Auslegung der Maschine versehen, verifiziert und mittels
-Messungen an einer realen Maschine validiert werden. Der Aufbau des
-Modells soll dabei so erfolgen, dass eine möglichst große
-Wiederverwendbarkeit der Modelle für weitere Untersuchungen und Optimierungen ermöglicht wird..
+Zunächst soll in dieser Arbeit das Gesamtsystem „rotierender Frequenzumformer“ hinsichtlich Informations- und Energiefluss dokumentiert werden, um einen Überblick über das System zu geben. Im Anschluss soll ein Modell des Systems aufgestellt, simuliert und zur Charakterisierung des Systems eingesetzt werden. Dazu ist es notwendg, geeignete Anforderungen an das Modell zu stellen. Weiterhin muss das aufgestellte Modell mit Parametern aus der Auslegung der Maschine versehen, verifiziert und mittels Messungen an einer realen Maschine validiert werden. Der Aufbau des Modells soll dabei so erfolgen, dass eine möglichst große Wiederverwendbarkeit der Modelle für weitere Untersuchungen und Optimierungen ermöglicht wird.
 
-Die zentralen Fragen, die in dieser Arbeit beantwortet werden sollen,
-sind daher:
+Die zentralen Fragen, die in dieser Arbeit beantwortet werden sollen, sind daher:
 \begin{itemize}
 \item Wie muss ein Modell aufgebaut werden, um hinreichend genau die reale Maschine abzubilden?
 \item Welche Parameter aus der Auslegung der Maschine werden für die Simulation benötigt und wie müssen sie gegebenenfalls umgeformt werden?
