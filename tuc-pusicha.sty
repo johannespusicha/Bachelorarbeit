@@ -150,18 +150,18 @@
 %% \logovskip and \logohskip represent the amount of white space to
 %% place the Logo accordingly
 \newlength{\logovskip}\newlength{\logohskip}%
-\setlength{\logovskip}{1in}%
-\setlength{\logohskip}{1in}%
+\setlength{\logovskip}{0.86in}\addtolength{\logovskip}{\headsep}\addtolength{\logovskip}{\voffset}%
+\setlength{\logohskip}{0.853in}\addtolength{\logohskip}{\hoffset}\addtolength{\logohskip}{-\@logohcorr}%
 %\addtolength{\logovskip}{1in}\addtolength{\logovskip}{\voffset}%
 %\addtolength{\logovskip}{\topmargin}
 %\addtolength{\logovskip}{\headheight}
-\addtolength{\logovskip}{\headsep}
-\addtolength{\logovskip}{\voffset}
+
+
 %\addtolength{\logovskip}{-\@logovcorr}%
 %\addtolength{\logohskip}{1in}
-\addtolength{\logohskip}{\hoffset}
+
 %\addtolength{\logohskip}{\oddsidemargin}%
-\addtolength{\logohskip}{-\@logohcorr}%
+%
 %% 
 %% \logowidth declares the length of the Logo.  It depends on the
 %% papersize.  While defined for DIN A4 papersize, the length of 130
