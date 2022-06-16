@@ -58,6 +58,8 @@ bibliography=totoc
 \def \subtitle{Objektorientierte Modellierung eines rotierenden Frequenzumformers} 
 \def \deliverydate{\today}
 
+\usepackage{array}   % for \newcolumntype macro
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 %\usepackage{layouts}
 \begin{document}
 
@@ -86,7 +88,6 @@ bibliography=totoc
 \backmatter
 \listoffigures{}
 \listoftables{}
-%TODO: Formelverzeichnis hinzufügen
 \printbibliography[]
 
 \end{document}
