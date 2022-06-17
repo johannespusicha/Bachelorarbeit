@@ -1,10 +1,11 @@
 \chapter{Quellcoode}
 \label{chap:Quellcode}
+\definecolor{shadecolor}{named}{lightgray}
 
 \section{Modelica-Code}
 \label{sec:ModelicaCode}
-%TODO: ModelicaaCode überprüfen
-\begin{lstlisting}[language=modelica, caption=Record für die Maschinendaten der Asynchronmaschine, label=lst:RecordASMData]
+
+\begin{lstlisting}[language=modelica,caption=Record für die Maschinendaten der Asynchronmaschine,label=lst:RecordASMData]
 within Frequenzumformer.Maschinenparameter;
 record AIM_SquirrelCageData
     extends BasisDaten;
@@ -40,7 +41,8 @@ record AIM_SquirrelCageData
   end AIM_SquirrelCageData;
 \end{lstlisting}
 
-\begin{lstlisting}[language=modelica, caption=Vollständiges Modell des Frequenzumformers, label=lst:UmformerVollstandig]
+
+\begin{lstlisting}[language=modelica, caption=Vollständiges Modell des Frequenzumformers, label=lst:UmformerVollstandig,frame=single,framerule=0pt]
 within Frequenzumformer;
 
 model Umformer
@@ -95,10 +97,10 @@ end Umformer;
 
 \end{lstlisting}
 
+
 \section{Python-Code}
 \label{sec:PythonCode}
-%TODO: Python-Code überprüfen
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{preprocessData.py}, label=lst:PreprocessData]
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{preprocessData.py}, label=lst:PreprocessData,frame=single,framerule=0pt]
 ...
 def zero_crossing(ndarray):
     return np.where(np.diff(np.sign(ndarray)))[0]
@@ -173,7 +175,7 @@ def samples_per_period(delta, nom_freq):
 ...
 \end{lstlisting}
 
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{modelicaSweep.py}, label=lst:ModelicaSweep]
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{modelicaSweep.py}, label=lst:ModelicaSweep,frame=single,framerule=0pt]
 def run_model(simulation_parameters, simulation_id):
     current_working_directory = (
         r"\model_lastsprung"
@@ -270,7 +272,7 @@ def file_name_to_list(file_name):
     return (machine, parameter, int(dp))
 \end{lstlisting}
 
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{trendanalyse.py}, label=lst:Trendanalyse]
+\begin{lstlisting}[language=python, caption=Auszug aus \texttt{trendanalyse.py}, label=lst:Trendanalyse,frame=single,framerule=0pt]
 ...
 def trend(x, y, y0):
     """ Calc the average derivative of y (which is a dependent variable on x) related to y0
@@ -316,7 +318,7 @@ def trend_of_sequences(x, y, x0, sequences=[]):
     return results
 \end{lstlisting}
 
-\begin{lstlisting}[language=python, caption=Befehle zum Ausführen von \texttt{trendanalyse.py}, label=lst:TrendanalyseCommand]
+\begin{lstlisting}[language=python, caption=Befehle zum Ausführen von \texttt{trendanalyse.py}, label=lst:TrendanalyseCommand,frame=single,framerule=0pt]
 import trendanalyse
 parameter_trends = {}
 for parameter, group in df_fitted.groupby(['machine', 'parameter']):
