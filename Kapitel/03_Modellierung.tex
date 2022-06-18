@@ -23,7 +23,7 @@ In diesem Kapitel wird die Modellierung des Frequenzumfomers beschrieben. Dazu w
 
 \section{Übersicht - Energie- und Informationsfluss}\label{sec:uxfcbersicht---energie--und-informationsfluss}
 
-Bevor das Simulationsmodell in Modelica implementiert werden soll, ist es hilfreich zunächst einen Überblick über das Gesamtsystem „rotierender Frequenzumformer“ zu erlangen und die Wirkungseinflüsse der einzelnen Größen zu studieren.
+Bevor das Simulationsmodell in \textsc{Modelica} implementiert werden soll, ist es hilfreich, zunächst einen Überblick über das Gesamtsystem „rotierender Frequenzumformer“ zu erlangen und die Wirkungseinflüsse der einzelnen Größen zu studieren.
 
 \subsection{Gesamtsystem}\label{sec:gesamtsystem}
 
@@ -32,15 +32,15 @@ Bei der betrachteten Anlage handelt es sich im Wesentlichen um einen Motor-Gener
 \begin{figure}
     \centering
     \input{Tikz-Bilder/Bondgraph_Gesamt}
-    \caption{Energie- und Informationsfluss des rotierenden Frequenzumformers}
+    \caption{Energie- und Informationsfluss des rotierenden Frequenzumformers. Die Angabe der Größen erfolgt mit Bezug auf Stator- ($s$) bzw. Rotorseite ($r$).}
     \label{fig:Wirkungsgraph}
 \end{figure}
 
-In Anlehnung an die Bondgraphen-Methode zeigt der ``Wort-Bondgraph''(oder ``Wortgraph'', vgl. \cite[S.~10]{roddeckBondgraphenModellbildungUnd2019}) in \cref{fig:Wirkungsgraph} den Energie- und Informationsfluss im Frequenzumformer. Die Halbpfeile (\bond) repräsentieren den Energiefluss (die übertragene Leistung) der zusammenhängenden \emph{Fluss-} (\emph{Flow}) und \emph{Potential}größen (\emph{Effort}). Nach Konvention werden die Potentialgrößen oberhalb und die Flussgrößen unterhalb der Halbpfeils aufgetragen. Alternativ kann auch die Flussgröße direkt an einem Knoten notiert werden, wenn die Größe für alle verbundenen Kanten konstant ist. 
+In Anlehnung an die Bondgraphen-Methode zeigt der „Wort-Bondgraph“ (oder „Wortgraph“, vgl. \cite[S.~10]{roddeckBondgraphenModellbildungUnd2019}) in \cref{fig:Wirkungsgraph} den Energie- und Informationsfluss im Frequenzumformer. Die Halbpfeile (\bond) repräsentieren den Energiefluss (die übertragene Leistung) der zusammenhängenden \emph{Fluss-} (\emph{Flow}) und \emph{Potential}größen (\emph{Effort}). Nach Konvention werden die Potentialgrößen oberhalb und die Flussgrößen unterhalb der Halbpfeils aufgetragen. 
 
-Im Gegensatz zu den formalen Bondgraphen können die Knoten des Wortgraphen mehrere Größen und Verbindungen, die zum Aufstellen des Zustandsraummodells nötig wären, unter einem Oberbegriff zusammenfassen und vereinfachen (\emph{Objektorientierung}). Ist eine solche detaillierte Darstellung gesucht, können die einzelnen Oberbegriffe jeweils durch ihre korrespondierenden Bondgraph-Darstellungen ersetzt werden. Bondgraphen für die einzelnen elektrischen Maschinen können beispielsweise \cite[S.~269~ff.]{borutzkyBondGraphModelling2011} entnommen werden.
+Im Gegensatz zu den formalen Bondgraphen können die Knoten des Wortgraphen mehrere Größen und Verbindungen, die zum Aufstellen des Zustandsraummodells nötig wären, unter einem Oberbegriff zusammenfassen und vereinfachen (\emph{Objektorientierung}). Ist eine detaillierte Darstellung gesucht, können diese einzelnen Oberbegriffe jeweils durch ihre korrespondierenden Bondgraph-Darstellungen ersetzt werden. Bondgraphen für die einzelnen elektrischen Maschinen können beispielsweise \cite[S.~269~ff.]{borutzkyBondGraphModelling2011} entnommen werden.
 
-Ursache für den in \cref{fig:Wirkungsgraph} dargestellten Energiefluss ist der Vorgabe der Spannung am Netz-Eingang. Sie bewirkt einen Stromfluss im Stator, der einerseits zur Speicherung (Streuinduktivität) und Abgabe (ohm'sche Verluste) elektrischer Energie in den Statorwindungen führt und andererseits zur Wandlung elektrischer Energie in magnetische führt. Diese Energie wird über den Luftspalt (der wie ein Transformator das Verhältnis der magnetischen Spannung zum Fluss wandelt auf den Rotor übertragen (Beachte den Bezug auf Stator- (s) bzw. Rotorseite (s).). Im Rotor wird eine Spannung induziert, die einen Stromfluss zur Folge hat. Über die Lorentzkraft folgt die Wandlung in kinetische (rotatorische) Energie.
+Ursache für den in \cref{fig:Wirkungsgraph} dargestellten Energiefluss ist die Vorgabe der Spannung am Netz-Eingang. Sie bewirkt einen Stromfluss im Stator, der einerseits zur Wandlung elektrischer Energie in magnetische Energie führt, die über den Luftspalt auf den Rotor übertragen wird und andererseits mit der Abgabe von elektrischer und magnetischer Verlustenergie (ohm'sche Verluste Streufluss) verbunden ist. Der Luftspaltwirkt wie ein Transformator, der das Verhältnis der magnetischen Spannung zum Fluss bei der Übertragung auf den Rotor  wandelt. Im Rotor wird eine Spannung induziert, die einen Stromfluss zur Folge hat. Über die Lorentzkraft folgt die Wandlung in kinetische (rotatorische) Energie.
 
 Während die Winkelgeschwindigkeit der Welle für angrenzenden Baugruppen gleich ist, teilt sich das Motormoment auf. Ein Teil der Energie wird über die Massenträgheit in der Welle gespeichert und ein Teil verlässt das System durch Reibungseffekte (Lagerreibung, Luftwiderstand, \ldots). Der größte Teil wird jedoch an den Synchrongenerator und die Erregermaschine übertragen.
 
@@ -50,7 +50,7 @@ Zusätzlich zu dem Energiefluss ist in \cref{fig:Wirkungsgraph} auch der Informa
 
 \subsection{PID-Spannungsregler}\label{sec:pid-spannungsregler}
 
-Als Spannungsregler wird von Piller in dem Frequenzumformer ein PID-Regler mit \emph{variabler Verstärkung} eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (vgl. \cite{DigitalerSpannungsreglerSoftwaredokumentation}). \cref{fig:Blockschaltbild_Regler} zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang werden die Stellgrößen begrenzt. 
+Als Spannungsregler wird in dem Frequenzumformer ein PID-Regler mit \emph{variabler Verstärkung} eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (vgl. \cite{DigitalerSpannungsreglerSoftwaredokumentation}). \cref{fig:Blockschaltbild_Regler} zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang werden die Stellgrößen begrenzt. 
 
 \begin{figure}
     \centering
@@ -78,24 +78,19 @@ Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller.
 
 \section{Umsetzung}\label{sec:umsetzung}
 
-Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der \modclass{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe \cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht weiter angegeben sind alle im Folgenden angegebenen Bibliotheken und Klassen abgeleitete Klassen der MSL. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek \modclass{Frequenzumformer} angelegt. Alle Klassen, die dieser Bibliothek angehören werden mit \modclass{Frequenzumformer.Klasse} bezeichnet. Die vollständige Bezeichnung der abgeleiteten Klassen zeigt die Hierarchie der jeweiligen Bibliothek. Beginnend bei dem Bibliotheksnamen wird jedes untergeordnete Objekt mit einem Punkt abgetrennt angefügt, z.B. \modclass{Modelica.Bibliothek.Unterobjekt}.
+Die im Folgenden beschriebene Modellierung des Frequenzumformers erfolgt auf Basis der \modclass{Modelica\ Standard\ Library\ v3.2.3} (MSL, siehe \cite[]{modelicaassociationModelicaStandardLibrary2020}). So weit nicht anders angegeben sind alle im Folgenden behandelten Bibliotheken und Klassen der MSL entnommen. Für das entwickelte Modell und benötigte Hilfsklassen wird eine eigenständige Bibliothek \modclass{Frequenzumformer} angelegt. Alle Klassen, die dieser Bibliothek angehören, werden mit \modclass{Frequenzumformer.Klasse} bezeichnet. Die vollständige Bezeichnung der abgeleiteten Klassen zeigt die Hierarchie der jeweiligen Bibliothek. Beginnend bei dem Bibliotheksnamen wird jedes untergeordnete Objekt mit einem Punkt abgetrennt angefügt, z.B. \modclass{Modelica.Bibliothek.Unterobjekt}.
 
-Für den Asynchronmotor und den Synchrongenerator werden die Modelle \modclass{AIM\_­Squir­rel­Cage} und \modclass{SM\_ElectricalExcited} aus der Bibliothek \modclass{Mag\-netic.\-Funda\-men\-tal\-Wave} der MSL verwendet. Die Herleitung dieser Modelle ist umfangreich in \cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und soll hier nur kurz zusammengefasst werden. Verwendet werden die jeweiligen transienten elektrischen Komponenten und Maschinen, da nur mit diesen Einschwingvorgänge beobachtet werden können. Die quasistationären Modelle (Klassen in den Paketen \modclass{Electrical.QuasiStationary} und \modclass{Magnetic.QuasiStatic}) verwenden zur Berechnung der elektrischen und magnetischen Größen komplexe Zeiger. Diese sind nicht geeignet zur Untersuchung von Einschwingvorgängen, da die Zeiger aus der Fouriertransformation periodischer eingeschwungener Größen hergeleitet werden.
-
+Für den Asynchronmotor und den Synchrongenerator werden die Modelle \modclass{AIM\_­Squir­rel­Cage} und \modclass{SM\_ElectricalExcited} aus der Bibliothek \modclass{Mag\-netic.\-Funda\-men\-tal\-Wave} der MSL verwendet. Die Herleitung dieser Modelle ist umfangreich in \cite[]{kralModelicaObjektorientierteModellbildung2019} beschrieben und soll hier nur kurz zusammengefasst werden. Verwendet werden die jeweiligen transienten elektrischen Komponenten und Maschinen, da nur mit diesen Einschwingvorgänge beobachtet werden können. Die quasi-stationären Modelle (Klassen in den Paketen \modclass{Electrical.QuasiStationary} und \modclass{Magnetic.QuasiStatic}) verwenden zur Berechnung der elektrischen und magnetischen Größen komplexe Zeiger. Diese sind nicht geeignet zur Untersuchung von Einschwingvorgängen, da die Zeiger aus der Fourier-Transformation periodischer eingeschwungener Größen hergeleitet werden.
 
 Nach \cite[S. 149]{kralModelicaObjektorientierteModellbildung2019} werden für die betrachteten Maschinen in der MSL folgende Voraussetzungen und Vereinfachungen getroffen:
 \begin{itemize}
-\item
-  Die Wicklungen sind vollständig symmetrisch ausgeführt.
-\item
-  Oberwellen der magnetischen Größen im Luftspalt werden vernachlässigt.
-\item
-  Sättigungseffekte werden vernachlässigt.
+	\item Die Wicklungen sind vollständig symmetrisch ausgeführt.
+	\item Oberwellen der magnetischen Größen im Luftspalt werden vernachlässigt.
+	\item Sättigungseffekte werden vernachlässigt.
 \end{itemize}
 
 \subsection{Asynchronmotor mit Kurzschlussläufer}\label{sec:asynchronmotor-mit-kurzschlussluxe4ufer}
-Da die betrachteten Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{kralModelicaObjektorientierteModellbildung2019} den Asynchron- und Synchronmaschinen der MSL ein \emph{partielles Modelica-Modell} (Modell, das mit dem Modifizierer \modclass{partial} versehen ist. Das Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten haben. Es bietet die Möglichkeit Strukturen des Modells bei der Vererbung zu verändern (\modclass{replace}). Ein solches Modell kann nicht allein simuliert werden.) für Drehfeldmaschinen zugrunde (\modclass{FundamentalWave.­In­ter­fa­ces.­Par­tial­Ba­sic­In­duc­tion­Ma­chine}). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss.
-
+Da die betrachteten Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{kralModelicaObjektorientierteModellbildung2019} den Asynchron- und Synchronmaschinen der MSL ein \emph{partielles \textsc{Modelica}-Modell} für Drehfeldmaschinen zugrunde (\modclass{FundamentalWave.­In­ter­fa­ces.­Par­tial­Ba­sic­In­duc­tion­Ma­chine}). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss. Ein solches partielles (Modifizierer \modclass{partial}) Modell muss nicht die gleiche Anzahl von Gleichungen und Unbekannten implementieren und kann daher nicht allein simuliert werden. Es bietet die Möglichkeit, Strukturen des Modells bei der Vererbung zu verändern (\modclass{replace}).
 
 \subsubsection{Partielles Modell der Drehfeldmaschine}\label{sec:partielles-modell-der-drehfeldmaschine}
 Das partielle Modell der Drehfeldmaschine (siehe \cref{fig:partiellDrehfeldmaschinen}) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in \cref{fig:Wirkungsgraph} betrachtet wurde. Die Ausgestaltung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist dann Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell auch einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss zur Abstützung des Stators.
@@ -107,7 +102,7 @@ Das partielle Modell der Drehfeldmaschine (siehe \cref{fig:partiellDrehfeldmasch
 \label{fig:partiellDrehfeldmaschinen}
 \end{figure}
 
-Die Energiewandlung im Stator geschieht über das Windungsmodell \modclass{Fun­da­men­tal­Wave.­Ba­sic­Ma­chines.­Com­po­nents.­Sym­me­tric­Mu­lti­Phase­Win­ding}, welches neben der elektro-magnetischen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt. Außerdem berücksichtigt das Modell  bei ungeradzahligen mehrphasigen Systemen noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt.
+Die Energiewandlung im Stator geschieht über das Windungsmodell \modclass{Fun­da­men­tal­Wave.­Ba­sic­Ma­chines.­Com­po­nents.­Sym­me­tric­Mu­lti­Phase­Win­ding}, welches neben der elektro\-mag\-ne\-ti\-schen Kopplung auch ohmsche Verluste sowie Streu- und Wirbelstromverluste des Magnetfelds berücksichtigt. Außerdem berücksichtigt das Modell  bei ungeradzahligen mehrphasigen Systemen noch die Nullinduktivität. Das wird jedoch nur benötigt, wenn die Windung unsymmetrisch belastet wird (\cite[S. 193]{kralModelicaObjektorientierteModellbildung2019}), was in der hier betrachteten Anwendung nicht auftritt.
 
 % \begin{figure}
 % \centering
@@ -117,7 +112,7 @@ Die Energiewandlung im Stator geschieht über das Windungsmodell \modclass{Fun­
 % \label{fig:MultiPhasenWindung}
 % \end{figure}
 
-Über das Luftspaltmodell (\modclass{FundamentalWave.BasicMachines.­Com­po­nents.­Ro­tor­Sa­li­en­cy­Air­Gap}) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (\emph{d,q-System}).
+Über das Luftspaltmodell (\modclass{FundamentalWave.BasicMachines.­Com­po­nents.­Ro­tor­Sa­li­en­cy­Air­Gap}) wird der Abfall der magnetischen Spannung über dem magnetischen Widerstand des Luftspalts sowie das auf den Rotor wirkende Drehmoment modelliert. Um die magnetischen Größen des Stators und des Rotors in Beziehung zueinander zu setzen, ist eine Koordiantentransformation der Statorgrößen in das körperfeste Bezugssystem des Rotors implementiert (\emph{d,q-System}).
 
 \hypertarget{sec:modell-ASM}{%
 \subsubsection{Modell}\label{sec:modell-ASM}}
@@ -169,13 +164,13 @@ das Verhältnis des \emph{Nutschritts} (\(y_Q\)) zur Anzahl der \emph{Nuten je P
 \begin{equation}
     q = \frac{Q}{2pm}\label{eq:Lochzahl}.
 \end{equation}
-Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{tab:WicklungsdatenASM} auf. Alle weiteren Größen zur Beschreibung der Asynchronmaschine können direkt aus dem Datenblatt entnommen und sind ebenfalls in \cref{tab:ParameterASM,tab:WerteParameterrecordASM} angegeben. 
+Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{tab:WicklungsdatenASM} auf. Alle weiteren Größen zur Beschreibung der Asynchronmaschine können direkt aus dem Datenblatt entnommen werden und sind ebenfalls in \cref{tab:ParameterASM,tab:WerteParameterrecordASM} angegeben. 
 
-Dabei ist für das Trägheitsmoment \(J_{\mathrm{r}}=0\) eingetragen, da aus der Auslegung des Frequenzumformers nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden.
+Dabei ist für das Trägheitsmoment \(J_{\mathrm{r}}=0\) eingetragen, da aus der Auslegung des Frequenzumformers nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden.
 
 \subsection{Synchrongenerator mit Dämpferkäfig}\label{sec:synchrongenerator}
 
-Das Modell des Synchrongenerators basiert wie auch das der Asynchronmaschine auf dem oben schon dargestellten partiellen Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig, ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
+Auch das Modell des Synchrongenerators basiert wie das der Asynchronmaschine auf dem oben schon dargestellten partiellen Drehfeldmaschinenmodell. Es fügt dem partiellen Modell ein einphasiges elektro-magnetisches Kopplungsmodell und ein Bürstenmodell für die elektrische Erregung hinzu und bietet einen optionalen Dämpferkäfig, ähnlich zu dem Kurzschlussläufer der Asynchronmaschine.
 
 \hypertarget{sec:Modell-SG}{%
 \subsubsection{Modell}\label{sec:Modell-SG}}
@@ -249,7 +244,7 @@ angegeben. Ebenso seien die Zusammenhänge für die bezogenen Rotorreaktanzen \(
     \intertext{und}
     x_{\mathrm{rq}} &= \frac{x_{\mathrm{mq}}^2}{x_{\mathrm{q}} - x_{\mathrm{q}}''}.
 \end{align}
-Für die bezogenen Rotorwiderstände\footnote{An dieser Stelle liegt in der vorliegenden Ausgabe von \cite[]{kralModelicaObjektorientierteModellbildung2019} ein Druckfehler vor (vgl. mit dem Modelica-Code Listing \cite[S. 266]{kralModelicaObjektorientierteModellbildung2019})} wird ebenda
+Für die bezogenen Rotorwiderstände\footnote{An dieser Stelle liegt in der vorliegenden Ausgabe von \cite[]{kralModelicaObjektorientierteModellbildung2019} ein Druckfehler vor (vgl. mit dem \textsc{Modelica}-Code Listing \cite[S. 266]{kralModelicaObjektorientierteModellbildung2019})} wird ebenda
 \begin{align}
     r_{\mathrm{rd}} &= \frac{x_{\mathrm{rd}} - \frac{x_{\mathrm{md}}^2}{x_{\mathrm{e}}}}{\omega_{\mathrm{sN}}\cdot T_{\mathrm{d0}}''}, \\
     r_{\mathrm{rq}} &= \frac{x_{\mathrm{rq}}}{T_{\mathrm{q0}}''}
@@ -271,7 +266,7 @@ aus den Kurzschlusszeitkonstanten \(T_{\mathrm{d}}''\) und
 Damit ergeben sich die Induktivitäten und Widerstände des
 Synchrongenerators mit der Nennkreisfrequenz
 \(\omega_{\mathrm{sN}}=2\pi\cdot f_{\mathrm{sN}}\) und der
-Bezugsreaktanz \(X_{\mathrm{N}}\) nach Gleichungen \cref{eq:LmgSG,eq:ReSG} (vgl.
+Bezugsreaktanz \(X_{\mathrm{N}}\) nach \cref{eq:LmgSG,eq:ReSG} (vgl.
 \cite[S.265f.]{kralModelicaObjektorientierteModellbildung2019}).
 \begin{align}
 L_{\mathrm{md}} &= x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}} \label{eq:LmgSG}\\
@@ -287,7 +282,7 @@ Damit ist der Synchrongenerator vollständig parametriert. Die \cref{tab:Auslegu
 
 \subsection{Erregermaschine}\label{sec:erregermaschine}
 
-Die Erregermaschine und der auf dem Polrad der Maschine mitrotierende Gleichrichter dienen gemäß \cref{fig:Wirkungsgraph} der berührungslosen Erregung des Synchrongenerators über den Luftspalt. Wie bei dem Hauptgenerator handelt es sich auch bei der Erregermaschine um eine Synchronmaschine. Neben der geringeren Größe (ermöglicht durch die geringere Übertragungsleistung) unterscheiden sich die beiden Generatoren darin, dass die Erregermaschine eine Innenpol- und der Hauptgenerator eine Außenpolmaschine ist. In der Modellierung der Maschinen braucht dieser Umstand jedoch nicht berücksichtigt zu werden.
+Die Erregermaschine und der auf dem Polrad der Maschine mitrotierende Gleichrichter dienen gemäß \cref{fig:Wirkungsgraph} der berührungslosen Erregung des Synchrongenerators über den Luftspalt. Wie bei dem Hauptgenerator handelt es sich auch bei der Erregermaschine um eine Synchronmaschine. Neben der geringeren Größe (ermöglicht durch die geringere Übertragungsleistung) unterscheiden sich die beiden Generatoren darin, dass die Erregermaschine eine Innenpol- und der Hauptgenerator eine Außenpolmaschine ist. In dem zu modellierenden Verhalten der Maschinen tritt dieser Unterschied jedoch nicht auf und braucht daher nicht berücksichtigt zu werden.
 
 \subsubsection{Modell}\label{modell-erregermaschine}
 
@@ -318,10 +313,10 @@ Die Parametrierung des Synchrongenerators der Erregermaschine erfolgt
 analog zur Parametrierung des Hauptgenerators oben. Die verwendeten
 Größen sind in  \cref{tab:AuslegungErregermaschine,tab:ParameterErregermaschine,tab:ParameterRecordErregermaschine,tab:ZwischenwerteErregermaschine} dargestellt.
 
-Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden \(G_{\mathrm{off}}=\unit[0,001]{S}\) bzw. \(R_{\mathrm{on}}=\unit[0,001]{\Omega}\) festgelegt, die nahe Null, aber noch groß genug sind um die genannten Probleme zu vermeiden.
+Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) (typischer Wert für Silizium-Dioden \cite ) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden \(G_{\mathrm{off}}=\unit[0,001]{S}\) bzw. \(R_{\mathrm{on}}=\unit[0,001]{\Omega}\) festgelegt, die nahe Null, aber noch groß genug sind um die genannten Probleme zu vermeiden.
 
 \subsection{Spannungsregler}\label{sec:Spannungsregler}
-Der Spannungsregler wird in Modelica als Signalflussobjekt implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden.
+Der Spannungsregler wird in \textsc{Modelica} als Signalflussobjekt implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden.
 
 Wie im Blockschaltbild des Reglers (\cref{fig:Blockschaltbild_Regler}) dargestellt ist allen Regelgliedern ein Begrenzer nachgeschaltet. Dies trägt zum Einen der Abbildung der Messgrößen auf das begrenzte Intervall der reglerinternen Größen Rechnung und bietet zum Anderen die Möglichkeit die Stellgrößen der Regelglieder unabhängig voneinander zu begrenzen. Um diese Begrenzung bei allen Gliedern mit einer einheitlichen Schnittstelle zu implementieren wird aus dem \textbf{S}ingle-\textbf{I}nput-\textbf{S}ingle-\textbf{O}utput-Interface der MSL (\modclass{Mo­de­li­ca.­Blocks.­In­ter­fa­ces.­SI­SO}) das Interface \modclass{Frequenzumformer.Regler.Interfaces.limitedController} abgeleitet, welches die Begrenzungsgrößen zugänglich macht. Weiterhin wird in dem Interface der boolsche Eingang \modclass{enable} definiert zum Einschalten des jeweiligen Regelgliedes.­
 
@@ -407,13 +402,13 @@ L_{100\%} &= \frac X\omega = \frac{\unit[0,264498]{\Omega}}{2\pi\cdot\unit[400]{
 \end{align}
 
 \paragraph{Messung der Frequenz}
-Da die direkte Messung der Spannungsfrequenz (z.B. durch Messen der Zeit zwischen Nulldurchgängen oder mittels Fouriertransformation) numerisch sehr aufwendig ist, wird die Spannungsfrequenz aus der Winkelgeschwindigkeit der rotierenden Masse bestimmt. In Modelica ist die Winkelgeschwindigkeit  als Flussgröße der rotatorischen Mechanik festgelegt und daher eine Zustandsgröße, die direkt ausgelesen und verarbeitet werden kann. Die Frequenz der Spannung ergibt sich dann aus der Polpaarzahl $p$ des Synchrongenerators nach \cref{eq:Frequenz} .
+Da die direkte Messung der Spannungsfrequenz (z.B. durch Messen der Zeit zwischen Nulldurchgängen oder mittels Fouriertransformation) numerisch sehr aufwendig ist, wird die Spannungsfrequenz aus der Winkelgeschwindigkeit der rotierenden Masse bestimmt. In \textsc{Modelica} ist die Winkelgeschwindigkeit  als Flussgröße der rotatorischen Mechanik festgelegt und daher eine Zustandsgröße, die direkt ausgelesen und verarbeitet werden kann. Die Frequenz der Spannung ergibt sich dann aus der Polpaarzahl $p$ des Synchrongenerators nach \cref{eq:Frequenz} .
 \begin{equation}
 	f_\mathrm{U} = \omega_\mathrm{mech}\cdot\frac{p}{2\pi}\label{eq:Frequenz}
 \end{equation}
 
 \subsection{Gesamtmodell}\label{gesamtmodell}
-Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Der zugehörige Modelica-Quellcode ist in \cref{lst:UmformerVollstandig} angegeben. Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse mit $\omega = \unit[314]{\frac{rad}{s}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0,7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung mit einer Rampe über \unit[0,3]{s} hochgefahren.
+Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Der zugehörige \textsc{Modelica}-Quellcode ist in \cref{lst:UmformerVollstandig} angegeben. Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse mit $\omega = \unit[314]{\frac{rad}{s}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0,7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung mit einer Rampe über \unit[0,3]{s} hochgefahren.
 
 Simuliert wird das Modell mit dem Solver \texttt{dassl} über einen Zeitraum von \unit[3]{s}. Der Solver verwendet einen Algorithmus mit variabler Schrittweite. Die Ausgabe der Simulationsergebnisse erfolgt auf einem festen Zeitgitter mit einer Schrittweite von $T=\unit[0,00078125]{s}$, der Periodendauer des realen Reglers. 
 \afterpage{%
