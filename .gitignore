@@ -11,3 +11,5 @@
 *.lot
 *.xml
 main.pdf
+main.pyg
+main.synctex(busy)
