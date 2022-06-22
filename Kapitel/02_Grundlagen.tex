@@ -2,19 +2,18 @@
 \label{chap:Grundlagen}
 In diesem Kapitel sollen die für die Modellierung des Frequenzumformers benötigten Grundlagen aus dem Bereich der Regelungstechnik, der elektrischen Maschinen und der Modellbildung und Simulation  behandelt werden. 
 
-\section{Aus dem Bereich der Regelungstechnik}
+\section{Regelungstechnik}
 \label{sec:GrundlagenRegelungstechnik}
-%Aus dem Bereich der Regelungstechnik werden zur Modellierung und Simulation einige Grundlagen zum PID-Regler und zur Behandlung zeitdiskreter Regler benötigt, die im Folgenden beschrieben werden.
 Die Spannungsregelung des Frequenzumformers geschieht mit einem PID-Regler (\textbf{P}ro\-por\-ti\-o\-nal-\textbf{I}ntegral-\textbf{D}ifferential-Regler) der von einem Microcontroller als zeitdiskreter Regler ausgeführt wird. Die Struktur des PID-Reglers und seine zeitdiskrete Darstellung sollen im Folgenden eingeführt werden.
 
 \paragraph{PID-Regler}
 \label{par:PID-Regler}
-Für den \emph{idealen PID-Regler} lassen sich die Übertragungsfunktion im Laplace-Bereich und Sprungantwort im Zeitbereich durch Addition der drei Regelglieder aufstellen, mit $K_{\mathrm{P}},\,K_{\mathrm{I}},K_{\mathrm{D}},$ den Verstärkungen des Proportional-, Integral- und Differentialglieds:
+Für den \emph{idealen PID-Regler} lassen sich die Übertragungsfunktion im Laplace-Bereich $K_{\mathrm{PID}}(s)$ und Sprungantwort im Zeitbereich $h_{\mathrm{PID}}(t)$ durch Addition der drei Regelglieder aufstellen, mit $K_{\mathrm{P}},\,K_{\mathrm{I}},K_{\mathrm{D}},$ den Verstärkungen des Proportional-, Integral- und Differentialglieds:
 \begin{align}
     K_{\mathrm{PID}}(s) &= K_{\mathrm{P}} + \frac{K_{\mathrm{I}}}{s} + K_{\mathrm{D}}s \label{eq:IdealerPID} \\
     h_{\mathrm{PID}}(t) &= (K_{\mathrm{P}} + K_{\mathrm{I}}t)\sigma(t) + K_{\mathrm{D}}\delta(t) \label{eq:IdealerPIDSprungantwort}
 \end{align}
-Der ideale PID-Regler ist in der Realität nicht umsetzbar, da der Zählergrad des Reglerpolynoms größer als der Nennergrad ist. Nach \cref{eq:IdealerPIDSprungantwort} würde die Sprungantwort des Reglers einen unendlich hohen $\delta(t)$-Impuls enthalten, der technisch nicht realisierbar ist. Daher wird für den \emph{realen PID-Regler} das D-Glied mit einem DT-Glied angenähert. Die Übertragungsfunktion und die Sprungantwort des realen PID-Reglers ergeben sich dann zu\begin{align}
+Der ideale PID-Regler ist in der Realität nicht umsetzbar, da der Zählergrad des Reglerpolynoms größer als der Nennergrad ist. Nach \cref{eq:IdealerPIDSprungantwort} würde die Sprungantwort des Reglers einen unendlich hohen Dirac-Impuls $\delta(t)$ enthalten, der technisch nicht realisierbar ist. Daher wird für den \emph{realen PID-Regler} das D-Glied mit einem DT-Glied angenähert. Die Übertragungsfunktion und die Sprungantwort des realen PID-Reglers ergeben sich dann zu\begin{align}
     K_{\mathrm{PIDT}}(s) &= K_{\mathrm{P}} + \frac{K_{\mathrm{I}}}{s} + K_{\mathrm{D}}\frac{sT}{1+sT} \label{eq:realerPID} \\
     \intertext{und}
     h_{\mathrm{PIDT}}(t) &= (K_{\mathrm{P}} + K_{\mathrm{I}}t)\sigma(t) + K_{\mathrm{D}} e^{-\frac t T}.
@@ -31,7 +30,7 @@ und der Ausdruck $e^{sT_{\mathrm{s}}}$ durch die neue Variable $z$ ersetzt, so e
     X(z) = \mathcal{Z}\{x[k]\} = \sum_{k=0}^\infty x[k]z^{-k}.
 \end{equation} Wichtige Eigenschaften und Korrespondenztabellen zur $\mathcal{Z}$-Transformation sind unter Anderem in \cite{mbihiTableZtransforms2018} und \cite[S.~112-114]{unbehauenRegelungstechnikZustandsregelungenDigitale2009} angegeben.
 
-Zur Überführung kontinuierlicher Regler mit Hilfe der $\mathcal{Z}$-Transformation in die zeitdiskrete Darstellung muss noch der Einfluss der Abtastung der Messsignale berücksichtigt werden. Vereinfacht kann angenommen werden, dass die Abtastung nach der Methode \emph{Sample and Hold} geschieht, das heißt durch Abgreifen eines Messwertes und Halten des Messwertes bis zum nächsten Tastzyklus. Beschrieben wird dieser Vorgang mit einem \emph{Zero-Order-Hold}-Glied (ZOH), das dem Regler vorgeschaltet wird. \cref{eq:ZOH_Zeit,eq:ZOH_Laplace} geben die Darstellung des ZOH im Zeit- und im Laplacebereich an.
+Zur Überführung kontinuierlicher Regler mit Hilfe der $\mathcal{Z}$-Transformation in die zeitdiskrete Darstellung muss zusätzlich der Einfluss der Abtastung der Messsignale berücksichtigt werden. Die Abtastung geschieht nach der Methode \emph{Sample and Hold}, das heißt durch Abgreifen eines Messwertes und Halten des Messwertes bis zum nächsten Tastzyklus. Beschrieben wird dieser Vorgang mit einem \emph{Zero-Order-Hold}-Glied (ZOH), das dem Regler vorgeschaltet wird. \cref{eq:ZOH_Zeit,eq:ZOH_Laplace} geben die Darstellung des ZOH im Zeit- und im Laplacebereich an.
 \begin{align}
     h(t) &= \sigma(t)*\left(\delta(t) - \delta(t-T_{\mathrm{s}})\right) \label{eq:ZOH_Zeit}\\
     H(s) &= \frac{1 - e^{-sT_{\mathrm{s}}}}{s} \label{eq:ZOH_Laplace}
@@ -46,9 +45,9 @@ Für einen Regler im $\mathcal{Z}$-Bereich ergibt sich damit
 \end{equation}
 
 %--------------------------------------------------------------
-\section{Aus dem Bereich elektrischer Maschinen}
+\section{Elektrische Maschinen}
 \label{sec:GrundlagenEMaschinen}
-Der im Rahmen dieser Arbeit untersuchte Frequenzumformer verwendet ein Motor-Generator-Set zur Wandlung. Dabei kommen zwei Arten elektrischer Maschinen zum Einsatz: Zum Einen eine Asynchronmaschine mit Kurzschlussläufer als Motor und eine Schenkelpolsynchromaschine mit bürstenloser Erregung als Generator, ausgeführt als Innenpolmaschine. In diesem Abschnitt sollen die für die Modellbildung benötigten Grundlagen dieser Maschinen eingeführt werden. Da hier nicht alle Aspekte im Detail behandelt werden können, sei auch auf die Literatur verwiesen, die hier Verwendung gefunden hat (vor Allem \cites{binderElektrischeMaschinenUnd2012,beckElektrischeEnergietechnikEinfuhrung2008,mullerGrundlagenElektrischerMaschinen2005}).
+Bei dem im Rahmen dieser Arbeit untersuchten Frequenzumformer kommen zwei Arten elektrischer Maschinen zum Einsatz: Zum Einen eine Asynchronmaschine mit Kurzschlussläufer als Motor und eine Schenkelpolsynchromaschine mit bürstenloser Erregung als Generator, ausgeführt als Innenpolmaschine. In diesem Abschnitt sollen die für die Modellbildung benötigten Grundlagen dieser Maschinen eingeführt werden. Da hier nicht alle Aspekte im Detail behandelt werden können, sei auch auf die Literatur verwiesen, die hier Verwendung gefunden hat (vor Allem \cites{binderElektrischeMaschinenUnd2012,beckElektrischeEnergietechnikEinfuhrung2008,mullerGrundlagenElektrischerMaschinen2005}).
 
 Beiden Maschinenarten gemeinsam ist die Verwendung eines (bezogen auf den Stator) sich drehenden magnetischen Feldes (Drehfeldmaschinen) zur elektro-mechanischen Kopplung. Dabei erfolgt die elektro-magnetische Wandlung in beiden Fällen durch kreisförmig angeordnete Spulen, die im Blechpaket des Stators eingelassen sind. Die Erzeugung dieses magnetischen Feldes erfolgt bei beiden Maschinen elektrisch (\emph{elektrische Erregung}).
 
@@ -57,14 +56,16 @@ Charakterisierendes Unterscheidungsmerkmal beider Maschinen ist das Verhältnis 
 \subsection{Asynchronmaschine}
 Charakterisierend für die Asynchronmaschine sind das elektrische Ersatzschaltbild und die Drehzahl-Drehmoment-Kennlinie. Beide beschreiben das stationäre Betriebsverhalten der Maschine und sind grundlegend zur Modellierung, Parametrierung und Verifizierung der Asynchronmaschine.
 
-\begin{figure}
+\paragraph{Elektrisches Ersatzschaltbild}
+
+\begin{figure}[b]
     \centering
     \input{Tikz-Bilder/ESB_ASM}
     \caption{T-Ersatzschaltbild eines Strangs der Asynchronmaschine mit Kurzschlussläufer}
     \label{fig:ESB_ASM}
 \end{figure}
-\paragraph{Elektrisches Ersatzschaltbild}
-Das elektrische Ersatzschaltbild für jeden der drei Stränge der Asynchronmaschine im stationären Zustand ist in \cref{fig:ESB_ASM} dargestellt. Die Asynchronmaschine wird als Drehtransformator betrachtet mit dem Stator als Primär- und dem Läufer als Sekundärseite. Die Statorwicklungen werden durch die Ständerhauptinduktivität $L_{\mathrm{m}}$, der Ständerstreuinduktivität $L_{\mathrm{s\sigma}}$ und einem ohmschen Widerstand $R_{\mathrm{s}}$ der Wicklungen wiedergegeben. Der Kurzschlussläufer wird als kurzgeschlossene Wicklung dargestellt. Durch Umrechnung der Rotorgrößen auf eine dreisträngige Wicklung ergibt sich die Sekundärseite des Drehtransformators mit der Rotorstreuinduktivität $L'_{\mathrm{r\sigma}}$ und dem Schlupfabhängigen Widerstand $\nicefrac{R'_{\mathrm{r}}}{s}$.
+
+Das elektrische Ersatzschaltbild für jeden der drei Stränge der Asynchronmaschine im stationären Zustand ist in \cref{fig:ESB_ASM} dargestellt. Die Asynchronmaschine wird als Drehtransformator betrachtet mit dem Stator als Primär- und dem Läufer als Sekundärseite. Die Statorwicklungen werden durch die Ständerhauptinduktivität $L_{\mathrm{m}}$, der Ständerstreuinduktivität $L_{\mathrm{s\sigma}}$, einem Ersatzwiderstand $R_{\mathrm{v}}$ für die Eisenverluste und einem ohmschen Widerstand $R_{\mathrm{s}}$ der Wicklungen wiedergegeben. Der Kurzschlussläufer wird als kurzgeschlossene Wicklung dargestellt. Durch Umrechnung der Rotorgrößen auf eine dreisträngige Wicklung ergibt sich die Sekundärseite des Drehtransformators mit der Rotorstreuinduktivität $L'_{\mathrm{r\sigma}}$ und dem Schlupfabhängigen Widerstand $\nicefrac{R'_{\mathrm{r}}}{s}$.
 
 \paragraph{Drehzahl-Drehmoment-Kennlinie}
 Die Drehzahl-Drehmoment-Kennlinie der Asynchronmaschine zeigt \cref{fig:KennlinieASM}. Die Kennlinie ergibt sich aus der Leistungsbilanz der Maschine mit den Strom-Spannungs-Beziehungen aus dem Ersatzschaltbild zu \begin{equation}
