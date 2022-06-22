@@ -94,7 +94,6 @@ initial equation
 equation
   ...
 end Umformer;
-
 \end{lstlisting}
 
 
@@ -175,6 +174,28 @@ def samples_per_period(delta, nom_freq):
 ...
 \end{lstlisting}
 
+\subsection{Parameterstudie}
+Mit dem Paket \texttt{modelicaSweep.py} (siehe \cref{lst:ModelicaSweep}) wird die Parameterstudie an dem \textsc{Modelica}-Modell durchgeführt. Vorraussetzung ist, dass sich das kompilierte Modell \texttt{Umformer.exe} und die Begleitdateien \texttt{Umformer\_init.xml}, \texttt{Umformer\_prof.intdata}, \texttt{Umformer\_prof.realdata} und \texttt{Umformer\_info.json} in dem Arbeitsverzeichnis \texttt{model\_\-lastsprung} befinden. Über \cref{lst:ParameterSweep} wird die Funktion \texttt{run\_model()} aufgerufen. Der Funktion werden ein Dictionary mit Simulationsparametern der Form \begin{lstlisting}[language=python]
+{"Parameter":Wert,
+ ...}
+\end{lstlisting} und der Dateiname der Ergebnisdatei übergeben. Jeder Aufruf von \texttt{run\_model()} startet einen Unterprozess, der über den Shell-Befehl \texttt{ start / wait /min <model> -override <parameter> -r=<result\_file>} das Modell mit den veränderten Simulationsparametern ausführt. Durch den Aufruf des Unterprozesses ist es möglich, mehrere Simulationen auf verschiedenen Prozessoerkernen parallel durchzuführen.
+
+\begin{lstlisting}[language=python, caption=Ausführen der Parameterstudie mit \texttt{modelicaSweep.py},label=lst:ParameterSweep]
+import multiprocessing as mp
+from multiprocessing.pool import ThreadPool
+import modelicaSweep
+
+simulations_parameter = [({'aimcData.X0': 3.7075}, 'aimc_X0_dp=-60'),
+                         ({'aimcData.X0': 3.7941587045780443}, 'aimc_X0_dp=-59'),
+                         ...]
+
+if __name__ == "__main__":
+    mp.freeze_support()
+    with mp.Pool() as pool:
+        result = pool.starmap(modelicaSweep.run_model, simulations_parameter)
+        print(*result)
+\end{lstlisting}
+
 \begin{lstlisting}[language=python, caption=Auszug aus \texttt{modelicaSweep.py}, label=lst:ModelicaSweep,frame=single,framerule=0pt]
 def run_model(simulation_parameters, simulation_id):
     current_working_directory = (
@@ -200,58 +221,7 @@ def plot_simulation(file_name):
     simulation_time, voltage = np.vstack((simulation_time-JUMP_TIME, voltage))[:,JUMP_INDEX:] # Combine both arrays to slice them with only one command
     return simulation_time, voltage
 
-def evaluate_results(file_name, model, p0, progress_bar=None, bounds=(-np.inf, np.inf)):
-    """ fits voltage transient of input file to model with given initial guess p0
-    :Returns:
-        - fitted parameters
-        - r squared
-        - steady state voltage before jump
-    """   
-    file = 'results_lastsprung/' + file_name + '.mat'
-    simulation_results = DyMat.DyMatFile(file)
-    voltage = simulation_results.data("V_out.V")
-    time = simulation_results.abscissa("V_out.V")[0]
-    JUMP_TIME = 2.2
-    JUMP_INDEX = np.where(time == JUMP_TIME)[0][0]
-    PRE_JUMP_INDEX = np.where(time >= JUMP_TIME-0.2)[0][0]
-    voltage_pre_jump = np.mean(voltage[PRE_JUMP_INDEX:JUMP_INDEX])
-    voltage = voltage[JUMP_INDEX:]
-    time = time[JUMP_INDEX:] - JUMP_TIME
-    
-    time_interpol = np.linspace(0.0, 0.8, num=1000)
-    voltage_interpol = (interpolate.interp1d(time, voltage, bounds_error=False, fill_value=(voltage[0],voltage[-1])))(time_interpol)
-    
-    parameters_optimal, r_squared = fit_least_squares(model, time_interpol, voltage_interpol, list_of_p0s=p0, bounds=bounds)
-    
-    # update progress bar if given
-    if progress_bar is not None:
-        progress_bar.update(1)
-        
-    return [*parameters_optimal, r_squared, voltage_pre_jump]
-
-def fit_least_squares(model, time, ysim, list_of_p0s, bounds=(-np.inf, np.inf)):
-    """ Fit model function to simulation data
-    :Arguments: 
-        - model: function(t, p) which models the simulation data
-        - time: array with time points (independent variable)
-        - ysim: simulation values
-    :Returns:
-        - optimized parameters
-        - r_squared for optimized parameters
-    """
-    max_nfev = 5000
-    for p0 in list_of_p0s:
-        interpol = least_squares(_residual_, p0, verbose=0, kwargs={'f':model, 'y':ysim, 't':time}, max_nfev=max_nfev, bounds=bounds)
-        if interpol.status == 0:
-            continue
-        else:
-            break
-    parameters_optimal = interpol.x
-    yfit = model(time, *parameters_optimal)
-    return parameters_optimal, r_squared(ysim, yfit)
-    
-def _residual_(parameters, f, t, y):
-    return f(t, *parameters) - y
+...
     
 def r_squared(ydata, yfit):
     """ Calc R^2 of a regression by the measured ydata and the result of the curve fitting yfit
