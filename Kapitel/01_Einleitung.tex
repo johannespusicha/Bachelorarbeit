@@ -2,7 +2,7 @@
 \label{chap:Einleitung}
 Mit der fortschreitenden Entwicklung multidisziplinärer Systeme und der Digitalisierung des Maschinen- und Anlagenbaus nimmt die Komplexität des Entwicklungsprozesses zu. Es müssen verschiedene Domänen in einem Produkt integriert und aufeinander abgestimmt werden bei möglichst effizienter Kostenstruktur und Terminplanung. Zugleich bieten Weiterentwicklungen der Modellierungs- uns Simulationssysteme neue Möglichkeiten zur virtuellen Produktentwicklung und Erprobung der Systeme vor deren physischen Realisierung. Begegnet wird der Komplexität des Entwicklungsprozesses durch Nutzung dieser neuen Möglichkeiten in der modellbasierten Systementwicklung. Im Zentrum der Entwicklung steht das Modell, der Digitale Zwilling des Systems, mit dem alle relevanten Informationen und Anforderungen verknüpft sind. An dem Modell können schon in der Entwurfsphase Analysen vorgenommen und zur Verbesserung des Systems verwendet werden. 
 
-Ein Anwendungsgebiet für die modellbasierte Systementwicklung ist die Verknüpfung der Auslegung elektrischer Maschinen mit der Reglerentwicklung und einstellung. Auch heute noch geschieht die Regelung elektrischer Maschinen häufig noch mit dem Einsatz von PI- bzw. PID-Reglerstrukturen. Das Einstellen der Reglerparameter wird dabei, sofern kein selbsteinstellender Regler
+Ein Anwendungsgebiet für die modellbasierte Systementwicklung ist die Verknüpfung der Auslegung elektrischer Maschinen mit der Reglerentwicklung und -einstellung. Auch heute noch geschieht die Regelung elektrischer Maschinen häufig noch mit dem Einsatz von PI- bzw. PID-Reglerstrukturen. Das Einstellen der Reglerparameter wird dabei, sofern kein selbsteinstellender Regler
 (Autotuning) verwendet wird, manuell und mit Hilfe von Erfahrungswerten oder Einstellregeln durchgeführt. Dazu muss jedoch zuerst die zu regelnde Maschine existieren; die Anpassung des Reglers kann also erst nach Entwicklung der Anlage, mit der Produktion eines ersten Prototypen erfolgen. Durch den Einsatz der modellbasierten Systementwicklung kann dies schon zeitnah mit der elektrischen Auslegung erfolgen. Die dazu nötige Modellbildung, Validierung und eine mögliche Anwendung des Modells sollen im Rahmen dieser Arbeit am Beispiel eines rotierenden Frequenzumformers gezeigt werden.
 
 \section{Zielsetzung}
@@ -11,7 +11,7 @@ Zunächst soll in dieser Arbeit das Gesamtsystem „rotierender Frequenzumformer
 
 Die zentralen Fragen, die in dieser Arbeit beantwortet werden sollen, sind daher:
 \begin{itemize}
-\item Wie muss ein Modell aufgebaut werden, um hinreichend genau die reale Maschine abzubilden?
+\item Mit welchen Komponenten muss ein Modell aufgebaut werden, um hinreichend genau die reale Maschine abzubilden?
 \item Welche Parameter aus der Auslegung der Maschine werden für die Simulation benötigt und wie müssen sie gegebenenfalls umgeformt werden?
 \item Wie kann die Gültigkeit des Modells überprüft werden?
 \item Welche Erkenntnisse können mit dem Modell gewonnen werden? Welchen Einfluss hat eine Variation der Maschinen- und Regelparameter auf das dynamische Verhalten der Maschine?
@@ -19,16 +19,34 @@ Die zentralen Fragen, die in dieser Arbeit beantwortet werden sollen, sind daher
 
 \section{Überblick über das System rotierender Frequenzumformer}
 \label{sec:Uberblick}
-Bei der hier betrachteten elektrischen Anlage handelt es sich um den rotierenden Frequenzumformer „Apojet AJR 90“ der Firma \textsc{Piller Power Systems} mit Sitz in Osterode am Harz. Aufgabe des Frequenzumformers ist es, die durch Energieversorger bereitgestellte \unit[50]{Hz} Netzspannung in ein \unit[400]{Hz} Spannungsystem umzuformen, wie es unter Anderem in der Bodenstromversorgung der zivilen und militärischen Luftfahrt zum Einsatz kommt.
-Zur Umformung der Netzfrequenz haben sich zwei technische Prinzipien auf dem Markt etabliert. Zum einen werden sogenannte \emph{statische} Umformer eingesetzt, die die Frequenz mit dem Einsatz von Leistungselektroniken umwandeln, und andererseits werden \emph{rotierende} Umformer wie der hier betrachtete eingesetzt. Die rotierenden Umformer realisieren die Frequenzumwandlung durch die Kupplung eines Elektromotors mit einem geeigneten Synchrongenerator. Zusammen mit der Frequenz findet auch eine Wandlung der Spannung statt, die über einen Spannungsregler konstant gehalten wird. \cref{tab:Leistungsdaten} gibt einen Überblick über die wichtigsten Technischen Daten.
-\begin{table}
+Bei der hier betrachteten elektrischen Anlage handelt es sich um den rotierenden Frequenzumformer „Apojet AJR 90“ (siehe \cref{fig:RenderbildUmformer}) der Firma \textsc{Piller Power Systems} mit Sitz in Osterode am Harz. Aufgabe des Frequenzumformers ist es, die durch Energieversorger bereitgestellte \unit[50]{Hz} Netzspannung in ein \unit[400]{Hz} Spannungsystem umzuformen, wie es unter Anderem in der Bodenstromversorgung der zivilen und militärischen Luftfahrt zum Einsatz kommt.
+Zur Umformung der Netzfrequenz haben sich zwei technische Prinzipien auf dem Markt etabliert. Zum einen werden sogenannte \emph{statische} Umformer eingesetzt, die die Frequenz mit dem Einsatz von Leistungselektroniken umwandeln, und andererseits werden \emph{rotierende} Umformer wie der hier betrachtete eingesetzt. Die rotierenden Umformer realisieren die Frequenzumwandlung durch die Kopplung eines Elektromotors mit einem geeigneten Synchrongenerator anderer Polpaarzahl. Zusammen mit der Frequenz findet auch eine Wandlung der Spannung statt, die über einen Spannungsregler konstant gehalten wird. \cref{tab:Leistungsdaten} gibt einen Überblick über die wichtigsten Technischen Daten.
+
+\begin{figure}
+\centering
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics[]{example-image-a}
+	\caption{geschlossene Ansicht}
+\end{subfigure}
+\begin{subfigure}{\textwidth}
+	\centering
+	\includegraphics[]{example-image-b}
+	\caption{geöffnete Ansicht}
+\end{subfigure}
+\caption{Frequenzumformer Apojet AJR 90}
+\label{fig:RenderbildUmformer}
+\end{figure}
+
+\begin{table}[b]
 \caption{Technische Daten \textsc{Apojet AJR 90} nach \cite{pillerpowersystemsBetriebshandbuchAPOJET202021}}\label{tab:Leistungsdaten}
 \centering
 \begin{tabular}{@{}ll@{}}
 \toprule
 Eingang:         & \unit[400]{V}, \unit[145]{A}, \unit[50]{Hz}      \\ 
 Ausgang:         & \unit[200/115]{V}, \unit[260]{A}, \unit[400]{Hz} \\
-Ausgangsleistung:& 90 kVA, $\cos(\varphi)\, 0,8$                    \\
+Nenndrehzahl:    & $\unit[3000]{\frac{U}{min}}$                     \\
+Ausgangsleistung:& 90 kVA, $\mathrm{Pf}=0,8$                        \\
 Wirkungsgrad:    & \unit[85]{\%}.                                   \\ \bottomrule
 \end{tabular}
 \end{table}
