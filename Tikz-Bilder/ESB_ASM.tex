@@ -10,7 +10,7 @@
     \draw (Plus) to[short, i>^=$\underline{I}_{\mathrm{s}}$] ++(1,0) to[R, R=$R_{\mathrm{s}}$] ++(2,0) to[L, L=$L_{\mathrm{s\sigma}}$] ++(2,0) node [circ](Hmp){} |- ++(-.5,-.5) to[L, l_=$L_{\mathrm{m}}$] ++(0,-2) -- ++(.5,0) to[short, i=$\underline{I}_m$] (Hmp|- Minus) node[circ](Hmm){} -- (Minus);
     
     \draw (Hmp) |- ++(.5,-.5) to[R, R=$R_{\mathrm{v}}$] ++(0,-2) -| (Hmm);
-    \draw (Hmp) to[L, L=$L_{\mathrm{r\sigma}}$] ++(2,0) to[R, R=$\nicefrac{R^\prime_{\mathrm{r}}}{s}$] ++(2,0) to[short, i<=$\underline{I}^\prime_{\mathrm{r}}$]  (\THIS |- Minus) -- (Hmm);
+    \draw (Hmp) to[L, L=$L_{\mathrm{r\sigma}'}$] ++(2,0) to[R, R=$\nicefrac{R^\prime_{\mathrm{r}}}{s}$] ++(2,0) to[short, i<=$\underline{I}^\prime_{\mathrm{r}}$]  (\THIS |- Minus) -- (Hmm);
     \draw (Plus) to[open, v=$\underline{U}_{\mathrm{s}}$] (Minus);
     
     \path (Plus.center) \coord(Plus);
