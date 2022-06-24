@@ -7,8 +7,13 @@ Ein Anwendungsgebiet für die modellbasierte Systementwicklung ist die Verknüpf
 
 \section{Zielsetzung}
 \label{sec:Zielsetzung}
-Zunächst soll in dieser Arbeit das Gesamtsystem „rotierender Frequenzumformer“ hinsichtlich Informations- und Energiefluss dokumentiert werden, um einen Überblick über das System zu geben. Im Anschluss soll ein Modell des Systems aufgestellt, simuliert und zur Charakterisierung des Systems eingesetzt werden. Dazu ist es notwendig, geeignete Anforderungen an das Modell zu stellen. Weiterhin muss das aufgestellte Modell mit Parametern aus der Auslegung der Maschine versehen, verifiziert und mittels Messungen an einer realen Maschine validiert werden. Der Aufbau des Modells soll dabei so erfolgen, dass eine möglichst große Wiederverwendbarkeit der Modelle für weitere Untersuchungen und Optimierungen ermöglicht wird.
-
+Zunächst soll in dieser Arbeit das Gesamtsystem „rotierender Frequenzumformer“ hinsichtlich Informations- und Energiefluss dokumentiert werden, um einen Überblick über das System zu geben. Im Anschluss soll ein Modell des Systems aufgestellt, simuliert und zur Charakterisierung des Systems eingesetzt werden. Die Vorgehensweise zeigt das Struktorgramm in \cref{fig:StrukturArbeit}.   Die Modellierung geschieht auf Grundlage der technischen Daten aus der Auslegung der Anlage und soll so erfolgen, dass eine möglichst große Wiederverwendbarkeit der Modelle für weitere Untersuchungen und Optimierungen ermöglicht wird.  Gegebenenfalls müssen die Daten umgerechnet werden. Nachdem das Modell mit Parametern versehen wurde, wird es verifiziert und mittels Messungen an einer realen Maschine validiert. Anschließend wird das Modells verwendet, um eine Parameterstudie und eine Trendanalyse zum Einfluss der Maschinen- und Reglerparameter durchzuführen. 
+\begin{figure}
+	\centering
+	\input{Tikz-Bilder/StrukturArbeit}
+	\caption{Vorgehensweise: Umrechnung der Daten, Modellierung, Vergleich mit Messung, Parameterstudie, Parametertrend}
+	\label{fig:StrukturArbeit}
+\end{figure}
 Die zentralen Fragen, die in dieser Arbeit beantwortet werden sollen, sind daher:
 \begin{itemize}
 \item Mit welchen Komponenten muss ein Modell aufgebaut werden, um hinreichend genau die reale Maschine abzubilden?
@@ -24,11 +29,11 @@ Zur Umformung der Netzfrequenz haben sich zwei technische Prinzipien auf dem Mar
 
 \begin{figure}
 \centering
-\begin{subfigure}{\textwidth}
-	\centering
-	\includegraphics[]{example-image-a}
-	\caption{geschlossene Ansicht}
-\end{subfigure}
+%\begin{subfigure}{\textwidth}
+%	\centering
+%	\includegraphics[]{example-image-a}
+%	\caption{geschlossene Ansicht}
+%\end{subfigure}
 \begin{subfigure}{\textwidth}
 	\centering
 	\includegraphics[]{example-image-b}
