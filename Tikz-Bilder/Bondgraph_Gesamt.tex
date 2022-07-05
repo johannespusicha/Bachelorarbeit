@@ -21,7 +21,7 @@
     %            edge (ASM_Rotor_L);
     
     % Mechanik
-    \node (Welle) [bgelement, right=1.3cm of ASM_Rotor] {Welle};
+    \node (Welle) [bgelement, right=1.1cm of ASM_Rotor] {Welle};
     % \node (Reibung) [bgelement, below =of Welle] {Reibung};
     
     \node (Gleichrichter) [bgelement, right=1cm of Welle] {Gleichrichter};
@@ -76,7 +76,7 @@
     \node (Sollspannung) [input, right=of Summe, label=$U_{\mathrm{aus,soll}}$] {};
     \node (Regler) [block, label={right:}] at ($(Summe)!1/3!(EM_Stator)$) {PID};
     \node (PWM) [pulse, label={right:PWM}] at ($(Summe)!2/3!(EM_Stator)$) {};
-    \draw[signal] (Last) -- node[left]{$U_{\mathrm{aus,ist}}$} (Summe);
+    \draw[signal] (Last) -- node[left] (U_Regler_in) {$U_{\mathrm{aus,ist}}$} (Summe);
     \draw[signal] (Sollspannung) -- node[near end,below]{\small $-$} (Summe);
     \draw[signal] (Summe) -- (Regler);
     \draw[signal] (Regler) -- (PWM);
@@ -86,10 +86,12 @@
     \node [below=.3cm of EM_Luftspalt] {Erregermaschine};
     \node [above=.3cm of SG_Stator] {Synchrongenerator};
     \node [below=.3cm of ASM_Rotor] {Asynchronmaschine};
+    \node [right=.3cm of Regler, align=center] {Regler-\\ board};
     \begin{pgfonlayer}{background}
     \filldraw [line width=4mm,join=round,black!5]
       (Netz_in.west|-Netz_in.north)  rectangle (Netz_in.east|-ASM_Rotor.south)
       (SG_Luftspalt.west|-SG_Stator.north) rectangle (SG_Luftspalt.east|-SG_Rotor.south)
       ($(EM_Rotor.west|-EM_Rotor.north) + (0,.1)$) rectangle ($(EM_Stator.east|-EM_Stator.south) + (0,-.1)$);
+      %($(U_Regler_in.west) + (0,.2)$) rectangle ($(Sollspannung.east|-PWM.east) + (.4,-.4)$);
   \end{pgfonlayer}
 \end{tikzpicture}
