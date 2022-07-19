@@ -59,6 +59,9 @@
     \node [ises, yshift=-.1cm, xshift=-.1cm] (ise3) at (ises) {};
     
     \node [trends] (trends) [right of=ises] {};
+
+%% Brace + Decoration
+    \draw [thick, decorate, decoration = {brace, raise=25pt, amplitude=5pt, mirror}] (sweep3.west |- sweeps.west) -- (trends.east) node[pos=0.5,above=-50pt] {Auswertung};
     
 %% Edges
     \draw [signal] (input) -- (formula) -- (knot1);

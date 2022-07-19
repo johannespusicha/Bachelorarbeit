@@ -40,17 +40,17 @@ In Anlehnung an die Bondgraphen-Methode zeigt der „Wort-Bondgraph“ (oder „
 
 Im Gegensatz zu den formalen Bondgraphen können die Knoten des Wortgraphen mehrere Größen und Verbindungen, die zum Aufstellen des Zustandsraummodells nötig wären, unter einem Oberbegriff zusammenfassen und vereinfachen (\emph{Objektorientierung}). Ist eine detaillierte Darstellung gesucht, können diese einzelnen Oberbegriffe jeweils durch ihre korrespondierenden Bondgraph-Darstellungen ersetzt werden. Bondgraphen für die einzelnen elektrischen Maschinen können beispielsweise \cite[S.~269~ff.]{borutzkyBondGraphModelling2011} entnommen werden.
 
-Ursache für den in \cref{fig:Wirkungsgraph} dargestellten Energiefluss ist die Vorgabe der Spannung $u_{\mathrm{ein}}$ am Netz-Eingang. Sie bewirkt einen Stromfluss $i_{\mathrm{ein}}$ im Stator, der einerseits zur Wandlung elektrischer Energie in magnetische Energie führt, die über den Luftspalt auf den Rotor übertragen wird und andererseits mit der Abgabe von elektrischer und magnetischer Verlustenergie (ohm'sche Verluste Streufluss) verbunden ist. Der Luftspaltwirkt wie ein Transformator, der das Verhältnis der magnetischen Spannung zum Fluss bei der Übertragung auf den Rotor  wandelt. Im Rotor wird eine Spannung induziert, die einen Stromfluss zur Folge hat. Über die Lorentzkraft folgt die Wandlung in kinetische (rotatorische) Energie.
+Ursache für den in \cref{fig:Wirkungsgraph} dargestellten Energiefluss ist die Vorgabe der Spannung $u_{\mathrm{ein}}$ am Netz-Eingang. Sie bewirkt einen Stromfluss $i_{\mathrm{ein}}$ im Stator, der einerseits zur Wandlung elektrischer Energie in magnetische Energie führt, die über den Luftspalt auf den Rotor übertragen wird und andererseits mit der Abgabe von elektrischer und magnetischer Verlustenergie (ohm'sche Verluste Streufluss) verbunden ist. Der Luftspalt wirkt wie ein Transformator, der das Verhältnis der magnetischen Spannung zum Fluss bei der Übertragung auf den Rotor  wandelt. Im Rotor wird eine Spannung induziert, die einen Stromfluss zur Folge hat. Über die Lorentzkraft folgt die Wandlung in kinetische (rotatorische) Energie.
 
 Während die Winkelgeschwindigkeit der Welle in allen Baugruppen gleich ist, teilt sich das Motormoment auf. Ein Teil der Energie wird über die Massenträgheit in der Welle gespeichert und ein Teil verlässt das System durch Reibungseffekte (Lagerreibung, Luftwiderstand, innere Verluste). Der größte Teil wird jedoch an den Synchrongenerator und die Erregermaschine übertragen.
 
-Die Hauptaufgabe der Erregermaschine ist es, die Spannung am Ausgang des Reglersystems berührunglos auf den Rotor des Synchrogenerators zu übertragen. Gekoppelt sind Generator und Erregermaschine über den mitrotierenden Gleichrichter. Der Synchrongenerator wandelt die eingebrachte mechanische Energie und die Erregung über den Luftspalt in elektrische Energie um.
+Die Hauptaufgabe der Erregermaschine ist es, die Spannung am Ausgang des Reglersystems berührunglos auf den Rotor des Synchrogenerators zu übertragen. Gekoppelt sind Generator und Erregermaschine über den mitrotierenden Gleichrichter. Der Synchrongenerator wandelt die eingebrachte mechanische Energie und die Erregung über den Luftspalt in elektrische Energie um, die dem Verbraucher zur Verfügung gestellt wird..
 
 Zusätzlich zu dem Energiefluss ist in \cref{fig:Wirkungsgraph} auch der Informationsfluss angedeutet: Am Ausgang des Umformers wird der Spannungsabfall über der Last gemessen und die Differenz zum Sollwert in den Regler zurückgeführt. Der PID-Spannungsregler ist hier zusammengefasst dargestellt. Ein ausführliches Blockschaltbild des Reglers zeigt \cref{fig:Blockschaltbild_Regler}. Aus der vom Regler berechneten Stellgröße wird über Puls-Weiten-Modulation eines Steuertrafos die Statorspannung der Erregermaschine erzeugt.
 
 \subsection{PID-Spannungsregler}\label{sec:pid-spannungsregler}
 
-Als Spannungsregler wird in dem Frequenzumformer ein PID-Regler mit \emph{variabler Verstärkung} eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (vgl. \cite{pillerpowerssystemsDigitalerSpannungsreglerSoftwaredokumentation1997}). \cref{fig:Blockschaltbild_Regler} zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang werden die Stellgrößen begrenzt. 
+Als Spannungsregler wird in dem Frequenzumformer ein PID-Regler mit \emph{variabler Verstärkung} eingesetzt. Die variable Verstärkung dient zum Erreichen eines besseren Einschwingverhaltens bei großen Regelabweichungen (vgl. \cite{pillerpowersystemsDigitalerSpannungsreglerSoftwaredokumentation1997}). \cref{fig:Blockschaltbild_Regler} zeigt das Blockschaltbild des Reglers. Der PID-Regler ist in Parallelstruktur ausgeführt; an den Ausgängen der Regelglieder und am Gesamtausgang werden die Stellgrößen begrenzt. 
 
 \begin{figure}
     \centering
@@ -62,15 +62,15 @@ Als Spannungsregler wird in dem Frequenzumformer ein PID-Regler mit \emph{variab
 Implementiert ist der PID-Regler als digitaler Regler auf einem Mikrocontroller. Dabei sind einige Punkte zu beachten:
 \begin{itemize}
     \item {Die Algorithmen für die Regelglieder arbeiten zeitdiskret. Zur Ableitung der Algorithmen muss die Abtastung mit einem ZOH-Glied beim Anwenden der $\mathcal{Z}$-Transformation berücksichtigt werden, siehe \cref{par:ZeitdiskreterRegler}.}
-    \item {Die Abtastung der Ausgangsspannung erfolgt nach \cite{pillerpowerssystemsDigitalerSpannungsreglerSoftwaredokumentation1997} bei dem hier betrachteten Spannungsregler mit 32 Messwerten in 5 Taktzyklen, wobei sich die Taktfrequenz nach der Frequenz der Ausgangsspannung richtet. Die Abtastrate für die Spannungsmessung beträgt also
+    \item {Die Abtastung der Ausgangsspannung erfolgt nach \cite{pillerpowersystemsDigitalerSpannungsreglerSoftwaredokumentation1997} bei dem hier betrachteten Spannungsregler mit 32 Messwerten in 5 Taktzyklen, wobei sich die Taktfrequenz nach der Frequenz der Ausgangsspannung richtet. Die Abtastrate für die Spannungsmessung beträgt also
     \begin{align}
         T_{\mathrm{mess}}^*&= \frac{5}{32}\cdot T_{\mathrm{Spannung}} = 0,000390625\,\mathrm s. \\
         \text{mit} \quad
         T_{\mathrm{Spannung}}&= \frac{1}{400\,\mathrm{Hz}}=0,0025\,\mathrm s
     \end{align}
-    Weiterhin gibt \cite{pillerpowerssystemsDigitalerSpannungsreglerSoftwaredokumentation1997} an, dass aufgrund der beschränkten Rechengeschwindigkeit bei einer Spannungsfrequenz von \(f=400\,\mathrm{Hz}\) der Regelalgorithmus nur alle zwei Messzyklen neu berechnet wird. Die Periodendauer des zeitdiskreten Reglers beträgt also
+    Weiterhin gibt \cite{pillerpowersystemsDigitalerSpannungsreglerSoftwaredokumentation1997} an, dass aufgrund der beschränkten Rechengeschwindigkeit bei einer Spannungsfrequenz von \(f=400\,\mathrm{Hz}\) der Regelalgorithmus nur alle zwei Messzyklen neu berechnet wird. Die Periodendauer des zeitdiskreten Reglers beträgt also
     \begin{align}
-        T_{mess}&=2\cdot T_{mess}^*= 0,00078125\,\mathrm s.
+        T_{mess}&=2\cdot T_{mess}^*= 0,00078125\,\mathrm s. \label{eq:PeriodendauerRegler}
     \end{align} }
     \item {Die Digitalisierung der Spannungsmessung bedeutet eine Quantisierung der Werte. Die gemessenen Werte werden Reglerintern auf \(2^{16}\) ganzzahlige vorzeichenbehaftete Werte (\emph{„16 bit signend integer“}) abgebildet, also auf das Intervall \([-32768,32767]\). Um den Zusammenhang zwischen der realen Spannung und der internen Darstellung herzustellen, müssen Umrechnungsfaktoren angegeben werden, siehe \cref{sec:AbbildungReglerZahlen}.}
 \end{itemize}
@@ -217,7 +217,7 @@ Vernachlässigung der Temperaturabhängigkeit der Widerstände und das
 Trägheitsmoment wird ebenfalls in dem kombinierten Trägheitsmoment des
 Lüfters erfasst.
 
-Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild \cref{fig:ESB_SM} angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in \cref{tab:AuslegungSG} aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden. Zwar sind die hier angegebenen Zusammenhänge zum größten Teil auch in dem Parameterrecord \modclass{Machines.Utilities.SynchronousMachineData} implementiert, jedoch erfordert der Parameterrecord die Kenntnis der Ankerzeitkonstante \(T_{\mathrm{a}}\) zur Berechnung des Statorwiderstands \(R_{\mathrm{s}}\). Da jedoch \(R_{\mathrm{s}}\) (im Gegensatz zu \(T_{\mathrm{a}}\)) aus der Auslegung bekannt ist, erfolgt hier diese angepasste Umformung der Kenngrößen. Die Umrechnung selbst wurde in einem Tabellenkalkulationprogramm durchgeführt.
+Die zur Parametrierung des Synchrongenerators verwendeten elektrischen Größen sind die im Erstzschaltbild \cref{fig:ESB_SM} angegebenen Widerstände und Induktivitäten. Aus der Auslegung der Maschine hingegen sind die in \cref{tab:AuslegungSG} aufgelisteten Größen bekannt. Die zur Umrechnung benötigten Zusammenhänge sollen im Folgenden angegeben werden. Zwar sind die hier angegebenen Zusammenhänge zum größten Teil auch in dem Parameterrecord \modclass{Machines.Utilities.SynchronousMachineData} implementiert, jedoch erfordert der Parameterrecord die Kenntnis der Ankerzeitkonstante \(T_{\mathrm{a}}\) und der beiden Leerlaufzeitkonstanten $T_{\mathrm{d0}}''$ und $T_{\mathrm{q0}}''$. Die Ankerzeitkonstante würde zur Berechnung des Statorwiderstands $R_{\mathrm{s}}$ verwendet werden. Da jedoch \(R_{\mathrm{s}}\) (im Gegensatz zu \(T_{\mathrm{a}}\)) aus der Auslegung bekannt ist und die beiden Leerlaufzeitkonstanten aus den Kurzschlusszeitkonstanten $T_{\mathrm{d}}''$ und $T_{\mathrm{q}}''$ bestimmt werden müssen, erfolgt hier diese angepasste Umformung der Kenngrößen. Die Umrechnung selbst wurde in einem Tabellenkalkulationprogramm durchgeführt.
 
 Aus der Auslegung sind die in \cref{tab:AuslegungSG} angegebenen Widerstände, Reaktanzen und Zeitkonstanten bekannt. Die Umrechnung erfolgt jedoch mit bezogenen Widerständen und Reaktanzen, die sich nach \cref{eq:bezogeneWiderstande,eq:bezogeneReaktanzen} durch Normierung der Größen auf die Bezugsreaktanz $X_{\mathrm{N}}$ ergeben:
 \begin{align}
@@ -289,12 +289,12 @@ Die Erregermaschine und der auf dem Polrad der Maschine mitrotierende Gleichrich
 
 Die Gleichrichtung der erzeugten dreiphasigen Spannung geschieht mit einem 6-Puls-Brückengleichrichter. Am negativen Ausgang des Brückengleichrichters wird ein (\unit[0]{V}) Referenzpotential verschaltet, ohne das die Gleichungen für den elektrischen Kreis zwischen Erregermaschine und Synchrongenerator nicht eindeutig lösbar wären.
 
-Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit zwei linearen Arbeitsbereichen \emph{Sperrbetrieb} und \emph{Durchlassbetrieb}. Die Steigung der Diodenkennlinien in den beiden Arbeitsbereichen wird über den Leitwert \(G_{\mathrm{off}}\) im Sperrbetrieb und den Widerstand \(R_{\mathrm{on}}\) im Durchlassbetrieb eingestellt. Der Wechsel vom Sperrbetrieb in den Durchlassbetrieb findet bei Überschreiten der Flussspannung \(U_{\mathrm{F}}\) statt. Ebenso wird zurück in den Sperrbetrieb geschaltet, sobald die Flussspannung unterschritten wird.
+Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit den zwei linearen Arbeitsbereichen \emph{Sperrbetrieb} und \emph{Durchlassbetrieb}. Die Steigung der Diodenkennlinien in den beiden Arbeitsbereichen wird über den Leitwert \(G_{\mathrm{off}}\) im Sperrbetrieb und den Widerstand \(R_{\mathrm{on}}\) im Durchlassbetrieb eingestellt. Der Wechsel vom Sperrbetrieb in den Durchlassbetrieb findet bei Überschreiten der Flussspannung \(U_{\mathrm{F}}\) statt. Ebenso wird zurück in den Sperrbetrieb geschaltet, sobald die Flussspannung unterschritten wird.
 
 \begin{figure}
     \centering
     \includegraphics[height=6cm]{Bilder/SM_Erreger.pdf}
-    \caption{Vollständiges Modell der Erregermaschine}
+    \caption{Vollständiges Modell der Erregermaschine \modclass{Fre\-quenz\-um\-for\-mer.\-Ma\-schi\-nen.\-SM\_Erreger}}
     \label{fig:Erregermaschine}
 \end{figure}
 
@@ -318,7 +318,7 @@ Der Spannungsregler wird in \textsc{Modelica} als Signalflussobjekt implementier
 Wie im Blockschaltbild des Reglers (\cref{fig:Blockschaltbild_Regler}) dargestellt, ist allen Regelgliedern ein Begrenzer nachgeschaltet. Dies trägt zum Einen der Abbildung der Messgrößen auf das begrenzte Intervall der reglerinternen Größen Rechnung und bietet zum Anderen die Möglichkeit, die Stellgrößen der Regelglieder unabhängig voneinander zu begrenzen. Um diese Begrenzung bei allen Gliedern mit einer einheitlichen Schnittstelle zu implementieren wird aus dem \textbf{S}ingle-\textbf{I}nput-\textbf{S}ingle-\textbf{O}utput-Interface der MSL (\modclass{Mo­de­li­ca.­Blocks.­In­ter­fa­ces.­SI­SO}) das Interface \modclass{Frequenzumformer.Regler.Interfaces.limitedController} abgeleitet, welches die Begrenzungsgrößen zugänglich macht. Weiterhin wird in dem Interface der boolsche Eingang \modclass{enable} definiert zum Einschalten des jeweiligen Regelgliedes.­
 
 \paragraph{Modell}\label{modell-Regler}
-Das vollständige Modell des Spannungsreglers zeigt \cref{fig:Spannungsregler-Modell}. Es enthält die drei Teilglieder des PID-Reglers, die Stellgrößenbeschränkung und am Ausgang einen Schalter um den Wert Null auszugeben, wenn der Regler ausgeschaltet ist. Die Modelle der drei Teilregler zeigen die \cref{fig:D-Regler,fig:P-Regler,fig:I-Regler}. Das Modell des P-Reglers bietet in Anlehnung an \cite{pillerpowerssystemsDigitalerSpannungsreglerSoftwaredokumentation1997} zwei konditionale Parameter: Mit einem Schalter kann bestimmt werden, ob die Verstärkung konstant oder variabel sein soll und mit dem zweiten Schalter kann bestimmt werden, ob der Reglerausgang begrenzt werden soll. 
+Das vollständige Modell des Spannungsreglers zeigt \cref{fig:Spannungsregler-Modell}. Es enthält die drei Teilglieder des PID-Reglers, die Stellgrößenbeschränkung und am Ausgang einen Schalter um den Wert Null auszugeben, wenn der Regler ausgeschaltet ist. Die Modelle der drei Teilregler zeigen die \cref{fig:D-Regler,fig:P-Regler,fig:I-Regler}. Das Modell des P-Reglers bietet in Anlehnung an \cite{pillerpowersystemsDigitalerSpannungsreglerSoftwaredokumentation1997} zwei konditionale Parameter: Mit einem Schalter kann bestimmt werden, ob die Verstärkung konstant oder variabel sein soll und mit dem zweiten Schalter kann bestimmt werden, ob der Reglerausgang begrenzt werden soll. 
 
 Die Simulation des Reglers erfolgt zeitkontinuierlich ohne Berücksichtigung eines Abtast-Halteglieds. Der Vergleich des implementierten Reglers mit einem zeitdiskreten Regler und einem kontinuierlichen Regler mit Abtastglied zeigt keine nennenswerten Unterschiede in den Ergebnissen; die Simulationen mit dem diskreten Regler oder mit der Abtastung benötigen jedoch die 1,5-fache Simulationszeit: Auf dem verwendeten Simulationssystem mit dem impliziten Lösungsalgorithmus \texttt{DASSL} benötigt eine Simulation mit zeitdiskretem Regler $\unit[279]{s}$ und mit kontinuierlichem Regler und Abtastung mittels ZOH-Glied $\unit[278]{s}$.  Die Simulation mit kontinuierlichem Regler ohne Abtastung benötigt jedoch nur $\unit[182]{s}$ zur Lösung. 
 
@@ -349,12 +349,12 @@ Ursache für die größere Simulationszeit bei Verwendung der diskreten Modelle 
     \caption{Modelle des Spannungsreglers und der Teilregler}
 \end{figure}
 
-\paragraph{Parametrierung} Für den Spannungsregler sollen die Reglerparameter verwendet werden, die auch bei dem realen Frequenzumformer zum Einsatz kommen. Dazu müssen die Parameter der zeitdiskreten I- und D-Glieder umgerechnet werden auf die hier simulierten kontinuierlichen Glieder. Für das diskrete I-Glied ist in \cite{pillerpowersystemsPILLERUniversityRegelungstechnik} das Blockschaltbild des eingesetzten Reglers angegeben, mit der $\mathcal{Z}$-Übertragungsfunktion \cref{eq:ZIPiller} und den Parametern $I_\mathrm{G}$ Verstärkung und $I_\mathrm{D}$ Dämpfung des Signals.
+\paragraph{Parametrierung} Für den Spannungsregler sollen die Reglerparameter verwendet werden, die auch bei dem realen Frequenzumformer zum Einsatz kommen. Dazu müssen die Parameter der zeitdiskreten I- und D-Glieder umgerechnet werden auf die hier simulierten kontinuierlichen Glieder. Für das diskrete I-Glied ist in \cite{pillerpowersystemsPILLERUniversityRegelungstechnik} das Blockschaltbild des eingesetzten Reglers angegeben, aus dem sich die $\mathcal{Z}$-Übertragungsfunktion nach \cref{eq:ZIPiller} ergibt mit den Parametern Verstärkung $I_\mathrm{G}$ und Dämpfung $I_\mathrm{D}$ des Signals.
 \begin{equation}
 	\label{eq:ZIPiller}
 	G(z) = \frac{I_\mathrm{G}}{I_\mathrm{D}}\cdot\frac{z}{z-1}
 \end{equation}
-Das kontinuierliche I-Glied wird mit \cref{eq:SI} beschrieben. Nach \cref{par:ZeitdiskreterRegler} ergibt sich die $\mathcal{Z}$-Übertragungsfunktion bei Abtastung mit einem ZOH-Glied der Abtastrate $T_\mathrm{s}$ zu \cref{eq:ZI}.
+Das kontinuierliche I-Glied wird mit \cref{eq:SI} beschrieben (vgl. \cref{eq:realerPID}). Nach \cref{par:ZeitdiskreterRegler} ergibt sich die $\mathcal{Z}$-Übertragungsfunktion bei Abtastung mit einem ZOH-Glied der Abtastrate $T_\mathrm{s}$ zu \cref{eq:ZI}.
 \begin{align}
 	G(s) &= \frac{K_\mathrm{I}}{s} \label{eq:SI}\\
 	G(z) &= \frac{z-1}{z} \mathcal{Z}\left\{ \mathcal{L}^{-1}\left.\left\{\frac{G(s)}{s}\right\}\right|_{kT_{\mathrm{s}}} \right\} = K_\mathrm{I}T_\mathrm{s}\cdot\frac{z}{z-1} \label{eq:ZI}
@@ -386,21 +386,21 @@ Im Folgenden werden noch einige weitere Modelle geschildert, die zur Simulation 
 \label{sec:AbbildungReglerZahlen}
 Neben der Umrechnung der Reglerparameter muss zur Simulation des Spannungsreglers auch eine Transformation des Messsignals in die reglerinternen Zahlen erfolgen. Ebenso muss das Ausgangssignal des Reglers von dem reglerinternen Wertebereich in die Stellspannung umgewandelt werden. Dies erfolgt mit dem Modell \modclass{Frequenzumformer.Regler.­Off­set\_Map}. Das Model rechnet die Eingabedaten mittels einer linearen Funktion um. Parametriert wird die lineare Funktion über die zwei Punkte $(I_1,O_1),\,(I_2,O_2)$ auf der Geraden. Der Umrechnungsfaktor für den Reglereingang ergibt sich aus den Parametern des eingesetzten Messtrafos und des AD-Wandlers zu
 \begin{equation}
-	U_\mathrm{intern} = U_\mathrm{real}\cdot 15,1875.
+	U_\mathrm{intern} = U_\mathrm{real}\cdot 15{,}1875.
 \end{equation}
 Die Erzeugung der Erregerspannung erfolgt am realen Umformer mittels eines Steuertrafos und Puls-Weiten-Modulation. Im Simulationsmodell wird diese Umsetzung vereinfacht. Über das \modclass{Offset\_Map}-Modell wird direkt die Erregerspannung aus der Stellgröße des Reglers berechnet. Der Spannungsregler kann Puls-Weiten im Intervall $[0,32767]$ einstellen. Diese werden abgebildet auf den Spannungsbereich des Steuertrafos im Intervall $[\unit[0]{V},\unit[80]{V}]$. %Dieser Spannungsbereich des Steuertrafos ist jedoch mit einer Unsicherheit behaftet. Eine Datenquelle gibt auch einen möglichen Bereich bis \unit[120]{V} an.
 
 \paragraph{Leistungsmessung}\label{leistungsmessung}
-Zur Leistungsmessung wurde das Modell \modclass{E­lec­tri­cal.­Ma­chines.­Sen­sors.­E­lec­tri­cal­Po­wer­Sen­sor}­ der MSL erweitert, sodass auch Scheinleistung und Wirkfaktor aus der Wirk- und der Blindleistung bestimmt werden können. Da der eingesetzte Sensor Wirk- und Blindleistung aus einer Raumzeigertransformation der dreiphasigen Spannung bestimmt, ist die Leistungsmessung nur zuverlässig, wenn in der Simulation an der in Stern geschalteten Last kein Rückleiter angeschlossen wird.
+Zur Leistungsmessung wurde das Modell \modclass{E­lec­\-tri\-­cal.\-­Ma\-­chines.\-­Sen\-­sors.\-­E­lec­tri­cal­Po­wer­Sen­sor}­ der MSL erweitert, sodass auch Scheinleistung und Wirkfaktor aus der Wirk- und der Blindleistung bestimmt werden können. Da der eingesetzte Sensor Wirk- und Blindleistung aus einer Raumzeigertransformation der dreiphasigen Spannung bestimmt, ist die Leistungsmessung nur zuverlässig, wenn in der Simulation an der in Stern geschalteten Last kein Rückleiter angeschlossen wird.
 
 \paragraph{Modellierung der Last}\label{parametrierung-der-last}
 Die Belastung des Frequenzumformers wird in der Simulation durch die Reihenschaltung eines variablen Widerstands und einer variablen Induktivität in Sternschaltung modelliert. Über eine zeitgesteuerte Tabelle können so verschiedene Laststufen und Lastsprünge eingestellt werden. Berechnet werden die Lastgrößen aus der Nennscheinleistung, der Nennspannung und dem gewünschten Wirkfaktor. Für \unit[100]{\%} Last ergibt sich beispielsweise:
 \begin{align}
-Z_{100\%} &= 3\cdot\frac{U_{Nenn}^2}{S_{Nenn}}= 3\cdot \frac{\unit[115]{V^2}}{\unit[90]{kVA}} = \unit[0,44083]{\Omega} \\
-R_{100\%} &= \sqrt{\frac{Z^2}{1+\tan^2(\arccos(\cos\varphi))}}=\sqrt{\frac{(\unit[0,44083]{\Omega})^2}{1+\tan^2(\arccos(0,8))}}=\unit[0,352664]{\Omega} \\
-X_{100\%} &= \sqrt{Z^2-R^2}=\sqrt{(\unit[0,44083]{\Omega})^2 - (\unit[0,352664]{\Omega})^2}=\unit[0,264498]{\Omega} \\
+Z_{100\%} &= 3\cdot\frac{U_{Nenn}^2}{S_{Nenn}}= 3\cdot \frac{\unit[115]{V^2}}{\unit[90]{kVA}} = \unit[0{,}44083]{\Omega} \\
+R_{100\%} &= \sqrt{\frac{Z^2}{1+\tan^2(\arccos(\cos\varphi))}}=\sqrt{\frac{(\unit[0{,}44083]{\Omega})^2}{1+\tan^2(\arccos(0{,}8))}}=\unit[0{,}352664]{\Omega} \\
+X_{100\%} &= \sqrt{Z^2-R^2}=\sqrt{(\unit[0{,}44083]{\Omega})^2 - (\unit[0{,}352664]{\Omega})^2}=\unit[0{,}264498]{\Omega} \\
 \intertext{Mit $f=\unit[400]{Hz}$:}
-L_{100\%} &= \frac X\omega = \frac{\unit[0,264498]{\Omega}}{2\pi\cdot\unit[400]{Hz}}\approx \unit[105,24]{mH}\\
+L_{100\%} &= \frac X\omega = \frac{\unit[0{,}264498]{\Omega}}{2\pi\cdot\unit[400]{Hz}}\approx \unit[105{,}24]{mH}\\
 \end{align}
 
 \paragraph{Messung der Frequenz}
@@ -410,9 +410,9 @@ Da die direkte Messung der Spannungsfrequenz (z.B. durch Messen der Zeit zwische
 \end{equation}
 
 \subsection{Gesamtmodell}\label{gesamtmodell}
-Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Auszüge aus dem zugehörigen \textsc{Modelica}-Quellcode sind in \cref{lst:UmformerVollstandig} angegeben. Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse nach \cref{eq:Frequenz} mit $\omega = \unit[400]{Hz}\cdot \frac{2\pi}{8} = \unit[314]{\frac{rad}{s}} = \unit[3000]{\frac{U}{min}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0,7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung von $\unit[0]{V}$ aus mit einer Rampe über \unit[0,3]{s} hochgefahren.
+Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Auszüge aus dem zugehörigen \textsc{Modelica}-Quellcode sind in \cref{lst:UmformerVollstandig} angegeben. Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse nach \cref{eq:Frequenz} mit $\omega = \unit[400]{Hz}\cdot \frac{2\pi}{8} = \unit[314]{\frac{rad}{s}} = \unit[3000]{\frac{U}{min}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0{,}7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung von $\unit[0]{V}$ aus mit einer Rampe über \unit[0,3]{s} hochgefahren.
 
-Simuliert wird das Modell mit dem Solver \texttt{dassl} über einen Zeitraum von \unit[3]{s}. Der Solver verwendet einen Algorithmus mit variabler Schrittweite. Die Ausgabe der Simulationsergebnisse wird auf ein festes Zeitgitter mit einer Schrittweite von $T=\unit[0,00078125]{s}$, der Periodendauer des realen Reglers, interpoliert. 
+Simuliert wird das Modell mit dem Solver \texttt{dassl} über einen Zeitraum von \unit[3]{s}. Der Solver verwendet einen Algorithmus mit variabler Schrittweite. Die Ausgabe der Simulationsergebnisse wird auf ein festes Zeitgitter mit einer Schrittweite von $T=\unit[0{,}00078125]{s}$, der Periodendauer des realen Reglers (vgl. \cref{eq:PeriodendauerRegler}), interpoliert. 
 \afterpage{%
 \begin{landscape}
 \begin{figure}

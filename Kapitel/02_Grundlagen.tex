@@ -8,7 +8,7 @@ Die Spannungsregelung des Frequenzumformers geschieht mit einem PID-Regler (\tex
 
 \paragraph{PID-Regler}
 \label{par:PID-Regler}
-Für den \emph{idealen PID-Regler} lassen sich die Übertragungsfunktion im Laplace-Bereich $K_{\mathrm{PID}}(s)$ und Sprungantwort im Zeitbereich $h_{\mathrm{PID}}(t)$ durch Addition der drei Regelglieder aufstellen, mit $K_{\mathrm{P}},\,K_{\mathrm{I}},K_{\mathrm{D}},$ den Verstärkungen des Proportional-, Integral- und Differentialglieds:
+Für den \emph{idealen PID-Regler} lassen sich die Übertragungsfunktion im Laplace-Bereich $K_{\mathrm{PID}}(s)$ und die Sprungantwort im Zeitbereich $h_{\mathrm{PID}}(t)$ durch Addition der drei Regelglieder aufstellen, mit $K_{\mathrm{P}},\,K_{\mathrm{I}},K_{\mathrm{D}},$ den Verstärkungen des Proportional-, Integral- und Differentialglieds:
 \begin{align}
     K_{\mathrm{PID}}(s) &= K_{\mathrm{P}} + \frac{K_{\mathrm{I}}}{s} + K_{\mathrm{D}}s \label{eq:IdealerPID} \\
     h_{\mathrm{PID}}(t) &= (K_{\mathrm{P}} + K_{\mathrm{I}}t)\sigma(t) + K_{\mathrm{D}}\delta(t) \label{eq:IdealerPIDSprungantwort}
@@ -28,7 +28,7 @@ Als \emph{Digitaler Regler} auf einem Mikrocontroller wird der Regler als Algori
 und der Ausdruck $e^{sT_{\mathrm{s}}}$ durch die neue Variable $z$ ersetzt, so ergibt sich eine Transformation zur Untersuchung von Zahlenfolgen $x[k]$, die $\mathcal{Z}$-Transformation
 \begin{equation}
     X(z) = \mathcal{Z}\{x[k]\} = \sum_{k=0}^\infty x[k]z^{-k}.
-\end{equation} Wichtige Eigenschaften und Korrespondenztabellen zur $\mathcal{Z}$-Transformation sind unter Anderem in \cite{mbihiTableZtransforms2018} und \cite[S.~112-114]{unbehauenRegelungstechnikZustandsregelungenDigitale2009} angegeben.
+\end{equation} Wichtige Eigenschaften und Korrespondenztabellen zur $\mathcal{Z}$-Transformation sind unter anderem in \cite{mbihiTableZtransforms2018} und \cite[S.~112-114]{unbehauenRegelungstechnikZustandsregelungenDigitale2009} angegeben.
 
 Zur Überführung kontinuierlicher Regler mit Hilfe der $\mathcal{Z}$-Transformation in die zeitdiskrete Darstellung muss zusätzlich der Einfluss der Abtastung der Messsignale berücksichtigt werden. Die Abtastung geschieht nach der Methode \emph{Sample and Hold}, das heißt durch Abgreifen eines Messwertes und Halten des Messwertes bis zum nächsten Tastzyklus. Beschrieben wird dieser Vorgang mit einem \emph{Zero-Order-Hold}-Glied (ZOH), das dem Regler vorgeschaltet wird. \cref{eq:ZOH_Zeit,eq:ZOH_Laplace} geben die Darstellung des ZOH im Zeit- und im Laplacebereich an.
 \begin{align}
@@ -47,7 +47,7 @@ Für einen Regler im $\mathcal{Z}$-Bereich ergibt sich damit
 %--------------------------------------------------------------
 \section{Elektrische Maschinen}
 \label{sec:GrundlagenEMaschinen}
-Bei dem im Rahmen dieser Arbeit untersuchten Frequenzumformer kommen zwei Arten elektrischer Maschinen zum Einsatz: Zum Einen eine Asynchronmaschine mit Kurzschlussläufer als Motor und eine Schenkelpolsynchromaschine mit bürstenloser Erregung als Generator, ausgeführt als Innenpolmaschine. In diesem Abschnitt sollen die für die Modellbildung benötigten Grundlagen dieser Maschinen eingeführt werden. Da hier nicht alle Aspekte im Detail behandelt werden können, sei auch auf die Literatur verwiesen, die hier Verwendung gefunden hat (vor Allem \cites{binderElektrischeMaschinenUnd2012,beckElektrischeEnergietechnikEinfuhrung2008,mullerGrundlagenElektrischerMaschinen2005}).
+Bei dem im Rahmen dieser Arbeit untersuchten Frequenzumformer kommen zwei Arten elektrischer Maschinen zum Einsatz: Eine Asynchronmaschine mit Kurzschlussläufer als Motor und eine Schenkelpolsynchromaschine mit bürstenloser Erregung als Generator, ausgeführt als Innenpolmaschine. In diesem Abschnitt sollen die für die Modellbildung benötigten Grundlagen dieser Maschinen eingeführt werden. Verwendet wurden dazu \cites{binderElektrischeMaschinenUnd2012,beckElektrischeEnergietechnikEinfuhrung2008,mullerGrundlagenElektrischerMaschinen2005}.
 
 Beiden Maschinenarten gemeinsam ist die Verwendung eines (bezogen auf den Stator) sich drehenden magnetischen Feldes (Drehfeldmaschinen) zur elektro-mechanischen Kopplung. Dabei erfolgt die elektro-magnetische Wandlung in beiden Fällen durch kreisförmig angeordnete Spulen, die im Blechpaket des Stators eingelassen sind. Die Erzeugung dieses magnetischen Feldes erfolgt bei beiden Maschinen elektrisch (\emph{elektrische Erregung}).
 
@@ -72,7 +72,7 @@ Die Drehzahl-Drehmoment-Kennlinie der Asynchronmaschine zeigt \cref{fig:Kennlini
     M_{\mathrm{i}}=m_{\mathrm{s}} \frac{p}{\omega_{\mathrm{s}}} U_{\mathrm{s}}^{2} \frac{s(1-\sigma) X_{\mathrm{s}} X_{\mathrm{r}}^{\prime} R_{\mathrm{r}}^{\prime}}{\left(R_{\mathrm{s}} R_{\mathrm{r}}^{\prime}-s \sigma X_{\mathrm{s}} X_{\mathrm{r}}^{\prime}\right)^{2}+\left(s R_{\mathrm{s}} X_{\mathrm{r}}^{\prime}+X_{\mathrm{s}} R_{\mathrm{r}}^{\prime}\right)^{2}}
 \end{equation} mit der Strangzahl $m_{\mathrm{s}}$, der Polpaarzahl $p$, der Synchronwinkelgeschwindigkeit $\omega_{\mathrm{s}}$, dem Streufaktor $\sigma$ und dem Schlupf $s$.
 
-Charakteristisch für die Asynchronmaschine sind das ausgeprägte Maximum (\emph{Kippmoment} $M_{\mathrm K}$) und Minimum des Momentenverlaufs und der von den beiden Extremstellen begrenzte näherungsweise lineare Arbeitsbereich der Kennlinie. Für $0 < n < n_{\mathrm{syn}}$ befindet sich die Maschine im Motorbetrieb, ab $n > n_{\mathrm{syn}}$ wechselt sie in den Generatorbetrieb.
+Charakteristisch für die Asynchronmaschine sind das ausgeprägte Maximum (\emph{Kippmoment} $M_{\mathrm K}$) und Minimum des Momentenverlaufs und der von den beiden Extremstellen begrenzte näherungsweise lineare Arbeitsbereich der Kennlinie, in dem das Nennmoment $M_{\mathrm{Nenn}}$ der Maschine auftritt. Für $0 < n < n_{\mathrm{syn}}$ befindet sich die Maschine im Motorbetrieb, ab $n > n_{\mathrm{syn}}$ wechselt sie in den Generatorbetrieb.
 
 \begin{figure}
     \centering
@@ -97,7 +97,7 @@ Aufgrund der Schenkelpole der Maschine ist der Luftspalt nicht konstant und weis
     \hskip -3em
     \begin{subfigure}[c]{.33\textwidth}
         \input{Tikz-Bilder/ESB_SM_R}
-        %TODO: Die angegebenen Widerstände und Induktivitäten gehören zum Dämpferkäfig. Die Erregerwicklung ist nicht dargeestellt.
+        % TODO: Die angegebenen Widerstände und Induktivitäten gehören zum Dämpferkäfig. Die Erregerwicklung ist nicht dargeestellt.
         \subcaption{Rotor\label{fig:ESB_SM_Rotor}}
     \end{subfigure}
     \caption{Ersatzschaltbild der Synchronmaschine für $d$- und $q$-Achse des Läufers}
@@ -105,7 +105,7 @@ Aufgrund der Schenkelpole der Maschine ist der Luftspalt nicht konstant und weis
 \end{figure}
 
 \paragraph{Erregersystem}
-Zur Übertragung der Erregerleistung auf den Rotor des Synchrongenerators werden in der Praxis vor Allem zwei Verfahren eingesetzt:
+Zur Übertragung der Erregerleistung auf den Rotor des Synchrongenerators werden in der Praxis vor allem zwei Verfahren eingesetzt:
 \begin{itemize}
 	\item Eine Möglichkeit zur Erregung ist der Einsatz von Schleifringen und Kohlebürsten, die über den Gleitkontakt eine elektrische Verbindung mit einer regelbaren Gleichstromquelle herstellen. Bezeichnet wird diese Methode als \emph{statische Erregung}, da zur Erregung keine rotierenden Maschinen eingesetzt werden. Nachteilig ist, dass der Einsatz der Kohlebürsten und Schleifringe mit Verschleiß und Wartungsarbeiten verbunden ist und es unter gewissen Bedingungen durch den Abrieb der Kohlebürsten zu Bürstenfeuer kommen kann.
 
@@ -121,7 +121,7 @@ Zur Übertragung der Erregerleistung auf den Rotor des Synchrongenerators werden
 %----------------------------------------------------
 \section{Modellierung und Simulation}
 \label{sec:GrundlagenModellierung}
-Aus dem Bereich der Modellierung und Simulation sollen im Folgenden Methoden der Modellierung behandelt werden, die im weiteren Teil dieser Arbeit benötigt werden. Zum Thema der Modellierung existieren umfangreiche Übersichtswerke, die teilweise verschiedene Methoden, Herangehensweisen und Einteilungen zu diesem Thema bieten. Die hier dargestellte Form der Grundlagen stellt \emph{eine} mögliche Einteilung der verschiedenen Techniken dar. Verwendet wurden dazu unter anderem \cites{janschekSystementwurfMechatronischerSysteme2010,gesenhuesObjektorientiertmodellbasierteCharakterisierungUberwachung2019,schroderElektrischeAntriebeRegelung2015}.
+Aus dem Bereich der Modellierung und Simulation sollen im Folgenden Methoden der Modellierung behandelt werden, die im weiteren Teil dieser Arbeit benötigt werden. Zum Thema der Modellierung existieren umfangreiche Übersichtswerke, die verschiedene Methoden, Herangehensweisen und Einteilungen zu diesem Thema bieten. Die hier dargestellte Form der Grundlagen stellt \emph{eine} mögliche Einteilung der verschiedenen Techniken dar. Verwendet wurden dazu unter anderem \cites{janschekSystementwurfMechatronischerSysteme2010,gesenhuesObjektorientiertmodellbasierteCharakterisierungUberwachung2019,schroderElektrischeAntriebeRegelung2015}.
 
 \subsection{Methoden der Modellierung}
 \label{subsec:ArtenModellierung}
@@ -148,7 +148,7 @@ Eingesetzt werden kann die objektorientierte Modellierung grundsätzlich in beid
 
 \subsection{Modellierung elektrischer Maschinen}
 \label{subsec:ModellierungElektrischerMaschinen}
-Zur Modellierung und Simulation einzelner Synchron- oder Asynchronmaschinen gibt es in der Literatur verschiedene Umsetzungsbeispiele. Zum Einsatz kommen dabei Signalflussmodelle auf Basis der Gleichungssysteme der elektrischen Maschinen in verschiedenen Detaillierungsgraden (z.B. \cites{kutznerModellierungUndSimulation2010a,alibrahimSimulationsmodellDoppeltGespeisten2017,razakModellingSimulationElectric2021}). Neben den Signalflussmodellen werden auch Leistungsflussmodelle auf Basis von \textsc{Modelica}-Modellen verwendet (z.B. \cites{calisModelicaSimulationFeldorientiertGeregelten,frankeMultidisziplinareModellierungUnd2012,}). Weniger verbreitet oder dokumentiert scheint der Einsatz von Bondgraphen (z.B. \cite{sahmTwoaxisBondGraph1979},\cite[S.~269-321]{borutzkyBondGraphModelling2011}) oder anderen Modellierungssprachen (z.B. \cite{justusDynamischesVerhaltenElektrischer1993}) zu sein. 
+Zur Modellierung und Simulation einzelner Synchron- oder Asynchronmaschinen gibt es in der Literatur verschiedene Umsetzungsbeispiele. Zum Einsatz kommen dabei Signalflussmodelle auf Basis der Gleichungssysteme der elektrischen Maschinen in verschiedenen Detaillierungsgraden (z.B. \cites{kutznerModellierungUndSimulation2010a,alibrahimSimulationsmodellDoppeltGespeisten2017,razakModellingSimulationElectric2021}). Neben den Signalflussmodellen werden auch Leistungsflussmodelle auf Basis von \textsc{Modelica} (\cites{calisModelicaSimulationFeldorientiertGeregelten,frankeMultidisziplinareModellierungUnd2012}) oder \textsc{Simscape}-Modellen (\cite{narkhedeSIMSCAPEMODELINGMOTORGENERATOR2016}) verwendet. Weniger verbreitet oder dokumentiert scheint der Einsatz von Bondgraphen (z.B. \cite{sahmTwoaxisBondGraph1979},\cite[S.~269-321]{borutzkyBondGraphModelling2011}) oder anderen Modellierungssprachen (z.B. \cite{justusDynamischesVerhaltenElektrischer1993}) zu sein. 
 
 Ein Signalflussmodell zur Simulation eines Motor-Generator-Sets aus Kurzschlussläufer-Asynchronmotor und permanenterregtem Synchrongenerator hat \cite{razakModellingSimulationElectric2021} entwickelt. Das dort entwickelte Modell ist jedoch spezifisch auf den untersuchten Anwendungsfall der Wirkungsgraduntersuchung ausgelegt. Um ein allgemeiner anwendbares, regelbares und erweiterbares Modell zu erhalten, soll die Modellierung des hier betrachteten Frequenzumformers in \textsc{Modelica} erfolgen. Zum Einsatz kommen soll dazu das Simulationsprogramm \textsc{OpenModelica}, eine open-source Simulationsumgebung für die Modellierungssprache \textsc{Modelica}.
 

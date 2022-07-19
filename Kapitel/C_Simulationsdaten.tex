@@ -142,9 +142,9 @@ Parameter & Wert\tabularnewline
 \(X_S\)     & \(\unit[0,042106445136139446]{\Omega}\)\tabularnewline
 \(f_{s,N}\) & \(\unit[400]{Hz}\)\tabularnewline
 \(R_s\)     & \(\unit[6,68\cdot 10^{-3}]{\Omega}\)\tabularnewline
-\(T_{D0}'\) & \(\unit[0,1075492579055312]{\Omega}\)\tabularnewline
-\(T_D''\)   & \(\unit[0,0038358105876696909]{\Omega}\)\tabularnewline
-\(T_Q''\)   & \(\unit[0,0028791616002136365]{\Omega}\)\tabularnewline
+\(T_{D0}'\) & \(\unit[0,1075492579055312]{s}\)\tabularnewline
+\(T_D''\)   & \(\unit[0,0038358105876696909]{s}\)\tabularnewline
+\(T_Q''\)   & \(\unit[0,0028791616002136365]{s}\)\tabularnewline
 $\hat N$    & 18 \tabularnewline
 $\xi_\mathrm{c}\xi_\mathrm{z}$ & 0,831 \tabularnewline
 \bottomrule
@@ -179,40 +179,40 @@ Parameter & Wert & Berechnung\tabularnewline
 \(r_e\)          & 0,00342458                           & \(\frac{x_e}{\omega_{s,N}T_{D0'}}\) \tabularnewline
 \(T_{d0}''\)     & \unit[0,00651784]{s}                 & \(\frac{x_d'}{x_d''}T_D''\) \tabularnewline
 \(T_{Q0}''\)     & \unit[0,00756537]{s}                 & \(\frac{x_q}{x_q''}T_Q\) \tabularnewline
-turnsratio       & 47,9934193                           & \(\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}\) \tabularnewline
-$N_\mathrm{eff.s}$& 14,958                              & $\hat N\cdot\xi_\mathrm{c}\xi_\mathrm{z}$ \tabularnewline
-$\sigma_\mathrm{e}$& 0,1973 & $\frac{1-x_{md}}{x_e}$\tabularnewline
+turnsratio       & 47,9934193                           & \(\frac{V_{\mathrm{s,Nominal}}}{\omega_{\mathrm{s,N}}L_{\mathrm{md}}I_{\mathrm{e,OpenCircuit}}}\) \tabularnewline
+$N_\mathrm{eff,s}$& 14,958                              & $\hat N\cdot\xi_\mathrm{c}\xi_\mathrm{z}$ \tabularnewline
+$\sigma_\mathrm{e}$& 0,1973 & $\frac{1-x_{\mathrm{md}}}{x_\mathrm e}$\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}lll@{}}
 \caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchrongenerator}\label{tab:ParameterRecordSG}
 \tabularnewline
 \toprule
-Parameter & Wert\tabularnewline
+Parameter & Wert & Berechnung\\
 \midrule
 \endfirsthead
 \toprule
-Parameter & Wert\tabularnewline
+Parameter & Wert & Berechnung\\
 \midrule
 \endhead
-\texttt{Jr} & 0\tabularnewline
-\texttt{IeOpenCircuit} & 7,2563105523832900\tabularnewline
-\texttt{Lmd} & 131,389E-6\tabularnewline
-\texttt{Lmq} & 47,975E-6\tabularnewline
-\texttt{Lrsigmad} & 12,35031219E-6\tabularnewline
-\texttt{Lrsigmaq} & 9,428981013E-6\tabularnewline
-\texttt{Lssigma} & 16,7536222E-6\tabularnewline
-\texttt{Re} & 6,8\tabularnewline
-\texttt{Rrd} & 5,873051175E-3\tabularnewline
-\texttt{Rrq} & 7,587723698E-3\tabularnewline
-\texttt{Rs} & 0.006679333\tabularnewline
-\texttt{VsNominal} & 115\tabularnewline
-\texttt{effectiveStatorTurns} & 14,958\tabularnewline
-\texttt{fsNominal} & 400\tabularnewline
-\texttt{p} & 8\tabularnewline
-\texttt{sigmae} & 0,1973\tabularnewline
-\texttt{useDamperCage} & \texttt{true}\tabularnewline
+\texttt{Jr}                   & 0                  & \\
+\texttt{IeOpenCircuit}        & 7,2563105523832900 & \\
+\texttt{Lmd}                  & 131,389E-6         & $x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lmq}                  & 47,975E-6          & $x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lrsigmad}             & 12,35031219E-6     & $(x_{\mathrm{rq}} - x_{\mathrm{mq}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lrsigmaq}             & 9,428981013E-6     & $(x_{\mathrm{rd}} - x_{\mathrm{md}})\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lssigma}              & 16,7536222E-6      & $x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Re}                   & 6,8                & $\frac{3}{2}\cdot \left(\frac{\sqrt{2}U_{\mathrm{sNenn}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err,Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}$\\
+\texttt{Rrd}                  & 5,873051175E-3     & $r_{\mathrm{rd}}\cdot X_{\mathrm{N}}$\\
+\texttt{Rrq}                  & 7,587723698E-3     & $r_{\mathrm{rq}}\cdot X_{\mathrm{N}}$\\
+\texttt{Rs}                   & 0.006679333        & $r_{\mathrm{s}}\cdot X_{\mathrm{N}}$\\
+\texttt{VsNominal}            & 115                & \\
+\texttt{effectiveStatorTurns} & 14,958             & \\
+\texttt{fsNominal}            & 400                & \\
+\texttt{p}                    & 8                  & \\
+\texttt{sigmae}               & 0,1973             & \\
+\texttt{useDamperCage}        & \texttt{true}      & \\
 \bottomrule
 \end{longtable}
 
@@ -279,19 +279,16 @@ Parameter & Wert\tabularnewline
 Parameter & Wert\tabularnewline
 \midrule
 \endhead
-\(X_N\) & \(\unit[3,249]{\Omega}\)\tabularnewline
-\(X_D\) & \(\unit[28,75372]{\Omega}\)\tabularnewline
-\(X_D'\) & \(\unit[4,551998]{\Omega}\)\tabularnewline
-\(X_D''\) & \(\unit[4,17496]{\Omega}\)\tabularnewline
-\(X_Q\) & \(\unit[12,73185]{\Omega}\)\tabularnewline
-\(X_Q''\) & \(\unit[4,977648]{\Omega}\)\tabularnewline
-\(X_0\) & \(\unit[0,3364738]{\Omega}\)\tabularnewline
-\(X_S\) & \(\unit[2,438214]{\Omega}\)\tabularnewline
-\(f_{s,N}\) & \(\unit[148,5]{Hz}\)\tabularnewline
-\(R_s\) & \(\unit[0,2205]{\Omega}\)\tabularnewline
-\(T_{D0}'\) & \(\unit[0,04588457]{s}\)\tabularnewline
-\(T_D''\) & \(\unit[0,00087131]{s}\)\tabularnewline
-\(T_Q''\) & \(\unit[0,00105124]{s}\)\tabularnewline
+\(X_N\)                            & \(\unit[3,249]{\Omega}\)    \\
+\(X_D\)                            & \(\unit[28,75372]{\Omega}\) \\
+\(X_D'\)                           & \(\unit[4,551998]{\Omega}\) \\
+\(X_Q\)                            & \(\unit[12,73185]{\Omega}\) \\
+\(X_S\)                            & \(\unit[2,438214]{\Omega}\) \\
+\(f_{s,N}\)                        & \(\unit[148,5]{Hz}\)        \\
+\(R_s\)                            & \(\unit[0,2205]{\Omega}\)   \\
+\(T_{D0}'\)                        & \(\unit[0,04588457]{s}\)    \\
+$N$                                & $108$ \\
+$\xi_{\mathrm{c}}\xi_{\mathrm{z}}$ & $0,866$ \\
 \bottomrule
 \end{longtable}
 
@@ -299,195 +296,61 @@ Parameter & Wert\tabularnewline
 \caption{Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine}\label{tab:ZwischenwerteErregermaschine}
 \tabularnewline
 \toprule
-\begin{minipage}[b]{0.10\columnwidth}\raggedright
-Parameter\strut
-\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
-Wert\strut
-\end{minipage} & \begin{minipage}[b]{0.55\columnwidth}\raggedright
-Berechnung\strut
-\end{minipage}\tabularnewline
+Parameter & Wert & Berechnung \tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{0.10\columnwidth}\raggedright
-Parameter\strut
-\end{minipage} & \begin{minipage}[b]{0.25\columnwidth}\raggedright
-Wert\strut
-\end{minipage} & \begin{minipage}[b]{0.55\columnwidth}\raggedright
-Berechnung\strut
-\end{minipage}\tabularnewline
-\midrule
+Parameter & Wert & Berechnung \tabularnewline\midrule
 \endhead
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(\omega_{s,N}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-\(\unit[933,053018]{\frac{rad}{s}}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(2\pi f_{s,N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_d\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-8,85002155\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_D}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_d'\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-1,40104586\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_D'}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_d''\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-1,28499846\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_D''}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_q\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-3,91869806\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_Q}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_q''\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-1,5320554\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_Q''}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_s\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-0,7504506\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{X_S}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_{md}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-8,09957094\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(x_d-x_s\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_{mq}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-3,16824746\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(x_q-x_s\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_e\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-8,80698935\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_{md}^2}{x_d-x_d''}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_{rd}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-11,0964007\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_{md}^2}{x_d'-x_d''}(1-\frac{x_{md}}{x_e})^2+\frac{x_{md}^2}{x_e}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(x_{rq}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-4,20582107\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_{mq}^2}{x_q-x_q''}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(r_s\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-0,06786704\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{R_s}{X_N}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(r_{rd}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-4,11488605\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_{rd}-\frac{x_{md}^2}{x_e}}{\omega_{s,N}T_{D0}''}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(r_{rq}\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-1,67638917\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_{rq}}{\omega_{s,N}T_{Q0}''}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(r_e\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-0,20570956\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_e}{\omega_{s,N}T_{D0'}}\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(T_{d0}''\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-0,00095\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_d'}{x_d''}T_D''\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-\(T_{Q0}''\)\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-0,00268887\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{x_q}{x_q''}T_Q\)\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.10\columnwidth}\raggedright
-turnsratio\strut
-\end{minipage} & \begin{minipage}[t]{0.25\columnwidth}\raggedright
-1,49330662\strut
-\end{minipage} & \begin{minipage}[t]{0.55\columnwidth}\raggedright
-\(\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}\)\strut
-\end{minipage}\tabularnewline
+\(\omega_{s,N}\) & \(\unit[933,053018]{\frac{rad}{s}}\) & \(2\pi f_{s,N}\) \tabularnewline
+\(x_d\) & 8,85002155 & \(\frac{X_D}{X_N}\) \tabularnewline
+\(x_d'\) & 1,40104586 & \(\frac{X_D'}{X_N}\) \tabularnewline
+\(x_q\) & 3,91869806 & \(\frac{X_Q}{X_N}\) \tabularnewline
+\(x_s\) & 0,7504506 & \(\frac{X_S}{X_N}\) \tabularnewline
+\(x_{md}\) & 8,09957094 & \(x_d-x_s\) \tabularnewline
+\(x_{mq}\) & 3,16824746 & \(x_q-x_s\)\tabularnewline
+\(x_e\) & 8,80698935 & \(\frac{x_{md}^2}{x_d-x_d''}\) \tabularnewline
+\(r_s\) & 0,06786704 & \(\frac{R_s}{X_N}\) \tabularnewline
+\(r_e\) & 0,20570956 & \(\frac{x_e}{\omega_{s,N}T_{D0'}}\) \tabularnewline
+turnsratio & 1,49330662 & \(\frac{V_{\mathrm{s,Nominal}}}{\omega_{\mathrm{s,N}}L_{\mathrm{md}}I_{\mathrm{e,OpenCircuit}}}\)\tabularnewline
+$\sigma_\mathrm{e}$& 0,0803 & $\frac{1-x_{\mathrm{md}}}{x_\mathrm e}$ \\
 \bottomrule
 \end{longtable}
 
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}lll@{}}
 \caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchrongenerator der Erregermaschine}\label{tab:ParameterRecordErregermaschine}
 \tabularnewline
 \toprule
-Parameter & Wert\tabularnewline
+Parameter & Wert & Berechnung \\
 \midrule
 \endfirsthead
 \toprule
-Parameter & Wert\tabularnewline
+Parameter & Wert & Berechnung \\
 \midrule
 \endhead
-\texttt{Jr} & 0\tabularnewline
-\texttt{IeOpenCircuit} & 1,450488\tabularnewline
-\texttt{Lmd} & 0,028203656\tabularnewline
-\texttt{Lmq} & 0,011032209\tabularnewline
-\texttt{Lrsigmad} & 0,010435313\tabularnewline
-\texttt{Lrsigmaq} & 0,003612953\tabularnewline
-\texttt{Lssigma} & 0,002613157\tabularnewline
-\texttt{Re} & 4,8\tabularnewline
-\texttt{Rrd} & 13,36926478\tabularnewline
-\texttt{Rrq} & 5,446588427\tabularnewline
-\texttt{Rs} & 0.2205\tabularnewline
-\texttt{VsNominal} & 57\tabularnewline
-\texttt{effectiveStatorTurns} & 93,528\tabularnewline
-\texttt{fsNominal} & 148,5\tabularnewline
-\texttt{p} & 3\tabularnewline
-\texttt{sigmae} & 0,0803\tabularnewline
-\texttt{useDamperCage} & \texttt{false}\tabularnewline
-\texttt{TeRef} & 293,15\tabularnewline
-\texttt{TrRef} & 293,15\tabularnewline
-\texttt{TsRef} & 293,15\tabularnewline
-\texttt{alpha20e} & 0\tabularnewline
-\texttt{alpha20r} & 0\tabularnewline
-\texttt{alpha20s} & 0\tabularnewline
+\texttt{Jr}                   & 0              & \\
+\texttt{IeOpenCircuit}        & 1,450488       & \\
+\texttt{Lmd}                  & 0,028203656    & $x_{\mathrm{md}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lmq}                  & 0,011032209    & $x_{\mathrm{mq}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Lrsigmad}             & 0              & \\
+\texttt{Lrsigmaq}             & 0              & \\
+\texttt{Lssigma}              & 0,002613157    & $x_{\mathrm{s}}\cdot \frac{X_{\mathrm{N}}}{\omega_{\mathrm{sN}}}$\\
+\texttt{Re}                   & 4,8            & $\frac{3}{2}\cdot \left(\frac{\sqrt{2}U_{\mathrm{sNenn}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err,Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}$\\
+\texttt{Rrd}                  & 0              & \\
+\texttt{Rrq}                  & 0              & \\
+\texttt{Rs}                   & 0.2205         & $r_{\mathrm{s}}\cdot X_{\mathrm{N}}$\\
+\texttt{VsNominal}            & 57             & \\
+\texttt{effectiveStatorTurns} & 93,528         & \\
+\texttt{fsNominal}            & 148,5          & \\
+\texttt{p}                    & 3              & \\
+\texttt{sigmae}               & 0,0803         & \\
+\texttt{useDamperCage}        & \texttt{false} & \\
+\texttt{TeRef}                & 293,15         & \\
+\texttt{TrRef}                & 293,15         & \\
+\texttt{TsRef}                & 293,15         & \\
+\texttt{alpha20e}             & 0              & \\
+\texttt{alpha20r}             & 0              & \\
+\texttt{alpha20s}             & 0              & \\
 \bottomrule
 \end{longtable}
 
@@ -557,9 +420,9 @@ Parameter & Wert\tabularnewline
 Parameter & Wert\tabularnewline
 \midrule
 \endhead
-\texttt{GoffDiode} & 1e-3\tabularnewline
-\texttt{RonDiode} & 1e-3\tabularnewline
-\texttt{VkneeDiode} & 0,7\tabularnewline
+\texttt{GoffDiode} in $\unit{S}$     & 1e-3\tabularnewline
+\texttt{RonDiode} in $\unit{\Omega}$ & 1e-3\tabularnewline
+\texttt{VkneeDiode} in $\unit{V}$    & 0,7\tabularnewline
 \texttt{m} & 3\tabularnewline
 \bottomrule
 \end{longtable}
@@ -612,7 +475,11 @@ Parameter & Wert\tabularnewline
 \endhead
 \texttt{offset\_Map.I1} & 0\tabularnewline
 \texttt{offset\_Map.I2} & 32767\tabularnewline
+\texttt{offset\_Map.O1} & 0\tabularnewline
 \texttt{offset\_Map.O2} & 80\tabularnewline
+\texttt{offset\_Map1.I1} & 0\tabularnewline
+\texttt{offset\_Map1.I2} & 0\tabularnewline
+\texttt{offset\_Map1.O1} & 0\tabularnewline
 \texttt{offset\_Map1.O2} & 3888 / 256\tabularnewline
 \texttt{controlOn.startTime} & 0,7\tabularnewline
 \texttt{controlOn.startValue} & \texttt{false}\tabularnewline

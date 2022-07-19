@@ -8,7 +8,9 @@ In der Anwendung auf das Modell ist die Verifikation und Validierung ein ständi
 \label{sec:Verifkation}
 Die Verifikation des Modells kann aufgeteilt werden in die Verifikation der einzelnen verwendeten Teilmodelle und dem aus diesen Teilmodellen zusammengestellten Gesamtmodell. Die einzelnen Teilmodelle entstammen dabei, wie in \cref{chap:Modellierung} beschrieben, der MSL oder sind aus Komponenten der MSL aufgebaut. Diese Modelle können als plausibel angenommen werden, da die Implementierungen aus allgemein anerkannten Standardmodellen entspringen, deren Umsetzung durch ihre freie Veröffentlichung, Tests und Anpassungen kontrolliert wurde. Damit beschränkt sich die Untersuchung auf die Verifikation des Gesamtmodells, also der Auswahl und Verbindung der Teilmodelle. 
 
-Entsprechend den Anforderungen an das Modell gehört zu den Hauptaufgaben des Modells die Simulation der übertragenen elektrischen Leistung und das Verhalten der Ausgangsspannung bei verschiedenen Parametrierungen. Die korrekte Funktionsweise des Spannungsreglers und damit die Wiedergabe der Ausgangsspannung kann direkt aus den Ergebnissen der Simulation eines Lastsprunges abgelesen werden. Einen solchen Zeitverlauf der Ausgangsspannung zeigt \cref{fig:Verifikation_Spannung}. Nach Einschalten des Reglers bei $t=\unit[0,7]{s}$ folgt der Effektivwert der Ausgangsspannung dem Sollwert und schwingt bis $t=\unit[2]{s}$ bei $U_{\mathrm{eff}}=\unit[115]{V}$ ein. Bei $t=\unit[2,2]{s}$ wird eine Lastaufschaltung ausgeführt. Der resultierende Spannungseinbruch wird durch den Spannungsregler bis $t\approx\unit[3]{s}$ ausgeregelt.
+Entsprechend den Anforderungen an das Modell gehört zu den Hauptaufgaben des Modells die Simulation der übertragenen elektrischen Leistung und das Verhalten der Ausgangsspannung bei verschiedenen Parametrierungen. 
+
+Die korrekte Funktionsweise des Spannungsreglers und damit die Wiedergabe der Ausgangsspannung kann direkt aus den Ergebnissen der Simulation eines Lastsprunges abgelesen werden. Einen solchen Zeitverlauf der Ausgangsspannung zeigt \cref{fig:Verifikation_Spannung}. Nach Einschalten des Reglers bei $t=\unit[0,7]{s}$ folgt der Effektivwert der Ausgangsspannung dem Sollwert und schwingt bis $t=\unit[2]{s}$ bei $U_{\mathrm{eff}}=\unit[115]{V}$ ein. Bei $t=\unit[2,2]{s}$ wird eine Lastaufschaltung ausgeführt. Der resultierende Spannungseinbruch wird durch den Spannungsregler bis $t\approx\unit[3]{s}$ ausgeregelt.
 \begin{figure}
     \centering
     \includegraphics{Bilder/Verifikation_Spannung.pdf}
@@ -16,7 +18,7 @@ Entsprechend den Anforderungen an das Modell gehört zu den Hauptaufgaben des Mo
     \label{fig:Verifikation_Spannung}
 \end{figure}
 
-Die Frequenz der Ausgangsspannung wird im Modell aus Geschwindigkeitsgründen aus der Winkelgeschwindigkeit der Welle und der Polpaarzahl des Synchrongenerators ermittelt. Um die Kopplung der Spannungsfrequenz mit der Winkelgeschwindigkeit der Welle zu überprüfen, wird die so ermittelte Frequenz mit der Frequenz der Zeitverläufe der drei Phasen der Ausgangsspannung verglichen. \cref{fig:Verifikation_Frequenz} zeigt den Verlauf der Frequenz, ermittelt durch Messen der Zeit zwischen den Nulldurchgängen (blaue Kurve) und die zum gleichen Zeitpunkt aus der Winkelgeschwindigkeit ermittelte Frequenz. Wie zu sehen ist, stimmen beide Kurven miteinander überein. Der Abweichung der Frequenz aus den Nulldurchgängen im Sprungmoment von der Frequenz aus der Winkelgeschwindigkeit erklärt sich aus Abweichungen der Spannung von der reinen Sinusform (Oberschwingungen) im Sprungmoment.
+Die Frequenz der Ausgangsspannung wird im Modell aus Geschwindigkeitsgründen aus der Winkelgeschwindigkeit der Welle und der Polpaarzahl des Synchrongenerators ermittelt. Um die Kopplung der Spannungsfrequenz mit der Winkelgeschwindigkeit der Welle zu überprüfen, wird die so ermittelte Frequenz mit der Frequenz der Zeitverläufe der drei Phasen der Ausgangsspannung verglichen. \cref{fig:Verifikation_Frequenz} zeigt den Verlauf der Frequenz, ermittelt durch Messen der Zeit zwischen den Nulldurchgängen (blaue Kurve) und die zum gleichen Zeitpunkt aus der Winkelgeschwindigkeit ermittelte Frequenz. Wie zu sehen ist, stimmen beide Kurven miteinander überein. Der Abweichung der Frequenz aus den Nulldurchgängen im Sprungmoment von der Frequenz aus der Winkelgeschwindigkeit erklärt sich aus Abweichungen der Spannung von der reinen Sinusform (Phasenverschiebung) im Sprungmoment.
 \begin{figure}
     \centering
     \includegraphics{Bilder/Verifikation_Frequenz.pdf}
@@ -61,7 +63,7 @@ Damit ergibt sich die Drehzahl-Drehmoment-Kennlinie der ASM in \cref{fig:Validie
 
 \paragraph{Spannungskennlinie der Erregermaschine}
 Die Spannungskennlinie der Erregermaschine beschreibt den Zusammenhang zwischen der Stellgröße des Reglers (der Hilfserregerspannung) und der damit eingestellten Haupterregerspannung zur Erregung des Synchrongenerators. Über die Impedanz des Synchrongenerators stellt sich durch die Haupterregerspannung der Haupterregerstrom ein, der bei der hier betrachteten Maschine über die Schleifringe nicht gemessen werden konnte. Der Abgleich der Spannungskennlinie mit den Messdaten erfolgte durch Aufbringen verschiedener Lastsprünge in der Simulation und anpassen der Erregerwiderstände $R_\mathrm{e}$ der Erregermaschine und des Synchrongenerators. Die resultierende Spannungskennlinie zeigt \cref{fig:Validierung-Erregermaschine}. Sie zeigt die gemessenen und simulierten stationären Spannungen nach Lastsprüngen im Bereich von \unit[0]{\%} bis \unit[125]{\%} Last.
-\begin{figure}[h!]
+\begin{figure}
     \centering
     \includegraphics{Bilder/Validierung_Erregermaschine.pdf}
     \caption{Spannungkennlinie der Erregermaschine}

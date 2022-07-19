@@ -8,7 +8,7 @@
     %\node (ASM_Stator_R) [bgelement, above left=of ASM_Stator] {R};
     %\node (ASM_Stator_L) [bgelement, below left=of ASM_Stator] {L};
     \node (ASM_Luftspalt) [bgelement, below=of ASM_Stator] {Luftspalt};
-    \node (ASM_Rotor) [bgelement, below=3cm of ASM_Luftspalt] {Rotor};
+    \node (ASM_Rotor) [bgelement, below=2.5cm of ASM_Luftspalt] {Rotor};
     %\node (ASM_Rotor_R) [bgelement, above left=of ASM_Rotor] {R};
     %\node (ASM_Rotor_L) [bgelement, below left=of ASM_Rotor] {L};
     \draw[bonds]
@@ -24,7 +24,7 @@
     \node (Welle) [bgelement, right=1.1cm of ASM_Rotor] {Welle};
     % \node (Reibung) [bgelement, below =of Welle] {Reibung};
     
-    \node (Gleichrichter) [bgelement, right=1cm of Welle] {Gleichrichter};
+    \node (Gleichrichter) [bgelement, below right=.1cm and 1cm of Welle] {Gleichrichter};
     \draw[bonds] 
         (ASM_Rotor) edge[effort=$M_{\mathrm{Motor}}$, flow=$\omega$] (Welle);
         % (Welle) edge[effort=$M_{\mathrm{Verl.}}$, flow=$\omega$] (Reibung);
@@ -40,7 +40,7 @@
     %\node (SG_Stator_L) [bgelement, above left=of SG_Stator] {L};
     \draw[bonds]
     (Welle) edge[effort=$M_{\mathrm{Gen.}}$, flow=$\omega$] (SG_Rotor)
-    (Gleichrichter) edge[effort=$u_{\mathrm{DC}}$, flow=$i_{\mathrm{DC}}$] (SG_Rotor)
+    (Gleichrichter) edge[effort=$u_{\mathrm{Err,Haupt}}$, flow=$i_{\mathrm{Err,Haupt}}$] (SG_Rotor)
     (SG_Rotor) edge[flow=$\Phi_{\mathrm{r}}$, effort=$V_{\mathrm{m,r}}$] (SG_Luftspalt)
                %edge (SG_Rotor_R)
                %edge (SG_Rotor_L)
@@ -74,13 +74,13 @@
     % Regler
     \node (Summe) [sum, below=of Last] {};
     \node (Sollspannung) [input, right=of Summe, label=$U_{\mathrm{aus,soll}}$] {};
-    \node (Regler) [block, label={right:}] at ($(Summe)!1/3!(EM_Stator)$) {PID};
-    \node (PWM) [pulse, label={right:PWM}] at ($(Summe)!2/3!(EM_Stator)$) {};
+    \node (PWM) [pulse, label={right:PWM}] at ($(Summe)!3/5!(EM_Stator)$) {};
+    \node (Regler) [block] at ($(Summe.south)!.5!(PWM.north)$) {PID};
     \draw[signal] (Last) -- node[left] (U_Regler_in) {$U_{\mathrm{aus,ist}}$} (Summe);
     \draw[signal] (Sollspannung) -- node[near end,below]{\small $-$} (Summe);
     \draw[signal] (Summe) -- (Regler);
     \draw[signal] (Regler) -- (PWM);
-    \draw[bonds] (PWM) ++(0,-.6) edge[effort=$u_{\mathrm{err}}$, flow=$i_{\mathrm{err}}$] (EM_Stator);
+    \draw[bonds] (PWM) ++(0,-.6) edge[effort=$u_{\mathrm{Err,Hilf}}$, flow=$i_{\mathrm{Err,Hilf}}$] (EM_Stator);
     
     %Beschriftung
     \node [below=.3cm of EM_Luftspalt] {Erregermaschine};
