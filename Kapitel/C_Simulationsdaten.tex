@@ -23,7 +23,7 @@ Parameter & Wert\tabularnewline
 
 % -- Wicklungsdaten --
 \begin{longtable}[]{@{}llll@{}}
-\caption{Wicklungsdaten der Asynchronmaschine}\label{tab:WicklungsdatenASM}\tabularnewline
+\caption{Wicklungsdaten der Asynchronmaschine, entnommen aus \cite{pillerpowersystemsASMTIF2004}}\label{tab:WicklungsdatenASM}\tabularnewline
 \toprule
 Parameter              & Symbol                    & Wert          & Berechnung\tabularnewline
 \midrule
@@ -50,64 +50,64 @@ effektive Windungszahl & $N_\mathrm{eff.s}$        & 9,17100475    & $\hat N\cdo
 \begin{longtable}[]{@{}ll@{}}
 \caption{Werte des Parameterrecords (\texttt{Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM\_­Squir­rel­Cage­Da­ta}) der Asynchronmaschine}\label{tab:WerteParameterrecordASM}\tabularnewline
 \toprule
-Parameter                     & Wert\tabularnewline
+Parameter                     & Wert     \\
 \midrule
 \endfirsthead
 \toprule
-Parameter                     & Wert\tabularnewline
+Parameter                     & Wert     \\
 \midrule
 \endhead
-\texttt{Jr}                   & 0\tabularnewline
-\texttt{L0}                   & 0\tabularnewline
-\texttt{Rr}                   & 0,120\tabularnewline
-\texttt{Rs}                   & 0,083574\tabularnewline
-\texttt{X0}                   & 14,83\tabularnewline
-\texttt{X1}                   & 0,448208\tabularnewline
-\texttt{X2}                   & 0,791\tabularnewline
-\texttt{effectiveStatorTurns} & 9,171\tabularnewline
-\texttt{p}                    & 1\tabularnewline
-\texttt{fsNominal}            & 50\tabularnewline
+\texttt{Jr}                   & 0        \\
+\texttt{L0}                   & 0        \\
+\texttt{Rr}                   & 0,120    \\
+\texttt{Rs}                   & 0,083574 \\
+\texttt{X0}                   & 14,83    \\
+\texttt{X1}                   & 0,448208 \\
+\texttt{X2}                   & 0,791    \\
+\texttt{effectiveStatorTurns} & 9,171    \\
+\texttt{p}                    & 1        \\
+\texttt{fsNominal}            & 50       \\
 \bottomrule
 \end{longtable}
 
 % -- endgültige Parameter --
-\begin{longtable}[]{@{}ll@{}}
+\begin{longtable}[]{@{}lll@{}}
 \caption{Parameter des Modells der Asynchronmaschine (\texttt{Fun­da­men­tal­Wave.­Basic­Ma­chines.­Asyn­chro­nous­In­duc­tion­Ma­chines.­AIM\_­Squir­rel­Cage})}\label{tab:ParameterASM}\tabularnewline
 \toprule
-Parameter                     & Wert\tabularnewline
+Parameter                     & Wert                                              & Berechnung\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-Parameter                     & Wert\tabularnewline
+Parameter                     & Wert                                              & Berechnung\tabularnewline
 \midrule
 \endhead
-\texttt{Jr}                   & \texttt{aimcData.Jr}\tabularnewline
-\texttt{Js}                   & \texttt{aimcData.Js}\tabularnewline
-\texttt{phiMechanical}        & \texttt{(displayUnit="rad")}\tabularnewline
-\texttt{useSupport}           & \texttt{false}\tabularnewline
-\texttt{wMechanical}          & \texttt{(displayUnit=false)}\tabularnewline
-\texttt{Lm}                   & \texttt{aimcData.Lm}\tabularnewline
-\texttt{Lrsigma}              & \texttt{aimcData.Lrsigma}\tabularnewline
-\texttt{Lssigma}              & \texttt{(fixed=false)}\tabularnewline
-\texttt{Rr}                   & \texttt{aimcData.Rr}\tabularnewline
-\texttt{Rs}                   & \texttt{(fixed=true,\ start=aimcData.Rs)}\tabularnewline
-\texttt{effectiveStatorTurns} & \texttt{aimcData.effectiveStatorTurns}\tabularnewline
-\texttt{fsNominal}            & \texttt{aimcData.fsNominal}\tabularnewline
-\texttt{m}                    & \texttt{m}\tabularnewline
-\texttt{p}                    & \texttt{aimcData.p}\tabularnewline
-\texttt{TrOperational}        & 293,15, \texttt{displayUnit = ''K''}\tabularnewline
-\texttt{TrRef}                & 293,15, \texttt{displayUnit = ''K''}\tabularnewline
-\texttt{TsOperational}        & 293,15, \texttt{displayUnit = ''K''}\tabularnewline
-\texttt{TsRef}                & 293,15, \texttt{displayUnit = ''K''}\tabularnewline
-\texttt{alpha20r}             & 0, \texttt{displayUnit = ''K''}\tabularnewline
-\texttt{alpha20s}             & 0, \texttt{displayUnit = ''K''}\tabularnewline
+\texttt{Jr}                   & \texttt{aimcData.Jr}                              & \\
+\texttt{Js}                   & \texttt{aimcData.Js}                              & \\
+\texttt{phiMechanical}        & \texttt{(displayUnit="rad", fixed=false)}         & \\
+\texttt{useSupport}           & \texttt{false}                                    & \\
+\texttt{wMechanical}          & \texttt{(displayUnit = "rev/min", fixed = false)} & \\
+\texttt{Lm}                   & \texttt{aimcData.Lm}                              & $\frac{X_0}{2\pi f_{s,Nominal}}$\\
+\texttt{Lrsigma}              & \texttt{aimcData.Lrsigma}                         & $\frac{X_1}{2\pi f_{s,Nominal}}$\\
+\texttt{Lssigma}              & \texttt{(fixed=false)}                            & $\frac{X_2}{2\pi f_{s,Nominal}}$\\
+\texttt{Rr}                   & \texttt{aimcData.Rr}                              & \\
+\texttt{Rs}                   & \texttt{(fixed=true,\ start=aimcData.Rs)}         & \\
+\texttt{effectiveStatorTurns} & \texttt{aimcData.effectiveStatorTurns}            & \\
+\texttt{fsNominal}            & \texttt{aimcData.fsNominal}                       & \\
+\texttt{m}                    & \texttt{m}                                        & \\
+\texttt{p}                    & \texttt{aimcData.p}                               & \\
+\texttt{TrOperational}        & 293,15, \texttt{displayUnit = ''K''}              & \\
+\texttt{TrRef}                & 293,15, \texttt{displayUnit = ''K''}              & \\
+\texttt{TsOperational}        & 293,15, \texttt{displayUnit = ''K''}              & \\
+\texttt{TsRef}                & 293,15, \texttt{displayUnit = ''K''}              & \\
+\texttt{alpha20r}             & 0, \texttt{displayUnit = ''K''}                   & \\
+\texttt{alpha20s}             & 0, \texttt{displayUnit = ''K''}                   & \\
 \bottomrule
 \end{longtable}
 
-\subsection{Synchron-Generator}\label{synchron-generator}
+\subsection{Synchrongenerator}\label{synchron-generator}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter für den Netzanschluss des Synchron-Generators} \label{tab:NetzSG}
+\caption{Parameter für den Netzanschluss des Synchrongenerators} \label{tab:NetzSG}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -122,7 +122,7 @@ Parameter & Wert\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter aus der Auslegung des Synchrongenerators} \label{tab:AuslegungSG}
+\caption{Parameter aus der Auslegung des Synchrongenerators, entnommen aus \cite{pillerpowersystemsTechnischeDatenSynchrongenerator,pillerpowersystemsWickelblattSynchrongenerator272004}} \label{tab:AuslegungSG}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -140,11 +140,13 @@ Parameter & Wert\tabularnewline
 \(X_Q''\)   & \(\unit[0,061911567284431417]{\Omega}\)\tabularnewline
 \(X_0\)     & \(\unit[0,13773696682464454]{\Omega}\)\tabularnewline
 \(X_S\)     & \(\unit[0,042106445136139446]{\Omega}\)\tabularnewline
-\(f_{s,N}\) & \(\unit[400]{\Omega}\)\tabularnewline
-\(R_s\)     & \(\unit[6,68E-03]{\Omega}\)\tabularnewline
+\(f_{s,N}\) & \(\unit[400]{Hz}\)\tabularnewline
+\(R_s\)     & \(\unit[6,68\cdot 10^{-3}]{\Omega}\)\tabularnewline
 \(T_{D0}'\) & \(\unit[0,1075492579055312]{\Omega}\)\tabularnewline
 \(T_D''\)   & \(\unit[0,0038358105876696909]{\Omega}\)\tabularnewline
 \(T_Q''\)   & \(\unit[0,0028791616002136365]{\Omega}\)\tabularnewline
+$\hat N$    & 18 \tabularnewline
+$\xi_\mathrm{c}\xi_\mathrm{z}$ & 0,831 \tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -178,11 +180,13 @@ Parameter & Wert & Berechnung\tabularnewline
 \(T_{d0}''\)     & \unit[0,00651784]{s}                 & \(\frac{x_d'}{x_d''}T_D''\) \tabularnewline
 \(T_{Q0}''\)     & \unit[0,00756537]{s}                 & \(\frac{x_q}{x_q''}T_Q\) \tabularnewline
 turnsratio       & 47,9934193                           & \(\frac{V_{s,Nominal}}{\omega_{s,N}L_{md}I_{e,OpenCircuit}}\) \tabularnewline
+$N_\mathrm{eff.s}$& 14,958                              & $\hat N\cdot\xi_\mathrm{c}\xi_\mathrm{z}$ \tabularnewline
+$\sigma_\mathrm{e}$& 0,1973 & $\frac{1-x_{md}}{x_e}$\tabularnewline
 \bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchron-Generator}\label{tab:ParameterRecordSG}
+\caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchrongenerator}\label{tab:ParameterRecordSG}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -213,7 +217,7 @@ Parameter & Wert\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter des Modells des Synchron-Generators}\label{tab:ParameterSG}
+\caption{Parameter des Modells des Synchrongenerators}\label{tab:ParameterSG}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -265,7 +269,7 @@ Parameter & Wert\tabularnewline
 \subsection{Erregermaschine}\label{sec:Erregermaschine}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter aus der Auslegung der Erregermaschine}\label{tab:AuslegungErregermaschine}
+\caption{Parameter aus der Auslegung der Erregermaschine, entnommen aus \cite{pillerpowersystemsTechnischeDatenErregermaschine,pillerpowersystemsWickelblattErregermaschine272013}}\label{tab:AuslegungErregermaschine}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -451,7 +455,7 @@ turnsratio\strut
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchro-Generator der Erregermaschine}\label{tab:ParameterRecordErregermaschine}
+\caption{Werte des Parameterrecords (\texttt{Machines.­Utilities.­Parameter­Records.­SM\_­ElectricalExcited­Data}) für den Synchrongenerator der Erregermaschine}\label{tab:ParameterRecordErregermaschine}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -488,7 +492,7 @@ Parameter & Wert\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter des Synchro-Generators der Erregermaschine} \label{tab:ParameterErregermaschine}
+\caption{Parameter des Synchrongenerators der Erregermaschine} \label{tab:ParameterErregermaschine}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
@@ -563,7 +567,7 @@ Parameter & Wert\tabularnewline
 \section{Reglerparameter}\label{sec:Reglerparameter}
 
 \begin{longtable}[]{@{}lll@{}}
-\caption{Reglerparameter des Spannungsreglers}\tabularnewline
+\caption{Reglerparameter des Spannungsreglers, ausgelesen aus der Anlage}\tabularnewline
 \toprule
 Parameter & Dezimalwert & Hexadezimalwert\footnote{16 bit signed Integer}\tabularnewline
 \midrule

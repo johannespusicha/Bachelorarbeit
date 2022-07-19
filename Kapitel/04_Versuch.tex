@@ -8,7 +8,14 @@ Im Folgenden wird zunächst dieser Messaufbau beschrieben. Anschließend folgt e
 
 \section{Messaufbau}
 \label{sec:Messaufbau}
-Die Aufnahme der Messung wurde in Zusammenarbeit mit Mitarbeitern des Prüffelds der Firma Piller Power Systems durchgeführt. Mit einem Messwagen, bestehend aus Computer, Messkarte und Messsoftware und benötigten Wandlerschaltungen zum Anpassen der Messgrößen auf den Messbereich der Messkarte, wurden statische Werte und Zeitverläufe der Messgrößen ermittelt. Die dazu benötigte Belastung der Maschine wurde über eine Lastbank aus schaltbaren Widerständen und Induktivitäten eingestellt. Die Einstellung erfolgte über Schalten der Last und direktes Vergleichen der resultierenden Scheinleistung und des resultierenden Leistungsfaktor am Messsytem. Eingestellt wurden jeweils Lasten in Prozent mit Bezug auf die Nennscheinleistung der Anlage. 
+Die Aufnahme der Messung wurde in Zusammenarbeit mit Mitarbeitern des Prüffelds der Firma Piller Power Systems durchgeführt. 
+\begin{figure}
+    \centering
+    \includegraphics{Bilder/Messwagen vorne}
+    \caption{Messwagen der Firma Piller Powers Systems (eigene Aufnahme)}
+    \label{fig:Messwagen}
+\end{figure}
+Mit einem Messwagen (siehe \cref{fig:Messwagen}), bestehend aus Computer, Messkarte und Messsoftware und benötigten Wandlerschaltungen zum Anpassen der Messgrößen auf den Messbereich der Messkarte, wurden statische Werte und Zeitverläufe der Messgrößen ermittelt. Die dazu benötigte Belastung der Maschine wurde über eine Lastbank aus schaltbaren Widerständen und Induktivitäten eingestellt. Die Einstellung erfolgte über Schalten der Last und direktes Vergleichen der resultierenden Scheinleistung und des resultierenden Leistungsfaktor am Messsytem. Eingestellt wurden jeweils Lasten in Prozent mit Bezug auf die Nennscheinleistung der Anlage. 
 
 \begin{figure}
     \centering
@@ -40,7 +47,7 @@ Die aufgenommenen Messgrößen sind die drei Strom- und Spannungsphasen des Netz
     \item Dynamische Messung mit Veränderung der Reglerparameter: Wie bei der Dynamischen Messung ohne Veränderung der Reglerparameter wurden die Messgrößen für ca $\unit[10]{s}$ während eines Lastsprungs aufgenommen, jedoch mit veränderten Reglerparametern. Die eingestellten Parameter können den \cref{tab:Parameter-D-Messung,tab:Parameter-I-Messung,tab:Parameter-P-Messung,tab:Parameter-PI-Messung} im Anhang entnommen werden. Die Lastsprünge (Aufschalten und Abwurf) wurden bei $[\unit[50]{\%}, \unit[100]{\%}]$ Last und einem Leistungsfaktor von $\mathrm{Pf}=0,8$ ausgeführt.
 \end{enumerate}
 
-Die Ströme wurden mit Stromzangen (siehe \cref{fig:Umformer_Stromzangen}) an den Zu- und Ableitungen gemessen, die Ein- und Ausgangsspannungen und die Reglerspannung wurden mit entsprechenden Klemmen im Frequenzumformer aufgenommen (siehe \cref{fig:Umformer_vorne}). Die Polradspannung wurde über dafür montierte Schleifringe von der Welle abgeführt (\cref{fig:Umformer_Polrad}). Mit der Messsoftware wurden die Messdaten aufgezeichnet und wegen der höheren Schreibgeschwindigkeit in einem Binärformat abgespeichert. Für die weitere Verarbeitung wurden die Messwerte anschließend in das Textformat \texttt{.csv} umgewandelt. Die Aufzeichnung der transienten Größen erfolgte mit einer Abtastrate von $f_{\mathrm{s}}=\unit[60]{kHz}$.
+Die Ströme wurden mit Stromzangen (siehe \cref{fig:Umformer_Stromzangen}) an den Zu- und Ableitungen gemessen, die Ein- und Ausgangsspannungen und die Reglerspannung wurden mit entsprechenden Klemmen im Frequenzumformer aufgenommen (siehe \cref{fig:Umformer_vorne}). Die gleichgerichtete Haupterregerspannung wurde über dafür montierte Schleifringe von der Welle abgeführt (\cref{fig:Umformer_Polrad}). Mit der Messsoftware wurden die Messdaten aufgezeichnet und wegen der höheren Schreibgeschwindigkeit in einem Binärformat abgespeichert. Für die weitere Verarbeitung wurden die Messwerte anschließend in das Textformat \texttt{.csv} umgewandelt. Die Aufzeichnung der transienten Größen erfolgte mit einer Abtastrate von $f_{\mathrm{s}}=\unit[60]{kHz}$.
 
 \section{Aufbereitung der Messergebnisse}
 \label{sec:Auswertung_Messeregbnisse}
