@@ -1,6 +1,6 @@
 \chapter{Grundlagen}
 \label{chap:Grundlagen}
-In diesem Kapitel sollen die für die Modellierung des Frequenzumformers benötigten Grundlagen aus dem Bereich der Regelungstechnik, der elektrischen Maschinen und der Modellbildung und Simulation  behandelt werden. 
+In diesem Kapitel werden die für die Modellierung des Frequenzumformers benötigten Grundlagen aus dem Bereich der Regelungstechnik, der elektrischen Maschinen und der Modellbildung und Simulation  behandelt. Im Anschluss wird eine kurze Einordnung zur Modellierung elektrischer Maschinen gegeben.
 
 \section{Regelungstechnik}
 \label{sec:GrundlagenRegelungstechnik}
@@ -148,6 +148,10 @@ Eingesetzt werden kann die objektorientierte Modellierung grundsätzlich in beid
 \subsection{Modellierung elektrischer Maschinen}
 \label{subsec:ModellierungElektrischerMaschinen}
 Zur Modellierung und Simulation einzelner Synchron- oder Asynchronmaschinen gibt es in der Literatur verschiedene Umsetzungsbeispiele. Zum Einsatz kommen dabei Signalflussmodelle auf Basis der Gleichungssysteme der elektrischen Maschinen in verschiedenen Detaillierungsgraden (z.B. \cites{kutznerModellierungUndSimulation2010a,alibrahimSimulationsmodellDoppeltGespeisten2017,razakModellingSimulationElectric2021}). Neben den Signalflussmodellen werden auch Leistungsflussmodelle auf Basis von \textsc{Modelica} (\cites{calisModelicaSimulationFeldorientiertGeregelten,frankeMultidisziplinareModellierungUnd2012}) oder \textsc{Simscape}-Modellen (\cite{narkhedeSIMSCAPEMODELINGMOTORGENERATOR2016}) verwendet. Weniger verbreitet oder dokumentiert scheint der Einsatz von Bondgraphen (z.B. \cite{sahmTwoaxisBondGraph1979},\cite[S.~269-321]{borutzkyBondGraphModelling2011}) oder anderen Modellierungssprachen (z.B. \cite{justusDynamischesVerhaltenElektrischer1993}) zu sein. 
+
+Zur Modellierung rotierender Frequenzumformer lassen sich in der Literatur bisher keine Beispiele finden. Eine ähnliche Problemstellung ist aber die Modellierung eines Motor-Generator-Sets (MG-Set). Hierzu haben \cite{salas-cabreraModelingParametricIdentification2010} und \cite{razakModellingSimulationElectric2021} Beiträge geleistet. 
+
+\cite{salas-cabreraModelingParametricIdentification2010} hat ein mathematisches Modell eines MG-Set mit Gleichstrommotor und Synchrongenerator entwickelt. Das linearisierte Modell des MG-Set konnte dann zur Parameteridentifikation an einer realen Anlage eingesetzt werden. Ein Vergleich der aus der Auslegung bekannten Werte mit den an der Anlage identifizierten Werten wurde jedoch nicht durchgeführt. 
 
 Ein Signalflussmodell zur Simulation eines Motor-Generator-Sets aus Kurzschlussläufer-Asynchronmotor und permanenterregtem Synchrongenerator hat \cite{razakModellingSimulationElectric2021} entwickelt. Das dort entwickelte Modell ist jedoch spezifisch auf den untersuchten Anwendungsfall der Wirkungsgraduntersuchung ausgelegt. Um ein allgemeiner anwendbares, regelbares und erweiterbares Modell zu erhalten, soll die Modellierung des hier betrachteten Frequenzumformers in \textsc{Modelica} erfolgen. Zum Einsatz kommen soll dazu das Simulationsprogramm \textsc{OpenModelica}, eine open-source Simulationsumgebung für die Modellierungssprache \textsc{Modelica}.
 

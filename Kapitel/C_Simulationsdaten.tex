@@ -53,6 +53,7 @@ effektive Windungszahl & $N_\mathrm{eff.s}$        & 9,17100475    & $\hat N\cdo
 Parameter                     & Wert     \\
 \midrule
 \endfirsthead
+\caption{Werte des Parameterrecords (\texttt{Fre­quenz­um­for­mer.­Ma­schi­nen­pa­ra­me­ter.­AIM\_­Squir­rel­Cage­Da­ta}) der Asynchronmaschine}\tabularnewline
 \toprule
 Parameter                     & Wert     \\
 \midrule
@@ -104,6 +105,12 @@ Parameter                     & Wert                                            
 \bottomrule
 \end{longtable}
 
+\begin{figure}[H]
+	\centering
+	\input{Tikz-Bilder/WebASM.tex}
+	\caption{Zusammenhang zwischen den Parametern aus der Auslegung und der Simulation der Asynchronmaschine \label{fig:WebASM}}
+\end{figure}
+
 \subsection{Synchrongenerator}\label{synchron-generator}
 
 \begin{longtable}[]{@{}ll@{}}
@@ -128,6 +135,7 @@ Parameter & Wert\tabularnewline
 Parameter & Wert\tabularnewline
 \midrule
 \endfirsthead
+\caption{Parameter aus der Auslegung des Synchrongenerators, entnommen aus \cite{pillerpowersystemsTechnischeDatenSynchrongenerator,pillerpowersystemsWickelblattSynchrongenerator272004}}\tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule
@@ -223,6 +231,7 @@ Parameter & Wert & Berechnung\\
 Parameter & Wert\tabularnewline
 \midrule
 \endfirsthead
+\caption{Parameter des Modells des Synchrongenerators}\tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule
@@ -266,6 +275,12 @@ Parameter & Wert\tabularnewline
 \bottomrule
 \end{longtable}
 
+\begin{figure}[H]
+	\centering
+	\input{Tikz-Bilder/WebSyGen.tex}
+	\caption{Zusammenhang zwischen den Parametern aus der Auslegung und der Simulation des Synchrongenerators \label{fig:WebSG}}
+\end{figure}
+
 \subsection{Erregermaschine}\label{sec:Erregermaschine}
 
 \begin{longtable}[]{@{}ll@{}}
@@ -299,6 +314,7 @@ $\xi_{\mathrm{c}}\xi_{\mathrm{z}}$ & $0,866$ \\
 Parameter & Wert & Berechnung \tabularnewline
 \midrule
 \endfirsthead
+\caption{Zwischenwerte und Berechnungsgleichungen für Parameter der Erregermaschine}\tabularnewline
 \toprule
 Parameter & Wert & Berechnung \tabularnewline\midrule
 \endhead
@@ -408,14 +424,14 @@ Parameter & Wert\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter des Gleichrichters der
-Erregermaschine}
+\caption{Parameter des Gleichrichters der Erregermaschine}
 \label{tab:GleichrichterErregermaschine}
 \tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule
 \endfirsthead
+\caption{Parameter des Gleichrichters der Erregermaschine}\tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule
@@ -426,6 +442,12 @@ Parameter & Wert\tabularnewline
 \texttt{m} & 3\tabularnewline
 \bottomrule
 \end{longtable}
+
+\begin{figure}[H]
+	\centering
+	\input{Tikz-Bilder/WebASM.tex}
+	\caption{Zusammenhang zwischen den Parametern aus der Auslegung und der Simulation der Erregermaschine \label{fig:WebErr}}
+\end{figure}
 
 \section{Reglerparameter}\label{sec:Reglerparameter}
 
@@ -463,12 +485,12 @@ Parameter & Dezimalwert & Hexadezimalwert\tabularnewline
 \end{longtable}
 
 \begin{longtable}[]{@{}ll@{}}
-\caption{Parameter für die Spannungsumwandlung, die Reglersteuerung und
-den Sollspannungsgeber}\tabularnewline
+\caption{Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber}\label{tab:OffsetMap}\tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule
 \endfirsthead
+\caption{Parameter für die Spannungsumwandlung, die Reglersteuerung und den Sollspannungsgeber}\tabularnewline
 \toprule
 Parameter & Wert\tabularnewline
 \midrule

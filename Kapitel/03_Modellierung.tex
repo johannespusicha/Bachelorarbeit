@@ -158,7 +158,7 @@ das Verhältnis des \emph{Nutschritts} (\(y_Q\)) zur Anzahl der \emph{Nuten je P
 \begin{equation}
     q = \frac{Q}{2pm}\label{eq:Lochzahl}.
 \end{equation}
-Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{tab:WicklungsdatenASM} auf. Alle weiteren Größen zur Beschreibung der Asynchronmaschine können direkt aus dem Datenblatt entnommen werden und sind ebenfalls in \cref{tab:ParameterASM,tab:WerteParameterrecordASM} angegeben. 
+Damit ist die Statorwindung der Asynchronmaschine vollständig parametriert. Die Wicklungsdaten und die daraus nach \crefrange{eq:effStatorTurns}{eq:Lochzahl} berechneten Werte listet \cref{tab:WicklungsdatenASM} auf. Alle weiteren Größen zur Beschreibung der Asynchronmaschine können direkt aus dem Datenblatt entnommen werden und sind ebenfalls in \cref{tab:ParameterASM,tab:WerteParameterrecordASM} angegeben. \cref{fig:WebASM} im Anhang bietet eine Übersicht über den Zusammenhang zwischen den Parametern aus der Auslegung und den in der Simulation verwendeten Parametern der Asynchronmaschine.
 
 Dabei ist für das Trägheitsmoment \(J_{\mathrm{r}}=0\) eingetragen, da aus der Auslegung des Frequenzumformers nur ein kombiniertes Trägheitsmoment der Welle mit den Rotoren aller drei Maschinen und dem Lüfter bekannt ist. Da die Modellierung der Welle starr (d.h. ohne Berücksichtigung der Elastizität oder der inneren Dämpfung der Welle) geschieht, kann dieses kombinierte Trägheitsmoment im Trägheitsmoment des Lüftermodells zusammengefasst werden.
 
@@ -279,7 +279,7 @@ Damit ergeben sich die Induktivitäten und Widerstände des Synchrongenerators m
 	R_{\mathrm{rq}} &= r_{\mathrm{rq}}\cdot X_{\mathrm{N}} \\
 	R_{\mathrm{e}} &= \frac{3}{2}\cdot \left(\frac{\sqrt{2}U_{\mathrm{sNenn}}}{\omega_{\mathrm{sN}}L_{\mathrm{md}}\cdot I_{\mathrm{Err. Leerl.}}}\right)^2\cdot r_{\mathrm{e}}\cdot X_{\mathrm{N}}\label{eq:ReSG}
 \end{align}
-Damit ist der Synchrongenerator vollständig parametriert. Die \cref{tab:AuslegungSG,tab:ZwischenwerteSG,tab:ParameterRecordSG,tab:ParameterSG} listen eine Übersicht über alle Parameter und Berechnungsgrößen auf.
+Damit ist der Synchrongenerator vollständig parametriert. Die \cref{tab:AuslegungSG,tab:ZwischenwerteSG,tab:ParameterRecordSG,tab:ParameterSG} listen eine Übersicht über alle Parameter und Berechnungsgrößen auf. \cref{fig:WebSG} im Anhang bietet eine Übersicht über den Zusammenhang zwischen den Parametern aus der Auslegung und den in der Simulation verwendeten Parametern des Synchrongenerators.
 
 \subsection{Erregermaschine}\label{sec:erregermaschine}
 
@@ -310,7 +310,7 @@ Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit den zwei lin
 \hypertarget{parametrierung-2}{%
 \subsubsection{Parametrierung}\label{parametrierung-2}}
 
-Die Parametrierung des Synchrongenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Da die Erregermaschine keinen Dämpferkäfig verwendet, werden die Rotorwiderstände und -reaktanzen jedoch nicht benötigt. Die verwendeten Größen sind in den  \cref{tab:AuslegungErregermaschine,tab:ParameterErregermaschine,tab:ParameterRecordErregermaschine,tab:ZwischenwerteErregermaschine} dargestellt.
+Die Parametrierung des Synchrongenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Da die Erregermaschine keinen Dämpferkäfig verwendet, werden die Rotorwiderstände und -reaktanzen jedoch nicht benötigt. Die verwendeten Größen sind in den  \cref{tab:AuslegungErregermaschine,tab:ParameterErregermaschine,tab:ParameterRecordErregermaschine,tab:ZwischenwerteErregermaschine} dargestellt. Den für die Erregermaschine reduzierten Zusammenhang zwischen den Parametern aus der Auslegung und den in der Simulation verwendeten Parametern zeigt \cref{fig:WebErr} im Anhang.
 
 Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) (typischer Wert für Silizium-Dioden \cite{??} ) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden für \(G_{\mathrm{off}}\) und \(R_{\mathrm{on}}\) kleine Werte nahe Null festgelegt, die aber noch groß genug sind um die genannten Probleme zu vermeiden.
 % TODO: Lietraturnachweis Flussspannung Silizium-Dioden
@@ -412,7 +412,14 @@ Da die direkte Messung der Spannungsfrequenz (z.B. durch Messen der Zeit zwische
 \end{equation}
 
 \subsection{Gesamtmodell}\label{gesamtmodell}
-Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Auszüge aus dem zugehörigen \textsc{Modelica}-Quellcode sind in \cref{lst:UmformerVollstandig} angegeben. Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse nach \cref{eq:Frequenz} mit $\omega = \unit[400]{Hz}\cdot \frac{2\pi}{8} = \unit[314]{\frac{rad}{s}} = \unit[3000]{\frac{U}{min}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0{,}7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung von $\unit[0]{V}$ aus mit einer Rampe über \unit[0,3]{s} hochgefahren.
+Das realisierte Gesamtmodell des Frequenzumformers zeigt \cref{fig:Gesamtmodell}. Auszüge aus dem zugehörigen \textsc{Modelica}-Quellcode sind in \cref{lst:UmformerVollstandig} angegeben. Einen Überblick über die Struktur der erstellten \modclass{Frequenzumformer} Bibliothek und der verwendeten Hilfs- und Testmodelle gibt \cref{fig:StrukturModBib}.
+
+\begin{figure}[t!]
+	\input{Tikz-Bilder/StrukturModBibliothek}
+	\caption{Hierarchie der \modclass{Frequenzumformer} Bibliothek (Auszug). Teilmodelle des Gesamtmodells sind \emph{kursiv} gesetzt.\label{fig:StrukturModBib}}
+\end{figure}
+
+Da die Simulation im Normalbetrieb des Umformers geschehen soll, wird die Winkelgeschwindigkeit der rotierenden Masse nach \cref{eq:Frequenz} mit $\omega = \unit[400]{Hz}\cdot \frac{2\pi}{8} = \unit[314]{\frac{rad}{s}} = \unit[3000]{\frac{U}{min}}$ initialisiert. Basierend auf dieser Vorgabe werden durch das Simulationsprogramm alle mit der Winkelgeschwindigkeit in Zusammenhang stehehenden Größen initialisert. Da der Aufwand zu groß wäre, für alle weiteren Größen einen konsistenten Initialwert für den eingeschwungenen Zustand im Normalbetrieb manuell zu berechnen, beginnen diese bei Null. Dadurch treten in den ersten \unit[0{,}7]{s} Einschwingvorgänge auf. Die Amplitude dieser Schwingungen wird durch eine kurze Spannungsrampe der Netzspannung begrenzt. Der Regler wird erst nach diesen Einschwingvorgängen aktiviert. Um auch die durch das Einschalten der Reglers auftretenden Einschwingvorgänge zu kontrollieren, wird die Sollspannung von $\unit[0]{V}$ aus mit einer Rampe über \unit[0,3]{s} hochgefahren. Ist das Modell in einer spezifischen Konfiguration schon einmal simuliert worden, so ist es alternativ möglich einen Zeitpunkt aus den Ergebnissen der früheren Simulation als Startwert einzustellen.
 
 Simuliert wird das Modell mit dem Solver \texttt{dassl} über einen Zeitraum von \unit[3]{s}. Der Solver verwendet einen Algorithmus mit variabler Schrittweite. Die Ausgabe der Simulationsergebnisse wird auf ein festes Zeitgitter mit einer Schrittweite von $T=\unit[0{,}00078125]{s}$, der Periodendauer des realen Reglers (vgl. \cref{eq:PeriodendauerRegler}), interpoliert. 
 \afterpage{%

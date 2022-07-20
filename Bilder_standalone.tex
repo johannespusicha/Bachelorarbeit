@@ -1,6 +1,7 @@
 \documentclass[tikz, border=1mm]{standalone}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
+\newcommand\modclass[1]{{\small\texttt{#1}}}
 \usepackage{tikz}
 \usetikzlibrary{calc,patterns,decorations.pathmorphing,decorations.markings,math,intersections,positioning,arrows.meta,graphs,backgrounds,decorations.pathreplacing,calligraphy}
 \tikzset{%
@@ -13,6 +14,7 @@ between=#1.base and #2.base
 }
 \usepackage[european, straightvoltages, nooldvoltagedirection]{circuitikz}
 \usepackage{bondgraphs}
+\usepackage{dirtree}
 
 \begin{document}
 %\input{Tikz-Bilder/Blockschaltbild_Regler}
@@ -24,5 +26,6 @@ between=#1.base and #2.base
 %\input{Tikz-Bilder/WebASM}
 %\input{Tikz-Bilder/ReglerParameter}
 %\input{Tikz-Bilder/sonstigeParameter}
-\input{Tikz-Bilder/ESB_SM_R}
+%\input{Tikz-Bilder/ESB_SM_R}
+\input{Tikz-Bilder/StrukturModBibliothek}
 \end{document}
