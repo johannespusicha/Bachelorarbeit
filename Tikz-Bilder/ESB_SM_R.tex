@@ -2,9 +2,14 @@
 \def\normalcoord(#1){coordinate(#1)}
 \def\showcoord(#1){coordinate(#1) node[circle, red, draw, inner sep=1pt, pin={[red, overlay, inner sep=0.5pt, font=\tiny, pin distance=0.1cm, pin edge={red, overlay}]45:#1}](){}}
 \let\coord=\normalcoord
-%\let\coord=\showcoord
+\let\coord=\showcoord
 
 \begin{circuitikz}
-    \draw (0,0) node[] (Lmr) {} to[L, L=$L_{\mathrm{md/q}}$] ++(2,0) to[short, i<=$i_{\mathrm{r}}(t)$] ++(1,0) node[ocirc] (RPlus) {} to[open, v=$u_{\mathrm{e}}(t)$] ++(0,-2) node[ocirc] (RMinus) {} to[R, R=$R_{\mathrm{rd/q}}$] (Lmr |- RMinus) to[L, L=$L_{\mathrm{r\sigma d/q}}$] (Lmr.center);
-    
+%    \draw (0,0) node[] (Lmr) {} to[L, L=$L_{\mathrm{md/q}}$] ++(2,0) to [R, R=$R_{\mathrm{e}}$] ++(2,0) to[short, i<=$i_{\mathrm{r}}(t)$] ++(1,0) node[ocirc] (RPlus) {} to[open, v=$u_{\mathrm{e}}(t)$] ++(0,-2) node[ocirc] (RMinus) {} to[R, R=$R_{\mathrm{rd/q}}$] (Lmr |- RMinus) to[L, L=$L_{\mathrm{r\sigma d/q}}$] (Lmr.center);
+   \draw (0,0) node[] (Lm_p) {} to[L, L=$L_{\mathrm{md/q}}$] ++(0,-3) node[] (Lm_m) {}; 
+   \node[right=1.5cm of Lm_p ] (Ls_p)  {}; 
+   \node[right=1.5cm of Lm_m] (Ls_m)  {}; 
+   \node[between= Ls_p and Ls_m] (Ls_h) {};
+   \draw  (Lm_p.center) -- (Ls_p.center) {} to[L, L=$L_{\mathrm{r\sigma d/q}}$]  (Ls_h.center) to[R, R=$R_{\mathrm{rd/q}}$] (Ls_m.center) -- (Lm_m.center);
+   \draw (Ls_p.center) -- ++(.5,0) to [R, R=$R_{\mathrm{e}}$] ++(1.5,0) to[short, i<=$i_{\mathrm{e}}(t)$] ++(1,0) node[ocirc] (RPlus) {} to[open, v^=$u_{\mathrm{e}}(t)$] (RPlus |- Ls_m) node[ocirc] (RMinus){} -- (Ls_m.center);
 \end{circuitikz}

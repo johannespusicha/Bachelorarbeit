@@ -87,18 +87,17 @@ Zur Beschreibung der Synchronmaschine sollen im Folgenden das elektrische Ersatz
 \paragraph{Elektrisches Ersatzschaltbild}
 Das elektrische Ersatzschaltbild des Schenkelpol-Syn\-chron\-ge\-ne\-ra\-tors zeigt \cref{fig:ESB_SM}. Im Statorkreis der Maschine (siehe \cref{fig:ESB_SM_Stator}) wird durch das Läuferdrehfeld ein symmetrisches Drehstromsystem mit der Spannung $\underline{U}_{\mathrm{p}}$ induziert. Wird weiterhin der Statorkreis durch einen Verbraucher geschlossen, so fließt ein Strom $\underline{I}_{\mathrm{s}}$, der neben Verlusten ein Gegenfeld aufbaut, beschrieben durch die fiktive Induktivität $L_{\mathrm{m}}$, welche mit derselben magnetischen Flussänderung $\frac{\mathrm{d} \Phi}{\mathrm{dt}}$ verbunden ist wie die reale Läuferwicklung. Da im Statorkreis nur sinusförmige periodische Zeitverläufe auftreten, können diese als komplexe Zeiger dargestellt werden, für den Rotorkreis (siehe \cref{fig:ESB_SM_Rotor}) gilt dies nicht.
 
-Aufgrund der Schenkelpole der Maschine ist der Luftspalt nicht konstant und weist eine Achsigkeit auf. Das dreiphasige System des Stators lässt sich als komplexer Raumzeiger darstellen. Als Bezugssystem des Raumzeigers wird ein rotorfestes mitrotierendes Koordinatensystem mit den Achsen $d$ und $q$ so gewählt, dass die $d$-Achse im räumlichen Maximum des Raumzeigers und die $q$-Achse orthogonal dazu liegt. Die beiden Komponenten des Raumzeigers können als Größen einer zweipoligen Ersatzmaschine interpretiert werden, deren Pole in der $d$-Achse und deren Pollücken in der $q$-Achse liegen. Die Angabe der magnetischen Größen des Stators und der elektrischen Größen des Rotors geschieht in Bezug auf dieses Koordinatensystem. Diese Transformation heißt auch \emph{Park-Transformation} oder \emph{d,q-Transformation}.
+Aufgrund der Schenkelpole der Maschine ist der Luftspalt nicht konstant und weist eine Achsigkeit auf. Die Grundwelle des Drehfelds, das durch das dreiphasige System des Stators erzeugt wird, lässt sich als komplexer Raumzeiger darstellen. Als Bezugssystem des Raumzeigers wird ein rotorfestes mitrotierendes Koordinatensystem mit den Achsen $d$ und $q$ so gewählt, dass die $d$-Achse im räumlichen Maximum des Raumzeigers und die $q$-Achse orthogonal dazu liegt. Die beiden Komponenten des Raumzeigers können dann als Größen einer zweipoligen Ersatzmaschine interpretiert werden, deren Pole in der $d$-Achse und deren Pollücken in der $q$-Achse liegen. Die Angabe der magnetischen Größen des Stators und der elektrischen Größen des Rotors geschieht in Bezug auf dieses Koordinatensystem. Diese Transformation heißt auch \emph{Park-Transformation} oder \emph{d,q-Transformation}.
 \begin{figure}
     \centering
-    \begin{subfigure}[c]{.66\textwidth}
+    \begin{subfigure}[b]{.66\textwidth}
         \input{Tikz-Bilder/ESB_SM_S}
-        \subcaption{Stator\label{fig:ESB_SM_Stator}}
+        \subcaption{Stator\newline\label{fig:ESB_SM_Stator}}
     \end{subfigure}
     \hskip -3em
-    \begin{subfigure}[c]{.33\textwidth}
+    \begin{subfigure}[b]{.33\textwidth}
         \input{Tikz-Bilder/ESB_SM_R}
-        % TODO: Die angegebenen Widerstände und Induktivitäten gehören zum Dämpferkäfig. Die Erregerwicklung ist nicht dargeestellt.
-        \subcaption{Rotor\label{fig:ESB_SM_Rotor}}
+        \subcaption{Rotor, erweiterte Darstellung basierend auf \cite{huchElektrischeMaschinen2022}\label{fig:ESB_SM_Rotor}}
     \end{subfigure}
     \caption{Ersatzschaltbild der Synchronmaschine für $d$- und $q$-Achse des Läufers}
     \label{fig:ESB_SM}

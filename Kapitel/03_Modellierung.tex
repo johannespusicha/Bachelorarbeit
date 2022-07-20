@@ -2,23 +2,25 @@
 
 \chapter{Modellierung}
 \label{chap:Modellierung}
-In diesem Kapitel wird die Modellierung des Frequenzumfomers beschrieben. Dazu werden folgende Anforderungen an das Modell gestellt:
+In diesem Kapitel wird die Modellierung des Frequenzumfomers beschrieben. Dazu werden zuerst die Struktur des Gesamtsystems und des Spannungsreglers betrachtet, Wirkzusammenhänge angegeben und im Weiteren benötigte Technische Daten zusammengetragen. Auf dieser Beschreibung des Systems aufbauend wird dann das Modell in \textsc{Modelica} umgesetzt und parametriert, basierend auf den folgenden Anforderungen an das Modell:
 \begin{itemize}
     \item Universales Modell des Frequenzumformers, zur \begin{itemize}
         \item Untersuchung der Ausgangsspannung bei Lastsprüngen
         \item Untersuchung des Einflusses der Maschinenparameter
         \item Untersuchung des Einflusses der Reglerparameter
     \end{itemize}
-    \item Daraus folgt: \begin{itemize}
-        \item Korrekte Wiedergabe der übertragenen Leistung
-        \item Dynamische Eigenschaften werden so gut wie möglich wiedergegeben
-    \end{itemize}
-    \item Vernachlässigung folgender Punkte ist möglich: \begin{itemize}
+    \item Erweiterung und Anpassung des Modells / der Teilmodelle ist möglich
+\end{itemize}
+Daraus wird für das Modellverhalten abgeleitet: 
+\begin{itemize}
+    \item Gute Wiedergabe der dynamischen Eigenschaften
+    \item Gute Wiedergabe der übertragenen Leistung
+\end{itemize}
+Folgende Punkte sollen in diesem Modell nicht betrachtet werden: 
+\begin{itemize}
         \item Anfahrverhalten
         \item Temperatureinflüsse
         \item Wirkungsgrad
-    \end{itemize}
-    \item Erweiterung und Anpassung des Modells / der Teilmodelle ist möglich
 \end{itemize}
 
 \section{Übersicht - Energie- und Informationsfluss}\label{sec:uxfcbersicht---energie--und-informationsfluss}
@@ -46,7 +48,7 @@ Während die Winkelgeschwindigkeit der Welle in allen Baugruppen gleich ist, tei
 
 Die Hauptaufgabe der Erregermaschine ist es, die Spannung am Ausgang des Reglersystems berührunglos auf den Rotor des Synchrogenerators zu übertragen. Gekoppelt sind Generator und Erregermaschine über den mitrotierenden Gleichrichter. Der Synchrongenerator wandelt die eingebrachte mechanische Energie und die Erregung über den Luftspalt in elektrische Energie um, die dem Verbraucher zur Verfügung gestellt wird..
 
-Zusätzlich zu dem Energiefluss ist in \cref{fig:Wirkungsgraph} auch der Informationsfluss angedeutet: Am Ausgang des Umformers wird der Spannungsabfall über der Last gemessen und die Differenz zum Sollwert in den Regler zurückgeführt. Der PID-Spannungsregler ist hier zusammengefasst dargestellt. Ein ausführliches Blockschaltbild des Reglers zeigt \cref{fig:Blockschaltbild_Regler}. Aus der vom Regler berechneten Stellgröße wird über Puls-Weiten-Modulation eines Steuertrafos die Statorspannung der Erregermaschine erzeugt.
+Zusätzlich zu dem Energiefluss ist in \cref{fig:Wirkungsgraph} auch der Informationsfluss angedeutet: Am Ausgang des Umformers wird der Spannungsabfall über der Last gemessen und die Differenz zum Sollwert in den Regler zurückgeführt. Der PID-Spannungsregler ist hier zusammengefasst dargestellt. Ein ausführliches Blockschaltbild des Reglers zeigt \cref{fig:Blockschaltbild_Regler}. Aus der vom Regler berechneten Stellgröße wird über Puls-Weiten-Modulation die Erregerspannung der Erregermaschine (\emph{Hilfserregerspannung}) erzeugt. Puls-Weiten-Modulation bedeutet die Erzeugung einer analogen Spannung durch Modulation einer Rechteckspannung. Das Verhältnis von Einschaltdauer zur Periodendauer bestimmt dann die wirksame Spannung. 
 
 \subsection{PID-Spannungsregler}\label{sec:pid-spannungsregler}
 

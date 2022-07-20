@@ -8,7 +8,7 @@
     %\node (ASM_Stator_R) [bgelement, above left=of ASM_Stator] {R};
     %\node (ASM_Stator_L) [bgelement, below left=of ASM_Stator] {L};
     \node (ASM_Luftspalt) [bgelement, below=of ASM_Stator] {Luftspalt};
-    \node (ASM_Rotor) [bgelement, below=2.5cm of ASM_Luftspalt] {Rotor};
+    \node (ASM_Rotor) [bgelement, below=of ASM_Luftspalt] {Rotor};
     %\node (ASM_Rotor_R) [bgelement, above left=of ASM_Rotor] {R};
     %\node (ASM_Rotor_L) [bgelement, below left=of ASM_Rotor] {L};
     \draw[bonds]
@@ -24,22 +24,22 @@
     \node (Welle) [bgelement, right=1.1cm of ASM_Rotor] {Welle};
     % \node (Reibung) [bgelement, below =of Welle] {Reibung};
     
-    \node (Gleichrichter) [bgelement, below right=.1cm and 1cm of Welle] {Gleichrichter};
+    \node (Gleichrichter) [bgelement, below right=1.3cm and 1cm of Welle] {Gleichrichter};
     \draw[bonds] 
         (ASM_Rotor) edge[effort=$M_{\mathrm{Motor}}$, flow=$\omega$] (Welle);
         % (Welle) edge[effort=$M_{\mathrm{Verl.}}$, flow=$\omega$] (Reibung);
     
      % Synchro-Generator
     \node (SG_Luftspalt) [bgelement] at (Gleichrichter|-ASM_Luftspalt.base) {Luftspalt};
-    \node (SG_Rotor_Y) [between= Gleichrichter and SG_Luftspalt] {};
-    \node (SG_Rotor) [bgelement] at (Gleichrichter|-SG_Rotor_Y) {Rotor};
+    \node (SG_Rotor_Y) [between= Welle and SG_Luftspalt] {};
+    \node (SG_Rotor) [bgelement] at (Gleichrichter|-Welle) {Rotor};
     %\node (SG_Rotor_R) [bgelement, above right=of SG_Rotor] {R};
     %\node (SG_Rotor_L) [bgelement, below right=of SG_Rotor] {L};
     \node (SG_Stator) [bgelement] at (SG_Luftspalt|-ASM_Stator.base) {Stator};
     %\node (SG_Stator_R) [bgelement, above right=of SG_Stator] {R};
     %\node (SG_Stator_L) [bgelement, above left=of SG_Stator] {L};
     \draw[bonds]
-    (Welle) edge[effort=$M_{\mathrm{Gen.}}$, flow=$\omega$] (SG_Rotor)
+    (Welle) edge[effort=$M_{\mathrm{Gen.}}$, flow=$\omega$] (SG_Rotor.west)
     (Gleichrichter) edge[effort=$u_{\mathrm{Err,Haupt}}$, flow=$i_{\mathrm{Err,Haupt}}$] (SG_Rotor)
     (SG_Rotor) edge[flow=$\Phi_{\mathrm{r}}$, effort=$V_{\mathrm{m,r}}$] (SG_Luftspalt)
                %edge (SG_Rotor_R)
@@ -50,6 +50,7 @@
     
     % Erregermaschine
     \node (EM_Rotor) [bgelement, below=of Gleichrichter] {Rotor};
+    \node (EM_Rotor_H) at (Welle |- EM_Rotor) {};
     %\node (EM_Rotor_R) [bgelement, below left=of EM_Rotor] {R};
     %\node (EM_Rotor_L) [bgelement, below right=of EM_Rotor] {L};
     \node (EM_Luftspalt) [bgelement, right=of EM_Rotor] {Luftspalt};
@@ -57,8 +58,8 @@
     %\node (EM_Stator_R) [bgelement, below left=of EM_Stator] {R};
     %\node (EM_Stator_L) [bgelement, below right=of EM_Stator] {L};
     
-    \draw[bonds]
-    (Welle) edge[effort=$M_{\mathrm{Err.}}$, flow=$\omega$] (EM_Rotor)
+    \draw[bonds, thick, line cap=rect]
+    (Welle) --  (EM_Rotor_H.center) edge[effort={$M_{\mathrm{Err.}}$}, flow={$\omega$}] (EM_Rotor.west)
     (EM_Rotor) edge[effort=$u_{\mathrm{AC}}$, flow=$i_{\mathrm{AC}}$] (Gleichrichter)
                %edge (EM_Rotor_L)
                %edge (EM_Rotor_R)
@@ -69,7 +70,7 @@
     
     % Last
     \node (Last) [bgelement] at (EM_Stator|-SG_Stator) {Last};
-    \draw[bonds] (SG_Stator) edge[flow=$i_{\mathrm{aus}}$, effort=$u_{\mathrm{aus}}$] (Last);
+    \draw[bonds] (SG_Stator) edge[flow=$I_{\mathrm{aus}}$, effort=$U_{\mathrm{aus}}$] (Last);
     
     % Regler
     \node (Summe) [sum, below=of Last] {};
