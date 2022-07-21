@@ -2,10 +2,13 @@
 \label{chap:Quellcode}
 \definecolor{shadecolor}{named}{lightgray}
 
-\section{\textsc{Modelica}-Code}
+\section{Modelica-Code}
 \label{sec:ModelicaCode}
 
-\begin{lstlisting}[language=modelica,caption=Record für die Maschinendaten der Asynchronmaschine,label=lst:RecordASMData]
+\begingroup
+\captionsetup{type=listing}
+\caption{Record für die Maschinendaten der Asynchronmaschine\label{lst:RecordASMData}}
+\begin{minted}{modelica}
 within Frequenzumformer.Maschinenparameter;
 record AIM_SquirrelCageData
     extends BasisDaten;
@@ -39,10 +42,13 @@ record AIM_SquirrelCageData
     annotation(
       Icon(coordinateSystem(extent = {{-100, -40}, {100, 100}})));
   end AIM_SquirrelCageData;
-\end{lstlisting}
+\end{minted}
+\endgroup
 
-
-\begin{lstlisting}[language=modelica, caption=Vollständiges Modell des Frequenzumformers, label=lst:UmformerVollstandig,frame=single,framerule=0pt]
+\begingroup
+\captionsetup{type=listing}
+\caption{Vollständiges Modell des Frequenzumformers \label{lst:UmformerVollstandig}}
+\begin{minted}{modelica}
 within Frequenzumformer;
 
 model Umformer
@@ -94,12 +100,16 @@ initial equation
 equation
   ...
 end Umformer;
-\end{lstlisting}
-
+\end{minted}
+\endgroup
 
 \section{Python-Code}
 \label{sec:PythonCode}
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{preprocessData.py}, label=lst:PreprocessData,frame=single,framerule=0pt]
+
+\begingroup
+\captionsetup{type=listing}
+\caption{Auszug aus \texttt{preprocessData.py}\label{lst:PreprocessData}}
+\begin{minted}{python}
 ...
 def zero_crossing(ndarray):
     return np.where(np.diff(np.sign(ndarray)))[0]
@@ -172,15 +182,23 @@ def samples_per_period(delta, nom_freq):
     """
     return round(1 / (nom_freq*delta))
 ...
-\end{lstlisting}
+		
+\end{minted}
+\endgroup
+
 
 \subsection{Parameterstudie}
-Mit dem Paket \texttt{modelicaSweep.py} (siehe \cref{lst:ModelicaSweep}) wird die Parameterstudie an dem \textsc{Modelica}-Modell durchgeführt. Vorraussetzung ist, dass sich das kompilierte Modell \texttt{Umformer.exe} und die Begleitdateien \texttt{Umformer\_init.xml}, \texttt{Umformer\_prof.intdata}, \texttt{Umformer\_prof.realdata} und \texttt{Umformer\_info.json} in dem Arbeitsverzeichnis \texttt{model\_\-lastsprung} befinden. Über \cref{lst:ParameterSweep} wird die Funktion \texttt{run\_model()} aufgerufen. Der Funktion werden ein Dictionary mit Simulationsparametern der Form \begin{lstlisting}[language=python]
+Mit dem Paket \mintinline{python}{modelicaSweep.py} (siehe \cref{lst:ModelicaSweep}) wird die Parameterstudie an dem \textsc{Modelica}-Modell durchgeführt. Vorraussetzung ist, dass sich das kompilierte Modell \texttt{Umformer.exe} und die Begleitdateien \texttt{Umformer\_init.xml}, \texttt{Umformer\_prof.intdata}, \texttt{Umformer\_prof.realdata} und \texttt{Umformer\_info.json} in dem Arbeitsverzeichnis \texttt{model\_\-lastsprung} befinden. Über \cref{lst:ParameterSweep} wird die Funktion \mintinline{python}{run_model()} aufgerufen. Der Funktion werden ein Dictionary mit Simulationsparametern der Form 
+\begin{minted}{python}
 {"Parameter":Wert,
  ...}
-\end{lstlisting} und der Dateiname der Ergebnisdatei übergeben. Jeder Aufruf von \texttt{run\_model()} startet einen Unterprozess, der über den Shell-Befehl \texttt{ start / wait /min <model> -override <parameter> -r=<result\_file>} das Modell mit den veränderten Simulationsparametern ausführt. Durch den Aufruf des Unterprozesses ist es möglich, mehrere Simulationen auf verschiedenen Prozessoerkernen parallel durchzuführen.
+\end{minted}
+und der Dateiname der Ergebnisdatei übergeben. Jeder Aufruf von \mintinline{python}{run_model()} startet einen Unterprozess, der über den Shell-Befehl \mintinline{python}{ start / wait /min <model> -override <parameter> -r=<result\_file>} das Modell mit den veränderten Simulationsparametern ausführt. Durch den Aufruf des Unterprozesses ist es möglich, mehrere Simulationen auf verschiedenen Prozessoerkernen parallel durchzuführen.
 
-\begin{lstlisting}[language=python, caption=Ausführen der Parameterstudie mit \texttt{modelicaSweep.py},label=lst:ParameterSweep]
+\begingroup
+\captionsetup{type=listing}
+\caption{Ausführen der Parameterstudie mit \mintinline{python}{modelicaSweep.py},\label{lst:ParameterSweep}}
+\begin{minted}{python}
 import multiprocessing as mp
 from multiprocessing.pool import ThreadPool
 import modelicaSweep
@@ -194,9 +212,14 @@ if __name__ == "__main__":
     with mp.Pool() as pool:
         result = pool.starmap(modelicaSweep.run_model, simulations_parameter)
         print(*result)
-\end{lstlisting}
+\end{minted}
+\endgroup
 
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{modelicaSweep.py}, label=lst:ModelicaSweep,frame=single,framerule=0pt]
+
+\begingroup
+\captionsetup{type=listing}
+\caption{Auszug aus \texttt{modelicaSweep.py}\label{lst:ModelicaSweep}}
+\begin{minted}{python}
 def run_model(simulation_parameters, simulation_id):
     current_working_directory = (
         r"\model_lastsprung"
@@ -240,9 +263,13 @@ def file_name_to_list(file_name):
     machine = '_'.join(machine) # allows machine names to contain '_'
     *_, dp = dp.split('=')
     return (machine, parameter, int(dp))
-\end{lstlisting}
+\end{minted}
+\endgroup
 
-\begin{lstlisting}[language=python, caption=Auszug aus \texttt{trendanalyse.py}, label=lst:Trendanalyse,frame=single,framerule=0pt]
+\begingroup
+\captionsetup{type=listing}
+\caption{Auszug aus \texttt{trendanalyse.py}\label{lst:Trendanalyse}}
+\begin{minted}{python}
 ...
 def trend(x, y, y0):
     """ Calc the average derivative of y (which is a dependent variable on x) related to y0
@@ -286,9 +313,13 @@ def trend_of_sequences(x, y, x0, sequences=[]):
         y_interpol = interpol(x_interpol)
         results.append(trend(x_interpol, y_interpol, y0))
     return results
-\end{lstlisting}
+\end{minted}
+\endgroup
 
-\begin{lstlisting}[language=python, caption=Befehle zum Ausführen von \texttt{trendanalyse.py}, label=lst:TrendanalyseCommand,frame=single,framerule=0pt]
+\begingroup
+\captionsetup{type=listing}
+\caption{Befehle zum Ausführen von \texttt{trendanalyse.py}\label{lst:TrendanalyseCommand}}
+\begin{minted}{python}
 import trendanalyse
 parameter_trends = {}
 for parameter, group in df_fitted.groupby(['machine', 'parameter']):
@@ -299,4 +330,5 @@ df_trends = df_trends.explode(list(df_trends))
 df_trends.rename_axis(['machine', 'parameter'], inplace=True)
 df_trends.insert(0, 'factor', [.25, .5, 2, 4]*(len(df_trends.index)//4))
 df_trends.set_index(['factor'], append=True, inplace=True)
-\end{lstlisting}
+\end{minted}
+\endgroup

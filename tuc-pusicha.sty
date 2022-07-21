@@ -48,6 +48,7 @@
 \RequirePackage{subcaption}
 \RequirePackage{booktabs}            % for better lines in tables
 \RequirePackage{array}               % for better tables
+\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
 \RequirePackage{multirow}            % 
 \RequirePackage{longtable}           % for tables, that span across multiple pages
 \RequirePackage{amsmath}             % better math environments
@@ -58,24 +59,13 @@
 \RequirePackage{xfrac}               % for nice printing of fractions like 1/2
 \RequirePackage{textcomp}            % for \textdegree to obtain °
 \RequirePackage{listings}
+\RequirePackage{minted}
+\setminted{breaklines, frame=single}
 
-%%  This command takes 2 (up to 3) arguments:
-%%  1) the unknown word itself, which is to be put literally into the
-%%     list of nomenclatures
-%%  2) the explaination, which will be only visible in the list of
-%%     nomenclatures
-%%  3) Eventually the unknown word in a different type, to be output
-%%     in the text instead of #1
-\newcommand{\fremdwort}[3][\@empty]{%
-  \nomenclature{#2}{#3}%
-    % If #1 is not set, we don't need it.
-  \ifx\@empty#1\emph{#2}\else\emph{#1}\fi}%
-
-%\RequirePackage[]{biblatex} % bibliography tool, style=alphabetic
-\newcommand*{\source}[1]{\par\raggedleft\footnotesize Quelle:~#1}
 \RequirePackage{csquotes}
 \RequirePackage[right]{eurosym} % printing the Euro sign
-%% Warum auch immer!  Das Paket hyperref sollte immer als letztes Paket geladen werden.
+\RequirePackage{scrhack}             % Patcht float und listings, damit sie mit KOMA besser zusammenarbeiten. Muss nach float und listings geladen werden.
+% Warum auch immer!  Das Paket hyperref sollte immer als letztes Paket geladen werden.
 \RequirePackage[pdfpagelabels=true]{hyperref}
 \hypersetup{%
   unicode=false,%

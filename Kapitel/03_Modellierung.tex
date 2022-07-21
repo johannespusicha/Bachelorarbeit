@@ -92,7 +92,7 @@ Nach \cite[S. 149]{kralModelicaObjektorientierteModellbildung2019} werden für d
 \end{itemize}
 
 \subsection{Asynchronmotor mit Kurzschlussläufer}\label{sec:asynchronmotor-mit-kurzschlussluxe4ufer}
-Da die betrachteten Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{kralModelicaObjektorientierteModellbildung2019} den Asynchron- und Synchronmaschinen der MSL ein \emph{partielles \textsc{Modelica}-Modell} für Drehfeldmaschinen zugrunde (\modclass{FundamentalWave.­In­ter­fa­ces.­Par­tial­Ba­sic­In­duc­tion­Ma­chine}). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss. Ein solches partielles Modell (Modifizierer \modclass{partial}) kann ein ungleiche Anzahl an Gleichungen und Unbekannten implementieren. Es kann daher nicht allein simuliert werden, sondern muss in einem separaten Modell verwendet geerbt werden. Dazu bietet es die Möglichkeit, Strukturen des Modells bei der Vererbung zu verändern (\modclass{replace}).
+Da die betrachteten Drehfeldmaschinen in vielen Bereichen gleich oder zumindest ähnlich aufgebaut sind, legt \cite{kralModelicaObjektorientierteModellbildung2019} den Asynchron- und Synchronmaschinen der MSL ein \emph{partielles} \textsc{Modelica}-Modell für Drehfeldmaschinen zugrunde (\modclass{FundamentalWave.­In­ter­fa­ces.­Par­tial­Ba­sic­In­duc­tion­Ma­chine}). Das unterstützt den objektorientierten Modellierungsansatz, sodass diese Grundstruktur nicht für jede elektrische Maschine neu aufgestellt werden muss. Ein solches partielles Modell (Modifizierer \modclass{partial}) kann ein ungleiche Anzahl an Gleichungen und Unbekannten implementieren. Es kann daher nicht allein simuliert werden, sondern muss in einem separaten Modell verwendet geerbt werden. Dazu bietet es die Möglichkeit, Strukturen des Modells bei der Vererbung zu verändern (\modclass{replace}).
 
 \subsubsection{Partielles Modell der Drehfeldmaschine}\label{sec:partielles-modell-der-drehfeldmaschine}
 Das partielle Modell der Drehfeldmaschine (siehe \cref{fig:partiellDrehfeldmaschinen}) modelliert die Energieübertragung vom elektrischen Netzanschluss des Stators über den Luftspalt auf den Rotor, wie sie schon in \cref{fig:Wirkungsgraph} betrachtet wurde. Die Implementierung des Rotormodells und der mögliche Anschluss elektrischer Klemmen an den Rotor (z.B. über Schleifringe) ist Teil der Spezialisierung des Modells für die einzelnen elektrischen Maschinen. Neben der Stator-Rotor-Kopplung bietet das partielle Modell einen Sammelpunkt für Wärmeenergie aller Teilkomponenten, eine mechanische Trägheitskomponente für die Trägheit des Rotors der Maschine verbunden mit einem Lagerreibungsmodell und einem optionalen mechanischen Anschluss als Gegenlager des Stators.
@@ -100,7 +100,7 @@ Das partielle Modell der Drehfeldmaschine (siehe \cref{fig:partiellDrehfeldmasch
 \begin{figure}
 \centering
 \includegraphics[height=6cm]{Bilder/PartialBasicInductionMachine.pdf}
-\caption{Partielles Modell der Drehfeldmaschine \modclass{Fun­da­men­tal­Wave.­In­ter­fa­ces.­PartialBasicInductionMachine} der MSL v3.2.3}
+\caption{Partielles Modell der Drehfeldmaschine \modclass{Fun­da­men­tal­Wave.­In­ter­fa­ces.­Par\-tial\-Ba\-sic\-In\-duc\-tion\-Ma\-chine} der MSL v3.2.3}
 \label{fig:partiellDrehfeldmaschinen}
 \end{figure}
 
@@ -312,8 +312,8 @@ Die Dioden des Gleichrichter verwenden ein ideales Diodenmodell mit den zwei lin
 
 Die Parametrierung des Synchrongenerators der Erregermaschine erfolgt analog zur Parametrierung des Hauptgenerators oben. Da die Erregermaschine keinen Dämpferkäfig verwendet, werden die Rotorwiderstände und -reaktanzen jedoch nicht benötigt. Die verwendeten Größen sind in den  \cref{tab:AuslegungErregermaschine,tab:ParameterErregermaschine,tab:ParameterRecordErregermaschine,tab:ZwischenwerteErregermaschine} dargestellt. Den für die Erregermaschine reduzierten Zusammenhang zwischen den Parametern aus der Auslegung und den in der Simulation verwendeten Parametern zeigt \cref{fig:WebErr} im Anhang.
 
-Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) (typischer Wert für Silizium-Dioden \cite{??} ) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden für \(G_{\mathrm{off}}\) und \(R_{\mathrm{on}}\) kleine Werte nahe Null festgelegt, die aber noch groß genug sind um die genannten Probleme zu vermeiden.
-% TODO: Lietraturnachweis Flussspannung Silizium-Dioden
+Für den Brückengleichrichter sind aus der Auslegung keine Werte bekannt. Daher wird für die Flussspannung \(U_{\mathrm{F}}=\unit[0,7]{V}\) (typischer Wert für Silizium-Dioden \cite{Tietze:1993tw}[S.~23] ) angenommen. Der Leitwert \(G_{\mathrm{off}}\) und der Widerstand \(R_{\mathrm{on}}\) einer idealen Diode betragen Null. Um jedoch numerische Probleme (Teilen durch Null bzw. Ansteigen der resultierenden Größen gegen Unendlich) zu vermeiden, werden für \(G_{\mathrm{off}}\) und \(R_{\mathrm{on}}\) kleine Werte nahe Null festgelegt, die aber noch groß genug sind um die genannten Probleme zu vermeiden.
+
 \subsection{Spannungsregler}\label{sec:Spannungsregler}
 Der Spannungsregler wird in \textsc{Modelica} als Signalflussobjekt implementiert. Zur Unterstützung des objektorientierten Ansatzes werden die Teilglieder des Reglers (P-Glied, I-Glied und D-Glied) als eigenständige Objekte definiert, die in dem Spannungreglermodell verwendet werden.
 

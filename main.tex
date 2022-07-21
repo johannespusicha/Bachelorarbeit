@@ -5,13 +5,15 @@ titlepage=firstiscover,
 fontsize=12pt,
 twoside=true,
 listof=totoc,
-bibliography=totoc
+bibliography=totoc,
+listof=flat
 ]{scrbook}
 \usepackage[]{tuc-pusicha}
 \usepackage{lmodern}
 \recalctypearea
 \usepackage[sortcites=true]{biblatex} % style=alphabetic
 \MakeAutoQuote{„}{“}
+\usepackage{xurl}
 
 \usepackage{afterpage}
 \usepackage[export]{adjustbox}% set max width for all images
@@ -33,8 +35,6 @@ bibliography=totoc
 \usepackage[european, straightvoltages, nooldvoltagedirection]{circuitikz}
 \usepackage{bondgraphs}
 \usepackage{dirtree}
-\input{listings-modelica.cfg}
-\usepackage{framed}
 
 \newcommand\modclass[1]{{\small\texttt{#1}}}
 
@@ -56,9 +56,6 @@ bibliography=totoc
 \def \subtitle{Objektorientierte Modellierung eines rotierenden Frequenzumformers} 
 \def \deliverydate{\today}
 
-\usepackage{array}   % for \newcolumntype macro
-\newcolumntype{L}{>{$}l<{$}} % math-mode version of "l" column type
-%\usepackage{layouts}
 \begin{document}
 
 %%% ---------------------------------------------------- &Front-Matter ---
@@ -87,6 +84,7 @@ bibliography=totoc
 \backmatter
 \listoffigures{}
 \listoftables{}
+%\lstlistoflistings{}
 \printbibliography[]
 
 \end{document}
