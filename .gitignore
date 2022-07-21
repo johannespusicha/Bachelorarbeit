@@ -14,3 +14,5 @@ main.pdf
 main.pyg
 main.synctex(busy)
 Bilder_standalone.pdf
+_minted-main/
+*.lol
