@@ -58,9 +58,9 @@
 %\RequirePackage{siunitx}             % or km/h
 \RequirePackage{xfrac}               % for nice printing of fractions like 1/2
 \RequirePackage{textcomp}            % for \textdegree to obtain °
-\RequirePackage{listings}
-\RequirePackage{minted}
-\setminted{breaklines, frame=single}
+\RequirePackage[newfloat]{minted}
+\SetupFloatingEnvironment{listing}{listname=Quellcodeverzeichnis}
+\setminted{breaklines, frame=single, breakanywhere}
 
 \RequirePackage{csquotes}
 \RequirePackage[right]{eurosym} % printing the Euro sign

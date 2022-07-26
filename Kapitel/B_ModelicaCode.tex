@@ -1,4 +1,4 @@
-\chapter{Quellcoode}
+\chapter{Quellcode}
 \label{chap:Quellcode}
 \definecolor{shadecolor}{named}{lightgray}
 
@@ -54,9 +54,8 @@ within Frequenzumformer;
 model Umformer
   constant Integer m = 3 "Number of phases";
   import Modelica.Constants.pi;
-  Modelica.Magnetic.FundamentalWave.BasicMachines.SynchronousInduction
-      Machines.SM_ElectricalExcited smee(IeOpenCircuit = smeeData.IeOpenCircuit, Jr = smeeData.Jr, Js = smeeData.Js, Lmd = smeeData.Lmd, Lmq = smeeData.Lmq, Lrsigmad = smeeData.Lrsigmad, Lrsigmaq = smeeData.Lrsigmaq, Lssigma(fixed = false, start = smeeData.Lssigma), Re = smeeData.Re, Rrd = smeeData.Rrd, Rrq = smeeData.Rrq, Rs(fixed = false), TeOperational(displayUnit = "K") = 293.15, TeRef(displayUnit = "degC") = 293.15, TrOperational(displayUnit = "K") = 293.15, TrRef(displayUnit = "K") = 293.15, TsOperational(displayUnit = "K") = 293.15, TsRef(displayUnit = "degC") = 293.15, VsNominal = smeeData.VsNominal, alpha20e = 0, alpha20r = 0, alpha20s = 0, effectiveStatorTurns = smeeData.effectiveStatorTurns, fsNominal = smeeData.fsNominal, m = m, p = smeeData.p, phiMechanical(displayUnit = "rad", fixed = false), sigmae = smeeData.sigmae, useDamperCage = true, useSupport = false, wMechanical(displayUnit = "rev/min", fixed = false));
   Modelica.Mechanics.Rotational.Sensors.SpeedSensor speedSensor;
+  Modelica.Magnetic.FundamentalWave.BasicMachines.SynchronousInductionMachines.SM_ElectricalExcited smee(IeOpenCircuit = smeeData.IeOpenCircuit, Jr = smeeData.Jr, Js = smeeData.Js, Lmd = smeeData.Lmd, Lmq = smeeData.Lmq, Lrsigmad = smeeData.Lrsigmad, Lrsigmaq = smeeData.Lrsigmaq, Lssigma(fixed = false, start = smeeData.Lssigma), Re = smeeData.Re, Rrd = smeeData.Rrd, Rrq = smeeData.Rrq, Rs(fixed = false), TeOperational(displayUnit = "K") = 293.15, TeRef(displayUnit = "degC") = 293.15, TrOperational(displayUnit = "K") = 293.15, TrRef(displayUnit = "K") = 293.15, TsOperational(displayUnit = "K") = 293.15, TsRef(displayUnit = "degC") = 293.15, VsNominal = smeeData.VsNominal, alpha20e = 0, alpha20r = 0, alpha20s = 0, effectiveStatorTurns = smeeData.effectiveStatorTurns, fsNominal = smeeData.fsNominal, m = m, p = smeeData.p, phiMechanical(displayUnit = "rad", fixed = false), sigmae = smeeData.sigmae, useDamperCage = true, useSupport = false, wMechanical(displayUnit = "rev/min", fixed = false));
   Modelica.Electrical.Analog.Basic.Ground ground;
   Modelica.Electrical.MultiPhase.Basic.Star starNet(m = m);
   Modelica.Blocks.Math.Gain frequency(k = 8 / (2 * pi));

@@ -2,6 +2,8 @@
 %parskip,
 german,
 titlepage=firstiscover,
+BCOR=15mm,
+DIV=13,
 fontsize=12pt,
 twoside=true,
 listof=totoc,
@@ -54,13 +56,14 @@ listof=flat
 \def \author{Johannes Pusicha} 
 \def \title{Erstellung eines Simulationsmodells zur Auslegung und Regelung elektrischer Maschinen} 
 \def \subtitle{Objektorientierte Modellierung eines rotierenden Frequenzumformers} 
-\def \deliverydate{\today}
+\def \deliverydate{27.07.2022}
 
 \begin{document}
 
 %%% ---------------------------------------------------- &Front-Matter ---
 \frontmatter
 \include{titlepage}
+%\include{titlepage_BW}
 \include{assertion}
 
 \include{Kapitel/0I_Vorwort}
@@ -84,7 +87,7 @@ listof=flat
 \backmatter
 \listoffigures{}
 \listoftables{}
-%\lstlistoflistings{}
+\listoflistings{}
 \printbibliography[]
 
 \end{document}

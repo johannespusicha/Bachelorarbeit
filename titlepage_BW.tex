@@ -20,13 +20,10 @@
 \ifx\title\@empty
 Kein Titel angegeben
 \else
-    %\thispagestyle{TUCtitlepagestyle}%
-    %\vspace*{-\logovskip}%
-    %\hspace*{-\logohskip}%
-    \includegraphics[width=\logowidth]{Logo/\@logofile}%
-    
+	\includegraphics[width=\logowidth]{Logo/Logo-TUC-DE-BLACK}%
     \vspace{\titleskip}%
-     \begin{center}%
+
+     \begin{center}%  
         \if\semester\@empty%
             \large\thesistype\\[0.8ex]%
         \else 
@@ -36,9 +33,8 @@ Kein Titel angegeben
         \Large\textbf{\textsf\author}\\[5ex]%
         \huge\textbf{\textsf{\title%
             \ifthenelse{\equal{\subtitle}{}}{}{\\[1.2ex]\Large\subtitle}}}%
-    \vfill%
-    
     \end{center}%
+    \vfill%
     \ifx\institute\@empty%
     \else%
         \iflanguage{english}{%
